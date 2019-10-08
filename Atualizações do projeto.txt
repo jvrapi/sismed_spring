@@ -1,0 +1,9 @@
+﻿Arquivo criado para que seja documentado tudo o que foi feito por cada pessoa do time e ajudar caso ocorra algum erro.
+
+Data: 08/10
+Atualizações:
+Foram criados os controller's de convenio, procedimento. O de tipo de convenio não foi criado pois inicialmente, não sera necessario, já que os tipos de convenios podem ser listados junto com a pgina de convenio.
+
+Foi incluido também a dependencia da JPA no POM xml. 
+
+Feitas por: João vitor.

@@ -5,17 +5,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/convenios")
+@RequestMapping("/convenios") // primeira parte do href 
 public class ConvenioController {
 	
-		@GetMapping("/lista")
+		@GetMapping("/listar") // segunda parte do href
 		public String listar() {
-			return "/convenio/lista";
+			return "/convenio/lista"; // retorna o caminho do arquivo
 		}
 		
-		@GetMapping("/cadastro")
+		@GetMapping("/cadastros") // segunda parte do href
 		public String cadastrar () {
-			return "/convenio/cadastro";
+			return "/convenio/cadastro"; // retorna o caminho do arquivo
+		
 		}
 		
 }
