@@ -209,9 +209,4 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setNivel_acesso(Integer nivel_acesso) {
 		this.nivel_acesso = nivel_acesso;
 	}
-	
-	
-	
-
-
 }
