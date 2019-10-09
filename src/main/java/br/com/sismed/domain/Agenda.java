@@ -1,6 +1,8 @@
 package br.com.sismed.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,27 +13,23 @@ import javax.persistence.*;
 public abstract class Agenda extends AbstractEntity<Long> {
 	
 	@ManyToOne
-	@Column(nullable = false)
 	@JoinColumn(name = "paciente_prontuario") // nome da chave estrangeira no banco de dados
 	private Paciente paciente_prontuario;
 	
-	@ManyToOne
-	@Column(nullable = false)
+	@ManyToOne 
 	@JoinColumn(name = "convenio") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
 	
 	@ManyToOne
-	@Column(nullable = false)
 	@JoinColumn(name = "tipo_convenio_id") // nome da chave estrangeira no banco de dados
 	private TipoConvenio tipo_convenio;
 	
 	@ManyToOne
-	@Column(nullable = false)
+	
 	@JoinColumn(name = "procedimento_id") // nome da chave estrangeira no banco de dados
 	private Procedimento procedimento;
 	
 	@ManyToOne
-	@Column(nullable = false)
 	@JoinColumn(name = "funcionario_id") // nome da chave estrangeira no banco de dados
 	private Funcionario funcionario;
 	
@@ -45,15 +43,14 @@ public abstract class Agenda extends AbstractEntity<Long> {
 	private String pagou;
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data = new Date();
+	private LocalDateTime data =  LocalDateTime.now();
 	
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date hora = new Date();
+	private LocalDateTime hora =  LocalDateTime.now();
 
 	
-	
+	@OneToMany(mappedBy = "agenda") // nome do atributo na classe Custos
+	private List<Custos> custos;
 	
 	public Paciente getPaciente_prontuario() {
 		return paciente_prontuario;
