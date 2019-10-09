@@ -1,32 +1,82 @@
 package br.com.sismed.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-public class FuncionarioEntity {
+@Table(name="sismed_funcionario")
+public class Funcionario extends AbstractEntity<Long> {
 	
+	@Column(name="nome", nullable=false, length=40)
 	private String nome;
+	
+	@Column(name="cpf", nullable=false, length=12)
 	private String cpf;
+	
+	@Column(name="rg", nullable=false, length=10)
 	private String rg;
+	
+	@Column(name="orgao_emissor", nullable=false, length=30)
 	private String orgao_emissor;
+	
+	@Column(name="data_emissao", nullable=false, length=10)
+	private String data_emissao;
+	
+	@Column(name="crm", nullable=false, length=10)
 	private String crm;
+	
+	@Column(name="especialidade", nullable=false, length=45)
 	private String especialidade;
+	
+	@Column(name="telefone", nullable=false, length=15)
 	private String telefone;
+	
+	@Column(name="celular", nullable=false, length=15)
 	private String celular;
+	
+	@Column(name="sexo", nullable=false, length=15)
 	private String sexo;
+	
+	@Column(name="data_nascimento", nullable=false, length=10)
 	private String data_nascimento;
+	
+	@Column(name="email", nullable=false, length=30)
 	private String email;
+	
+	@Column(name="estado_civil", nullable=false, length=20)
 	private String estado_civil;
+	
+	@Column(name="escolaridade", nullable=false, length=45)
 	private String escolaridade;
+	
+	@Column(name="formacao", nullable=false, length=45)
 	private String formacao;
+	
+	@Column(name="cep", nullable=false, length=10)
 	private String cep;
+	
+	@Column(name="endereco", nullable=false, length=100)
 	private String endereco;
+	
+	@Column(name="bairro", nullable=false, length=45)
 	private String bairro;
+	
+	@Column(name="cidade", nullable=false, length=45)
 	private String cidade;
+	
+	@Column(name="estado", nullable=false, length=2)
 	private String estado;
+	
+	@Column(name="naturalidade", nullable=false, length=45)
 	private String naturalidade;
+	
+	@Column(name="nacionalidade", nullable=false, length=20)
 	private String nacionalidade;
+	
+	@Column(name="nivel_acesso", nullable=false, length=4)
 	private Integer nivel_acesso;
+	
 	public String getNome() {
 		return nome;
 	}
