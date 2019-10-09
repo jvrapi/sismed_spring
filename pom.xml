@@ -34,9 +34,21 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+<<<<<<< .merge_file_a01304
 
 		</dependency>
 
+=======
+<<<<<<< .merge_file_a01044
+			
+		</dependency>
+		
+=======
+
+		</dependency>
+
+>>>>>>> .merge_file_a01036
+>>>>>>> .merge_file_a09440
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -79,6 +91,11 @@
 			<artifactId>jquery-ui</artifactId>
 			<version>1.12.1</version>
 		</dependency>
+<<<<<<< .merge_file_a01304
+=======
+<<<<<<< .merge_file_a01044
+=======
+>>>>>>> .merge_file_a09440
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -86,6 +103,10 @@
 			<scope>runtime</scope>
 		</dependency>
 
+<<<<<<< .merge_file_a01304
+=======
+>>>>>>> .merge_file_a01036
+>>>>>>> .merge_file_a09440
 	</dependencies>
 
 	<build>
