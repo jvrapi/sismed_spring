@@ -13,11 +13,10 @@ public class ExameController {
 		return "/exame/listar"; 
 	}
 	
-	//Anexar exame ao paciente
-	/*@GetMapping("/anexo") 
+	@GetMapping("/cadastrar") 
 	public String anexo () {
-		return "/exame/anexo"; 
-	}*/
+		return "/exame/cadastrar"; 
+	}
 	
 	/*@GetMapping("/pesquisar") 
 	public String pesquisar() {
