@@ -24,23 +24,24 @@
 <link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-	<header>
+
+	<header th:replace="fragments/header::cabecalho">
 		<div>Header</div>
 	</header>
 
-	<div>
+	<div class="layout-main">
 		<aside>
-			<nav>
+			<nav th:replace="fragments/sidebar::nav-sidebar">
 				<span>Menu</span>
 			</nav>
 		</aside>
 
-		<section>
+		<section layout:fragments="corpo">
 			<div>Conteudo das páginas</div>
 		</section>
 	</div>
-
-	<footer> 
+<!-- Nome da página e nome do fragmento -->
+	<footer th:replace="fragments/footer::rodape"> 
 		<div> Footer</div>
 	</footer>
 	
@@ -65,5 +66,6 @@
 		});
 
 	</script>
+	
 </body>
 </html>
