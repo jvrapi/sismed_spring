@@ -13,76 +13,76 @@ import javax.persistence.Table;
 @Table(name = "sismed_paciente")
 public class Paciente extends AbstractEntity<Long>{
 
-	@Column(name = "nome", nullable = false, length = 40)
+	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
 	
-	@Column(name = "cpf", nullable = false, length = 11)
+	@Column(name = "cpf", length = 15)
 	private String cpf;
 	
-	@Column(name = "rg", nullable = false, length = 9)
+	@Column(name = "rg", length = 15)
 	private String rg;
 	
-	@Column(name = "orgao_emissor", nullable = false)
+	@Column(name = "orgao_emissor", length = 15)
 	private String orgao_emissor;
 	
-	@Column(name = "data_emissao", nullable = false)
+	@Column(name = "data_emissao", length = 15)
 	private Date data_emissao;
 	
-	@Column(name = "telefone_fixo", nullable = false)
+	@Column(name = "telefone_fixo", length = 15)
 	private String telefone_fixo;
 	
-	@Column(name = "telefone_trabalho", nullable = false)
+	@Column(name = "telefone_trabalho", length = 15)
 	private String telefone_trabalho;
 	
-	@Column(name = "celular", nullable = false)
+	@Column(name = "celular", nullable = false, length = 15)
 	private String celular;
 	
-	@Column(name = "sexo", nullable = false)
+	@Column(name = "sexo", length = 15)
 	private String sexo;
 	
-	@Column(name = "cor", nullable = false)
+	@Column(name = "cor", length = 15)
 	private String cor;
 	
-	@Column(name = "data_nascimento", nullable = false)
-	private String data_nasimento;
+	@Column(name = "data_nascimento", length = 15)
+	private Date data_nasimento;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", length = 50)
 	private String email;
 	
-	@Column(name = "estado_civil", nullable = false)
+	@Column(name = "estado_civil", length = 20)
 	private String estado_civil;
 	
-	@Column(name = "escolaridade", nullable = false)
+	@Column(name = "escolaridade", length = 40)
 	private String escolaridade;
 	
-	@Column(name = "profissao", nullable = false)
+	@Column(name = "profissao", length = 50)
 	private String profissao;
 	
-	@Column(name = "recomendacao", nullable = false)
+	@Column(name = "recomendacao", length = 50)
 	private String recomendacao;
 	
-	@Column(name = "cep", nullable = false)
+	@Column(name = "cep", length = 15)
 	private String cep;
 	
-	@Column(name = "endereco", nullable = false)
+	@Column(name = "endereco", length = 150)
 	private String endereco;
 	
-	@Column(name = "bairro", nullable = false)
+	@Column(name = "bairro", length = 50)
 	private String bairro;
 	
-	@Column(name = "cidade", nullable = false)
+	@Column(name = "cidade", length = 50)
 	private String cidade;
 	
-	@Column(name = "estado", nullable = false)
+	@Column(name = "estado", length = 50)
 	private String estado;
 	
-	@Column(name = "naturalidade", nullable = false)
+	@Column(name = "naturalidade", length = 45)
 	private String naturalidade;
 	
-	@Column(name = "nacionalidade", nullable = false)
+	@Column(name = "nacionalidade", length = 45)
 	private String nacionalidade;
 	
-	@Column(name = "situacao", nullable = false)
+	@Column(name = "situacao", length = 45)
 	private String situacao;
 	
 	@ManyToOne
@@ -93,11 +93,11 @@ public class Paciente extends AbstractEntity<Long>{
 	@JoinColumn(name = "tipo_convenio_id", nullable = false)
 	private TipoConvenio tipo_convenio_id;
 	
-	@Column(name = "carteira_convenio", nullable = false)
+	@Column(name = "carteira_convenio", length = 45)
 	private String carteira_convenio;
 
-	@Column(name = "validade", nullable = false)
-	private String validade;
+	@Column(name = "validade")
+	private Date validade;
 	
 	public String getNome() {
 		return nome;
@@ -179,11 +179,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.cor = cor;
 	}
 
-	public String getData_nasimento() {
+	public Date getData_nasimento() {
 		return data_nasimento;
 	}
 
-	public void setData_nasimento(String data_nasimento) {
+	public void setData_nasimento(Date data_nasimento) {
 		this.data_nasimento = data_nasimento;
 	}
 
@@ -315,11 +315,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.carteira_convenio = carteira_convenio;
 	}
 
-	public String getValidade() {
+	public Date getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
+	public void setValidade(Date validade) {
 		this.validade = validade;
 	}
 }
