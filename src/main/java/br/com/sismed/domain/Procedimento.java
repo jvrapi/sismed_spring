@@ -33,14 +33,7 @@ public abstract class Procedimento extends AbstractEntity<Long> {
 		this.valor = valor;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
-            mappedBy = "TipoConvenio")
-    private Set<TipoConvenio> TipoConvenio = new HashSet<TipoConvenio>();
-	
+		
 	@OneToMany(mappedBy = "procedimento") // nome do atributo na classe Agenda
 	private List<Agenda> agenda;
 }

@@ -37,15 +37,7 @@ public abstract class TipoConvenio extends AbstractEntity<Long> {
 		this.convenio = convenio;
 	}
 	
-	@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            })
-    @JoinTable(name = "sismed_tipo_convenio",
-            joinColumns = { @JoinColumn(name = "tipo_convenio_id") },
-            inverseJoinColumns = { @JoinColumn(name = "procedimento_id") })
-	private Set<Procedimento> procedimento = new HashSet<Procedimento>();
+	
 	
 	@OneToMany(mappedBy = "tipo_convenio") // nome do atributo na classe Agenda
 	private List<Agenda> agenda;
