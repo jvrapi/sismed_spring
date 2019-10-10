@@ -1,7 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -116,19 +116,19 @@ public abstract class Agenda extends AbstractEntity<Long> {
 		this.pagou = pagou;
 	}
 
-	public Date getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 
-	public Date getHora() {
+	public LocalDateTime getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(LocalDateTime hora) {
 		this.hora = hora;
 	}
 	

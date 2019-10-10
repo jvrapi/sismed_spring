@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -21,20 +22,20 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
 	
-	@OneToOne
-	@Column(name = "paciente_prontuario", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "paciente_prontuario", nullable = false)
 	private Paciente prontuario;
 	
-	@OneToOne
-	@Column(name = "convenio", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "convenio", nullable = false)
 	private Convenio convenio;
 	
-	@OneToOne
-	@Column(name = "tipo_convenio", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "tipo_convenio", nullable = false)
 	private TipoConvenio tipo_convenio;
 	
-	@OneToOne
-	@Column(name = "sismed_funcionario_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "sismed_funcionario_id", nullable = false)
 	private Funcionario funcionario_id;
 	
 	public LocalDateTime getData() {
