@@ -1,6 +1,12 @@
 package br.com.sismed.domain;
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
@@ -20,7 +26,7 @@ public class Paciente extends AbstractEntity<Long>{
 	private String orgao_emissor;
 	
 	@Column(name = "data_emissao", nullable = false)
-	private String data_emissao;
+	private Date data_emissao;
 	
 	@Column(name = "telefone_fixo", nullable = false)
 	private String telefone_fixo;
@@ -79,12 +85,12 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "situacao", nullable = false)
 	private String situacao;
 	
-	@OneToOne
-	@Column(name = "convenio_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "convenio_id", nullable = false)
 	private Convenio convenio_id;
 	
-	@OneToOne
-	@Column(name = "tipo_convenio_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "tipo_convenio_id", nullable = false)
 	private TipoConvenio tipo_convenio_id;
 	
 	@Column(name = "carteira_convenio", nullable = false)
@@ -125,11 +131,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.orgao_emissor = orgao_emissor;
 	}
 
-	public String getData_emissao() {
+	public Date getData_emissao() {
 		return data_emissao;
 	}
 
-	public void setData_emissao(String data_emissao) {
+	public void setData_emissao(Date data_emissao) {
 		this.data_emissao = data_emissao;
 	}
 
