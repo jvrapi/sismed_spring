@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_laboratorio")
 public class Laboratorio extends AbstractEntity<Long>{
@@ -14,10 +15,10 @@ public class Laboratorio extends AbstractEntity<Long>{
 	@Column(name="responsavel", nullable=false, length=45)
 	private String responsavel;
 	
-	@Column(name="telefone", nullable=false, length=40)
+	@Column(name="telefone", nullable=false, length=15)
 	private String telefone;
 	
-	@Column(name="email", nullable=false, length=15)
+	@Column(name="email", nullable=false, length=30)
 	private String email;
 	
 	@Column(name="logradouro", nullable=false, length=45)

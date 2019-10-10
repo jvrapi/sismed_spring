@@ -8,9 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-public class AbstractDao<T, PK extends Serializable> {
+public abstract class AbstractDao<T, PK extends Serializable> {
+
 	@SuppressWarnings("unchecked")
-	(Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	private final Class<T> entityClass = 
+			(Class<T>) ( (ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	
 	@PersistenceContext
 	private EntityManager entityManager;
