@@ -1,1 +1,0 @@
-Os arquivos das pastas templates e static são só para teste.
