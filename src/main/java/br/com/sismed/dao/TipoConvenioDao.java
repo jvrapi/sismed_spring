@@ -7,9 +7,9 @@ import br.com.sismed.domain.TipoConvenio;
 
 public interface TipoConvenioDao {
 
-	void save(TipoConvenio convenio);
+	void save(TipoConvenio tipo_convenio);
 	
-	void update(TipoConvenio convenio);
+	void update(TipoConvenio tipo_convenio);
 	
 	void delete(Long id);
 	
