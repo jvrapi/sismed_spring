@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title>Agenda do DIA</title>
-<!-- Bootstrap core CSS -->
-<link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
 
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
+	
+	<section layout:fragment="corpo">
+	<br>
 	<div class="container text-center">
 		<h1>Dr(a): NOME DO MEDICO</h1>
 		<br><br>
@@ -60,13 +55,6 @@
 			
 		</tbody>
 	</table>
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+	</section>
 </body>
 </html>
