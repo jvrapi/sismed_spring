@@ -10,7 +10,7 @@ public class FuncionarioController {
 
 	@GetMapping("/listar")
 	public String listar() {
-		return "/funcionario/listar"; 
+		return "/funcionario/lista"; 
 	}
 	
 	@GetMapping("/cadastrar") 

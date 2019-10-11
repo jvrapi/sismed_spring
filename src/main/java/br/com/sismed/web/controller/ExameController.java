@@ -10,7 +10,7 @@ public class ExameController {
 
 	@GetMapping("/listar")
 	public String listar() {
-		return "/exame/listar"; 
+		return "/exame/lista"; 
 	}
 	
 	@GetMapping("/cadastrar") 
