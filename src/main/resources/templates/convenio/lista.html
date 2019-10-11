@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
 </head>
 <body>
-PAGINA PARA LISTAR CONVENIOS
+<section layout:fragment="corpo">
+<a href="/convenios/cadastrar" class="container text-center"><span>Clique aqui para cadastrar um novo convenio</span></a> <br>
+<a href="/tipo_convenios/listar" class="container text-center"><span>Clique aqui para listar os tipos convenios</span></a> <br>
+
+Lista de convenios
+</section>
 </body>
 </html>

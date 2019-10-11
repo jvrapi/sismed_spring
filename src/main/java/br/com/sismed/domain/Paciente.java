@@ -1,11 +1,13 @@
 package br.com.sismed.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -93,11 +95,16 @@ public class Paciente extends AbstractEntity<Long>{
 	@JoinColumn(name = "tipo_convenio_id", nullable = false)
 	private TipoConvenio tipo_convenio_id;
 	
+	@OneToMany(mappedBy = "paciente_prontuario")
+	private List<Agenda> agenda;
+	
 	@Column(name = "carteira_convenio", length = 45)
 	private String carteira_convenio;
 
 	@Column(name = "validade")
 	private Date validade;
+	
+	
 	
 	public String getNome() {
 		return nome;

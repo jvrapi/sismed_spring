@@ -13,7 +13,7 @@ public class ConvenioController {
 			return "/convenio/lista"; // retorna o caminho do arquivo
 		}
 		
-		@GetMapping("/cadastros") // segunda parte do href
+		@GetMapping("/cadastrar") // segunda parte do href
 		public String cadastrar () {
 			return "/convenio/cadastro"; // retorna o caminho do arquivo
 		
