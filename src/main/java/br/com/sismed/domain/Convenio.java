@@ -1,6 +1,6 @@
 package br.com.sismed.domain;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,8 +14,8 @@ public class Convenio extends AbstractEntity<Long>{
 	private String nome;
 	
 	@Column(name = "data_adesao",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data_adesao = new Date();
+	
+	private String data_adesao ;
 	
 	@Column(name = "banco",nullable = false, length = 5)
 	private String banco;
@@ -26,7 +26,7 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "numero_conta",nullable = false, length = 8)
 	private String numero_conta;
 	
-	@Column(name = "aceita",nullable = false, length = 4)
+	@Column(name = "aceita", length = 4)
 	private String aceita;
 	
 	
@@ -48,12 +48,12 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public Date getData_adesao() {
+	public String getData_adesao() {
 		return data_adesao;
 	}
 	
 	
-	public void setData_adesao(Date data_adesao) {
+	public void setData_adesao(String data_adesao) {
 		this.data_adesao = data_adesao;
 	}
 	
