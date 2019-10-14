@@ -6,8 +6,8 @@ import br.com.sismed.domain.Laboratorio;
 
 public interface LaboratorioDao {
 
-	void save(Laboratorio laboratorio);
-	void update (Laboratorio funcionario);
+	void save (Laboratorio laboratorio);
+	void update (Laboratorio laboratorio);
 	void delete (Long id);
 	
 	Laboratorio findById (Long id);

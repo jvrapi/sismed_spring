@@ -15,7 +15,7 @@ public class ExameController {
 	
 	@GetMapping("/cadastrar") 
 	public String anexo () {
-		return "/exame/cadastra"; 
+		return "/exame/cadastro"; 
 	}
 	
 	/*@GetMapping("/pesquisar") 

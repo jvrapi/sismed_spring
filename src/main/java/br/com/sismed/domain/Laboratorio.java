@@ -21,11 +21,8 @@ public class Laboratorio extends AbstractEntity<Long>{
 	@Column(name="email", nullable=false, length=30)
 	private String email;
 	
-	@Column(name="logradouro", nullable=false, length=45)
-	private String logradouro;
-	
-	@Column(name="numero", nullable=false, length=4)
-	private String numero;
+	@Column(name="endereco", nullable=false, length=45)
+	private String endereco;
 	
 	@Column(name="bairro", nullable=false, length=45)
 	private String bairro;
@@ -68,20 +65,12 @@ public class Laboratorio extends AbstractEntity<Long>{
 		this.email = email;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getBairro() {

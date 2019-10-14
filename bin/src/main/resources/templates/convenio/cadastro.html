@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
 </head>
 <body>
-PAGINA DE CADASTRO DE CONVENIO
+	<section layout:fragment="corpo">
+	
+		<div class="container corpo" id="cadastroConvenio">
+			<form th:action="@{/convenios/salvar}" th:object="${convenio}" method="POST">
+			
+				<div class="form-row ">
+					<div class="form-group col-md-6 ">
+						<label for="nome"> Nome Convenio</label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Convenio" autofocus="autofocus" th:field="*{nome}">
+						
+						<br>
+						
+						<label for="dataAdesao"> Data de Adesão</label>
+						<input type="text" class="form-control" id="dataAdesao" placeholder="Data de Adesão"  th:field="*{data_adesao}">
+						
+						<br>
+						
+						<label for="nome"> Banco</label>
+						<input type="text" class="form-control" id="banco" placeholder="Banco"  th:field="*{banco}">
+						
+						<br>
+						
+						<label for="nome"> Agencia</label>
+						<input type="text" class="form-control" id="agencia" placeholder="Numero da agencia"  th:field="*{agencia}">
+						
+						<br>
+						
+						<label for="nome">Conta</label>
+						<input type="text" class="form-control" id="conta" placeholder="Numero da conta"  th:field="*{numero_conta}">
+						
+						<br>
+						
+					</div>
+				
+				</div>
+				
+				<input type="hidden" id="id" name="id" value=""/>
+				<input type="submit" class="btn btn-primary form-control col-md-6">
+			
+			</form>
+		
+		
+		</div>
+	
+	
+	</section>
 </body>
 </html>

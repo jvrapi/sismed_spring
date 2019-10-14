@@ -2,8 +2,11 @@ package br.com.sismed.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import br.com.sismed.domain.Laboratorio;
 
+@Service
 public interface LaboratorioService {
 	
 	void salvar(Laboratorio laboratorio);

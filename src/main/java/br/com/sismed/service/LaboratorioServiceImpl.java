@@ -3,13 +3,15 @@ package br.com.sismed.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.LaboratorioDao;
 import br.com.sismed.domain.Laboratorio;
 
+@Repository
 @Transactional(readOnly = false)
-public class LaboratorioServiceImpl implements LaboratorioService{
+public class LaboratorioServiceImpl implements LaboratorioService {
 
 	@Autowired
 	private LaboratorioDao dao;
