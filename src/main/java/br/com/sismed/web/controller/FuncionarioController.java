@@ -15,7 +15,7 @@ public class FuncionarioController {
 	
 	@GetMapping("/cadastrar") 
 	public String cadastrar() {
-		return "/funcionario/cadastrar"; 
+		return "/funcionario/cadastro"; 
 	
 	}
 }

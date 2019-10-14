@@ -38,14 +38,14 @@ public class TipoConvenioServiceImpl implements TipoConvenioService{
 
 	@Override
 	 @Transactional(readOnly = true)
-	public TipoConvenio findById(Long id) {
+	public TipoConvenio BuscarPorID(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override
 	 @Transactional(readOnly = true)
-	public List<TipoConvenio> findAll() {
+	public List<TipoConvenio> BuscarTodos() {
 		
 		return dao.findAll();
 	}

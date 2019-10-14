@@ -1,9 +1,9 @@
 package br.com.sismed.domain;
 
 
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.*;
 
@@ -17,9 +17,11 @@ public abstract class TipoConvenio extends AbstractEntity<Long> {
 	@Column(name="nome",nullable = false, length = 60, unique = true)
 	private String nome;
 	
-	@ManyToOne
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "convenio_id")
-	private Convenio convenio;
+	
+	private Convenio convenio = new Convenio();
 
 	public String getNome() {
 		return nome;
