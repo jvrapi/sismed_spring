@@ -3,6 +3,7 @@
  */
 html, body {
 	height: 100%;
+	
 }
 
 body {
@@ -15,19 +16,19 @@ body {
 	padding-top: 150px;	
 }
 
-.menu{
+
+#menu{
 	padding-top: 50px;
 }
 
 .footer{
-	
-	padding-top: 300px;
-	
+	padding-left:40%;
+	padding-right:40%;
+	padding-top:0;
 }
 
 .corpo{
-	padding-left: 400px;
+	padding-left: 200px;
 	padding-top: 50px;
 }
-
 
