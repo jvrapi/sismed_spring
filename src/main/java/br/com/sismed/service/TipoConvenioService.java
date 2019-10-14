@@ -10,6 +10,6 @@ public interface TipoConvenioService {
 	void editar(TipoConvenio tipo_convenio);
 	void deletar(Long id);
 	
-	TipoConvenio findById(Long id);
-	List<TipoConvenio> findAll();
+	TipoConvenio BuscarPorID(Long id);
+	List<TipoConvenio> BuscarTodos();
 }
