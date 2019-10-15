@@ -1,7 +1,7 @@
 package br.com.sismed.dao;
 
 import java.util.List;
-/*
+
 import br.com.sismed.domain.TipoConvenio;
 
 public interface TipoConvenioDao {
@@ -15,4 +15,4 @@ void save(TipoConvenio tconvenio);
 	TipoConvenio findById(Long id);
 	
 	List<TipoConvenio> findAll();
-}*/
+}

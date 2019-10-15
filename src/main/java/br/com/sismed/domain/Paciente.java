@@ -1,6 +1,6 @@
 package br.com.sismed.domain;
 
-import java.util.Date;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,12 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_paciente")
 public class Paciente extends AbstractEntity<Long>{
 
-	
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
 	
@@ -29,7 +30,7 @@ public class Paciente extends AbstractEntity<Long>{
 	private String orgao_emissor;
 	
 	@Column(name = "data_emissao", length = 15)
-	private Date data_emissao;
+	private String data_emissao;
 	
 	@Column(name = "telefone_fixo", length = 15)
 	private String telefone_fixo;
@@ -47,7 +48,7 @@ public class Paciente extends AbstractEntity<Long>{
 	private String cor;
 	
 	@Column(name = "data_nascimento", length = 15)
-	private Date data_nasimento;
+	private String data_nascimento;
 	
 	@Column(name = "email", length = 50)
 	private String email;
@@ -67,8 +68,11 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "cep", length = 15)
 	private String cep;
 	
-	@Column(name = "endereco", length = 150)
-	private String endereco;
+	@Column(name = "lagradouro", length = 50)
+	private String logradouro;
+	
+	@Column(name = "numero", length = 10)
+	private String numero;
 	
 	@Column(name = "bairro", length = 50)
 	private String bairro;
@@ -89,12 +93,15 @@ public class Paciente extends AbstractEntity<Long>{
 	private String situacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "convenio_id", nullable = false)
+	@JoinColumn(name = "sismed_convenio_id", nullable = false)
 	private Convenio convenio_id;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_convenio_id", nullable = false)
+	@JoinColumn(name = "sismed_tipo_convenio_id", nullable = false)
 	private TipoConvenio tipo_convenio_id;
+	
+	@OneToMany(mappedBy = "paciente_prontuario")
+	private List<Exame> exame;
 	
 	@OneToMany(mappedBy = "paciente_prontuario")
 	private List<Agenda> agenda;
@@ -103,9 +110,7 @@ public class Paciente extends AbstractEntity<Long>{
 	private String carteira_convenio;
 
 	@Column(name = "validade")
-	private Date validade;
-	
-	
+	private String validade;
 	
 	public String getNome() {
 		return nome;
@@ -139,11 +144,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.orgao_emissor = orgao_emissor;
 	}
 
-	public Date getData_emissao() {
+	public String getData_emissao() {
 		return data_emissao;
 	}
 
-	public void setData_emissao(Date data_emissao) {
+	public void setData_emissao(String data_emissao) {
 		this.data_emissao = data_emissao;
 	}
 
@@ -187,12 +192,12 @@ public class Paciente extends AbstractEntity<Long>{
 		this.cor = cor;
 	}
 
-	public Date getData_nasimento() {
-		return data_nasimento;
+	public String getData_nascimento() {
+		return data_nascimento;
 	}
 
-	public void setData_nasimento(Date data_nasimento) {
-		this.data_nasimento = data_nasimento;
+	public void setData_nascimento(String data_nascimento) {
+		this.data_nascimento = data_nascimento;
 	}
 
 	public String getEmail() {
@@ -243,12 +248,20 @@ public class Paciente extends AbstractEntity<Long>{
 		this.cep = cep;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getBairro() {
@@ -323,11 +336,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.carteira_convenio = carteira_convenio;
 	}
 
-	public Date getValidade() {
+	public String getValidade() {
 		return validade;
 	}
 
-	public void setValidade(Date validade) {
+	public void setValidade(String validade) {
 		this.validade = validade;
 	}
 }
