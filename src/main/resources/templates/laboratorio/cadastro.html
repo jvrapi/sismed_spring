@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
@@ -8,49 +9,45 @@
 	<section layout:fragment="corpo">
 
 		<div class="container corpo" id="cadastroLaboratorio">
-			<form th:action="@{/laboratorio/salvar}" th:object="${laboratorio}" method="POST">
+			<form
+				th:action="${laboratorio.id == null} ? @{/laboratorio/salvar} : @{/laboratorio/editar}"
+				th:object="${laboratorio}" method="POST">
 
 				<div class="form-row ">
 					<div class="form-group col-md-4 ">
-						
-						<label for="nome">Laboratório</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome do Laboratorio"
-							autofocus="autofocus" th:field="*{nome}"> 
-				
-						<label for="responsavel">Responsável</label> <input type="text" class="form-control"
-							id="responsavel" placeholder="responsavel" th:field="*{responsavel}"> 
-				
-						<label for="telefone">Telefone</label> <input
-							type="text" class="form-control" id="telefone"
-							placeholder="telefone" th:field="*{telefone}"> 
-					
-						<label for="email">Email</label> <input type="text"
-							class="form-control" id="email" placeholder="email"
-							th:field="*{email}"> 
-							
-						<label for="endereco">Endereço</label>
-						<input type="text" class="form-control" id="endereco"
-							placeholder="Endereço" th:field="*{endereco}"> 
 
-						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" placeholder="bairro"
-							th:field="*{bairro}"> 
-						
-						<label for="cidade">Cidade</label>
-						<input type="text" class="form-control" id="cidade"
-							placeholder="cidade" th:field="*{cidade}"> 
-						 
-						<label
-							for="estado">Estado</label> <input type="text"
-							class="form-control" id="estado" placeholder="estado"
-							th:field="*{estado}"> 
+						<label for="nome">CNPJ</label> <input type="text"
+							class="form-control" id="cnpj" placeholder="cnpj"
+							autofocus="autofocus" th:field="*{cnpj}"> <label
+							for="nome">Laboratório</label> <input type="text"
+							class="form-control" id="nome" placeholder="Nome do Laboratorio"
+							autofocus="autofocus" th:field="*{nome}"> <label
+							for="responsavel">Responsável</label> <input type="text"
+							class="form-control" id="responsavel" placeholder="responsavel"
+							th:field="*{responsavel}"> <label for="telefone">Telefone</label>
+						<input type="text" class="form-control" id="telefone"
+							placeholder="telefone" th:field="*{telefone}"> <label
+							for="email">Email</label> <input type="text" class="form-control"
+							id="email" placeholder="email" th:field="*{email}"> <label
+							for="endereco">Endereço</label> <input type="text"
+							class="form-control" id="endereco" placeholder="Endereço"
+							th:field="*{endereco}"> <label for="bairro">Bairro</label>
+						<input type="text" class="form-control" id="bairro"
+							placeholder="bairro" th:field="*{bairro}"> <label
+							for="cidade">Cidade</label> <input type="text"
+							class="form-control" id="cidade" placeholder="cidade"
+							th:field="*{cidade}"> <label for="estado">Estado</label>
+						<input type="text" class="form-control" id="estado"
+							placeholder="estado" th:field="*{estado}">
 					</div>
 				</div>
-				
-				<input type="hidden" id="id" name="id" value="" /> <input
-					type="submit" class="btn btn-primary form-control col-md-2">
 
-			<input type='button' value='Voltar' onclick='history.go(-1)'>
+				<input type="hidden" id="id" th:field="*{id}">
+				<button class="btn btn-primary form-control col-md-2" type="submit">Cadastrar</button>
+
+				<button type='button' class="btn btn-primary form-control col-md-2"
+					onclick='history.go(-1)'>Voltar</button>
+			
 			
 			</form>
 

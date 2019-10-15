@@ -34,4 +34,9 @@ public class LaboratorioController {
 		service.salvar(laboratorio);
 		return "redirect:/laboratorio/cadastro";
 	}
+	@PostMapping("/editar")
+	public String editar(Laboratorio laboratorio) {
+		service.editar(laboratorio);
+		return "redirect:/laboratorio/cadastrar";
+	}
 }

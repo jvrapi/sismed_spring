@@ -6,10 +6,96 @@
 </head>
 <body>
 <section layout:fragment="corpo">
-<a href="/convenios/cadastrar" class="container text-center"><span>Clique aqui para cadastrar um novo convenio</span></a> <br>
-<a href="/tipo_convenios/listar" class="container text-center"><span>Clique aqui para listar os tipos convenios</span></a> <br>
 
-Lista de convenios
+
+
+	<nav class="navbar">
+			<a class="btn btn btn-md"
+				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+				href="/convenios/cadastrar" role="button"> <span
+				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
+				<span>Cadastrar Convenio</span></a>
+				
+				<a class="btn btn btn-md"
+				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+				href="/tipo_convenios/cadastrar" role="button"> <span
+				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
+				<span>Cadastrar Tipo de Convenio</span></a>
+
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			</ul>
+			
+			
+	  </nav>
+	          <br>      
+	      <div class="container"  th:each = "c : ${convenios}">
+	            <a class="btn btn-info btn-sm" th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
+	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+	                            </a>
+	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
+	                                    data-toggle="modal" data-target="#myModal">
+	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+	                            </button>
+	                            <br><br>
+	                <div class="form-row">
+	                    <div class="form-group col-md-4">
+	                        <label for="nome">Nome</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+	                               name="nome" th:value="${c.nome}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="data_adesao">Data Adesão</label>
+	                        <input type="text" class="form-control" id="data_adesao"  name="data_adesao" th:value="${c.data_adesao}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="aceita">Aceita</label>
+	                        <input type="text" class="form-control" id="aceita"  name="aceita" th:value="${c.aceita}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-4">
+	                        <label for="dataEntrada">Banco</label>
+	                        <input type="text" class="form-control" id="dataEntrada" name="dataEntrada" th:value="${c.banco}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="agencia">Agencia</label>
+	                        <input type="text" class="form-control" id="dataSaida" name="agencia" th:value="${c.agencia}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-4">
+	                        <label for="conta">Conta</label>
+	                        <input type="text" class="form-control" id="dataSaida" name="conta" th:value="${c.numero_conta}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	               <br><br><br>
+	
+	                    </div>
+	                
+	                  
+	                
+	                   
+	                
+	              
+	    
+	       
 </section>
 </body>
 </html>
