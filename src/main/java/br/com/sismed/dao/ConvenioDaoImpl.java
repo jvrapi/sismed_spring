@@ -1,10 +1,15 @@
 package br.com.sismed.dao;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import antlr.collections.List;
 import br.com.sismed.domain.Convenio;
 
-@Repository
+@Repository("convenioRepository")
 public class ConvenioDaoImpl extends AbstractDao<Convenio, Long> implements ConvenioDao{
 /* Caso necessite de um novo metodo, crie aqui e coloque a assinatura do metodo no dao*/
+	
+	
+	
 }

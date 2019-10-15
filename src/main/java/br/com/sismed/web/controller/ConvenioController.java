@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.service.AgendaService;
 import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.TipoConvenioService;
 
 
 @Controller
@@ -19,6 +21,8 @@ public class ConvenioController {
 	@Autowired	
 	private ConvenioService service;
 	
+	@Autowired
+	private TipoConvenioService tcservice;
 	
 	
 		@GetMapping("/listar") // segunda parte do href

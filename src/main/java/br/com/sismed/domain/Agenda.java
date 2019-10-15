@@ -17,7 +17,7 @@ public abstract class Agenda extends AbstractEntity<Long> {
 	private Paciente paciente_prontuario;
 	
 	@ManyToOne 
-	@JoinColumn(name = "convenio") // nome da chave estrangeira no banco de dados
+	@JoinColumn(name = "convenio_id") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
 	
 	@ManyToOne
@@ -34,7 +34,7 @@ public abstract class Agenda extends AbstractEntity<Long> {
 	private Funcionario funcionario;
 	
 	@Column(nullable = false)
-	private String observavao;
+	private String observacao;
 	
 	@Column(nullable = false)
 	private String compareceu;
@@ -93,11 +93,11 @@ public abstract class Agenda extends AbstractEntity<Long> {
 	}
 
 	public String getObservavao() {
-		return observavao;
+		return observacao;
 	}
 
-	public void setObservavao(String observavao) {
-		this.observavao = observavao;
+	public void setObservavao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public String getCompareceu() {
