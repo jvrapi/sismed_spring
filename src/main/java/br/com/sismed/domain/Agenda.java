@@ -10,7 +10,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_agenda")
-public abstract class Agenda extends AbstractEntity<Long> {
+public  class Agenda extends AbstractEntity<Long> {
 	
 	@ManyToOne
 	@JoinColumn(name = "paciente_prontuario") // nome da chave estrangeira no banco de dados
@@ -25,7 +25,6 @@ public abstract class Agenda extends AbstractEntity<Long> {
 	private TipoConvenio tipo_convenio;
 	
 	@ManyToOne
-	
 	@JoinColumn(name = "procedimento_id") // nome da chave estrangeira no banco de dados
 	private Procedimento procedimento;
 	

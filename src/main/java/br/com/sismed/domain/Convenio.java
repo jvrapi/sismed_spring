@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
@@ -14,8 +15,7 @@ public class Convenio extends AbstractEntity<Long>{
 	private String nome;
 	
 	@Column(name = "data_adesao",nullable = false)
-	
-	private String data_adesao ;
+	private LocalDate data_adesao ;
 	
 	@Column(name = "banco",nullable = false, length = 5)
 	private String banco;
@@ -30,7 +30,7 @@ public class Convenio extends AbstractEntity<Long>{
 	private String aceita;
 	
 	
-	@OneToMany(mappedBy = "convenio")
+	@OneToMany(mappedBy = "convenio_id")
 	private List<TipoConvenio> TiposConvenios;
 	
 	@OneToMany(mappedBy = "convenio")
@@ -48,16 +48,26 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public String getData_adesao() {
+	public LocalDate getData_adesao() {
 		return data_adesao;
 	}
-	
-	
-	public void setData_adesao(String data_adesao) {
+
+
+	public void setData_adesao(LocalDate data_adesao) {
 		this.data_adesao = data_adesao;
 	}
-	
-	
+
+
+	public List<Agenda> getAgenda() {
+		return agenda;
+	}
+
+
+	public void setAgenda(List<Agenda> agenda) {
+		this.agenda = agenda;
+	}
+
+
 	public String getBanco() {
 		return banco;
 	}

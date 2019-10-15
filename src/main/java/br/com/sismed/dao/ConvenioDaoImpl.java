@@ -1,9 +1,9 @@
 package br.com.sismed.dao;
 
-import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.stereotype.Repository;
 
-import antlr.collections.List;
+
 import br.com.sismed.domain.Convenio;
 
 @Repository("convenioRepository")

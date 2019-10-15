@@ -1,15 +1,15 @@
 package br.com.sismed.domain;
 
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
+
 
 import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_procedimento")
-public abstract class Procedimento extends AbstractEntity<Long> {
+public  class Procedimento extends AbstractEntity<Long> {
 	
 	@Column(nullable = false, length = 60)
 	private String descricao;

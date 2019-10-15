@@ -2,14 +2,13 @@ package br.com.sismed.dao;
 
 import java.util.List;
 
-
 import br.com.sismed.domain.TipoConvenio;
 
 public interface TipoConvenioDao {
 
-	void save(TipoConvenio tipo_convenio);
+void save(TipoConvenio tconvenio);
 	
-	void update(TipoConvenio tipo_convenio);
+	void update(TipoConvenio tconvenio);
 	
 	void delete(Long id);
 	
