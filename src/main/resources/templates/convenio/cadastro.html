@@ -19,7 +19,7 @@
 						<br>
 						
 						<label for="dataAdesao"> Data de Adesão</label>
-						<input type="text" class="form-control" id="dataAdesao" placeholder="Data de Adesão"  th:field="*{data_adesao}">
+						<input type="date" class="form-control" id="dataAdesao" placeholder="Data de Adesão"  th:field="*{data_adesao}">
 						
 						<br>
 						
@@ -37,11 +37,8 @@
 						<input type="text" class="form-control" id="conta" placeholder="Numero da conta"  th:field="*{numero_conta}">
 						
 						<br>
-						<label for="aceita">Aceita</label>
-						<select th:field="*{aceita}" class="form-control" id="aceita">
-  							<option value="SIM" >SIM</option>
-  							<option value="NÃO">NÃO</option>
-						</select>
+						<label for="nome"><span id="troca" onclick="troca('on')"> Aceita </span></label>
+						<input type="text" class="form-control" id="aceita" name="aceita" th:field="*{aceita}" value="SIM" placeholder = "SIM" disabled >
 						
 						<br>
 						
@@ -60,5 +57,9 @@
 	
 	
 	</section>
+	
+	
+	
+
 </body>
 </html>

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.sismed.dao.TipoConvenioDao;
 import br.com.sismed.domain.TipoConvenio;
 
+
+
 @Service
 public class TipoConvenioServiceImpl implements TipoConvenioService{
 
@@ -38,14 +40,14 @@ public class TipoConvenioServiceImpl implements TipoConvenioService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public TipoConvenio findById(Long id) {
+	public TipoConvenio BuscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<TipoConvenio> findAll() {
+	public List<TipoConvenio> BuscarTodos() {
 		
 		return dao.findAll();
 	}
