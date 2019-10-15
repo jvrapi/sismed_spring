@@ -14,8 +14,7 @@ import javax.persistence.Table;
 @Table(name = "sismed_tipo_convenio")
 public class TipoConvenio  extends AbstractEntity<Long>{
 
-	
-	
+
 	@Column(name="nome")
 	private String nome;
 	
@@ -61,8 +60,5 @@ public class TipoConvenio  extends AbstractEntity<Long>{
 	public void setPaciente(List<Paciente> paciente) {
 		this.paciente = paciente;
 	}
-	
-	
-	
 	
 }

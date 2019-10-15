@@ -9,6 +9,9 @@ import javax.persistence.Table;
 @Table(name="sismed_laboratorio")
 public class Laboratorio extends AbstractEntity<Long>{
 	
+	@Column(name="cnpj", nullable=false, length=5)
+	private String cnpj;
+	
 	@Column(name="nome", nullable=false, length=30)
 	private String nome;
 	
@@ -32,6 +35,14 @@ public class Laboratorio extends AbstractEntity<Long>{
 	
 	@Column(name="estado", nullable=false, length=2)
 	private String estado;
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
 
 	public String getNome() {
 		return nome;

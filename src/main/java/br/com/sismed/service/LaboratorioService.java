@@ -14,7 +14,6 @@ public interface LaboratorioService {
 	void excluir(Long id);
 	
 	Laboratorio buscarporId(Long id);
-	
 	List<Laboratorio> buscarTodos();
-
+	
 }

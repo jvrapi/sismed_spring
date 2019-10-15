@@ -28,7 +28,7 @@
 			
 	  </nav>
 	          <br>      
-	      <div class="container"  th:each = "c : ${convenios}">
+	      <div class="container"  th:each = "c : ${tiposconvenio}">
 	            <a class="btn btn-info btn-sm" th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>

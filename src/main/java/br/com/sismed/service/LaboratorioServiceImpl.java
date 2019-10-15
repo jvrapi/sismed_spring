@@ -44,6 +44,4 @@ public class LaboratorioServiceImpl implements LaboratorioService {
 		
 		return dao.findAll();
 	}
-
-	
 }
