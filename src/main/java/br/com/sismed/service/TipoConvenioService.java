@@ -11,7 +11,7 @@ public interface TipoConvenioService {
 	void excluir(Long id);
 	
 	
-	TipoConvenio findById(Long id);
+	TipoConvenio BuscarPorId(Long id);
 	
-	List<TipoConvenio> findAll();
+	List<TipoConvenio> BuscarTodos();
 }

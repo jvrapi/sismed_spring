@@ -30,6 +30,7 @@ public class Exame extends AbstractEntity<Long>{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data_retorno = new Date();
 	
+	@ManyToOne
 	@JoinColumn(name = "paciente_prontuario") 
 	private Paciente paciente_prontuario;
 	

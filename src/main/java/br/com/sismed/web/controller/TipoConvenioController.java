@@ -17,7 +17,7 @@ public class TipoConvenioController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("tiposconvenio", service.findAll());
+		model.addAttribute("tiposconvenio", service.BuscarTodos());
 		return "/tipo_convenio/lista";
 	}
 	
