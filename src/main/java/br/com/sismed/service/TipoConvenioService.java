@@ -6,10 +6,12 @@ import br.com.sismed.domain.TipoConvenio;
 
 public interface TipoConvenioService {
 
-	void salvar(TipoConvenio convenio);
-	void editar(TipoConvenio convenio);
+	void salvar(TipoConvenio tconvenio);
+	void editar(TipoConvenio tconvenio);
 	void excluir(Long id);
-	TipoConvenio buscarPorId(Long id);
 	
-	List<TipoConvenio> BuscarTodos();
+	
+	TipoConvenio findById(Long id);
+	
+	List<TipoConvenio> findAll();
 }

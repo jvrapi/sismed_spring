@@ -8,7 +8,34 @@
 <section layout:fragment = "corpo">
 	
 	<a href="/procedimentos/cadastrar" class="container text-center"><span>Clique aqui para cadastrar um novo procedimento</span></a> <br>
-	pagina de lista de convenio
+	  
+	  <div class="container"  th:each = "p : ${procedimentos}">
+	            <a class="btn btn-info btn-sm" th:href="@{/convenios/editar/{id} (id=${p.id}) }" role="button">
+	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+	                            </a>
+	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
+	                                    data-toggle="modal" data-target="#myModal">
+	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+	                            </button>
+	                            <br><br>
+	                <div class="form-row">
+	                    <div class="form-group col-md-4">
+	                        <label for="nome">Nome</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+	                               name="nome" th:value="${p.descricao}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="data_adesao">Valor</label>
+	                        <input type="text" class="form-control" id="data_adesao"  name="data_adesao" th:value="${p.valor}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    </div>
+	                    </div>
 </section>
 </body>
 </html>

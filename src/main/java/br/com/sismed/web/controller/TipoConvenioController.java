@@ -13,11 +13,11 @@ import br.com.sismed.service.TipoConvenioService;
 public class TipoConvenioController {
 
 	@Autowired
-	private TipoConvenioService tservice;
+	private TipoConvenioService service;
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("tiposconvenio", tservice.BuscarTodos());
+		model.addAttribute("tiposconvenio", service.findAll());
 		return "/tipo_convenio/lista";
 	}
 	

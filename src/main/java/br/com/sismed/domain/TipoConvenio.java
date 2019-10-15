@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table(name = "sismed_tipo_convenio")
 public class TipoConvenio  extends AbstractEntity<Long>{
 
+	
+	
 	@Column(name="nome")
 	private String nome;
 	

@@ -17,7 +17,7 @@ public  class Agenda extends AbstractEntity<Long> {
 	private Paciente paciente_prontuario;
 	
 	@ManyToOne 
-	@JoinColumn(name = "convenio_id") // nome da chave estrangeira no banco de dados
+	@JoinColumn(name = "convenio") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
 	
 	@ManyToOne
