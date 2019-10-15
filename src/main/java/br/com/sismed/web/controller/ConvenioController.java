@@ -57,4 +57,14 @@ public class ConvenioController {
 			service.editar(convenio);
 			return "redirect:/convenios/listar";
 		}
+		
+		
+		@GetMapping("/excluir/{id}")
+		public String excluir(@PathVariable("id") Long id, ModelMap model) {
+			if(!service.convenioTemTipo(id)) {
+				service.excluir(id);
+			}
+			
+			return listar(model);
+		}
 }
