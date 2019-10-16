@@ -7,7 +7,39 @@
 <body>
 <section layout:fragment = "corpo">
 
-	Cadastro de tipos de convenios
+	<div class="container corpo" id="cadastroTipoConvenio">
+				<div th:replace="fragmentos/alert"></div>
+			
+			<form th:action="@{/tipo_convenio/salvar}" th:object="${tipo_convenio}" method="POST">
+			
+				<div class="form-row ">
+					<div class="form-group col-md-6 ">
+						
+						<label for="nome"> Nome Convenio</label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Tipo Convenio" autofocus="autofocus" th:field="*{nome}">
+						
+						
+						<br>
+						<label for="Convenio"> Convenio </label>
+						<select th:field="*{convenio_id}" class="form-control">
+							<option value="">SELECIONE</option>
+							<option th:each="c: ${convenios}" th:value="${c.id}" th:text="${c.nome}">NAO</option>
+							
+						</select>
+						<br>
+						
+						
+					</div>
+				
+				</div>
+				
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<input type="submit" class="btn btn-primary form-control col-md-6">
+			
+			</form>
+		
+		
+		</div>
 </section>
 </body>
 </html>

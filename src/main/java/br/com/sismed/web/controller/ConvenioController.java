@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 
 import br.com.sismed.service.ConvenioService;
-import br.com.sismed.service.TipoConvenioService;
+
 
 
 
@@ -39,8 +40,9 @@ public class ConvenioController {
 		
 		
 		@PostMapping("/salvar")
-		public String salvar(Convenio convenio) {
+		public String salvar(Convenio convenio, RedirectAttributes attr) {
 			service.salvar(convenio);
+			attr.addFlashAttribute("success","Convenio cadastrado com sucesso");
 			return  "redirect:/convenios/cadastrar";
 		}
 		
@@ -53,17 +55,19 @@ public class ConvenioController {
 		}
 		
 		@PostMapping("/editar")
-		public String editar(Convenio convenio) {
+		public String editar(Convenio convenio, RedirectAttributes attr) {
 			service.editar(convenio);
+			attr.addFlashAttribute("success","Convenio editado com sucesso");
 			return "redirect:/convenios/listar";
 		}
 		
 		
 		@GetMapping("/excluir/{id}")
 		public String excluir(@PathVariable("id") Long id, ModelMap model) {
-			if(!service.convenioTemTipo(id)) {
-				service.excluir(id);
-			}
+			
+			model.addAttribute("success", "Convenio excluido com sucesso");
+			service.excluir(id);
+			
 			
 			return listar(model);
 		}

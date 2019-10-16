@@ -15,7 +15,7 @@ public class Convenio extends AbstractEntity<Long>{
 	private String nome;
 	
 	@Column(name = "data_adesao",nullable = false)
-	private LocalDate data_adesao ;
+	private String data_adesao ;
 	
 	@Column(name = "banco",nullable = false, length = 5)
 	private String banco;
@@ -26,7 +26,7 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "numero_conta",nullable = false, length = 8)
 	private String numero_conta;
 	
-	@Column(name = "aceita", length = 4)
+	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")
 	private String aceita;
 	
 	
@@ -48,12 +48,12 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public LocalDate getData_adesao() {
+	public String getData_adesao() {
 		return data_adesao;
 	}
 
 
-	public void setData_adesao(LocalDate data_adesao) {
+	public void setData_adesao(String data_adesao) {
 		this.data_adesao = data_adesao;
 	}
 
