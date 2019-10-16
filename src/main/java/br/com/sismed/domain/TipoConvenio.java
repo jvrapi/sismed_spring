@@ -60,5 +60,13 @@ public class TipoConvenio  extends AbstractEntity<Long>{
 	public void setPaciente(List<Paciente> paciente) {
 		this.paciente = paciente;
 	}
+
+	public Convenio getConvenio_id() {
+		return convenio_id;
+	}
+
+	public void setConvenio_id(Convenio convenio_id) {
+		this.convenio_id = convenio_id;
+	}
 	
 }

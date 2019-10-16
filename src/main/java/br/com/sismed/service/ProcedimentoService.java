@@ -12,7 +12,7 @@ public interface ProcedimentoService {
 	
 	void deletar(Long id);
 	
-	Procedimento findById(Long id);
+	Procedimento BuscarPorId(Long id);
 	
-	List<Procedimento> findAll();
+	List<Procedimento> BuscarTodos();
 }

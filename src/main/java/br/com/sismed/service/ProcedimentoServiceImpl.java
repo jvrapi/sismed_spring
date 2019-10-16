@@ -39,14 +39,14 @@ public class ProcedimentoServiceImpl implements ProcedimentoService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Procedimento findById(Long id) {
+	public Procedimento BuscarPorId(Long id) {
 		
 		return dao.findById(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Procedimento> findAll() {
+	public List<Procedimento> BuscarTodos() {
 		
 		return dao.findAll();
 	}

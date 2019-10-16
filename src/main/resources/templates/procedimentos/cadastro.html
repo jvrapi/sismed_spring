@@ -6,7 +6,36 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
-pagina de cadastro de procedimentos
+<div class="container corpo" id="cadastroTipoConvenio">
+				<div th:replace="fragmentos/alert"></div>
+			
+			<form th:action="@{/procedimentos/salvar}" th:object="${procedimento}" method="POST">
+			
+				<div class="form-row ">
+					<div class="form-group col-md-6 ">
+						
+						<label for="nome"> Nome </label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}">
+						
+						
+						<br>
+						<label for="nome"> Valor </label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{valor}">
+						
+						<br>
+						
+						
+					</div>
+				
+				</div>
+				
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<input type="submit" class="btn btn-primary form-control col-md-6">
+			
+			</form>
+		
+		
+		</div>
 </section>
 </body>
 </html>

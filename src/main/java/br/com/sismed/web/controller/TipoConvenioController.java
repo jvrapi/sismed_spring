@@ -33,8 +33,7 @@ public class TipoConvenioController {
 	}
 	
 	@GetMapping("/cadastrar")
-	public String cadastrar(TipoConvenio tipo_convenio) {
-		
+	public String cadastrar(TipoConvenio tconvenio) {
 		return "/tipo_convenio/cadastro";
 	}
 	
