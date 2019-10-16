@@ -19,6 +19,6 @@ public class stringToTipoConvenioConverter implements Converter<String, TipoConv
 			return null;
 		}
 		Long id = Long.valueOf(text);
- 		return service.findById(id);
+ 		return service.BuscarPorId(id);
 	}
 }

@@ -6,30 +6,33 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
-	
-<div class="container"  th:each = "t : ${tiposconvenio}">
-	            <a class="btn btn-info btn-sm" th:href="@{/tiposconvenio/editar/{id} (id=${t.id}) }" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
-	                            <br><br>
-	                <div class="form-row">
-	                    <div class="form-group col-md-4">
-	                        <label for="nome">Descricao</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-	                               name="nome" th:value="${t.nome}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    
-	                   
-	               <br><br><br>
-	
-	                    </div>
+
+		<div class="container" th:each="t : ${tiposconvenio}">
+			<a class="btn btn-info btn-sm"
+				th:href="@{/tiposconvenio/editar/{id} (id=${t.id}) }" role="button">
+				<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+			</a>
+			<button id="btn_funcionarios/excluir/5" type="button"
+				class="btn btn-danger btn-sm" data-toggle="modal"
+				data-target="#myModal">
+				<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+			</button>
+			<br>
+			<br>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="nome">Descricao</label> <input type="text"
+						class="form-control" id="nome" placeholder="Nome Completo"
+						name="nome" th:value="${t.nome}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+
+			</div>
+			<br>
+			<br>
+			<br>
+
+		</div>
 
 
 	</section>

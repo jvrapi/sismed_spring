@@ -50,7 +50,7 @@ public class PacientesController {
 	
 	@ModelAttribute("tipoconvenio")
 	public List<TipoConvenio> listTipoConvenio() {
-		return tipoConvenioService.findAll();
+		return tipoConvenioService.BuscarTodos();
 	}
 }
 
