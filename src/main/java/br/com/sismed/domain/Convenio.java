@@ -36,6 +36,9 @@ public class Convenio extends AbstractEntity<Long>{
 	@OneToMany(mappedBy = "convenio")
 	private List<Agenda> agenda;
 	
+	@OneToMany(mappedBy = "convenio_id")
+	private List<Paciente> paciente;
+	
 	/*Metodos get's e set's */
 	
 	public String getNome() {

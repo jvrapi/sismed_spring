@@ -10,7 +10,7 @@
 	<div class="container corpo" id="cadastroTipoConvenio">
 				<div th:replace="fragmentos/alert"></div>
 			
-			<form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
+			<form th:action="@{/tconvenios/salvar}" th:object="${TConvenio}" method="POST">
 			
 				<div class="form-row ">
 					<div class="form-group col-md-6 ">
@@ -21,7 +21,7 @@
 						
 						<br>
 						<label for="Convenio"> Convenio </label>
-						<select th:field="*{convenio_id}" class="form-control">
+						<select th:field="*{convenio}" class="form-control">
 							<option value="">SELECIONE</option>
 							<option th:each="c: ${convenios}" th:value="${c.id}" th:text="${c.nome}">NAO</option>
 							

@@ -1,112 +1,100 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Agenda do DIA</title>
-<!-- Bootstrap core CSS -->
-<link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
-	rel="stylesheet" />
 
-<!-- Custom styles for this template -->
-<link href="/css/style.css" rel="stylesheet" />
-</head>
-<body>
-<section layout:fragment="corpo">
-
-
-
-	<nav class="navbar">
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/pacientes/cadastrar" role="button"> <span
-				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-				<span>Cadastrar Convenio</span></a>
+	<head>
+		<meta charset="UTF-8">
+		<title>Agenda do DIA</title>
+		<!-- Bootstrap core CSS -->
+		<link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
+			rel="stylesheet" />
+		<!-- Custom styles for this template -->
+		<link href="/css/style.css" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<section layout:fragment="corpo">
+			<nav class="navbar">
+				<a class="btn btn btn-md"
+					style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+					href="/pacientes/cadastrar" role="button"> <span
+					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
+					<span>Cadastrar Paciente</span>
+				</a>
 				
 				
-				
-				
-
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			</ul>
+					
+					
+			  </nav>
+			  	<br>
+			   <div class="container corpo">
+			          	<div th:replace="fragmentos/alert" ></div> 
+			          </div>     
+			      <div class="container"  th:each = "p : ${pacientes}">
+			      
+			            <a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
+			                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+			                            </a>
+			                            
+			                            <a  th:href="@{/pacientes/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
+				                            		data-toggle="modal" data-target="#myModal">
+				                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+				                            </a>
+			                            <br><br>
+			                <div class="form-row">
+			                    <div class="form-group col-md-4">
+			                        <label for="nome">Nome</label>
+			                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+			                               name="nome" th:value="${p.nome}" disabled>
+			                        <div class="invalid-feedback">
 			
+			                        </div>
+			                    </div>
+			                    <div class="form-group col-md-4">
+			                        <label for="data_adesao">CPF</label>
+			                        <input type="text" class="form-control" id="data_adesao"  name="data_adesao" th:value="${p.cpf}" disabled>
+			                        <div class="invalid-feedback">
 			
-	  </nav>
-	          <br>
-	          <div class="container corpo">
-	          	<div th:replace="fragmentos/alert" ></div> 
-	          </div>     
-	      <div class="container"  th:each = "p : ${pacientes}">
-	      
-	            <a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            
-	                            <a  th:href="@{/pacientes/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
-		                            		data-toggle="modal" data-target="#myModal">
-		                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-		                            </a>
-	                            <br><br>
-	                <div class="form-row">
-	                    <div class="form-group col-md-4">
-	                        <label for="nome">Nome</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-	                               name="nome" th:value="${p.nome}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    <div class="form-group col-md-4">
-	                        <label for="data_adesao">Data Adesão</label>
-	                        <input type="text" class="form-control" id="data_adesao"  name="data_adesao" th:value="${p.cpf}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    <div class="form-group col-md-4">
-	                        <label for="aceita">Aceita</label>
-	                        <input type="text" class="form-control" id="aceita"  name="aceita" th:value="${p.rg}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="form-row">
-	                    <div class="form-group col-md-4">
-	                        <label for="dataEntrada">Banco</label>
-	                        <input type="text" class="form-control" id="dataEntrada" name="dataEntrada" th:value="${p.orgao_emissor}" disabled/>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    <div class="form-group col-md-4">
-	                        <label for="agencia">Agencia</label>
-	                        <input type="text" class="form-control" id="dataSaida" name="agencia" th:value="${p.data_emissao}" disabled/>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group col-md-4">
-	                        <label for="conta">Conta</label>
-	                        <input type="text" class="form-control" id="dataSaida" name="conta" th:value="${p.telefone_fixo}" disabled/>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                </div>
-	               <br><br><br>
-	
-	                    </div>
-	                
-	                  <div th:replace="fragmentos/modal :: modal"></div>
-	                
-	                   
-	                
-	              
-	    
-	       
-</section>
-</body>
+			                        </div>
+			                    </div>
+			                    <div class="form-group col-md-4">
+			                        <label for="aceita">RG</label>
+			                        <input type="text" class="form-control" id="aceita"  name="aceita" th:value="${p.rg}" disabled>
+			                        <div class="invalid-feedback">
+			
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="form-row">
+			                    <div class="form-group col-md-4">
+			                        <label for="dataEntrada">Orgão emissor</label>
+			                        <input type="text" class="form-control" id="dataEntrada" name="dataEntrada" th:value="${p.orgao_emissor}" disabled/>
+			                        <div class="invalid-feedback">
+			
+			                        </div>
+			                    </div>
+			                    <div class="form-group col-md-4">
+			                        <label for="agencia">Data de emissão</label>
+			                        <input type="text" class="form-control" id="dataSaida" name="agencia" th:value="${p.data_emissao}" disabled/>
+			                        <div class="invalid-feedback">
+			
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="form-group col-md-4">
+			                        <label for="conta">Telefone fixo</label>
+			                        <input type="text" class="form-control" id="dataSaida" name="conta" th:value="${p.telefone_fixo}" disabled/>
+			                        <div class="invalid-feedback">
+			
+			                        </div>
+			                    </div>
+			                </div>
+			               <br><br><br>
+			
+			                    </div>
+			                
+			                  <div th:replace="fragmentos/modal :: modal"></div>
+		</section>
+	</body>
 </html>
