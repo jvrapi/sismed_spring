@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Paciente;
@@ -18,7 +19,6 @@ import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
-
 
 @Controller
 @RequestMapping("/pacientes")
@@ -33,7 +33,7 @@ public class PacientesController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
-		model.addAttribute("pacientes", service.buscarTodos());
+		model.addAttribute("paciente", service.buscarTodos());
 		return "/pacientes/lista";
 	}
 
@@ -43,14 +43,15 @@ public class PacientesController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Paciente paciente) {
+	public String salvar(Paciente paciente, RedirectAttributes attr) {
 		service.salvar(paciente);
+		attr.addFlashAttribute("success","Paciente cadastrado com sucesso");
 		return "redirect:/pacientes/cadastrar";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("pacientes", service.buscarporId(id));
+		model.addAttribute("paciente", service.buscarporId(id));
 		return "pacientes/cadastro";
 	}
 	
