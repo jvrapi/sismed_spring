@@ -51,4 +51,11 @@ public class ProcedimentoServiceImpl implements ProcedimentoService{
 		return dao.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = false)
+	public void excluir(Long id) {
+		dao.delete(id);
+		
+	}
+
 }

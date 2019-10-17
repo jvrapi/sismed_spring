@@ -13,5 +13,5 @@ public interface ConvenioService {
 	Convenio buscarPorId(Long id);
 	
 	List<Convenio> BuscarTodos();
-	boolean convenioTemTipo(Long id);
+	
 }

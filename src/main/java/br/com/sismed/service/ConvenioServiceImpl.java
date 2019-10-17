@@ -50,13 +50,8 @@ public class ConvenioServiceImpl implements ConvenioService{
 		return dao.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = false)
-	public boolean convenioTemTipo(Long id) {
-		if(buscarPorId(id).getTiposConvenios().isEmpty()) {
-			return false;
-		}
-		return true;
-	}
+	
+
+	
 
 }

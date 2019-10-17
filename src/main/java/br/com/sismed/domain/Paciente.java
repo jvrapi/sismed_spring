@@ -98,7 +98,7 @@ public class Paciente extends AbstractEntity<Long>{
 	
 	@ManyToOne
 	@JoinColumn(name = "sismed_tipo_convenio_id", nullable = false)
-	private TipoConvenio tipo_convenio_id;
+	private TConvenio tipo_convenio_id;
 	
 	@OneToMany(mappedBy = "paciente_prontuario")
 	private List<Exame> exame;
@@ -320,11 +320,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.convenio_id = convenio_id;
 	}
 
-	public TipoConvenio getTipo_convenio_id() {
+	public TConvenio getTipo_convenio_id() {
 		return tipo_convenio_id;
 	}
 
-	public void setTipo_convenio_id(TipoConvenio tipo_convenio_id) {
+	public void setTipo_convenio_id(TConvenio tipo_convenio_id) {
 		this.tipo_convenio_id = tipo_convenio_id;
 	}
 

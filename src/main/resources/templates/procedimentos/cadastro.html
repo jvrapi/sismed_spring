@@ -9,7 +9,7 @@
 <div class="container corpo" id="cadastroTipoConvenio">
 				<div th:replace="fragmentos/alert"></div>
 			
-			<form th:action="@{/procedimentos/salvar}" th:object="${procedimento}" method="POST">
+			<form th:action="${procedimento.id == null} ? @{/procedimentos/salvar} : @{/procedimentos/editar}" th:object="${procedimento}" method="POST">
 			
 				<div class="form-row ">
 					<div class="form-group col-md-6 ">
@@ -20,7 +20,7 @@
 						
 						<br>
 						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{valor}">
+						<input type="text" class="form-control" id="nome" placeholder="Valor do Procedimento" autofocus="autofocus" th:field="*{valor}">
 						
 						<br>
 						

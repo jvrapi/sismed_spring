@@ -30,8 +30,8 @@ public class Convenio extends AbstractEntity<Long>{
 	private String aceita;
 	
 	
-	@OneToMany(mappedBy = "convenio_id")
-	private List<TipoConvenio> TiposConvenios;
+	@OneToMany(mappedBy = "convenio")
+	private List<TConvenio> TiposConvenios;
 	
 	@OneToMany(mappedBy = "convenio")
 	private List<Agenda> agenda;
@@ -108,12 +108,12 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public List<TipoConvenio> getTiposConvenios() {
+	public List<TConvenio> getTiposConvenios() {
 		return TiposConvenios;
 	}
 	
 	
-	public void setTiposConvenios(List<TipoConvenio> tiposConvenios) {
+	public void setTiposConvenios(List<TConvenio> tiposConvenios) {
 		TiposConvenios = tiposConvenios;
 	}
 	

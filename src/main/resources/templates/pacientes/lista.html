@@ -13,61 +13,100 @@
 <link href="/css/style.css" rel="stylesheet" />
 </head>
 <body>
-	<div class="container text-center">
-		<h1>Dr(a): NOME DO MEDICO</h1>
-		<br><br>
-		<h3>LISTA DE PACIENTES</h3>
-		<a class="nav-link" href="/"><span>Voltar</span></a>
-		
-	</div>
+<section layout:fragment="corpo">
 
-	<table class="table  table-hover">
-		<thead class="text-center">
-			<tr >
-				<th>Nome</th>
-				<th>CPF</th>
-				<th>RG</th>
-				<th>Telefone</th>
-				<th>Celular</th>
-				<th>Sexo</th>
-				<th>Cor</th>
-				<th>Data de nasc.</th>
-				<th>Email</th>
-				<th>Estado civil</th>
-				<th>Endereço</th>
-				<th>Bairro</th>
-				<th>Cidade</th>
-				<th>Estado</th>
+
+
+	<nav class="navbar">
+			<a class="btn btn btn-md"
+				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+				href="/pacientes/cadastrar" role="button"> <span
+				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
+				<span>Cadastrar Convenio</span></a>
 				
-			</tr>
-		</thead>
-		<tbody class="text-center">
-			<tr>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-				<td>Dado do banco</td>
-			</tr>
+				
+				
+				
+
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			</ul>
 			
-		</tbody>
-	</table>
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="/webjars/jquery/jquery.min.js"></script>
-	<script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+			
+	  </nav>
+	          <br>
+	          <div class="container corpo">
+	          	<div th:replace="fragmentos/alert" ></div> 
+	          </div>     
+	      <div class="container"  th:each = "p : ${pacientes}">
+	      
+	            <a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
+	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+	                            </a>
+	                            
+	                            <a  th:href="@{/pacientes/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
+		                            		data-toggle="modal" data-target="#myModal">
+		                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+		                            </a>
+	                            <br><br>
+	                <div class="form-row">
+	                    <div class="form-group col-md-4">
+	                        <label for="nome">Nome</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
+	                               name="nome" th:value="${p.nome}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="data_adesao">Data Adesão</label>
+	                        <input type="text" class="form-control" id="data_adesao"  name="data_adesao" th:value="${p.cpf}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="aceita">Aceita</label>
+	                        <input type="text" class="form-control" id="aceita"  name="aceita" th:value="${p.rg}" disabled>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="form-row">
+	                    <div class="form-group col-md-4">
+	                        <label for="dataEntrada">Banco</label>
+	                        <input type="text" class="form-control" id="dataEntrada" name="dataEntrada" th:value="${p.orgao_emissor}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    <div class="form-group col-md-4">
+	                        <label for="agencia">Agencia</label>
+	                        <input type="text" class="form-control" id="dataSaida" name="agencia" th:value="${p.data_emissao}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-4">
+	                        <label for="conta">Conta</label>
+	                        <input type="text" class="form-control" id="dataSaida" name="conta" th:value="${p.telefone_fixo}" disabled/>
+	                        <div class="invalid-feedback">
+	
+	                        </div>
+	                    </div>
+	                </div>
+	               <br><br><br>
+	
+	                    </div>
+	                
+	                  <div th:replace="fragmentos/modal :: modal"></div>
+	                
+	                   
+	                
+	              
+	    
+	       
+</section>
 </body>
 </html>

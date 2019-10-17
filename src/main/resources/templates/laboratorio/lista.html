@@ -24,10 +24,10 @@
 	                                <span class="oi oi-pencil" title="Editar" aria-hidden="true" ></span>
 	                            </a>
 	                       
-	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
+	                            <a th:href="@{/laboratorio/excluir/{id} (id=${l.id}) }" type="button" class="btn btn-danger btn-sm"
 	                                    data-toggle="modal" data-target="#myModal">
 	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
+	                            </a>
 	                            
 	                            <br><br>
 	                <div class="form-row">

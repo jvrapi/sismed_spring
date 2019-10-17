@@ -44,7 +44,7 @@ public class Exame extends AbstractEntity<Long>{
 	
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
-	private TipoConvenio tipo_id;
+	private TConvenio tipo_id;
 
 	public String getDescricao() {
 		return descricao;
@@ -102,11 +102,11 @@ public class Exame extends AbstractEntity<Long>{
 		this.convenio_id = convenio_id;
 	}
 
-	public TipoConvenio getTipo_id() {
+	public TConvenio getTipo_id() {
 		return tipo_id;
 	}
 
-	public void setTipo_id(TipoConvenio tipo_id) {
+	public void setTipo_id(TConvenio tipo_id) {
 		this.tipo_id = tipo_id;
 	}
 	

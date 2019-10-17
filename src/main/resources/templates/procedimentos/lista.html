@@ -6,17 +6,25 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
+
+	<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+				href="/procedimentos/cadastrar" role="button"> 
+				<span
+					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
+				<span>Cadastrar Procedimento</span>
+		</a>
 	
-	<a href="/procedimentos/cadastrar" class="container text-center"><span>Clique aqui para cadastrar um novo procedimento</span></a> <br>
-	  
-	  <div class="container"  th:each = "p : ${procedimentos}">
-	            <a class="btn btn-info btn-sm" th:href="@{/convenios/editar/{id} (id=${p.id}) }" role="button">
+	  <div class="container corpo">
+	          	<div th:replace="fragmentos/alert" ></div> 
+	          </div>  
+	  <div class="container"  th:each = "p : ${procedimento}">
+	            <a class="btn btn-info btn-sm" th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button id="btn_funcionarios/excluir/5" type="button" class="btn btn-danger btn-sm"
-	                                    data-toggle="modal" data-target="#myModal">
+	                            <a th:href="@{/procedimentos/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
+	                                    >
 	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </button>
+	                            </a>
 	                            <br><br>
 	                <div class="form-row">
 	                    <div class="form-group col-md-4">

@@ -8,15 +8,15 @@
 	<section layout:fragment="corpo">
 
 		<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/tipo_convenio/cadastrar" role="button"> 
+				href="/tconvenios/cadastrar" role="button"> 
 				<span
 					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
 				<span>Cadastrar Tipo de Convenio</span>
 		</a>
 				
-		<div class="container" th:each="t : ${tipo_convenio}">
+		<div class="container" th:each="t : ${tconvenio}">
 			<a class="btn btn-info btn-sm"
-				th:href="@{/tipo_convenio/editar/{id} (id=${t.id}) }" role="button">
+				th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" role="button">
 				<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 			</a>
 			<button id="btn_funcionarios/excluir/5" type="button"

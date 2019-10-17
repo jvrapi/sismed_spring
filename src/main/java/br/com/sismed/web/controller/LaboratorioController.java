@@ -47,4 +47,13 @@ public class LaboratorioController {
 		return "redirect:/laboratorio/listar";
 	}
 	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		
+		model.addAttribute("success", "Laboratorio excluido com sucesso");
+		service.excluir(id);
+		
+		
+		return listar(model);
+	}
 }

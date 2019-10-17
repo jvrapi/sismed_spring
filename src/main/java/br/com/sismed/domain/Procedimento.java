@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -14,8 +15,8 @@ public  class Procedimento extends AbstractEntity<Long> {
 	@Column(nullable = false, length = 60)
 	private String descricao;
 	
-	@Column(nullable = false)
-	private double valor;
+	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
+	private BigDecimal valor;
 	
 	public String getDescricao() {
 		return descricao;
@@ -25,11 +26,11 @@ public  class Procedimento extends AbstractEntity<Long> {
 		this.descricao = descricao;
 	}
 	
-	public double getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 	
-	public void setValor(double valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 	

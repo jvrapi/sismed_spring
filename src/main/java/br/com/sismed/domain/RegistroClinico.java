@@ -32,7 +32,7 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	
 	@ManyToOne
 	@JoinColumn(name = "tipo_convenio", nullable = false)
-	private TipoConvenio tipo_convenio;
+	private TConvenio tipo_convenio;
 	
 	@ManyToOne
 	@JoinColumn(name = "sismed_funcionario_id", nullable = false)
@@ -78,11 +78,11 @@ public class RegistroClinico extends AbstractEntity<Long>{
 		this.convenio = convenio;
 	}
 
-	public TipoConvenio getTipo_convenio() {
+	public TConvenio getTipo_convenio() {
 		return tipo_convenio;
 	}
 
-	public void setTipo_convenio(TipoConvenio tipo_convenio) {
+	public void setTipo_convenio(TConvenio tipo_convenio) {
 		this.tipo_convenio = tipo_convenio;
 	}
 

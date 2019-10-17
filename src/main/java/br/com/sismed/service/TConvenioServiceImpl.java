@@ -6,27 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sismed.dao.TipoConvenioDao;
-import br.com.sismed.domain.TipoConvenio;
+import br.com.sismed.dao.TConvenioDao;
+import br.com.sismed.domain.TConvenio;
 
-
-
-@Service
-public class TipoConvenioServiceImpl implements TipoConvenioService{
+@Service 
+public class TConvenioServiceImpl implements TConvenioService{
 
 	@Autowired
-	private TipoConvenioDao dao;
+	private TConvenioDao dao;
 	
 	@Override
 	@Transactional(readOnly = false)
-	public void salvar(TipoConvenio tconvenio) {
+	public void salvar(TConvenio tconvenio) {
 		dao.save(tconvenio);
 		
 	}
 
 	@Override
 	@Transactional(readOnly = false)
-	public void editar(TipoConvenio tconvenio) {
+	public void editar(TConvenio tconvenio) {
 		dao.update(tconvenio);
 		
 	}
@@ -40,18 +38,15 @@ public class TipoConvenioServiceImpl implements TipoConvenioService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public TipoConvenio BuscarPorId(Long id) {
+	public TConvenio buscarPorId(Long id) {
 		
-		return dao.findById(id);
+		return  dao.findById(id) ;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<TipoConvenio> BuscarTodos() {
-		
+	public List<TConvenio> BuscarTodos() {
 		return dao.findAll();
 	}
 
 }
-
-
