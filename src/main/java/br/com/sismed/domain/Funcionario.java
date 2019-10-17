@@ -24,10 +24,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="data_emissao", nullable=false, length=10)
 	private String data_emissao;
 	
-	@Column(name="crm", nullable=false, length=10)
+	@Column(name="crm", nullable=true, length=10)
 	private String crm;
 	
-	@Column(name="especialidade", nullable=false, length=45)
+	@Column(name="especialidade", nullable=true, length=45)
 	private String especialidade;
 	
 	@Column(name="telefone", nullable=false, length=15)
@@ -78,6 +78,13 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="nivel_acesso", nullable=false, length=4)
 	private Integer nivel_acesso;
 	
+	
+	public String getData_emissao() {
+		return data_emissao;
+	}
+	public void setData_emissao(String data_emissao) {
+		this.data_emissao = data_emissao;
+	}
 	public String getNome() {
 		return nome;
 	}
