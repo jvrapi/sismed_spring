@@ -1,15 +1,27 @@
 package br.com.sismed.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.Laboratorio;
+import br.com.sismed.service.FuncionarioService;
 
 @Controller
 @RequestMapping("/funcionario")
 public class FuncionarioController {
 
+	@Autowired
+	private FuncionarioService service;
+	
 	@GetMapping("/listar")
-	public String listar() {
+	public String listar(ModelMap model) {
+		model.addAttribute("funcionario", service.buscarTodos());
 		return "/funcionario/lista"; 
 	}
 	
@@ -18,4 +30,32 @@ public class FuncionarioController {
 		return "/funcionario/cadastro"; 
 	
 	}
+	
+	@PostMapping("/salvar")
+	public String salvar(Funcionario funcionario) {
+		service.salvar(funcionario);
+		return "redirect:/funcionario/listar";
+	}
+	
+	@GetMapping("/editar/{id}") 
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("funcionario", service.buscarporId(id));
+		return "/funcionario/cadastro";
+	}
+	
+	@PostMapping("/editar")
+	public String editar(Funcionario funcionario) {
+		service.editar(funcionario);
+		return "redirect:/funcionario/listar";
+	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, ModelMap model) {
+		
+		model.addAttribute("success", "Funcionario(a) excluido(a) com sucesso");
+		service.excluir(id);
+		
+		return listar(model);
+	}
+	
 }

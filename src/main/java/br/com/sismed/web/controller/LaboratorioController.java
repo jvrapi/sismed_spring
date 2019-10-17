@@ -53,7 +53,6 @@ public class LaboratorioController {
 		model.addAttribute("success", "Laboratorio excluido com sucesso");
 		service.excluir(id);
 		
-		
 		return listar(model);
 	}
 }
