@@ -52,7 +52,7 @@ public class FuncionarioController {
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		
-		model.addAttribute("success", "Funcionario(a) excluido(a) com sucesso");
+		model.addAttribute("success", "Funcionario(a) excluído(a) com sucesso");
 		service.excluir(id);
 		
 		return listar(model);

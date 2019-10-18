@@ -68,11 +68,8 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "cep", length = 15)
 	private String cep;
 	
-	@Column(name = "lagradouro", length = 50)
-	private String logradouro;
-	
-	@Column(name = "numero", length = 10)
-	private String numero;
+	@Column(name = "endereco", length = 50)
+	private String endereco;
 	
 	@Column(name = "bairro", length = 50)
 	private String bairro;
@@ -248,20 +245,13 @@ public class Paciente extends AbstractEntity<Long>{
 		this.cep = cep;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
+	
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getBairro() {

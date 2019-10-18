@@ -19,7 +19,7 @@
 			
 	  </nav>
 	          <br>      
-	      <div class="container"  th:each = "l : ${laboratorio}" style="margin-right:28px">
+	      <div class="container"  th:each = "l : ${laboratorio}">
 	            <a class="btn btn-info btn-sm" th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" role="button">
 	                                <span class="oi oi-pencil" title="Editar" aria-hidden="true" ></span>
 	                            </a>

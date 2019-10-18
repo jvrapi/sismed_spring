@@ -9,7 +9,7 @@
 	<section layout:fragment="corpo">
 
 		<div class="container corpo" id="cadastroLaboratorio"
-			style="margin-left: 20%">
+			>
 
 			<form
 				th:action="${laboratorio.id == null} ? @{/laboratorio/salvar} : @{/laboratorio/editar}"
@@ -85,7 +85,7 @@
 				<input type="hidden" id="id" th:field="*{id}" /> <input
 					type="submit" class="btn btn-primary form-control col-md-6">
 				<button type='button' class="btn btn-primary form-control col-md-2"
-					onclick='history.go(-2)'>Voltar</button>
+					onclick='history.go(-1)'>Voltar</button>
 
 			</form>
 
