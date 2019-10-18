@@ -68,11 +68,8 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "cep", length = 15)
 	private String cep;
 	
-	@Column(name = "lagradouro", length = 50)
-	private String logradouro;
-	
-	@Column(name = "numero", length = 10)
-	private String numero;
+	@Column(name = "endereco", length = 50)
+	private String endereco;
 	
 	@Column(name = "bairro", length = 50)
 	private String bairro;
@@ -95,10 +92,6 @@ public class Paciente extends AbstractEntity<Long>{
 	@ManyToOne
 	@JoinColumn(name = "sismed_convenio_id", nullable = false)
 	private Convenio convenio_id;
-	
-	@ManyToOne
-	@JoinColumn(name = "sismed_tipo_convenio_id", nullable = false)
-	private TConvenio tipo_convenio_id;
 	
 	@OneToMany(mappedBy = "paciente_prontuario")
 	private List<Exame> exame;
@@ -248,20 +241,12 @@ public class Paciente extends AbstractEntity<Long>{
 		this.cep = cep;
 	}
 
-	public String getLogradouro() {
-		return logradouro;
+	public String getEndereco() {
+		return endereco;
 	}
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getBairro() {
@@ -318,14 +303,6 @@ public class Paciente extends AbstractEntity<Long>{
 
 	public void setConvenio_id(Convenio convenio_id) {
 		this.convenio_id = convenio_id;
-	}
-
-	public TConvenio getTipo_convenio_id() {
-		return tipo_convenio_id;
-	}
-
-	public void setTipo_convenio_id(TConvenio tipo_convenio_id) {
-		this.tipo_convenio_id = tipo_convenio_id;
 	}
 
 	public String getCarteira_convenio() {
