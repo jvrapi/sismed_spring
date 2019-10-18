@@ -9,55 +9,119 @@
 
 		<nav class="navbar">
 			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+				style="background-color: #D7E7F9; margin-top: 5px; "
 				href="/laboratorio/cadastrar" role="button"> <span
 				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
 				<span>Cadastrar Laboratório</span></a>
-		</nav>
- 
-		<h3 style="text-align: center"> Lista de Laboratório</h3>
-
-		<table class="table table-striped table-hover">
-
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Nome</th>
-					<th>CNPJ</th>
-					<th>Responsável</th>
-					<th>Telefone</th>
-					<th>Email</th>
-					<th>Endereço</th>
-					<th>Bairro</th>
-					<th>Cidade</th>
-					<th>Estado</th>
 				
-				</tr>
-			</thead>
-			<tbody>
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			</ul>
 			
-				<tr th:each="d : ${laboratorio}" ><!--por aqui que o controller vai enviar os dados -->
-				<td th:text=${d.id}></td>	
-					<td th:text=${d.cnpj}></td>				
-					<td th:text=${d.nome}></td>
-					<td th:text="${d.responsavel}"></td>
-					<td th:text="${d.telefone}"></td>
-					<td th:text="${d.email}"></td>
-					<td th:text="${d.endereco}"></td>
-					<td th:text="${d.bairro}"></td>
-					<td th:text="${d.cidade}"></td>
-					<td th:text="${d.estado}"></td>
-					
-					<td >
-					<a class="btn btn-secondary btn-sm" th:href="@{/laboratorio/editar/{id} (id=${d.id})}" role= button>
-						<span class="oi oi-wrench" title="Editar" aria-hidden=true>Alterar</span>
-					</a>
-					</td>
-				</tr>
-			
-			</tbody>
-		</table>
+	  </nav>
+	          <br>      
+	      <div class="container"  th:each = "l : ${laboratorio}" style="margin-right:28px">
+	            <a class="btn btn-info btn-sm" th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" role="button">
+	                                <span class="oi oi-pencil" title="Editar" aria-hidden="true" ></span>
+	                            </a>
+	                       
+	                            <a th:href="@{/laboratorio/excluir/{id} (id=${l.id}) }" type="button" class="btn btn-danger btn-sm"
+	                                    data-toggle="modal" data-target="#myModal">
+	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+	                            </a>
+	                            
+	                            <br><br>
+	                <div class="form-row">
+	                
+	                   <div class="form-group col-md-2">
+	                        <label for="cnpj">CNPJ</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="cnpj"
+	                               name="nome" th:value="${l.cnpj}" disabled>
+	                        <div class="invalid-feedback">
 
+	                        </div>
+	                    </div>
+	               
+	                    <div class="form-group col-md-4">
+	                        <label for="nome">Nome</label>
+	                        <input type="text" class="form-control" id="nome" placeholder="nome"
+	                               name="nome" th:value="${l.nome}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	               
+	                  <div class="form-group col-md-5">
+	                        <label for="responsavel">Responsável</label>
+	                        <input type="text" class="form-control" id="responsavel" placeholder="responsavel"
+	                               name="responsavel" th:value="${l.responsavel}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                  
+	                  <div class="form-row">
+	                    <div class="form-group col-md-2">
+	                        <label for="telefone">Telefone</label>
+	                        <input type="text" class="form-control" id="telefone" placeholder="telefone"
+	                               name="telefone" th:value="${l.telefone}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-3">
+	                        <label for="nome">Email</label>
+	                        <input type="text" class="form-control" id="email" placeholder="email"
+	                               name="email" th:value="${l.email}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-6">
+	                        <label for="endereco">Endereço</label>
+	                        <input type="text" class="form-control" id="endereco" placeholder="endereco"
+	                               name="endereco" th:value="${l.endereco}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-4">
+	                        <label for="bairro">Bairro</label>
+	                        <input type="text" class="form-control" id="bairro" placeholder="bairro"
+	                               name="bairro" th:value="${l.bairro}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-6">
+	                        <label for="cidade">Cidade</label>
+	                        <input type="text" class="form-control" id="cidade" placeholder="cidade"
+	                               name="cidade" th:value="${l.cidade}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div>
+	                    
+	                    <div class="form-group col-md-1">
+	                        <label for="estado">Estado</label>
+	                        <input type="text" class="form-control" id="estado" placeholder="estado"
+	                               name="estado" th:value="${l.estado}" disabled>
+	                        <div class="invalid-feedback">
+
+	                        </div>
+	                    </div> 
+	
+	                        </div>
+	                  
+	               <br><br><br>
+	
+	                    </div>
+	                    </div>
+
+<!--
 		<nav aria-label="Navegação de página exemplo">
 			<ul class="pagination justify-content-center">
 				<li class="page-item disabled"><a class="page-link" href="#"
@@ -69,7 +133,7 @@
 				</li>
 			</ul>
 		</nav>
-		
+-->
 	</section>
 
 </body>

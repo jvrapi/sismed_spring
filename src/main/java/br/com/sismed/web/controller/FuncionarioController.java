@@ -26,7 +26,7 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping("/cadastrar") 
-	public String cadastrar() {
+	public String cadastrar(Funcionario funcionario) {
 		return "/funcionario/cadastro"; 
 	
 	}

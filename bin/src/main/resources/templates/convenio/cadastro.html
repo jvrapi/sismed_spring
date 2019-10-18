@@ -6,8 +6,9 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
-	
-		<div class="container corpo" id="cadastroConvenio">
+			
+			<div class="container corpo" id="cadastroConvenio">
+				<div th:replace="fragmentos/alert"></div>
 			<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
 			th:object="${convenio}" method="POST">
 			
@@ -37,12 +38,12 @@
 						<input type="text" class="form-control" id="conta" placeholder="Numero da conta"  th:field="*{numero_conta}">
 						
 						<br>
-						<label for="aceita">Aceita</label>
-						<select th:field="*{aceita}" class="form-control" id="aceita">
-  							<option value="SIM" >SIM</option>
-  							<option value="NÃO">NÃO</option>
+						<label for="nome"><span id="troca" onclick="troca('on')"> Aceita </span></label>
+						<select th:field="*{aceita}" class="form-control">
+							<option value="SIM">SIM</option>
+							<option value="NAO">NAO</option>
+							
 						</select>
-						
 						<br>
 						
 						
@@ -60,5 +61,9 @@
 	
 	
 	</section>
+	
+	
+	
+
 </body>
 </html>
