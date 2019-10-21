@@ -1,5 +1,6 @@
 package br.com.sismed.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,25 +11,29 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_exame")
 public class Exame extends AbstractEntity<Long>{
 	
 	@Column(name = "descricao",nullable = false, length=30)
+	
 	private String descricao;
 	
 	@Column(name = "data_coleta",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data_coleta = new Date();
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_coleta;
 	
 	@Column(name = "data_envio",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data_envio = new Date();
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_envio;
 	
-	@Column(name = "data_retorno",nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data_retorno = new Date();
+	@Column(name = "data_retorno",nullable = true)
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_retorno;
 	
 	@ManyToOne
 	@JoinColumn(name = "paciente_prontuario") 
@@ -37,10 +42,6 @@ public class Exame extends AbstractEntity<Long>{
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
-	
-	@ManyToOne
-	@JoinColumn(name = "convenio_id")
-	private Convenio convenio_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
@@ -54,27 +55,27 @@ public class Exame extends AbstractEntity<Long>{
 		this.descricao = descricao;
 	}
 
-	public Date getData_coleta() {
+	public LocalDate getData_coleta() {
 		return data_coleta;
 	}
 
-	public void setData_coleta(Date data_coleta) {
+	public void setData_coleta(LocalDate data_coleta) {
 		this.data_coleta = data_coleta;
 	}
 
-	public Date getData_envio() {
+	public LocalDate getData_envio() {
 		return data_envio;
 	}
 
-	public void setData_envio(Date data_envio) {
+	public void setData_envio(LocalDate data_envio) {
 		this.data_envio = data_envio;
 	}
 
-	public Date getData_retorno() {
+	public LocalDate getData_retorno() {
 		return data_retorno;
 	}
 
-	public void setData_retorno(Date data_retorno) {
+	public void setData_retorno(LocalDate data_retorno) {
 		this.data_retorno = data_retorno;
 	}
 
@@ -94,14 +95,6 @@ public class Exame extends AbstractEntity<Long>{
 		this.funcionario_id = funcionario_id;
 	}
 
-	public Convenio getConvenio_id() {
-		return convenio_id;
-	}
-
-	public void setConvenio_id(Convenio convenio_id) {
-		this.convenio_id = convenio_id;
-	}
-
 	public TConvenio getTipo_id() {
 		return tipo_id;
 	}
@@ -109,6 +102,6 @@ public class Exame extends AbstractEntity<Long>{
 	public void setTipo_id(TConvenio tipo_id) {
 		this.tipo_id = tipo_id;
 	}
-	
+
 	
 }

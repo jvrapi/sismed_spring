@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-	<section class="layout-content" layout:fragment="corpo">
+	<section layout:fragment="corpo">
 
 		<nav class="navbar">
 			<a class="btn btn btn-md"
@@ -13,23 +13,20 @@
 				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
 					Funcionário</span></a>
 
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			</ul>
-
 		</nav>
 		<br>
 		<div class="container" th:each="f : ${funcionario}">
 			<a class="btn btn-info btn-sm"
 				th:href="@{/funcionario/editar/{id} (id=${f.id}) }" role="button">
 				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> 
-			
-			<a th:href="@{/funcionario/excluir/{id} (id=${f.id}) }"
+			</a> <a th:href="@{/funcionario/excluir/{id} (id=${f.id}) }"
 				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 				data-target="#myModal"> <span class="oi oi-circle-x"
 				title="Excluir" aria-hidden="true"></span>
-			</a> <br>
-			<br>
+			</a> 
+			
+			<br> <br>
+			
 			<div class="form-row">
 
 				<div class="form-group col-md-8">
@@ -45,24 +42,25 @@
 						th:value="${f.cpf}" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
+
+				<div class="form-group col-md-2">
+					<label for="sexo">Sexo</label> <input type="text"
+						class="form-control" id="sexo" placeholder="sexo" name="sexo"
+						th:value="${f.sexo}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
 				
-				         <div class="form-group col-md-2">
-	                        <label for="sexo">Sexo</label>
-	                        <input type="text" class="form-control" id="sexo" placeholder="sexo"
-	                               name="sexo" th:value="${f.sexo}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-2">
-	                        <label for="data_nascimento">Data de Nascimento</label>
-	                        <input type="date" class="form-control" id="data_nascimento" placeholder="data_nascimento"
-	                               name="data_nascimento" th:value="${f.data_nascimento}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
+				</div>
+				
+				
+				<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="data_nascimento">Data de Nascimento</label> <input
+						type="date" class="form-control" id="data_nascimento"
+						placeholder="data_nascimento" name="data_nascimento"
+						th:value="${f.data_nascimento}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
 
 				<div class="form-group col-md-2">
 					<label for="rg">RG</label> <input type="text" class="form-control"
@@ -85,155 +83,145 @@
 						th:value="${f.data_emissao}" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
-				
+
 				<div class="form-group col-md-3">
-						<label for="nome">Email</label> <input type="text"
-							class="form-control" id="email" placeholder="email" name="email"
-							th:value="${f.email}" disabled>
-						<div class="invalid-feedback"></div>
-					</div>
-					
-					<br>
-					
-					<div class="form-row">
-						<div class="form-group col-md-2">
+					<label for="nome">Email</label> <input type="text"
+						class="form-control" id="email" placeholder="email" name="email"
+						th:value="${f.email}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-2">
 						<label for="telefone">Telefone</label> <input type="text"
 							class="form-control" id="telefone" placeholder="telefone"
 							name="telefone" th:value="${f.telefone}" disabled>
 						<div class="invalid-feedback"></div>
 					</div>
+
+					<div class="form-group col-md-2">
+						<label for="celular">Celular</label> <input type="text"
+							class="form-control" id="celular" placeholder="celular"
+							name="celular" th:value="${f.celular}" disabled>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-2">
+						<label for="crm">CRM</label> <input type="text"
+							class="form-control" id="crm" placeholder="crm" name="crm"
+							th:value="${f.crm}" disabled>
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="especialidade">Especialidade</label> <input
+							type="text" class="form-control" id="especialidade"
+							placeholder="especialidade" name="especialidade"
+							th:value="${f.especialidade}" disabled>
+						<div class="invalid-feedback"></div>
+					</div>
 					
-					       <div class="form-group col-md-2">
-	                        <label for="celular">Celular</label>
-	                        <input type="text" class="form-control" id="celular" placeholder="celular"
-	                               name="celular" th:value="${f.celular}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-				
-				       <div class="form-group col-md-2">
-	                        <label for="crm">CRM</label>
-	                        <input type="text" class="form-control" id="crm" placeholder="crm"
-	                               name="crm" th:value="${f.crm}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-6">
-	                        <label for="especialidade">Especialidade</label>
-	                        <input type="text" class="form-control" id="especialidade" placeholder="especialidade"
-	                               name="especialidade" th:value="${f.especialidade}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-
-				<div class="form-row">
-				
-					       <div class="form-group col-md-2">
-	                        <label for="estado_civil">Estado Civil</label>
-	                        <input type="text" class="form-control" id="estado_civil" placeholder="estado_civil"
-	                               name="estado_civil" th:value="${f.estado_civil}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-5">
-	                        <label for="escolaridade">Escolaridade</label>
-	                        <input type="text" class="form-control" id="escolaridade" placeholder="escolaridade"
-	                               name="escolaridade" th:value="${f.escolaridade}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-5">
-	                        <label for="formacao">Formação</label>
-	                        <input type="text" class="form-control" id="formacao" placeholder="formacao"
-	                               name="formacao" th:value="${f.formacao}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-2">
-	                        <label for="cep">CEP</label>
-	                        <input type="text" class="form-control" id="cep" placeholder="cep"
-	                               name="cep" th:value="${f.cep}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
+					</div>
 
 					<div class="form-row">
-					<div class="form-group col-md-4">
-						<label for="endereco">Endereço</label> <input type="text"
-							class="form-control" id="endereco" placeholder="endereco"
-							name="endereco" th:value="${f.endereco}" disabled>
-						<div class="invalid-feedback"></div>
-					</div>
 
-					<div class="form-group col-md-4">
-						<label for="bairro">Bairro</label> <input type="text"
-							class="form-control" id="bairro" placeholder="bairro"
-							name="bairro" th:value="${f.bairro}" disabled>
-						<div class="invalid-feedback"></div>
-					</div>
+						<div class="form-group col-md-2">
+							<label for="estado_civil">Estado Civil</label> <input type="text"
+								class="form-control" id="estado_civil"
+								placeholder="estado_civil" name="estado_civil"
+								th:value="${f.estado_civil}" disabled>
+							<div class="invalid-feedback"></div>
+						</div>
 
-					<div class="form-group col-md-4">
-						<label for="cidade">Cidade</label> <input type="text"
-							class="form-control" id="cidade" placeholder="cidade"
-							name="cidade" th:value="${f.cidade}" disabled>
-						<div class="invalid-feedback"></div>
-					</div>
+						<div class="form-group col-md-5">
+							<label for="escolaridade">Escolaridade</label> <input type="text"
+								class="form-control" id="escolaridade"
+								placeholder="escolaridade" name="escolaridade"
+								th:value="${f.escolaridade}" disabled>
+							<div class="invalid-feedback"></div>
+						</div>
 
-					<div class="form-group col-md-1">
-						<label for="estado">Estado</label> <input type="text"
-							class="form-control" id="estado" placeholder="estado"
-							name="estado" th:value="${f.estado}" disabled>
-						<div class="invalid-feedback"></div>
-					</div>
+						<div class="form-group col-md-5">
+							<label for="formacao">Formação</label> <input type="text"
+								class="form-control" id="formacao" placeholder="formacao"
+								name="formacao" th:value="${f.formacao}" disabled>
+							<div class="invalid-feedback"></div>
+						</div>
+						
+						</div>
+
+						<div class="form-row">
+						<div class="form-group col-md-2">
+							<label for="cep">CEP</label> <input type="text"
+								class="form-control" id="cep" placeholder="cep" name="cep"
+								th:value="${f.cep}" disabled>
+							<div class="invalid-feedback"></div>
+						</div>
+						
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="endereco">Endereço</label> <input type="text"
+									class="form-control" id="endereco" placeholder="endereco"
+									name="endereco" th:value="${f.endereco}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="bairro">Bairro</label> <input type="text"
+									class="form-control" id="bairro" placeholder="bairro"
+									name="bairro" th:value="${f.bairro}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="form-group col-md-4">
+								<label for="cidade">Cidade</label> <input type="text"
+									class="form-control" id="cidade" placeholder="cidade"
+									name="cidade" th:value="${f.cidade}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+							
+							</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-1">
+								<label for="estado">Estado</label> <input type="text"
+									class="form-control" id="estado" placeholder="estado"
+									name="estado" th:value="${f.estado}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="form-group col-md-5">
+								<label for="naturalidade">Naturalidade</label> <input
+									type="text" class="form-control" id="naturalidade"
+									placeholder="naturalidade" name="naturalidade"
+									th:value="${f.naturalidade}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="form-group col-md-5">
+								<label for="nacionalidade">Nacionalidade</label> <input
+									type="text" class="form-control" id="nacionalidade"
+									placeholder="nacionalidade" name="nacionalidade"
+									th:value="${f.nacionalidade}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+							<div class="form-group col-md-1">
+								<label for="nivel_acesso">Acesso</label> <input
+									type="text" class="form-control" id="nivel_acesso"
+									placeholder="nivel_acesso" name="nivel_acesso"
+									th:value="${f.nivel_acesso}" disabled>
+								<div class="invalid-feedback"></div>
+							</div>
+
+						</div>
 					
-					       <div class="form-group col-md-5">
-	                        <label for="naturalidade">Naturalidade</label>
-	                        <input type="text" class="form-control" id="naturalidade" placeholder="naturalidade"
-	                               name="naturalidade" th:value="${f.naturalidade}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-4">
-	                        <label for="nacionalidade">Nacionalidade</label>
-	                        <input type="text" class="form-control" id="nacionalidade" placeholder="nacionalidade"
-	                               name="nacionalidade" th:value="${f.nacionalidade}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-	                    
-	                           <div class="form-group col-md-2">
-	                        <label for="nivel_acesso">Nível de Acesso</label>
-	                        <input type="text" class="form-control" id="nivel_acesso" placeholder="nivel_acesso"
-	                               name="nivel_acesso" th:value="${f.nivel_acesso}" disabled>
-	                        <div class="invalid-feedback">
-
-	                        </div>
-	                    </div>
-
-				</div>
-</div>
-</div>
-				<br>
-				<br>
-				<br>
-
-			</div>
-		</div>
-
+				<br> <br> <br>
+		
 	</section>
 
 </body>
