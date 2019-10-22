@@ -15,12 +15,14 @@
 					<div class="form-group col-md-6 ">
 						
 						<label for="nome"> Nome </label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}">
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
+						maxlength="30" >
 						
 						
 						<br>
 						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="nome" placeholder="Valor do Procedimento" autofocus="autofocus" th:field="*{valor}">
+						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}"  
+						>
 						
 						<br>
 						

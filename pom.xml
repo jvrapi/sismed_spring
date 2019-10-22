@@ -94,6 +94,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery-mask-plugin</artifactId>
+			<version>1.13.4</version>
+		</dependency>
+
+		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
 		</dependency>
@@ -102,8 +108,13 @@
 			<groupId>org.thymeleaf	</groupId>
 			<artifactId>thymeleaf-spring5</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-java8time</artifactId>
+			</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>

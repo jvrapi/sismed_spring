@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_convenio")
@@ -14,8 +17,9 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_adesao",nullable = false)
-	private String data_adesao ;
+	private LocalDate data_adesao ;
 	
 	@Column(name = "banco",nullable = false, length = 5)
 	private String banco;
@@ -51,12 +55,13 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public String getData_adesao() {
+	
+	public LocalDate getData_adesao() {
 		return data_adesao;
 	}
 
 
-	public void setData_adesao(String data_adesao) {
+	public void setData_adesao(LocalDate data_adesao) {
 		this.data_adesao = data_adesao;
 	}
 

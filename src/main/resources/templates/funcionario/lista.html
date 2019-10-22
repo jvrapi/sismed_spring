@@ -15,15 +15,20 @@
 
 		</nav>
 		<br>
+		
+		<div th:replace="fragmentos/modal :: modal"></div>
+		
 		<div class="container" th:each="f : ${funcionario}">
 			<a class="btn btn-info btn-sm"
 				th:href="@{/funcionario/editar/{id} (id=${f.id}) }" role="button">
 				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> <a th:href="@{/funcionario/excluir/{id} (id=${f.id}) }"
+			</a> 
+			
+			<button th:id="${#strings.concat ('/btn_funcionario/excluir/',f.id)}"
 				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 				data-target="#myModal"> <span class="oi oi-circle-x"
 				title="Excluir" aria-hidden="true"></span>
-			</a> 
+			</button> 
 			
 			<br> <br>
 			
@@ -156,7 +161,7 @@
 						<div class="form-group col-md-2">
 							<label for="cep">CEP</label> <input type="text"
 								class="form-control" id="cep" placeholder="cep" name="cep"
-								th:value="${f.cep}" disabled>
+								th:value="${f.endereco.cep}" disabled>
 							<div class="invalid-feedback"></div>
 						</div>
 						
@@ -166,21 +171,21 @@
 							<div class="form-group col-md-4">
 								<label for="endereco">Endereço</label> <input type="text"
 									class="form-control" id="endereco" placeholder="endereco"
-									name="endereco" th:value="${f.endereco}" disabled>
+									name="endereco" th:value="${f.endereco.logradouro}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>
 
 							<div class="form-group col-md-4">
 								<label for="bairro">Bairro</label> <input type="text"
 									class="form-control" id="bairro" placeholder="bairro"
-									name="bairro" th:value="${f.bairro}" disabled>
+									name="bairro" th:value="${f.endereco.bairro}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>
 
 							<div class="form-group col-md-4">
 								<label for="cidade">Cidade</label> <input type="text"
 									class="form-control" id="cidade" placeholder="cidade"
-									name="cidade" th:value="${f.cidade}" disabled>
+									name="cidade" th:value="${f.endereco.cidade}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>
 							
@@ -190,7 +195,7 @@
 							<div class="form-group col-md-1">
 								<label for="estado">Estado</label> <input type="text"
 									class="form-control" id="estado" placeholder="estado"
-									name="estado" th:value="${f.estado}" disabled>
+									name="estado" th:value="${f.endereco.estado}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>
 
@@ -219,8 +224,8 @@
 							</div>
 
 						</div>
-					
-				<br> <br> <br>
+					</div>
+				
 		
 	</section>
 

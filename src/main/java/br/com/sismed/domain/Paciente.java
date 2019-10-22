@@ -3,11 +3,13 @@ package br.com.sismed.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -65,20 +67,9 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "recomendacao", length = 50)
 	private String recomendacao;
 	
-	@Column(name = "cep", length = 15)
-	private String cep;
-	
-	@Column(name = "endereco", length = 50)
-	private String endereco;
-	
-	@Column(name = "bairro", length = 50)
-	private String bairro;
-	
-	@Column(name = "cidade", length = 50)
-	private String cidade;
-	
-	@Column(name = "estado", length = 50)
-	private String estado;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 	
 	@Column(name = "naturalidade", length = 45)
 	private String naturalidade;
@@ -233,45 +224,6 @@ public class Paciente extends AbstractEntity<Long>{
 		this.recomendacao = recomendacao;
 	}
 
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 
 	public String getNaturalidade() {
 		return naturalidade;
@@ -320,4 +272,30 @@ public class Paciente extends AbstractEntity<Long>{
 	public void setValidade(String validade) {
 		this.validade = validade;
 	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<Exame> getExame() {
+		return exame;
+	}
+
+	public void setExame(List<Exame> exame) {
+		this.exame = exame;
+	}
+
+	public List<Agenda> getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(List<Agenda> agenda) {
+		this.agenda = agenda;
+	}
+	
+	
 }

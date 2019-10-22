@@ -20,7 +20,7 @@
 						<br>
 						
 						<label for="dataAdesao"> Data de Adesão</label>
-						<input type="text" class="form-control" id="dataAdesao" placeholder="Data de Adesão"  th:field="*{data_adesao}">
+						<input type="date" class="form-control" id="dataAdesao" placeholder="Data de Adesão"  th:field="*{data_adesao}">
 						
 						<br>
 						
@@ -52,7 +52,7 @@
 				</div>
 				
 				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-6">
+				<input type="submit" class="btn btn-primary form-control col-md-6" value="Salvar">
 			
 			</form>
 		

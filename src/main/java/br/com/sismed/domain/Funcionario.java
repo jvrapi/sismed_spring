@@ -1,7 +1,10 @@
 package br.com.sismed.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -54,20 +57,9 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="formacao", nullable=false, length=45)
 	private String formacao;
 	
-	@Column(name="cep", nullable=false, length=10)
-	private String cep;
-	
-	@Column(name="endereco", nullable=false, length=100)
-	private String endereco;
-	
-	@Column(name="bairro", nullable=false, length=45)
-	private String bairro;
-	
-	@Column(name="cidade", nullable=false, length=45)
-	private String cidade;
-	
-	@Column(name="estado", nullable=false, length=2)
-	private String estado;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 	
 	@Column(name="naturalidade", nullable=false, length=45)
 	private String naturalidade;
@@ -76,7 +68,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	private String nacionalidade;
 	
 	@Column(name="nivel_acesso", nullable=false, length=4)
-	private Integer nivel_acesso;
+	private Long nivel_acesso;
 	
 	
 	public String getData_emissao() {
@@ -169,36 +161,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setFormacao(String formacao) {
 		this.formacao = formacao;
 	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public String getBairro() {
-		return bairro;
-	}
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-	public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	
 	public String getNaturalidade() {
 		return naturalidade;
 	}
@@ -211,10 +174,18 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
-	public Integer getNivel_acesso() {
+	public Long getNivel_acesso() {
 		return nivel_acesso;
 	}
-	public void setNivel_acesso(Integer nivel_acesso) {
+	public void setNivel_acesso(Long nivel_acesso) {
 		this.nivel_acesso = nivel_acesso;
 	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	
 }

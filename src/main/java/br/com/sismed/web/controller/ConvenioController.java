@@ -63,12 +63,10 @@ public class ConvenioController {
 		
 		
 		@GetMapping("/excluir/{id}")
-		public String excluir(@PathVariable("id") Long id, ModelMap model) {
-			
-			model.addAttribute("success", "Convenio excluido com sucesso");
+		public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 			service.excluir(id);
+			attr.addFlashAttribute("success", "Convenio excluido com sucesso");
 			
-			
-			return listar(model);
+			return "redirect:/convenios/listar";
 		}
 }

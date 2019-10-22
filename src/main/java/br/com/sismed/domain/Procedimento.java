@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.NumberFormat;
+import org.springframework.format.annotation.NumberFormat.Style;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_procedimento")
@@ -15,6 +18,7 @@ public  class Procedimento extends AbstractEntity<Long> {
 	@Column(nullable = false, length = 60)
 	private String descricao;
 	
+	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal valor;
 	
