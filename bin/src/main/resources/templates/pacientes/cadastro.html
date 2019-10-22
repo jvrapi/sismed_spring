@@ -9,6 +9,14 @@
 	<body>
 		<section layout:fragment="corpo">
 		
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/pacientes/listar">Pacientes</a></li>
+					<li class="breadcrumb-item active" aria-current="page">Cadastro</li>
+				</ol>
+			</nav>
+		
+		
 			<div class="container" id="cadastroConvenio">
 				<div th:replace="fragmentos/alert"></div>
 				<form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="POST">
@@ -100,12 +108,8 @@
 							<input type="text" class="form-control" id="cep" placeholder="cep" autofocus="autofocus" th:field="*{cep}"/>
 						</div>
 						<div class="form-group col-md-4">
-							<label for="logradouro">Logradouro</label>
-							<input type="text" class="form-control" id="logradouro" placeholder="Logradouro" autofocus="autofocus" th:field="*{logradouro}"/>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="numero">Numero</label>
-							<input type="text" class="form-control" id="numero" placeholder="Numero" autofocus="autofocus" th:field="*{numero}"/>
+							<label for="logradouro">Endereço</label>
+							<input type="text" class="form-control" id="logradouro" placeholder="Logradouro" autofocus="autofocus" th:field="*{endereco}"/>
 						</div>
 					</div>
 					
@@ -149,7 +153,7 @@
 						</div>
 						<div class="form-group col-md-3">
 							<label for="tipo_convenio_id">Tipo de convenio</label>
-							<select id="tipo_convenio_id" class="form-control" th:field="*{tipo_convenio_id}">
+							<select id="tipo_convenio_id" class="form-control" th:field="*{convenio_id.TiposConvenios}">
 								<option value="">Selecione</option>
 								<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.nome}"></option>
 							</select>

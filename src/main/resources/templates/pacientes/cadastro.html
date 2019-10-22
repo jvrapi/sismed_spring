@@ -17,7 +17,8 @@
 			</nav>
 		
 		
-			<div class="container" id="cadastroConvenio">
+			<div class="container" id="cadastroPaciente">
+				
 				<div th:replace="fragmentos/alert"></div>
 				<form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="POST">
 					<div class="form-row">
