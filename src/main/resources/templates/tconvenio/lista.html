@@ -6,38 +6,45 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
-
-		<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/tconvenios/cadastrar" role="button"> 
-				<span
-					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-				<span>Cadastrar Tipo de Convenio</span>
-		</a>
+		<div th:replace="fragmentos/modal :: modal"></div>
+		<div th:replace="fragmentos/alert"></div>
+		<a class="btn btn btn-md"
+			style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+			href="/tconvenios/cadastrar" role="button"> <span
+			class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
+				Tipo de Convenio</span>
 				
+		</a> <a class="btn btn btn-md"
+			style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+			href="/procedimentos/listar" role="button"> 
+			 <span>Listar Procedimentos</span>
+		</a> 
+		<br>
+		<br>
+		<br>
 		<div class="container" th:each="t : ${tconvenio}">
 			<a class="btn btn-info btn-sm"
 				th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" role="button">
 				<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 			</a>
-			<button id="btn_funcionarios/excluir/5" type="button"
-				class="btn btn-danger btn-sm" data-toggle="modal"
+			<button th:id="${#strings.concat ('/btn_tconvenios/excluir/',t.id)}"
+				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 				data-target="#myModal">
-				<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+				<span class="oi oi-circle-x" title="Excluir covenio"
+					aria-hidden="true"></span>
 			</button>
-			<br>
-			<br>
+			<br> <br>
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="nome">Descricao</label> <input type="text"
 						class="form-control" id="nome" placeholder="Nome Completo"
-						name="nome" th:value="${t.nome}" disabled>
+						name="nome" th:value="${t.convenio.nome + ' - ' + t.nome}"
+						disabled>
 					<div class="invalid-feedback"></div>
 				</div>
 
 			</div>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 
 		</div>
 

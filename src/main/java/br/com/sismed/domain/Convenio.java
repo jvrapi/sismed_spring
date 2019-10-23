@@ -21,13 +21,13 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "data_adesao",nullable = false)
 	private LocalDate data_adesao ;
 	
-	@Column(name = "banco",nullable = false, length = 5)
+	
 	private String banco;
 	
-	@Column(name = "agencia",nullable = false, length = 5)
+	
 	private String agencia;
 	
-	@Column(name = "numero_conta",nullable = false, length = 8)
+	
 	private String numero_conta;
 	
 	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")

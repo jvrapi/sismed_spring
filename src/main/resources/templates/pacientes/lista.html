@@ -30,10 +30,10 @@
 				<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
 					<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 				</a>
-				<a  th:href="@{/pacientes/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
+				<button  th:id="${#strings.concat ('/btn_pacientes/excluir/', p.id)}" type="button" class="btn btn-danger btn-sm"
 					data-toggle="modal" data-target="#myModal">
 					<span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-				</a>
+				</button>
 				
 				<a class="btn btn-info btn-sm" th:href="@{/pacientes/detalhes/{id} (id=${p.id}) }" role="button">
 					<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>

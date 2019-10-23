@@ -10,13 +10,14 @@
 	<div class="container corpo" id="cadastroTipoConvenio">
 				<div th:replace="fragmentos/alert"></div>
 			
-			<form th:action="@{/tconvenios/salvar}" th:object="${TConvenio}" method="POST">
+			<form th:action="${tconvenio.id == null} ? @{/tconvenios/salvar} : @{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
 			
 				<div class="form-row ">
 					<div class="form-group col-md-6 ">
 						
 						<label for="nome">Tipo de Convenio</label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Tipo Convenio" autofocus="autofocus" th:field="*{nome}">
+						<input type="text" class="form-control" id="nome" placeholder="Nome do Tipo Convenio" autofocus="autofocus" th:field="*{nome}"
+						 onkeyup="maiuscula(this)" >
 						
 						
 						<br>
@@ -35,9 +36,11 @@
 				
 				<input type="hidden" id="id" th:field="*{id}"/>
 				<input type="submit" class="btn btn-primary form-control col-md-6">
-			
+				
 			</form>
-		
+			<br>
+			
+			<a class="btn btn-primary form-control col-md-6" href="/tconvenios/listar"  >Voltar</a>
 		
 		</div>
 </section>
