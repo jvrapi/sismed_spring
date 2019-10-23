@@ -1,11 +1,16 @@
 package br.com.sismed.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @SuppressWarnings("serial")
 @Entity
@@ -24,8 +29,9 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="orgao_emissor", nullable=false, length=30)
 	private String orgao_emissor;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_emissao", nullable=false, length=10)
-	private String data_emissao;
+	private LocalDate data_emissao;
 	
 	@Column(name="crm", nullable=true, length=10)
 	private String crm;
@@ -42,8 +48,9 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="sexo", nullable=false, length=15)
 	private String sexo;
 	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_nascimento", nullable=false, length=10)
-	private String data_nascimento;
+	private LocalDate data_nascimento;
 	
 	@Column(name="email", nullable=false, length=30)
 	private String email;
@@ -71,10 +78,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	private Long nivel_acesso;
 	
 	
-	public String getData_emissao() {
+	public LocalDate getData_emissao() {
 		return data_emissao;
 	}
-	public void setData_emissao(String data_emissao) {
+	public void setData_emissao(LocalDate data_emissao) {
 		this.data_emissao = data_emissao;
 	}
 	public String getNome() {
@@ -131,10 +138,10 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public String getData_nascimento() {
+	public LocalDate getData_nascimento() {
 		return data_nascimento;
 	}
-	public void setData_nascimento(String data_nascimento) {
+	public void setData_nascimento(LocalDate data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 	public String getEmail() {

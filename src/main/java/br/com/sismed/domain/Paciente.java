@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 
@@ -32,7 +36,8 @@ public class Paciente extends AbstractEntity<Long>{
 	private String orgao_emissor;
 	
 	@Column(name = "data_emissao", length = 15)
-	private String data_emissao;
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_emissao;
 	
 	@Column(name = "telefone_fixo", length = 15)
 	private String telefone_fixo;
@@ -46,11 +51,11 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "sexo", length = 15)
 	private String sexo;
 	
-	@Column(name = "cor", length = 15)
-	private String cor;
 	
+	
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_nascimento", length = 15)
-	private String data_nascimento;
+	private LocalDate data_nascimento;
 	
 	@Column(name = "email", length = 50)
 	private String email;
@@ -80,9 +85,9 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "situacao", length = 45)
 	private String situacao;
 	
-	@ManyToOne
-	@JoinColumn(name = "sismed_convenio_id", nullable = false)
-	private Convenio convenio_id;
+	@OneToOne
+	@JoinColumn(name = "tipo_convenio", nullable = false)
+	private TConvenio tipo_convenio;
 	
 	@OneToMany(mappedBy = "paciente_prontuario")
 	private List<Exame> exame;
@@ -93,8 +98,9 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "carteira_convenio", length = 45)
 	private String carteira_convenio;
 
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "validade")
-	private String validade;
+	private LocalDate validade;
 	
 	public String getNome() {
 		return nome;
@@ -128,11 +134,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.orgao_emissor = orgao_emissor;
 	}
 
-	public String getData_emissao() {
+	public LocalDate getData_emissao() {
 		return data_emissao;
 	}
 
-	public void setData_emissao(String data_emissao) {
+	public void setData_emissao(LocalDate data_emissao) {
 		this.data_emissao = data_emissao;
 	}
 
@@ -168,19 +174,13 @@ public class Paciente extends AbstractEntity<Long>{
 		this.sexo = sexo;
 	}
 
-	public String getCor() {
-		return cor;
-	}
+	
 
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public String getData_nascimento() {
+	public LocalDate getData_nascimento() {
 		return data_nascimento;
 	}
 
-	public void setData_nascimento(String data_nascimento) {
+	public void setData_nascimento(LocalDate data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 
@@ -249,12 +249,13 @@ public class Paciente extends AbstractEntity<Long>{
 		this.situacao = situacao;
 	}
 	
-	public Convenio getConvenio_id() {
-		return convenio_id;
+	
+	public TConvenio getTipo_convenio() {
+		return tipo_convenio;
 	}
 
-	public void setConvenio_id(Convenio convenio_id) {
-		this.convenio_id = convenio_id;
+	public void setTipo_convenio(TConvenio tipo_convenio) {
+		this.tipo_convenio = tipo_convenio;
 	}
 
 	public String getCarteira_convenio() {
@@ -265,11 +266,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.carteira_convenio = carteira_convenio;
 	}
 
-	public String getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
 
-	public void setValidade(String validade) {
+	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
 

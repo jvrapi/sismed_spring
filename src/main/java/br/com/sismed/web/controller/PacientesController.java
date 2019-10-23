@@ -26,8 +26,7 @@ public class PacientesController {
 	
 	@Autowired
 	private PacienteService service;
-	@Autowired
-	private ConvenioService convenioService;
+	
 	@Autowired
 	private TConvenioService tipoConvenioService;
 	
@@ -74,10 +73,7 @@ public class PacientesController {
 		return "pacientes/detalhes";
 	}
 	
-	@ModelAttribute("convenio")
-		public List<Convenio> listConvenio() {
-			return convenioService.BuscarTodos();
-	}
+	
 	
 	@ModelAttribute("tipoconvenio")
 	public List<TConvenio> listTipoConvenio() {

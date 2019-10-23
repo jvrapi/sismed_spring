@@ -68,7 +68,7 @@
 					</div>
 					<div class="form-group col-md-2">
 						<label for="data_emissao">Data de emissão</label>
-						<input type="text" class="form-control" id="data_emissao" th:value="${p.data_emissao}" disabled/>
+						<input type="text" class="form-control" id="data_emissao" th:value="${#temporals.format(p.data_emissao, 'dd/MM/yyyy')}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>

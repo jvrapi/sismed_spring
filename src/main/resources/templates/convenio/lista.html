@@ -58,21 +58,21 @@
 				<div class="form-group col-md-4">
 					<label for="aceita">Aceita</label> <input type="text"
 						class="form-control" id="aceita" name="aceita"
-						th:value="${c.aceita}" disabled>
+						th:value="${c.aceita == 1} ? SIM : NÃO" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-4">
-					<label for="dataEntrada">Banco</label> <input type="text"
+					<label for="dataEntrada">CNPJ</label> <input type="text"
 						class="form-control" id="dataEntrada" name="dataEntrada"
-						th:value="${c.banco}" disabled />
+						th:value="${c.cnpj}" disabled />
 					<div class="invalid-feedback"></div>
 				</div>
 				<div class="form-group col-md-4">
-					<label for="agencia">Agencia</label> <input type="text"
+					<label for="agencia">Registro ANS</label> <input type="text"
 						class="form-control" id="dataSaida" name="agencia"
-						th:value="${c.agencia}" disabled />
+						th:value="${c.registro_ans}" disabled />
 					<div class="invalid-feedback"></div>
 				</div>
 

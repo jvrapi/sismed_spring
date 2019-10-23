@@ -31,8 +31,16 @@ public class Convenio extends AbstractEntity<Long>{
 	private String numero_conta;
 	
 	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")
-	private String aceita;
+	private Long aceita;
 	
+	@Column(nullable = false)
+	private String razao_social;
+	
+	@Column(nullable = false)
+	private String cnpj;
+	
+	@Column(nullable = false)
+	private String registro_ans;
 	
 	@OneToMany(mappedBy = "convenio")
 	private List<TConvenio> TiposConvenios;
@@ -40,8 +48,7 @@ public class Convenio extends AbstractEntity<Long>{
 	@OneToMany(mappedBy = "convenio")
 	private List<Agenda> agenda;
 	
-	@OneToMany(mappedBy = "convenio_id")
-	private List<Paciente> paciente;
+	
 	
 	/*Metodos get's e set's */
 	
@@ -106,12 +113,12 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 	
 	
-	public String getAceita() {
+	public Long getAceita() {
 		return aceita;
 	}
 	
 	
-	public void setAceita(String aceita) {
+	public void setAceita(Long aceita) {
 		this.aceita = aceita;
 	}
 	
@@ -124,6 +131,37 @@ public class Convenio extends AbstractEntity<Long>{
 	public void setTiposConvenios(List<TConvenio> tiposConvenios) {
 		TiposConvenios = tiposConvenios;
 	}
+
+
+	public String getRazao_social() {
+		return razao_social;
+	}
+
+
+	public void setRazao_social(String razao_social) {
+		this.razao_social = razao_social;
+	}
+
+
+	public String getCnpj() {
+		return cnpj;
+	}
+
+
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+
+	public String getRegistro_ans() {
+		return registro_ans;
+	}
+
+
+	public void setRegistro_ans(String registro_ans) {
+		this.registro_ans = registro_ans;
+	}
+	
 	
 	
 }
