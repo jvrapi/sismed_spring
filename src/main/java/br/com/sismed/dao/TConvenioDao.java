@@ -16,4 +16,7 @@ void save(TConvenio tconvenio);
 	TConvenio findById(Long id);
 	
 	List<TConvenio> findAll();
+	
+	List<TConvenio> ListarTipoConvenio(Long id);
+	
 }

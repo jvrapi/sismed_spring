@@ -49,4 +49,10 @@ public class TConvenioServiceImpl implements TConvenioService{
 		return dao.findAll();
 	}
 
+	@Override
+	public List<TConvenio> ListarTipoConvenio(Long id) {
+		
+		return dao.ListarTipoConvenio(id);
+	}
+
 }

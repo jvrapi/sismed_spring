@@ -6,7 +6,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import br.com.sismed.domain.Convenio;
+import br.com.sismed.domain.Procedimento;
+import br.com.sismed.domain.TConvenio;
 
 public abstract class AbstractDao<T, PK extends Serializable> {
 
@@ -55,4 +60,15 @@ public abstract class AbstractDao<T, PK extends Serializable> {
         }
     	return query.getResultList();
 	}
+	
+	public List<TConvenio> ListarTipoConvenio(Long id){
+		Query query = entityManager.createNativeQuery("SELECT tc.id,tc.nome, tc.convenio_id " + " FROM sismed_convenio c " 
+				+ " INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id WHERE c.id = ?1 ORDER BY tc.nome",TConvenio.class).setParameter(1, id);
+		List<TConvenio> resultlist = query.getResultList();
+		return resultlist;
+	}
+	
+	
+	
+	
 }

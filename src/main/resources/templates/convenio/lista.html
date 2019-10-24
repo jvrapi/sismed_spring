@@ -39,7 +39,7 @@
 			
 			<a class="btn btn btn-md"
 				style="background-color: #D7E7F9; margin-top: 5px; "
-				href="/tconvenios/listar" role="button"> <span title="lista"
+				th:href="@{/tconvenios/listar/{id} (id=${c.id}) }" role="button"> <span title="lista"
 				aria-hidden="true"></span> <span>Listar Tipos de Convenios</span></a> <br>
 			<br>
 			<div class="form-row">
@@ -75,6 +75,9 @@
 						th:value="${c.registro_ans}" disabled />
 					<div class="invalid-feedback"></div>
 				</div>
+				
+				
+				
 
 				
 			</div>

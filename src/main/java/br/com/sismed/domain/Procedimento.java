@@ -2,6 +2,7 @@ package br.com.sismed.domain;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +23,13 @@ public  class Procedimento extends AbstractEntity<Long> {
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00")
 	private BigDecimal valor;
 	
+	@ManyToOne
+	@JoinColumn(name = "tipo_convenio")
+	private TConvenio tconvenio;
+	
+	@OneToMany(mappedBy = "procedimento") // nome do atributo na classe Agenda
+	private List<Agenda> agenda;
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -37,8 +45,23 @@ public  class Procedimento extends AbstractEntity<Long> {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	public TConvenio getTconvenio() {
+		return tconvenio;
+	}
+
+	public void setTconvenio(TConvenio tconvenio) {
+		this.tconvenio = tconvenio;
+	}
+
+	public List<Agenda> getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(List<Agenda> agenda) {
+		this.agenda = agenda;
+	}
 	
 		
-	@OneToMany(mappedBy = "procedimento") // nome do atributo na classe Agenda
-	private List<Agenda> agenda;
+	
 }

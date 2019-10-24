@@ -14,4 +14,5 @@ public interface ConvenioService {
 	
 	List<Convenio> BuscarTodos();
 	
+	
 }

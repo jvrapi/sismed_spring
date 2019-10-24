@@ -21,59 +21,59 @@ import br.com.sismed.service.TConvenioService;
 @RequestMapping("/tconvenios")
 public class TConvenioController {
 
-	@Autowired	
+	@Autowired
 	private ConvenioService service;
-	
-	@Autowired	
+
+	@Autowired
 	private TConvenioService tservice;
-	
-	
-	@GetMapping("/listar") // segunda parte do href
-	public String listar(ModelMap model) {
-		model.addAttribute("tconvenio", tservice.BuscarTodos());
+
+	@GetMapping("/listar/{id}") // segunda parte do href
+	public String listar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("tconvenio", tservice.ListarTipoConvenio(id));
 		return "/tconvenio/lista"; // retorna o caminho do arquivo
 	}
-	
+
 	@GetMapping("/cadastrar") // segunda parte do href
-	public String cadastrar (@ModelAttribute("tconvenio")  TConvenio tconvenio) {
+	public String cadastrar(@ModelAttribute("tconvenio") TConvenio tconvenio) {
 		return "/tconvenio/cadastro"; // retorna o caminho do arquivo
-	
+
 	}
-	
+
 	@PostMapping("/salvar")
 	public String salvar(TConvenio tconvenio, RedirectAttributes attr) {
 		tservice.salvar(tconvenio);
-		attr.addFlashAttribute("success","Convenio cadastrado com sucesso");
-		return  "redirect:/tconvenios/cadastrar";
+		attr.addFlashAttribute("success", "Convenio cadastrado com sucesso");
+		return "redirect:/tconvenios/cadastrar";
 	}
-	
-	@GetMapping("/editar/{id}") //ID do convenio que vem pela URL
+
+	@GetMapping("/editar/{id}") // ID do convenio que vem pela URL
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		/* @PathVariable = recupera da url o id enviado pela URL como um path
-		 	o objeto model serve para enviar para a pagina de cadastro o convenio como uma variavel*/ 
+		/*
+		 * @PathVariable = recupera da url o id enviado pela URL como um path o objeto
+		 * model serve para enviar para a pagina de cadastro o convenio como uma
+		 * variavel
+		 */
 		model.addAttribute("tconvenio", tservice.buscarPorId(id));
 		return "/tconvenio/cadastro";
 	}
-	
+
 	@PostMapping("/editar")
 	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
 		tservice.editar(tconvenio);
-		attr.addFlashAttribute("success","Convenio editado com sucesso");
-		return "redirect:/tconvenios/listar";
+		attr.addFlashAttribute("success", "Convenio editado com sucesso");
+		return "redirect:/tconvenio/listar";
 	}
-	
-	
+
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 		tservice.excluir(id);
 		attr.addFlashAttribute("success", "Tipo de Convenio excluido com sucesso");
-		
+
 		return "redirect:/tconvenios/listar";
 	}
 
-
-@ModelAttribute("convenios")
-public List<Convenio> listConvenio() {
-	return service.BuscarTodos();
-}
+	@ModelAttribute("convenios")
+	public List<Convenio> listConvenio() {
+		return service.BuscarTodos();
+	}
 }

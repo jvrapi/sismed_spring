@@ -1,17 +1,25 @@
 package br.com.sismed.web.controller;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Procedimento;
+import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ProcedimentoService;
+import br.com.sismed.service.TConvenioService;
 
 @Controller
 @RequestMapping("/procedimentos")
@@ -20,15 +28,18 @@ public class ProcedimentosController {
 	@Autowired
 	private ProcedimentoService service;
 	
+	@Autowired
+	private TConvenioService tipoConvenioService;
+	
 	@GetMapping("/cadastrar")
 	public String Cadastrar(Procedimento procedimento) {
 		
 		return "/procedimentos/cadastro";
 	}
 	
-	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("procedimento", service.BuscarTodos());
+	@GetMapping("/listar/{id}")
+	public String listar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("procedimento", service.ListarProcedimento(id));
 		return "/procedimentos/lista";
 	}
 	
@@ -60,6 +71,11 @@ public class ProcedimentosController {
 		
 		model.addAttribute("success", "Procedimento excluido com sucesso");
 		service.excluir(id);
-		return listar(model);
+		return "redirect:/procedimentos/listar";
+	}
+	
+	@ModelAttribute("tconvenio")
+	public List<TConvenio> listTipoConvenio() {
+		return tipoConvenioService.BuscarTodos();
 	}
 }

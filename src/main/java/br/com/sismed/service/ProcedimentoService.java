@@ -14,6 +14,8 @@ public interface ProcedimentoService {
 	Procedimento BuscarPorId(Long id);
 	
 	List<Procedimento> BuscarTodos();
+	
+	List<Procedimento> ListarProcedimento(Long id);
 
 	
 }

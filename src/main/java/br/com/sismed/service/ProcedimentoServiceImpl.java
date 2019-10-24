@@ -58,4 +58,10 @@ public class ProcedimentoServiceImpl implements ProcedimentoService{
 		
 	}
 
+	@Override
+	public List<Procedimento> ListarProcedimento(Long id) {
+		
+		return dao.ListarProcedimento(id);
+	}
+
 }

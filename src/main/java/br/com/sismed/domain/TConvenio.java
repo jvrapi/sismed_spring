@@ -1,10 +1,13 @@
 package br.com.sismed.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,6 +23,18 @@ public class TConvenio extends AbstractEntity<Long>{
 	@ManyToOne
 	@JoinColumn(name = "convenio_id") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
+	
+	@OneToMany(mappedBy ="tconvenio")
+	private List<Procedimento> procedimentos;
+	
+
+	public List<Procedimento> getProcedimentos() {
+		return procedimentos;
+	}
+
+	public void setProcedimentos(List<Procedimento> procedimentos) {
+		this.procedimentos = procedimentos;
+	}
 
 	public String getNome() {
 		return nome;
@@ -36,6 +51,9 @@ public class TConvenio extends AbstractEntity<Long>{
 	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
 	}
+	
+	
+	
 	
 	
 }

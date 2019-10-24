@@ -14,5 +14,5 @@ public interface TConvenioService {
 	TConvenio buscarPorId(Long id);
 	
 	List<TConvenio> BuscarTodos();
-	
+	List<TConvenio> ListarTipoConvenio(Long id);
 }

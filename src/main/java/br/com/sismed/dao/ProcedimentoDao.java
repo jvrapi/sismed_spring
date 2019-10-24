@@ -11,4 +11,5 @@ public interface ProcedimentoDao {
 	void delete(Long id);
 	Procedimento findById(Long id);
 	List<Procedimento> findAll();
+	List<Procedimento> ListarProcedimento(Long id);
 }
