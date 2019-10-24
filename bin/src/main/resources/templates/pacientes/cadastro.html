@@ -17,13 +17,15 @@
 			</nav>
 		
 		
-			<div class="container" id="cadastroConvenio">
+			<div class="container" id="cadastroPaciente">
+				
 				<div th:replace="fragmentos/alert"></div>
 				<form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="POST">
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" placeholder="Nome do paciente" autofocus="autofocus" th:field="*{nome}"/>
+							<input type="text" class="form-control" id="nome" placeholder="Nome do paciente" autofocus="autofocus" th:field="*{nome}" 
+							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="cpf">CPF</label>
@@ -38,11 +40,12 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="orgao_emissor">Orgao emissor</label>
-							<input type="text" class="form-control" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"/>
+							<input type="text" class="form-control" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
+							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="data_emissao">Data de emissão</label>
-							<input type="text" class="form-control" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}"/>
+							<input type="date" class="form-control" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}"/>
 						</div>
 					</div>
 					
@@ -59,23 +62,20 @@
 							<label for="celular">Celular</label>
 							<input type="text" class="form-control" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}"/>
 						</div>
-					</div>
-					
-					<div class="form-row">
-						<div class="form-group col-md-6">
+					<div class="form-group col-md-6">
 							<label for="sexo">Sexo</label>
 							<input type="text" class="form-control" id="sexo" placeholder="Sexo" autofocus="autofocus" th:field="*{sexo}"/>
 						</div>
-						<div class="form-group col-md-6">
-							<label for="cor">Cor</label>
-							<input type="text" class="form-control" id="cor" placeholder="Cor" autofocus="autofocus" th:field="*{cor}"/>
-						</div>
+						
 					</div>
+					
+					
+						
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="data_nascimento">Data de nascimento</label>
-							<input type="text" class="form-control" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}"/>
+							<input type="date" class="form-control" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}"/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="email">Email</label>
@@ -102,31 +102,7 @@
 						</div>
 					</div>
 					
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<label for="cep">CEP</label>
-							<input type="text" class="form-control" id="cep" placeholder="cep" autofocus="autofocus" th:field="*{cep}"/>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="logradouro">Endereço</label>
-							<input type="text" class="form-control" id="logradouro" placeholder="Logradouro" autofocus="autofocus" th:field="*{endereco}"/>
-						</div>
-					</div>
 					
-					<div class="form-row">
-						<div class="form-group col-md-4">
-							<label for="bairro">Bairro</label>
-							<input type="text" class="form-control" id="bairro" placeholder="Bairro" autofocus="autofocus" th:field="*{bairro}"/>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="cidade">Cidade</label>
-							<input type="text" class="form-control" id="cidade" placeholder="Cidade" autofocus="autofocus" th:field="*{cidade}"/>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="estado">Estado</label>
-							<input type="text" class="form-control" id="estaod" placeholder="Estado" autofocus="autofocus" th:field="*{estado}"/>
-						</div>
-					</div>
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -144,18 +120,12 @@
 					</div>
 					
 					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label for="convenio_id">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{convenio_id}">
-								<option value="">Selecione</option>
-								<option th:each="d : ${convenio}" th:value="${d.id}" th:text="${d.nome}"></option>
-							</select>
-						</div>
+						
 						<div class="form-group col-md-3">
 							<label for="tipo_convenio_id">Tipo de convenio</label>
-							<select id="tipo_convenio_id" class="form-control" th:field="*{convenio_id.TiposConvenios}">
+							<select id="tipo_convenio_id" class="form-control" th:field="*{tipo_convenio}">
 								<option value="">Selecione</option>
-								<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.nome}"></option>
+								<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.convenio.nome} + ' - ' + ${e.nome} "></option>
 							</select>
 						</div>
 						<div class="form-group col-md-3">
@@ -164,8 +134,72 @@
 						</div>
 						<div class="form-group col-md-3">
 							<label for="validade">Validade</label>
-							<input type="text" class="form-control" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}"/>
+							<input type="date" class="form-control" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}"/>
 						</div>
+						
+						<div class="form-group col-md-6 ">
+						<label for="cep">CEP</label> 
+						<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required >
+					</div>
+
+					<div class="form-group col-md-6 ">
+						<label for="logradouro">Logradouro</label> 
+						<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required >
+					</div>
+
+					<div class="form-group col-md-6 ">
+						<label for="numero">Número</label>
+						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" >
+					</div>
+
+					<div class="form-group col-md-6 ">
+						<label for="complemento">Complemento</label> 
+						<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" >
+					</div>
+
+					<div class="form-group col-md-6 ">
+						<label for="bairro">Bairro</label> 
+						<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required >
+					</div>
+
+						
+					<div class="form-group col-md-6 ">
+						<label for="cidade">Cidade</label> 
+						<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required >
+					</div>
+
+					<div class="form-group col-md-6 ">
+						<label for="uf">Estado</label> 
+						<select id="uf" class="form-control" th:field="*{endereco.estado}">
+							<option value="AC">Acre</option>
+							<option value="AL">Alagoas</option>
+							<option value="AP">Amapá</option>
+							<option value="AM">Amazonas</option>
+							<option value="BA">Bahia</option>
+							<option value="CE">Ceará</option>
+							<option value="DF">Distrito Federal</option>
+							<option value="ES">Espírito Santo</option>
+							<option value="GO">Goiás</option>
+							<option value="MA">Maranhão</option>
+							<option value="MT">Mato Grosso</option>
+							<option value="MS">Mato Grosso do Sul</option>
+							<option value="MG">Minas Gerais</option>
+							<option value="PA">Pará</option>
+							<option value="PB">Paraíba</option>
+							<option value="PR">Paraná</option>
+							<option value="PE">Pernambuco</option>
+							<option value="PI">Piauí</option>
+							<option value="RJ">Rio de Janeiro</option>
+							<option value="RN">Rio Grande do Norte</option>
+							<option value="RS">Rio Grande do Sul</option>
+							<option value="RO">Rondônia</option>
+							<option value="RR">Roraima</option>
+							<option value="SC">Santa Catarina</option>
+							<option value="SP">São Paulo</option>
+							<option value="SE">Sergipe</option>
+							<option value="TO">Tocantins</option>
+						</select>
+					</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
 					<button class="btn btn-primary float-right" type="submit">Salvar</button>

@@ -1,15 +1,12 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -36,8 +33,8 @@ public class Exame extends AbstractEntity<Long>{
 	private LocalDate data_retorno;
 	
 	@ManyToOne
-	@JoinColumn(name = "paciente_prontuario") 
-	private Paciente paciente_prontuario;
+	@JoinColumn(name = "paciente_id") 
+	private Paciente paciente_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
@@ -79,12 +76,12 @@ public class Exame extends AbstractEntity<Long>{
 		this.data_retorno = data_retorno;
 	}
 
-	public Paciente getPaciente_prontuario() {
-		return paciente_prontuario;
+	public Paciente getPaciente_id() {
+		return paciente_id;
 	}
 
-	public void setPaciente_prontuario(Paciente paciente_prontuario) {
-		this.paciente_prontuario = paciente_prontuario;
+	public void setPaciente_id(Paciente paciente_id) {
+		this.paciente_id = paciente_id;
 	}
 
 	public Funcionario getFuncionario_id() {

@@ -7,9 +7,12 @@
 
 	<section class="layout-content" layout:fragment="corpo">
 
-		<div class="container corpo" id="cadastroFuncionario"
-			style="margin-left: 20px">
-
+		<div class="container" id="cadastroFuncionario"
+			style="margin-left:8%;margin-top:2%">
+		
+		<h3>Cadastro <strong>| Funcionário(a)  </strong></h3>
+		
+		<br>
 			<form
 				th:action="${funcionario.id == null} ? @{/funcionario/salvar} : @{/funcionario/editar}"
 				th:object="${funcionario}" method="POST">
@@ -22,49 +25,53 @@
 							class="form-control" id="nome" placeholder="nome"
 							autofocus="autofocus" th:field="*{nome}"> <br>
 					</div>
-
+					
 					<div class="form-group col-md-2 ">
-						<label for="cpf"> CPF</label> <input type="text"
-							class="form-control" id="cpf" placeholder="cpf"
-							autofocus="autofocus" th:field="*{cpf}"> <br>
-					</div>
-
-
-					<div class="form-group col-md-2 ">
-						<label for="sexo"> Sexo</label> <input type="text"
-							class="form-control" id="sexo" placeholder="sexo"
-							autofocus="autofocus" th:field="*{sexo}"> <br>
-					</div>
-
-
-					<div class="form-group col-md-3 ">
 						<label for="data_nascimento"> Data de Nascimento</label> <input
 							type="date" class="form-control" id="data_nascimento"
 							placeholder="data de nascimento" autofocus="autofocus"
 							th:field="*{data_nascimento}"> <br>
 					</div>
-
+					
+					<div class="form-group col-md-2 ">
+						<label for="sexo"> Sexo</label> <input type="text"
+							class="form-control" id="sexo" placeholder="sexo"
+							autofocus="autofocus" th:field="*{sexo}"> <br>
+					</div>
+					
+					</div>
+					
+					<div class="form-row ">
+					<div class="form-group col-md-2 ">
+						<label for="cpf"> CPF</label> <input type="text"
+							class="form-control" id="cpf" placeholder="cpf"
+							autofocus="autofocus" th:field="*{cpf}"> <br>
+					</div>
+				
 					<div class="form-group col-md-2 ">
 						<label for="rg"> RG</label> <input type="text"
 							class="form-control" id="rg" placeholder="rg"
 							autofocus="autofocus" th:field="*{rg}" size="50"> <br>
 					</div>
-
-					<div class="form-group col-md-4 ">
+					
+					<div class="form-group col-md-6 ">
 						<label for="orgao_emissor"> Orgão Emissor</label> <input
 							type="text" class="form-control" id="orgao_emissor"
 							placeholder="orgao emissor" autofocus="autofocus"
 							th:field="*{orgao_emissor}"> <br>
 					</div>
 
-					<div class="form-group col-md-3 ">
+					<div class="form-group col-md-2 ">
 						<label for="data_emissao"> Data de Emissão</label> <input
 							type="date" class="form-control" id="data_emissao"
 							placeholder="data de emissao" autofocus="autofocus"
 							th:field="*{data_emissao}"> <br>
 					</div>
 
-					<div class="form-group col-md-5 ">
+				</div>
+
+				<div class="form-row ">
+					<div class="form-group col-md-6 ">
 						<label for="nome"> Email</label> <input type="text"
 							class="form-control" id="email" placeholder="email"
 							autofocus="autofocus" th:field="*{email}"> <br>
@@ -76,76 +83,107 @@
 							autofocus="autofocus" th:field="*{telefone}"> <br>
 					</div>
 
-					<div class="form-group col-md-4 ">
+					<div class="form-group col-md-3 ">
 						<label for="celular"> Celular</label> <input type="text"
 							class="form-control" id="celular" placeholder="celular"
 							autofocus="autofocus" th:field="*{celular}"> <br>
 					</div>
-
-					<div class="form-group col-md-2 ">
-						<label for="crm"> CRM</label> <input type="text"
-							class="form-control" id="crm" placeholder="crm"
-							autofocus="autofocus" th:field="*{crm}"> <br>
+					
 					</div>
-
-					<div class="form-group col-md-6 ">
+					
+				<div class="form-row ">
+					
+					<div class="form-group col-md-9 ">
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" autofocus="autofocus"
 							th:field="*{especialidade}"> <br>
 					</div>
 
-					<div class="form-group col-md-4 ">
+					<div class="form-group col-md-3 ">
+						<label for="crm"> CRM</label> <input type="text"
+							class="form-control" id="crm" placeholder="crm"
+							autofocus="autofocus" th:field="*{crm}"> <br>
+					</div>
+					
+					</div>
+
+				<div class="form-row ">
+
+					<div class="form-group col-md-3 ">
 						<label for="estado_civil"> Estado Civil</label> <input type="text"
 							class="form-control" id="estado_civil" placeholder="estado civil"
 							autofocus="autofocus" th:field="*{estado_civil}"> <br>
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-4 ">
 						<label for="escolaridade"> Escolaridade</label> <input type="text"
 							class="form-control" id="escolaridade" placeholder="escolaridade"
 							 th:field="*{escolaridade}"> <br>
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-5 ">
 						<label for="formacao"> Formação</label> <input type="text"
 							class="form-control" id="formacao" placeholder="formação"
 							 th:field="*{formacao}"> <br>
 					</div>
 
+				</div>
+				
+			<div class="form-row ">
+				<div class="form-group col-md-6 ">
+						<label for="naturalidade"> Naturalidade</label> <input type="text"
+							class="form-control" id="naturalidade" placeholder="naturalidade"
+							autofocus="autofocus" th:field="*{naturalidade}"> <br>
+					</div>
 
 					<div class="form-group col-md-6 ">
+						<label for="nacionalidade"> Nacionalidade</label> <input
+							type="text" class="form-control" id="nacionalidade"
+							placeholder="nacionalidade" autofocus="autofocus"
+							th:field="*{nacionalidade}"> <br>
+					</div>
+			
+			</div>
+				
+				<div class="form-row ">
+				
+					<div class="form-group col-md-2 ">
 						<label for="cep">CEP</label> 
 						<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required >
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-5 ">
 						<label for="logradouro">Logradouro</label> 
 						<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required >
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-2 ">
 						<label for="numero">Número</label>
 						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" >
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-3 ">
 						<label for="complemento">Complemento</label> 
 						<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" >
 					</div>
+					
+					</div>
 
-					<div class="form-group col-md-6 ">
+				<div class="form-row ">
+				
+					<div class="form-group col-md-5 ">
 						<label for="bairro">Bairro</label> 
 						<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required >
 					</div>
 
 						
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-5 ">
 						<label for="cidade">Cidade</label> 
 						<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required >
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-2 ">
 						<label for="uf">Estado</label> 
 						<select id="uf" class="form-control" th:field="*{endereco.estado}">
 							<option value="AC">Acre</option>
@@ -178,37 +216,22 @@
 						</select>
 					</div>
 
-
-					<div class="form-group col-md-4 ">
-						<label for="naturalidade"> Naturalidade</label> <input type="text"
-							class="form-control" id="naturalidade" placeholder="naturalidade"
-							autofocus="autofocus" th:field="*{naturalidade}"> <br>
-					</div>
-
-					<div class="form-group col-md-4 ">
-						<label for="nacionalidade"> Nacionalidade</label> <input
-							type="text" class="form-control" id="nacionalidade"
-							placeholder="nacionalidade" autofocus="autofocus"
-							th:field="*{nacionalidade}"> <br>
-					</div>
-
-					<div class="form-group col-md-2 ">
-						<label for="nivel_acesso"> Nível de Acesso</label> <input
-							type="text" class="form-control" id="nivel_acesso"
-							placeholder="nível de acesso" autofocus="autofocus"
-							th:field="*{nivel_acesso}"> <br>
-					</div>
 				</div>
-
-				<input type="hidden" id="id" th:field="*{id}" /> <input
-					type="submit" class="btn btn-primary form-control col-md-4">
-				<button type="hidden"></button>
-				<button type='button' class="btn btn-primary form-control col-md-4"
-					onclick='history.go(-1)'>Voltar</button>
+			
+			<br>
+			<div class="btn-toolbar justify-content-center" role="toolbar">
+				<input type="hidden" id="id" th:field="*{id}" /> 
+				
+				<input type="submit" class="btn btn-primary form-control col-md-2">
+				
+				<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
+				Voltar
+				</button>
+			</div>
+			
 			</form>
 
 		</div>
-
 
 	</section>
 

@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_paciente")
@@ -89,7 +87,7 @@ public class Paciente extends AbstractEntity<Long>{
 	@JoinColumn(name = "tipo_convenio", nullable = false)
 	private TConvenio tipo_convenio;
 	
-	@OneToMany(mappedBy = "paciente_prontuario")
+	@OneToMany(mappedBy = "paciente_id")
 	private List<Exame> exame;
 	
 	@OneToMany(mappedBy = "paciente_prontuario")
