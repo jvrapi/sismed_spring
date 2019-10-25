@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
-
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
@@ -23,6 +23,9 @@ import br.com.sismed.service.TConvenioService;
 @Controller
 @RequestMapping("/pacientes")
 public class PacientesController {
+	
+	@Autowired
+	private ConvenioService convenioService;
 	
 	@Autowired
 	private PacienteService service;
@@ -74,11 +77,21 @@ public class PacientesController {
 	}
 	
 	
-	
-	@ModelAttribute("tipoconvenio")
-	public List<TConvenio> listTipoConvenio() {
-		return tipoConvenioService.BuscarTodos();
+	@GetMapping("/convenio")
+	public String listTipoConvenio(Paciente paciente, ModelMap model) {
+		model.addAttribute("tipoconvenio", tipoConvenioService.BuscarTodos());
+		return "fragmentos/convenio :: resultsList";
 	}
+	
+	@ModelAttribute("convenio")
+	public List<Convenio> listConvenio() {
+		return convenioService.BuscarTodos();
+	}
+	
+	//@ModelAttribute("tipoconvenio")
+	//public List<TConvenio> listTipoConvenio() {
+	//	return tipoConvenioService.BuscarTodos();
+	//}
 }
 
 

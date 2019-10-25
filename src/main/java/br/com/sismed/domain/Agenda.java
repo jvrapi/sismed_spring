@@ -13,11 +13,11 @@ import javax.persistence.*;
 public  class Agenda extends AbstractEntity<Long> {
 	
 	@ManyToOne
-	@JoinColumn(name = "paciente_prontuario") // nome da chave estrangeira no banco de dados
+	@JoinColumn(name = "paciente_id") // nome da chave estrangeira no banco de dados
 	private Paciente paciente_prontuario;
 	
 	@ManyToOne 
-	@JoinColumn(name = "convenio") // nome da chave estrangeira no banco de dados
+	@JoinColumn(name = "convenio_id") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
 	
 	@ManyToOne

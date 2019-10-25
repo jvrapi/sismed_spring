@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,8 +47,6 @@ public class Paciente extends AbstractEntity<Long>{
 	
 	@Column(name = "sexo", length = 15)
 	private String sexo;
-	
-	
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_nascimento", length = 15)
@@ -171,8 +168,6 @@ public class Paciente extends AbstractEntity<Long>{
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-
-	
 
 	public LocalDate getData_nascimento() {
 		return data_nascimento;
