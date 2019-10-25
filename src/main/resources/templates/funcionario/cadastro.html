@@ -7,10 +7,10 @@
 
 	<section class="layout-content" layout:fragment="corpo">
 
-		<div class="container" id="cadastroFuncionario"
-			style="margin-left:8%;margin-top:2%">
+		<div class="w3-container w3-teal" id="cadastroFuncionario"
+			style="margin-left:5%;margin-top:1%;margin-right: 5%; text-transform:uppercase">
 		
-		<h3>Cadastro <strong>| Funcionário(a)  </strong></h3>
+		<h4>Cadastro <strong>| Funcionário(a)  </strong></h4>
 		
 		<br>
 			<form
@@ -20,45 +20,60 @@
 
 				<div class="form-row ">
 
-					<div class="form-group col-md-8">
+					<div class="form-group col-md-4">
 						<label for="nome"> Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="nome"
-							autofocus="autofocus" th:field="*{nome}"> <br>
+							autofocus="autofocus" th:field="*{nome}" style="text-transform: uppercase;"> <br>
+					</div>
+					
+					<div class="form-group col-md-2 ">
+						<label for="cpf"> CPF</label> <input type="text"
+							class="form-control" id="cpf" name="cpf" placeholder="CPF"
+							autofocus="autofocus" th:field="*{cpf}"> <br>
 					</div>
 					
 					<div class="form-group col-md-2 ">
 						<label for="data_nascimento"> Data de Nascimento</label> <input
 							type="date" class="form-control" id="data_nascimento"
-							placeholder="data de nascimento" autofocus="autofocus"
+							placeholder="DATA DE NASCIMENTO" autofocus="autofocus"
 							th:field="*{data_nascimento}"> <br>
 					</div>
 					
 					<div class="form-group col-md-2 ">
-						<label for="sexo"> Sexo</label> <input type="text"
-							class="form-control" id="sexo" placeholder="sexo"
-							autofocus="autofocus" th:field="*{sexo}"> <br>
-					</div>
-					
+						<label for="sexo"> Sexo</label> 
+				<select id="estado_civil" class="form-control" th:field="*{sexo}">
+							<option value="m">MASCULINO</option>
+							<option value="f">FEMININO</option>
+							<option value="nd">NÃO DECLARADO</option>
+						</select>
+
+				</div>
+				
+				<div class="form-group col-md-2 ">
+						<label for="estado_civil"> Estado Civil</label>
+							<select id="estado_civil" class="form-control" th:field="*{estado_civil}">
+							<option value="efc">SOLTEIRO(A)</option>
+							<option value="efi">CASADO(A)</option>
+							<option value="emc">DIVORCIADO(A)</option>
+						</select>
+				  
+				  </div>
+
 					</div>
 					
 					<div class="form-row ">
-					<div class="form-group col-md-2 ">
-						<label for="cpf"> CPF</label> <input type="text"
-							class="form-control" id="cpf" placeholder="cpf"
-							autofocus="autofocus" th:field="*{cpf}"> <br>
-					</div>
-				
+					
 					<div class="form-group col-md-2 ">
 						<label for="rg"> RG</label> <input type="text"
-							class="form-control" id="rg" placeholder="rg"
-							autofocus="autofocus" th:field="*{rg}" size="50"> <br>
+							class="form-control" id="rg" name="rg" placeholder="RG"
+							autofocus="autofocus" th:field="*{rg}"> <br>
 					</div>
 					
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-5 ">
 						<label for="orgao_emissor"> Orgão Emissor</label> <input
 							type="text" class="form-control" id="orgao_emissor"
 							placeholder="orgao emissor" autofocus="autofocus"
-							th:field="*{orgao_emissor}"> <br>
+							th:field="*{orgao_emissor}" style="text-transform: uppercase;"> <br>
 					</div>
 
 					<div class="form-group col-md-2 ">
@@ -68,41 +83,37 @@
 							th:field="*{data_emissao}"> <br>
 					</div>
 
-				</div>
-
-				<div class="form-row ">
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-3 ">
 						<label for="nome"> Email</label> <input type="text"
 							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}"> <br>
+							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;"> <br>
+					</div>
+					
 					</div>
 
-					<div class="form-group col-md-3 ">
+				<div class="form-row ">
+					<div class="form-group col-md-2 ">
 						<label for="telefone"> Telefone</label> <input type="text"
-							class="form-control" id="telefone" placeholder="telefone"
+							class="form-control" id="telefone" placeholder="TELEFONE"
 							autofocus="autofocus" th:field="*{telefone}"> <br>
 					</div>
 
-					<div class="form-group col-md-3 ">
+					<div class="form-group col-md-2 ">
 						<label for="celular"> Celular</label> <input type="text"
-							class="form-control" id="celular" placeholder="celular"
+							class="form-control" id="celular" placeholder="CELULAR"
 							autofocus="autofocus" th:field="*{celular}"> <br>
 					</div>
-					
-					</div>
-					
-				<div class="form-row ">
-					
-					<div class="form-group col-md-9 ">
+				
+					<div class="form-group col-md-6 ">
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}"> <br>
+							th:field="*{especialidade}" style="text-transform: uppercase;"> <br>
 					</div>
 
-					<div class="form-group col-md-3 ">
+					<div class="form-group col-md-2 ">
 						<label for="crm"> CRM</label> <input type="text"
-							class="form-control" id="crm" placeholder="crm"
+							class="form-control" id="crm" placeholder="CRM"
 							autofocus="autofocus" th:field="*{crm}"> <br>
 					</div>
 					
@@ -111,61 +122,62 @@
 				<div class="form-row ">
 
 					<div class="form-group col-md-3 ">
-						<label for="estado_civil"> Estado Civil</label> <input type="text"
-							class="form-control" id="estado_civil" placeholder="estado civil"
-							autofocus="autofocus" th:field="*{estado_civil}"> <br>
+						<label for="escolaridade"> Escolaridade</label> <div class="input-group-prepend">
+				   <select id="escolaridade" class="form-control" th:field="*{escolaridade}">
+							<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
+							<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
+							<option value="emc">ENSINO MÉDIO COMPLETO</option>
+							<option value="emi">ENSINO MÉDIO INCOMPLETO</option>
+							<option value="esc">ENSINO SUPERIOR COMPLETO</option>
+							<option value="esi">ENSINO SUPERIOR INCOMPLETO</option>
+							<option value="m">MESTRADO</option>
+							<option value="d">DOUTORADO</option>
+						</select>
 					</div>
 
-					<div class="form-group col-md-4 ">
-						<label for="escolaridade"> Escolaridade</label> <input type="text"
-							class="form-control" id="escolaridade" placeholder="escolaridade"
-							 th:field="*{escolaridade}"> <br>
 					</div>
 
-					<div class="form-group col-md-5 ">
+					<div class="form-group col-md-3 ">
 						<label for="formacao"> Formação</label> <input type="text"
 							class="form-control" id="formacao" placeholder="formação"
-							 th:field="*{formacao}"> <br>
+							 th:field="*{formacao}" style="text-transform: uppercase;"> <br>
 					</div>
 
-				</div>
-				
-			<div class="form-row ">
-				<div class="form-group col-md-6 ">
+				<div class="form-group col-md-3 ">
 						<label for="naturalidade"> Naturalidade</label> <input type="text"
 							class="form-control" id="naturalidade" placeholder="naturalidade"
-							autofocus="autofocus" th:field="*{naturalidade}"> <br>
+							autofocus="autofocus" th:field="*{naturalidade}" style="text-transform: uppercase;"> <br>
 					</div>
 
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-3 ">
 						<label for="nacionalidade"> Nacionalidade</label> <input
 							type="text" class="form-control" id="nacionalidade"
 							placeholder="nacionalidade" autofocus="autofocus"
-							th:field="*{nacionalidade}"> <br>
+							th:field="*{nacionalidade}" style="text-transform: uppercase;"> <br>
 					</div>
 			
 			</div>
-				
+		
 				<div class="form-row ">
 				
 					<div class="form-group col-md-2 ">
 						<label for="cep">CEP</label> 
-						<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required >
+						<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required placeholder="CEP">
 					</div>
 
 					<div class="form-group col-md-5 ">
 						<label for="logradouro">Logradouro</label> 
-						<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required >
+						<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" placeholder="logradouro" style="text-transform: uppercase;">
 					</div>
 
 					<div class="form-group col-md-2 ">
 						<label for="numero">Número</label>
-						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" >
+						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" placeholder="NÚMERO">
 					</div>
 
 					<div class="form-group col-md-3 ">
 						<label for="complemento">Complemento</label> 
-						<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" >
+						<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" placeholder="complemento" style="text-transform: uppercase;">
 					</div>
 					
 					</div>
@@ -174,51 +186,50 @@
 				
 					<div class="form-group col-md-5 ">
 						<label for="bairro">Bairro</label> 
-						<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required >
+						<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required placeholder="bairro" style="text-transform: uppercase;">
 					</div>
 
 						
 					<div class="form-group col-md-5 ">
 						<label for="cidade">Cidade</label> 
-						<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required >
+						<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required placeholder="cidade" style="text-transform: uppercase;">
 					</div>
 
 					<div class="form-group col-md-2 ">
 						<label for="uf">Estado</label> 
 						<select id="uf" class="form-control" th:field="*{endereco.estado}">
-							<option value="AC">Acre</option>
-							<option value="AL">Alagoas</option>
-							<option value="AP">Amapá</option>
-							<option value="AM">Amazonas</option>
-							<option value="BA">Bahia</option>
-							<option value="CE">Ceará</option>
-							<option value="DF">Distrito Federal</option>
-							<option value="ES">Espírito Santo</option>
-							<option value="GO">Goiás</option>
-							<option value="MA">Maranhão</option>
-							<option value="MT">Mato Grosso</option>
-							<option value="MS">Mato Grosso do Sul</option>
-							<option value="MG">Minas Gerais</option>
-							<option value="PA">Pará</option>
-							<option value="PB">Paraíba</option>
-							<option value="PR">Paraná</option>
-							<option value="PE">Pernambuco</option>
-							<option value="PI">Piauí</option>
-							<option value="RJ">Rio de Janeiro</option>
-							<option value="RN">Rio Grande do Norte</option>
-							<option value="RS">Rio Grande do Sul</option>
-							<option value="RO">Rondônia</option>
-							<option value="RR">Roraima</option>
-							<option value="SC">Santa Catarina</option>
-							<option value="SP">São Paulo</option>
-							<option value="SE">Sergipe</option>
-							<option value="TO">Tocantins</option>
+							<option value="AC">ACRE</option>
+							<option value="AL">ALAGOAS</option>
+							<option value="AP">AMAPÁ</option>
+							<option value="AM">AMAZONAS</option>
+							<option value="BA">BAHIA</option>
+							<option value="CE">CEARÁ</option>
+							<option value="DF">DISTRITO FEDERAL</option>
+							<option value="ES">ESPÍRITO SANTO</option>
+							<option value="GO">GOIÁS</option>
+							<option value="MA">MARANHÃO</option>
+							<option value="MT">MATO GROSSO</option>
+							<option value="MS">MATO GROSSO DO SUL</option>
+							<option value="MG">MINAS GERAIS</option>
+							<option value="PA">PARÁ</option>
+							<option value="PB">PARAÍBA</option>
+							<option value="PR">PARANÁ</option>
+							<option value="PE">PERNAMBUCO</option>
+							<option value="PI">PIAUÍ</option>
+							<option value="RJ">RIO DE JANEIRO</option>
+							<option value="RN">RIO GRANDE DO NORTE</option>
+							<option value="RS">RIO GRANDE DO SUL</option>
+							<option value="RO">RONDÔNIA</option>
+							<option value="RR">RORAIMA</option>
+							<option value="SC">SANTA CATARINA</option>
+							<option value="SP">SÃO PAULO</option>
+							<option value="SE">SERGIPE</option>
+							<option value="TO">TOCANTINS</option>
 						</select>
 					</div>
 
 				</div>
 			
-			<br>
 			<div class="btn-toolbar justify-content-center" role="toolbar">
 				<input type="hidden" id="id" th:field="*{id}" /> 
 				
@@ -235,12 +246,7 @@
 
 	</section>
 
-
-
-
-
-
-
-
 </body>
 </html>
+
+
