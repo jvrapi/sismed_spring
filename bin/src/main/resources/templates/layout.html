@@ -61,8 +61,8 @@
 	
 	<script type="text/javascript">
         $(document).ready(function(){
-            $('[name=valor]').mask('##,##0,00');
-           
+            $("#valor").mask('##,##0,00');
+            $('#cnpj').mask('00.000.000/0000-00');
         });
     </script>
     
@@ -75,8 +75,6 @@
         //FIM DA FUNÇÃO MASCARA MAIUSCULA E LIMITADOR DE CARACTERES
     </script>
     
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	
 	<script type="text/javascript">
 		$("#cep").focusout(function(){
 			//Início do Comando AJAX

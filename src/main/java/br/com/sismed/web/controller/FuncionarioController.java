@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.Laboratorio;
@@ -32,7 +33,8 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Funcionario funcionario) {
+	public String salvar(Funcionario funcionario, RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Funcionario(a) cadastrado(a) com sucesso");
 		service.salvar(funcionario);
 		return "redirect:/funcionario/listar";
 	}
@@ -44,7 +46,8 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Funcionario funcionario) {
+	public String editar(Funcionario funcionario, RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Funcionario(a) alterado(a) com sucesso");
 		service.editar(funcionario);
 		return "redirect:/funcionario/listar";
 	}
