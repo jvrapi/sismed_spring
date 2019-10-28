@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.service.LaboratorioService;
@@ -30,7 +31,8 @@ public class LaboratorioController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Laboratorio laboratorio) {
+	public String salvar(Laboratorio laboratorio, RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Laboratório cadastrado com sucesso");
 		service.salvar(laboratorio);
 		return "redirect:/laboratorio/listar";
 	}
@@ -42,14 +44,14 @@ public class LaboratorioController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Laboratorio laboratorio) {
+	public String editar(Laboratorio laboratorio, RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Laboratório alterado com sucesso");
 		service.editar(laboratorio);
 		return "redirect:/laboratorio/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		
 		model.addAttribute("success", "Laboratorio excluido com sucesso");
 		service.excluir(id);
 		

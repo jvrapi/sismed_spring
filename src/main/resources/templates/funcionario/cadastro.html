@@ -8,7 +8,7 @@
 	<section class="layout-content" layout:fragment="corpo">
 
 		<div class="w3-container w3-teal" id="cadastroFuncionario"
-			style="margin-left:5%;margin-top:1%;margin-right: 5%; text-transform:uppercase">
+			style="margin-left:5%;margin-top:1%;margin-right: 5%;">
 		
 		<h4>Cadastro <strong>| Funcionário(a)  </strong></h4>
 		
@@ -23,13 +23,13 @@
 					<div class="form-group col-md-4">
 						<label for="nome"> Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="nome"
-							autofocus="autofocus" th:field="*{nome}" style="text-transform: uppercase;"> <br>
+							autofocus="autofocus" th:field="*{nome}" style="text-transform: uppercase;" maxlength="40"> <br>
 					</div>
 					
 					<div class="form-group col-md-2 ">
 						<label for="cpf"> CPF</label> <input type="text"
-							class="form-control" id="cpf" name="cpf" placeholder="CPF"
-							autofocus="autofocus" th:field="*{cpf}"> <br>
+							class="form-control" id="cpf" name="cpf" placeholder="___.___.___-__"
+							autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99"> <br>
 					</div>
 					
 					<div class="form-group col-md-2 ">
@@ -73,7 +73,7 @@
 						<label for="orgao_emissor"> Orgão Emissor</label> <input
 							type="text" class="form-control" id="orgao_emissor"
 							placeholder="orgao emissor" autofocus="autofocus"
-							th:field="*{orgao_emissor}" style="text-transform: uppercase;"> <br>
+							th:field="*{orgao_emissor}" style="text-transform: uppercase;" maxlength="30"> <br>
 					</div>
 
 					<div class="form-group col-md-2 ">
@@ -86,7 +86,7 @@
 					<div class="form-group col-md-3 ">
 						<label for="nome"> Email</label> <input type="text"
 							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;"> <br>
+							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;" maxlength="30"> <br>
 					</div>
 					
 					</div>
@@ -95,7 +95,7 @@
 					<div class="form-group col-md-2 ">
 						<label for="telefone"> Telefone</label> <input type="text"
 							class="form-control" id="telefone" placeholder="TELEFONE"
-							autofocus="autofocus" th:field="*{telefone}"> <br>
+							autofocus="autofocus" th:field="*{telefone}" maxlength="13"> <br>
 					</div>
 
 					<div class="form-group col-md-2 ">

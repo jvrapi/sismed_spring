@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
@@ -49,7 +50,8 @@ public class ExameController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Exame exame) {
+	public String salvar(Exame exame, RedirectAttributes attr) {
+	attr.addFlashAttribute("success","Exame cadastrado com sucesso");
 	service.salvar(exame);
 	return "redirect:/exame/listar";
 	}
@@ -61,7 +63,8 @@ public class ExameController {
 	}
 		
 	@PostMapping("/editar")
-	public String editar(Exame exame) {
+	public String editar(Exame exame, RedirectAttributes attr) {
+	attr.addFlashAttribute("success","Exame alterado com sucesso");
 	service.editar(exame);
 	return "redirect:/exame/listar";
 	}

@@ -1,0 +1,15 @@
+<!DOCTYPE html >
+<html >
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<div th:fragment="resultsList" th:object="${paciente}">
+	<label for="tipo_convenio_id">Tipo de convenio</label>
+	<select id="tipo_convenio_id" class="form-control my-select" th:field="*{tipo_convenio}">
+		<option  value="" selected hidden>Selecione</option>
+		<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.nome} "></option>
+	</select>
+	</div>
+</body>
+</html>

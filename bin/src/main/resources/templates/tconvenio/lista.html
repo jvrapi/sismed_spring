@@ -14,10 +14,6 @@
 			class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
 				Tipo de Convenio</span>
 				
-		</a> <a class="btn btn btn-md"
-			style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-			href="/procedimentos/listar" role="button"> 
-			 <span>Listar Procedimentos</span>
 		</a> 
 		<br>
 		<br>
@@ -33,12 +29,18 @@
 				<span class="oi oi-circle-x" title="Excluir covenio"
 					aria-hidden="true"></span>
 			</button>
+			
+			<a class="btn btn btn-md"
+			style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
+			th:href="@{/procedimentos/listar/{id} (id=${t.id}) }" role="button"> 
+			 <span>Listar Procedimentos</span>
+		</a> 
 			<br> <br>
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="nome">Descricao</label> <input type="text"
 						class="form-control" id="nome" placeholder="Nome Completo"
-						name="nome" th:value="${t.convenio.nome + ' - ' + t.nome}"
+						name="nome" th:value="${t.nome}"
 						disabled>
 					<div class="invalid-feedback"></div>
 				</div>

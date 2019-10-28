@@ -15,7 +15,7 @@ public class Laboratorio extends AbstractEntity<Long>{
 	@Column(name="nome", nullable=false, length=30)
 	private String nome;
 	
-	@Column(name="responsavel", nullable=false, length=45)
+	@Column(name="responsavel", nullable=false, length=40)
 	private String responsavel;
 	
 	@Column(name="telefone", nullable=false, length=15)
@@ -27,7 +27,7 @@ public class Laboratorio extends AbstractEntity<Long>{
 	@Column(name="endereco", nullable=false, length=45)
 	private String endereco;
 	
-	@Column(name="bairro", nullable=false, length=45)
+	@Column(name="bairro", nullable=false, length=30)
 	private String bairro;
 	
 	@Column(name="cidade", nullable=false, length=45)

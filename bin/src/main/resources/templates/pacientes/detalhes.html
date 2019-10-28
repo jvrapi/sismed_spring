@@ -96,12 +96,7 @@
 						<div class="invalid-feedback">
 						</div>
 					</div>
-					<div class="form-group col-md-2">
-						<label for="cor">Cor</label>
-						<input type="text" class="form-control" id="cor" th:value="${p.cor}" disabled/>
-						<div class="invalid-feedback">
-						</div>
-					</div>
+					
 					<div class="form-group col-md-2">
 						<label for="data_nascimento">Data de nascimento</label>
 						<input type="text" class="form-control" id="data_nascimento" th:value="${p.data_nascimento}" disabled/>
@@ -146,13 +141,13 @@
 				<div class="form-row">
 					<div class="form-group col-md-2">
 						<label for="cep">CEP</label>
-						<input type="text" class="form-control" id="cep" th:value="${p.cep}" disabled/>
+						<input type="text" class="form-control" id="cep" th:value="${p.endereco.cep}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="endereco">Endereço</label>
-						<input type="text" class="form-control" id="endereco" th:value="${p.endereco}" disabled/>
+						<input type="text" class="form-control" id="endereco" th:value="${p.endereco.logradouro}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
@@ -161,19 +156,19 @@
 				<div class="form-row">
 					<div class="form-group col-md-3">
 						<label for="bairro">Bairro</label>
-						<input type="text" class="form-control" id="bairro" th:value="${p.bairro}" disabled/>
+						<input type="text" class="form-control" id="bairro" th:value="${p.endereco.bairro}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
 					<div class="form-group col-md-3">
 						<label for="cidade">Cidade</label>
-						<input type="text" class="form-control" id="cidade" th:value="${p.cidade}" disabled/>
+						<input type="text" class="form-control" id="cidade" th:value="${p.endereco.cidade}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
 					<div class="form-group col-md-1">
 						<label for="estado">Estado</label>
-						<input type="text" class="form-control" id="estado" th:value="${p.estado}" disabled/>
+						<input type="text" class="form-control" id="estado" th:value="${p.endereco.estado}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
@@ -212,13 +207,13 @@
 					</div>
 					<div class="form-group col-md-3">
 						<label for="convenio">Convênio</label>
-						<input type="text" class="form-control" id="convenio" th:value="${p.convenio_id.nome}" disabled/>
+						<input type="text" class="form-control" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>
 					<div class="form-group col-md-3">
 						<label for="tipo_convenio">Tipo de convênio</label>
-						<input type="text" class="form-control" id="tipo_convenio" th:value="${p.tipo_convenio_id.nome}" disabled/>
+						<input type="text" class="form-control" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/>
 						<div class="invalid-feedback">
 						</div>
 					</div>

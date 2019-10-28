@@ -7,10 +7,10 @@
 
 <section layout:fragment="corpo">
 
-		<div class="container" id="cadastroExame" style="margin-left: 20px">
+		<div class="container" id="cadastroExame" 
+		style="margin-left:20%;margin-top:1%;">
 
-			<div th:replace:"fragmentos/alert"></div>
-
+		<h4>Cadastro <strong>| Exame  </strong></h4>
 			<form
 				th:action="${exame.id == null} ? @{/exame/salvar} : @{/exame/editar}"
 				th:object="${exame}" method="POST">
@@ -20,7 +20,7 @@
 					<div class="form-group col-md-9 ">
 						<label for="descricao"> Descrição</label> <input type="text"
 							class="form-control" id="descricao" placeholder="descricao"
-							autofocus="autofocus" th:field="*{descricao}"> <br>
+							autofocus="autofocus" th:field="*{descricao}" maxlength="30" style="text-transform: uppercase;"> <br>
 					</div>
 
 					<div class="form-row ">
@@ -74,14 +74,17 @@
 			
 			</div>
 			
+				<div class="btn-toolbar" role="toolbar" style="margin-left:20%">
 				<input type="hidden" id="id" th:field="*{id}" /> 
 				
 				<input type="submit" class="btn btn-primary form-control col-md-2">
-				<button type='button' class="btn btn-primary form-control col-md-2"
-					onclick='history.go(-2)'>Voltar</button>
+				
+				<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
+				Voltar
+				</button>
+				</div>
 
 			</form>
-
 	</div>
  
 	</section>
