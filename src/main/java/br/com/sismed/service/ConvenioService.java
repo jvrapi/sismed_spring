@@ -13,6 +13,7 @@ public interface ConvenioService {
 	Convenio buscarPorId(Long id);
 	
 	List<Convenio> BuscarTodos();
+	List<Convenio> ListarConvenio();
 	
 	
 }

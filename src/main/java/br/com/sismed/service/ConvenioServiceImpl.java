@@ -44,10 +44,17 @@ public class ConvenioServiceImpl implements ConvenioService{
 	}
 
 	@Override
-	@Transactional(readOnly = false)
+	@Transactional(readOnly = true)
 	public List<Convenio> BuscarTodos() {
 		
 		return dao.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Convenio> ListarConvenio() {
+		
+		return dao.ListarConvenio();
 	}
 
 	

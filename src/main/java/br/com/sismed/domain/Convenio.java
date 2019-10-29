@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -22,13 +24,7 @@ public class Convenio extends AbstractEntity<Long>{
 	private LocalDate data_adesao ;
 	
 	
-	private String banco;
 	
-	
-	private String agencia;
-	
-	
-	private String numero_conta;
 	
 	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")
 	private Long aceita;
@@ -43,14 +39,29 @@ public class Convenio extends AbstractEntity<Long>{
 	private String registro_ans;
 	
 	@OneToMany(mappedBy = "convenio")
+	@Fetch(FetchMode.JOIN)
 	private List<TConvenio> TiposConvenios;
 	
 	@OneToMany(mappedBy = "convenio")
 	private List<Agenda> agenda;
 	
+	@OneToMany(mappedBy ="convenio")
+	private List<Procedimento> procedimentos;
+	
+
 	
 	
 	/*Metodos get's e set's */
+	public List<Procedimento> getProcedimentos() {
+		return procedimentos;
+	}
+
+	public void setProcedimentos(List<Procedimento> procedimentos) {
+		this.procedimentos = procedimentos;
+	}
+	
+	
+	
 	
 	public String getNome() {
 		return nome;
@@ -83,34 +94,9 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 
 
-	public String getBanco() {
-		return banco;
-	}
 	
 	
-	public void setBanco(String banco) {
-		this.banco = banco;
-	}
 	
-	
-	public String getAgencia() {
-		return agencia;
-	}
-	
-	
-	public void setAgencia(String agencia) {
-		this.agencia = agencia;
-	}
-	
-	
-	public String getNumero_conta() {
-		return numero_conta;
-	}
-	
-	
-	public void setNumero_conta(String numero_conta) {
-		this.numero_conta = numero_conta;
-	}
 	
 	
 	public Long getAceita() {

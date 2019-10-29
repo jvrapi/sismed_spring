@@ -10,7 +10,7 @@
 		<script>
 			$(document).ready(function() {
 				$("#convenio_id").change(function() {
-					var url = "/pacientes/convenio/";
+					var url = "/pacientes/convenio/" + $(this).val();
 					$("#teste").load(url);
 				});
 			});

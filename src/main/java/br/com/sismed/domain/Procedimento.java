@@ -24,8 +24,8 @@ public  class Procedimento extends AbstractEntity<Long> {
 	private BigDecimal valor;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_convenio")
-	private TConvenio tconvenio;
+	@JoinColumn(name = "convenio_id")
+	private Convenio convenio;
 	
 	@OneToMany(mappedBy = "procedimento") // nome do atributo na classe Agenda
 	private List<Agenda> agenda;
@@ -46,12 +46,12 @@ public  class Procedimento extends AbstractEntity<Long> {
 		this.valor = valor;
 	}
 
-	public TConvenio getTconvenio() {
-		return tconvenio;
+	public Convenio getTconvenio() {
+		return convenio;
 	}
 
-	public void setTconvenio(TConvenio tconvenio) {
-		this.tconvenio = tconvenio;
+	public void setTconvenio(Convenio convenio) {
+		this.convenio = convenio;
 	}
 
 	public List<Agenda> getAgenda() {

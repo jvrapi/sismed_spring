@@ -18,5 +18,6 @@ void save(TConvenio tconvenio);
 	List<TConvenio> findAll();
 	
 	List<TConvenio> ListarTipoConvenio(Long id);
+	List<TConvenio> ListaComboBox(Long id);
 	
 }

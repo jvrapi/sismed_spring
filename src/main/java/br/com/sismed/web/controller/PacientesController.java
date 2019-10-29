@@ -77,9 +77,9 @@ public class PacientesController {
 	}
 	
 	
-	@GetMapping("/convenio")
-	public String listTipoConvenio(Paciente paciente, ModelMap model) {
-		model.addAttribute("tipoconvenio", tipoConvenioService.BuscarTodos());
+	@GetMapping("/convenio/{id}")
+	public String listTipoConvenio(@PathVariable("id") Long id, Paciente paciente, ModelMap model) {
+		model.addAttribute("tipoconvenio", tipoConvenioService.ListaComboBox(id));
 		return "fragmentos/convenio :: resultsList";
 	}
 	

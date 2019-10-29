@@ -24,17 +24,7 @@ public class TConvenio extends AbstractEntity<Long>{
 	@JoinColumn(name = "convenio_id") // nome da chave estrangeira no banco de dados
 	private Convenio convenio;
 	
-	@OneToMany(mappedBy ="tconvenio")
-	private List<Procedimento> procedimentos;
 	
-
-	public List<Procedimento> getProcedimentos() {
-		return procedimentos;
-	}
-
-	public void setProcedimentos(List<Procedimento> procedimentos) {
-		this.procedimentos = procedimentos;
-	}
 
 	public String getNome() {
 		return nome;

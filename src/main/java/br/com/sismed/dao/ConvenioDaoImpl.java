@@ -3,16 +3,29 @@ package br.com.sismed.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 
 
 import br.com.sismed.domain.Convenio;
 
-@Repository("convenioRepository")
+
+@Repository
 public class ConvenioDaoImpl extends AbstractDao<Convenio, Long> implements ConvenioDao{
 
 	
-/* Caso necessite de um novo metodo, crie aqui e coloque a assinatura do metodo no dao*/
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public List<Convenio> ListarConvenio(){
+		Query query = entityManager.createNativeQuery("SELECT * " + " FROM sismed_convenio c " 
+				+ " INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id  ORDER BY c.nome",Convenio.class);
+		List<Convenio> resultlist = query.getResultList();
+		return resultlist;
+	}
 	
 	
 	

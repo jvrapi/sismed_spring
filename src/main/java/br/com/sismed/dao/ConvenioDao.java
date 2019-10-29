@@ -16,6 +16,8 @@ public interface ConvenioDao {
 	
 	List<Convenio> findAll();
 	
+	List<Convenio> ListarConvenio();
+	
 	
 	
 }
