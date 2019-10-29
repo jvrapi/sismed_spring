@@ -12,9 +12,12 @@
 				href="/exame/cadastrar" role="button"> <span class="oi oi-plus"
 				title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
 					Exame</span></a>
-
-			<div th:replace="fragmentos/alert"></div>
 		</nav>
+		
+		<br>
+		
+		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
+		<div th:replace="fragmentos/alert" style="text-align: center"></div>
 
 		<div class="container" th:each="e : ${exame}">
 			
@@ -23,10 +26,11 @@
 				class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
 			</a> 
 			
-			<a th:href="@{/exame/excluir/{id} (id=${e.id}) }" type="button"
-				class="btn btn-danger btn-sm" data-toggle="modal"
+		<button th:id="${#strings.concat ('/btn_exame/excluir/',e.id)}"
+				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 				data-target="#myModal"> <span class="oi oi-circle-x"
-				title="Excluir" aria-hidden="true"></span></a> <br>
+				title="Excluir" aria-hidden="true"></span>
+			</button>  <br>
 			<br>
 
 			<div class="form-row">
@@ -34,12 +38,12 @@
 					<label for="descricao">Descrição</label> <input type="text"
 						class="form-control" id="descricao" placeholder="descrição"
 						name="descricao" th:value="${e.descricao}" disabled>
-					<div class="invalid-feedback"></div>
+					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
 				</div>
 
 				<div class="form-group col-md-2">
 					<label for="data_coleta">Data de Coleta</label> <input type="date"
-						class="form-control" id="data_coleta" placeholder="data de coleta"
+						class="form-control" id="data_coleta" placeholder="DATA DE COLETA"
 						name="data_de_coleta" th:value="${e.data_coleta}" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
@@ -54,7 +58,7 @@
 				<div class="form-group col-md-2">
 					<label for="data_retorno">Data de Retorno</label> <input
 						type="date" class="form-control" id="data_retorno"
-						placeholder="data de retorno" name="data_retorno"
+						placeholder="DATA DE RETORNO" name="data_retorno"
 						th:value="${e.data_retorno}" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
@@ -73,14 +77,14 @@
 					<label for="paciente">Paciente</label> <input type="text"
 						class="form-control" id="paciente"
 						th:value="${e.paciente_id.nome}" disabled>
-					<div class="invalid-feedback"></div>
+					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
 				</div>
 
 				<div class="form-group col-md-6">
 					<label for="funcionario">Funcionário Responsável</label> <input
 						type="text" class="form-control" id="funcionario"
 						th:value="${e.funcionario_id.nome}" disabled>
-					<div class="invalid-feedback"></div>
+					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
 				</div>
 				</div>
 			</div>

@@ -10,11 +10,7 @@
 
 
 		<nav class="navbar">
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/convenios/cadastrar" role="button"> <span
-				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
-					Convenio</span></a>
+
 
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 			</ul>
@@ -24,70 +20,114 @@
 		<br>
 		<div class="container corpo">
 			<div th:replace="fragmentos/alert"></div>
-		</div>
-		<div class="container" th:each="c : ${convenios}">
-
-			<a class="btn btn-info btn-sm"
-				th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
-				<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-			</a> 
-			<button th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}" type="button"
-				class="btn btn-danger btn-sm" data-toggle="modal"
-				data-target="#myModal"> <span class="oi oi-circle-x"
-				title="Excluir covenio" aria-hidden="true"></span>
-			</button> 
-			
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; "
-				th:href="@{/tconvenios/listar/{id} (id=${c.id}) }" role="button"> <span title="lista"
-				aria-hidden="true"></span> <span>Listar Tipos de Convenios</span></a> <br>
-			<br>
-			<div class="form-row">
-				<div class="form-group col-md-4">
-					<label for="nome">Nome</label> <input type="text"
-						class="form-control" id="nome" placeholder="Nome Completo"
-						name="nome" th:value="${c.nome}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="data_adesao">Data Adesão</label> <input type="text"
-						class="form-control" id="data_adesao" name="data_adesao"
-						th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="aceita">Aceita</label> <input type="text"
-						class="form-control" id="aceita" name="aceita"
-						th:value="${c.aceita == 1} ? SIM : NÃO" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-			</div>
-			<div class="form-row">
-				<div class="form-group col-md-4">
-					<label for="dataEntrada">CNPJ</label> <input type="text"
-						class="form-control" id="dataEntrada" name="dataEntrada"
-						th:value="${c.cnpj}" disabled />
-					<div class="invalid-feedback"></div>
-				</div>
-				<div class="form-group col-md-4">
-					<label for="agencia">Registro ANS</label> <input type="text"
-						class="form-control" id="dataSaida" name="agencia"
-						th:value="${c.registro_ans}" disabled />
-					<div class="invalid-feedback"></div>
-				</div>
-				
-				
-				
-
-				
-			</div>
-			<br>
-			<br>
-			<br>
-
+			<div th:replace="fragmentos/modal :: modal"></div>
 		</div>
 
-		<div th:replace="fragmentos/modal :: modal"></div>
+
+
+
+
+		<div class="container texte-center corpo" th:each="c : ${convenios}">
+
+
+
+
+			<div class="corpo">
+
+				<div class="form-group col-md-6 nomeTopo" >
+<!-- Tabela de conveio -->
+					<table >
+						<tr>
+							<th th:text="${c.nome}">Convenio</th>
+
+							<td>
+							
+								<a class="btn btn-info btn-sm botoesCRUD"
+									th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
+										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+								</a>
+								
+							</td>
+
+							<td>
+								<button
+									th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}"
+									type="button" class="btn btn-danger btn-sm " data-toggle="modal"
+									data-target="#myModal">
+									<span class="oi oi-circle-x" title="Excluir covenio"
+										aria-hidden="true"></span>
+								</button>
+
+							</td>
+
+							<td>
+							
+								<a class="btn btn-success btn-sm"
+									href="/convenios/cadastrar" role="button"> <span
+										class="oi oi-plus " title="Cadastrar novo convenio"
+										aria-hidden="true"></span>
+								</a>
+							
+							</td>
+						</tr>
+<!-- FIM -->
+
+	<!-- Tabela de tipo conveio -->
+
+					</table>
+					
+				</div>
+			</div>
+
+
+
+
+			<table class="table table-striped form-group col-md-4 tabela1 text-center">
+
+				<thead>
+					<tr>
+						<th>Tipos de Convenio</th>
+					</tr>
+				</thead>
+				<tbody th:each="tc : ${c.TiposConvenios}">
+					<tr>
+						<td th:text="${tc.getNome()}">1</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+<!-- FIM -->
+
+<!-- Tabela de procedimentos -->
+			<table class="table table-striped form-group col-md-4 tabela2 text-center">
+
+				<thead>
+					<tr>
+						<th>Procedimentos</th>
+						<th>Valor</th>
+					</tr>
+				</thead>
+				<tbody th:each="tc : ${c.procedimentos}">
+					<tr>
+						<td th:text="${tc.getDescricao()}">1</td>
+						<td th:text="${tc.getValor()}">1</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+
+<!-- FIM -->
+
+			<br> <br> <br>
+
+		</div>
+
+
+
+
+
 
 
 
