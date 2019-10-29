@@ -29,8 +29,7 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")
 	private Long aceita;
 	
-	@Column(nullable = false)
-	private String razao_social;
+	
 	
 	@Column(nullable = false)
 	private String cnpj;
@@ -48,7 +47,9 @@ public class Convenio extends AbstractEntity<Long>{
 	@OneToMany(mappedBy ="convenio")
 	private List<Procedimento> procedimentos;
 	
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dados_bancarios")
+	private DadosBancarios dadosb;
 	
 	
 	/*Metodos get's e set's */
@@ -119,15 +120,6 @@ public class Convenio extends AbstractEntity<Long>{
 	}
 
 
-	public String getRazao_social() {
-		return razao_social;
-	}
-
-
-	public void setRazao_social(String razao_social) {
-		this.razao_social = razao_social;
-	}
-
 
 	public String getCnpj() {
 		return cnpj;
@@ -146,6 +138,14 @@ public class Convenio extends AbstractEntity<Long>{
 
 	public void setRegistro_ans(String registro_ans) {
 		this.registro_ans = registro_ans;
+	}
+
+	public DadosBancarios getDadosb() {
+		return dadosb;
+	}
+
+	public void setDadosb(DadosBancarios dadosb) {
+		this.dadosb = dadosb;
 	}
 	
 	

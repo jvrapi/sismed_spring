@@ -26,8 +26,8 @@ html, body {
 	padding-top:0;
 }
 
-.corpo{
-	
+.convenio{
+	margin-left: 32%;
 	
 }
 
@@ -43,13 +43,11 @@ hr { display:none; }
 }
 
 .nomeTopo{
-	margin-left: 30%;
-	font-size: 35px;
-	padding: 25px 50px 75px 100px;
-	margin-right: 25px;
+	
+	font-size: 20px;
+	
 }
 
-.botoesCRUD{
-	margin-right: 5px;
-	margin-left: 10px;
+.btnCRUD{
+	text-align: right;
 }
