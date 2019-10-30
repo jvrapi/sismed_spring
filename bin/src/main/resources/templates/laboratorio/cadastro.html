@@ -8,7 +8,8 @@
 
 	<section layout:fragment="corpo">
 
-		<div class="container" id="cadastroLaboratorio">
+		<div class="container" id="cadastroLaboratorio"
+		style="margin-left:10%;margin-top:1%;">
 
 			<form
 				th:action="${laboratorio.id == null} ? @{/laboratorio/salvar} : @{/laboratorio/editar}"
@@ -19,72 +20,76 @@
 				<div class="form-row ">
 					<div class="form-group col-md-2 ">
 						<label for="cnpj"> CNPJ</label> <input type="text"
-							class="form-control" id="cnpj" placeholder="cnpj"
-							autofocus="autofocus" th:field="*{cnpj}"> <br>
+							class="form-control" id="cnpj" placeholder="CNPJ" name="cnpj"
+							autofocus="autofocus" th:field="*{cnpj}" > <br>
 					</div>
 
-					<div class="form-group col-md-5">
+					<div class="form-group col-md-4">
 						<label for="nome"> Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="nome"
-							autofocus="autofocus" th:field="*{nome}"> <br>
+							autofocus="autofocus" th:field="*{nome}" maxlength="30" style="text-transform: uppercase;"> <br>
 					</div>
-
-					<div class="form-group col-md-5 ">
+					
+					<div class="form-group col-md-6 ">
 						<label for="responsavel"> Responsável</label> <input type="text"
 							class="form-control" id="responsavel" placeholder="responsavel"
-							autofocus="autofocus" th:field="*{responsavel}" size="50">
+							autofocus="autofocus" th:field="*{responsavel}" maxlength="40" style="text-transform: uppercase;">
 						<br>
 					</div>
-			
+					
 					</div>
-
+					
 				<div class="form-row ">
-
 					<div class="form-group col-md-2 ">
 						<label for="telefone"> Telefone</label> <input type="text"
-							class="form-control" id="telefone" placeholder="telefone"
-							autofocus="autofocus" th:field="*{telefone}"> <br>
+							class="form-control" id="telefone" placeholder="TELEFONE" name="telefone"
+							autofocus="autofocus" th:field="*{telefone}" > <br>
 					</div>
-
 
 					<div class="form-group col-lg-4 ">
 						<label for="nome"> Email</label> <input type="text"
 							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}"> <br>
+							autofocus="autofocus" th:field="*{email}" maxlength="30" style="text-transform: uppercase;"> <br>
 					</div>
-
+				
 					<div class="form-group col-6 ">
 						<label for="endereco"> Endereço</label> <input type="text"
 							class="form-control" id="endereco" placeholder="endereco"
-							autofocus="autofocus" th:field="*{endereco}"> <br>
+							autofocus="autofocus" th:field="*{endereco}" maxlength="45" style="text-transform: uppercase;"> <br>
 					</div>
-				</div>
-
+					
+					</div>
+			
 				<div class="form-row ">
 					<div class="form-group col-md-5 ">
 						<label for="bairro"> Bairro</label> <input type="text"
 							class="form-control" id="bairro" placeholder="bairro"
-							autofocus="autofocus" th:field="*{bairro}"> <br>
+							autofocus="autofocus" th:field="*{bairro}" maxlength="30" style="text-transform: uppercase;"> <br>
 					</div>
 				
 					<div class="form-group col-md-5 ">
 						<label for="cidade"> Cidade</label> <input type="text"
 							class="form-control" id="cidade" placeholder="cidade"
-							autofocus="autofocus" th:field="*{cidade}"> <br>
+							autofocus="autofocus" th:field="*{cidade}" maxlength="45" style="text-transform: uppercase;"> <br>
 					</div>
 
 					<div class="form-group col-md-2 ">
 						<label for="estado"> Estado</label> <input type="text"
 							class="form-control" id="estado" placeholder="estado"
-							autofocus="autofocus" th:field="*{estado}"> <br>
+							autofocus="autofocus" th:field="*{estado}" maxlength="2" style="text-transform: uppercase;"> <br>
 					</div>
 
 				</div>
 
-				<input type="hidden" id="id" th:field="*{id}" /> <input
-					type="submit" class="btn btn-primary form-control col-md-4">
-				<button type='button' class="btn btn-primary form-control col-md-4"
-					onclick='history.go(-1)'>Voltar</button>
+			<div class="btn-toolbar justify-content-center" role="toolbar">
+				<input type="hidden" id="id" th:field="*{id}" /> 
+				
+				<input type="submit" class="btn btn-primary form-control col-md-2">
+				
+				<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
+				Voltar
+				</button>
+			</div>
 
 			</form>
 

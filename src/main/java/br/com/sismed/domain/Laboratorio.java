@@ -1,7 +1,10 @@
 package br.com.sismed.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -35,6 +38,23 @@ public class Laboratorio extends AbstractEntity<Long>{
 	
 	@Column(name="estado", nullable=false, length=2)
 	private String estado;
+	
+	/*@ManyToMany(mappedBy = "laboratorio")
+	
+	Laboratorio l = l1;
+	List<Exame> ex = l.getExame();
+	
+	Laboratorio l1
+	
+	private List<Exame> exame;
+	
+	public List<Exame> getExame() {
+		return exame;
+	}
+
+	public void setExame(List<Exame> exame) {
+		this.exame = exame;
+	}*/
 
 	public String getCnpj() {
 		return cnpj;

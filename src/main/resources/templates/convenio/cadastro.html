@@ -13,7 +13,7 @@
 			th:object="${convenio}" method="POST">
 			
 				<div class="form-row ">
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-4 ">
 						<label for="nome"> Nome Convenio</label>
 						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
 						
@@ -51,7 +51,7 @@
 				</div>
 				
 				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-6" value="Salvar">
+				<input type="submit" class="btn btn-primary form-control col-md-4" value="Salvar">
 			
 			</form>
 		

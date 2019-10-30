@@ -16,17 +16,27 @@
 
 			<div th:replace="fragmentos/alert"></div>
 		</nav>
+		
+		<br>
+		
+		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
+		<div th:replace="fragmentos/alert" style="text-align: center"></div>
 
 		<div class="container" th:each="l : ${laboratorio}">
 
 			<a class="btn btn-info btn-sm"
 				th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" role="button">
 				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> <a th:href="@{/laboratorio/excluir/{id} (id=${l.id}) }"
-				type="button" class="btn btn-danger btn-sm" data-toggle="modal">
-				<span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-			</a> <br>
-			<br>
+			</a> 
+			
+			<button th:id="${#strings.concat ('/btn_laboratorio/excluir/',l.id)}"
+				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+				data-target="#myModal"> <span class="oi oi-circle-x"
+				title="Excluir" aria-hidden="true"></span>
+			</button> 
+			
+			<br><br>
+			
 			<div class="form-row">
 				<div class="form-group col-md-2">
 					<label for="cnpj">CNPJ</label> <input type="text"

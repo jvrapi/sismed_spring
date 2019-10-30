@@ -40,7 +40,7 @@
 					<label for="nome">Nome</label> <input type="text"
 						class="form-control" id="nome" placeholder="nome" name="nome"
 						th:value="${f.nome}" disabled>
-					<div class="invalid-feedback"></div>
+					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
 				</div>
 
 				<div class="form-group col-md-2">
@@ -53,7 +53,7 @@
 				<div class="form-group col-md-2">
 					<label for="data_nascimento">Data de Nascimento</label> <input
 						type="date" class="form-control" id="data_nascimento"
-						placeholder="data_nascimento" name="data_nascimento"
+						placeholder="DATA DE NASCIMENTO" name="data_nascimento"
 						th:value="${f.data_nascimento}" disabled>
 					<div class="invalid-feedback"></div>
 				</div>
@@ -202,7 +202,7 @@
 							
 							<div class="form-group col-md-4">
 								<label for="endereco">Complemento</label> <input type="text"
-									class="form-control" id="endereco" placeholder="endereco"
+									class="form-control" id="endereco" placeholder="complemento"
 									name="endereco" th:value="${f.endereco.complemento}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>

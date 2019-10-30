@@ -10,11 +10,12 @@
 
 
 		<nav class="navbar">
-
-
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			</ul>
-
+			<a class="btn btn-success btn-sm "  href="/convenios/cadastrar"
+				role="button"> <span class="oi oi-plus "
+				title="Cadastrar novo convenio" aria-hidden="true"></span>
+			</a>
+			<div th:replace="fragmentos/alert"></div>
+		</nav>
 
 		</nav>
 		<br>
@@ -27,104 +28,80 @@
 
 
 
-		<div class="container texte-center corpo" th:each="c : ${convenios}">
+		<div class="container convenio " th:each="c : ${convenios}">
 
 
 
 
-			<div class="corpo">
+			<div class="form-row">
 
-				<div class="form-group col-md-6 nomeTopo" >
-<!-- Tabela de conveio -->
-					<table >
-						<tr>
-							<th th:text="${c.nome}">Convenio</th>
+				<div class="form-group col-md-6">
+					<div class="btnCRUD">
 
-							<td>
-							
-								<a class="btn btn-info btn-sm botoesCRUD"
-									th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
-										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-								</a>
-								
-							</td>
+						<a class="btn btn-info btn-sm botoesCRUD"
+							th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
+							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
 
-							<td>
-								<button
-									th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}"
-									type="button" class="btn btn-danger btn-sm " data-toggle="modal"
-									data-target="#myModal">
-									<span class="oi oi-circle-x" title="Excluir covenio"
-										aria-hidden="true"></span>
-								</button>
+						<button
+							th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}"
+							type="button" class="btn btn-danger btn-sm " data-toggle="modal"
+							data-target="#myModal">
+							<span class="oi oi-circle-x" title="Excluir covenio"
+								aria-hidden="true"></span>
+						</button>
 
-							</td>
 
-							<td>
-							
-								<a class="btn btn-success btn-sm"
-									href="/convenios/cadastrar" role="button"> <span
-										class="oi oi-plus " title="Cadastrar novo convenio"
-										aria-hidden="true"></span>
-								</a>
-							
-							</td>
-						</tr>
-<!-- FIM -->
-
-	<!-- Tabela de tipo conveio -->
-
-					</table>
+					</div>
 					
+					<input type="text" class="form-control text-center nomeTopo" id="nome"
+						th:value="${c.nome}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="cnpj">CNPJ</label> <input type="text"
+						class="form-control text-center" id="cnpj" th:value="${c.cnpj}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="ans">ANS</label> <input type="text" class="form-control text-center"
+						id="ans" th:value="${c.registro_ans}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="adesao">Adesão</label> <input type="text"
+						class="form-control text-center" id="adesao"
+						th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"
+						disabled />
+					<div class="invalid-feedback"></div>
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-2">
+					<label for="banco">Banco</label> <input type="text"
+						class="form-control text-center" id="banco" th:value="${c.dadosb.banco}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="agencia">Agência</label> <input type="text" class="form-control text-center"
+						id="agencia" th:value="${c.dadosb.agencia}" disabled>
+					<div class="invalid-feedback"></div>
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="conta">Conta</label> <input type="text"
+						class="form-control text-center" id="conta"
+						th:value="${c.dadosb.conta}"
+						disabled />
+					<div class="invalid-feedback"></div>
 				</div>
 			</div>
 
-
-
-
-			<table class="table table-striped form-group col-md-4 tabela1 text-center">
-
-				<thead>
-					<tr>
-						<th>Tipos de Convenio</th>
-					</tr>
-				</thead>
-				<tbody th:each="tc : ${c.TiposConvenios}">
-					<tr>
-						<td th:text="${tc.getNome()}">1</td>
-
-					</tr>
-
-				</tbody>
-			</table>
-<!-- FIM -->
-
-<!-- Tabela de procedimentos -->
-			<table class="table table-striped form-group col-md-4 tabela2 text-center">
-
-				<thead>
-					<tr>
-						<th>Procedimentos</th>
-						<th>Valor</th>
-					</tr>
-				</thead>
-				<tbody th:each="tc : ${c.procedimentos}">
-					<tr>
-						<td th:text="${tc.getDescricao()}">1</td>
-						<td th:text="${tc.getValor()}">1</td>
-
-					</tr>
-
-				</tbody>
-			</table>
-
-<!-- FIM -->
-
-			<br> <br> <br>
-
 		</div>
-
-
 
 
 

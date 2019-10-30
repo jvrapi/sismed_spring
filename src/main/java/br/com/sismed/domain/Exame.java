@@ -1,10 +1,13 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -43,6 +46,24 @@ public class Exame extends AbstractEntity<Long>{
 	@ManyToOne
 	@JoinColumn(name = "tipo_id")
 	private TConvenio tipo_id;
+
+	/*@ManyToMany
+	@JoinTable(
+		name = "sismed_exame_laboratorio", 
+		joinColumns = @JoinColumn (
+		name = "exame_id"), inverseJoinColumns = 
+		@JoinColumn (name = "laboratorio_id")
+		)
+	
+	private List<Laboratorio> laboratorio;
+	
+	public List<Laboratorio> getLaboratorio() {
+		return laboratorio;
+	}
+
+	public void setLaboratorio(List<Laboratorio> laboratorio) {
+		this.laboratorio = laboratorio;
+	}*/
 
 	public String getDescricao() {
 		return descricao;
