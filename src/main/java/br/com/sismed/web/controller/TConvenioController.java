@@ -61,7 +61,7 @@ public class TConvenioController {
 	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
 		tservice.editar(tconvenio);
 		attr.addFlashAttribute("success", "Convenio editado com sucesso");
-		return "redirect:/tconvenio/listar";
+		return "redirect:/tconvenios/listar";
 	}
 
 	@GetMapping("/excluir/{id}")

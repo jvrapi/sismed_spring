@@ -23,14 +23,6 @@ public class Convenio extends AbstractEntity<Long>{
 	@Column(name = "data_adesao",nullable = false)
 	private LocalDate data_adesao ;
 	
-	
-	
-	
-	@Column(name = "aceita", length = 4, columnDefinition="DEFAULT SIM")
-	private Long aceita;
-	
-	
-	
 	@Column(nullable = false)
 	private String cnpj;
 	
@@ -93,22 +85,6 @@ public class Convenio extends AbstractEntity<Long>{
 	public void setAgenda(List<Agenda> agenda) {
 		this.agenda = agenda;
 	}
-
-
-	
-	
-	
-	
-	
-	public Long getAceita() {
-		return aceita;
-	}
-	
-	
-	public void setAceita(Long aceita) {
-		this.aceita = aceita;
-	}
-	
 	
 	public List<TConvenio> getTiposConvenios() {
 		return TiposConvenios;

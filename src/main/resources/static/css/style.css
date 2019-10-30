@@ -26,28 +26,14 @@ html, body {
 	padding-top:0;
 }
 
-.convenio{
-	margin-left: 32%;
-	
-}
+
 
 hr { display:none; }
 
-.tabela1 {
-    float: left;
-   
-}
-.tabela2 {
-    float: left;
-    margin-left: 20%;
-}
 
-.nomeTopo{
-	
-	font-size: 20px;
-	
-}
 
 .btnCRUD{
 	text-align: right;
+	magin-left: 20px;
 }
+
