@@ -3,13 +3,14 @@ package br.com.sismed.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.PacienteDao;
 import br.com.sismed.domain.Paciente;
 
-@Service @Transactional
+@Repository
+@Transactional(readOnly = false)
 public class PacienteServiceImpl implements PacienteService{
 
 	@Autowired

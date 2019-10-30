@@ -1,6 +1,5 @@
 package br.com.sismed.domain;
 
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -67,10 +66,6 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "recomendacao", length = 50)
 	private String recomendacao;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "endereco_id")
-	private Endereco endereco;
-	
 	@Column(name = "naturalidade", length = 45)
 	private String naturalidade;
 	
@@ -80,16 +75,6 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "situacao", length = 45)
 	private String situacao;
 	
-	@OneToOne
-	@JoinColumn(name = "tipo_convenio", nullable = false)
-	private TConvenio tipo_convenio;
-	
-	@OneToMany(mappedBy = "paciente_id")
-	private List<Exame> exame;
-	
-	@OneToMany(mappedBy = "paciente_prontuario")
-	private List<Agenda> agenda;
-	
 	@Column(name = "carteira_convenio", length = 45)
 	private String carteira_convenio;
 
@@ -97,6 +82,20 @@ public class Paciente extends AbstractEntity<Long>{
 	@Column(name = "validade")
 	private LocalDate validade;
 	
+	@OneToOne
+	@JoinColumn(name = "tipo_convenio", nullable = false)
+	private TConvenio tipo_convenio;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	
+	@OneToMany(mappedBy = "paciente_id")
+	private List<Exame> exame;
+	
+	@OneToMany(mappedBy = "paciente_prontuario")
+	private List<Agenda> agenda;
+
 	public String getNome() {
 		return nome;
 	}

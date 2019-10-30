@@ -8,80 +8,81 @@
 <section layout:fragment="corpo">
 
 		<div class="container" id="cadastroExame" 
-		style="margin-left:20%;margin-top:1%;">
+		style="margin-top:1%;">
 
 		<h4>Cadastro <strong>| Exame  </strong></h4>
 			<form
 				th:action="${exame.id == null} ? @{/exame/salvar} : @{/exame/editar}"
 				th:object="${exame}" method="POST">
 
+			<div th:replace="fragmentos/alert"></div>
 
 				<div class="form-row ">
-					<div class="form-group col-md-9 ">
-						<label for="descricao"> Descrição</label> <input type="text"
+					<div class="form-group col-md-12 ">
+						<label for="descricao"> Descrição</label> <textarea rows="5" type="text"
 							class="form-control" id="descricao" placeholder="descricao"
-							autofocus="autofocus" th:field="*{descricao}" maxlength="30" style="text-transform: uppercase;"> <br>
+							autofocus="autofocus" th:field="*{descricao}" style="text-transform: uppercase;"></textarea> <br>
 					</div>
+				</div>
 
-					<div class="form-row ">
-					<div class="form-group col-md-3">
+				<div class="form-row ">
+					<div class="form-group col-md-4">
 						<label for="data_coleta"> Data de Coleta</label> <input type="date"
 							class="form-control" id="data_coleta" placeholder="data de coleta"
 							autofocus="autofocus" th:field="*{data_coleta}"> <br>
 					</div>
 
-					<div class="form-group col-md-3 ">
+					<div class="form-group col-md-4 ">
 						<label for="data_envio"> Data de Envio</label> <input type="date"
 							class="form-control" id="data_envio" placeholder="data_envio"
 							autofocus="autofocus" th:field="*{data_envio}">
 						<br>
 					</div>
 				
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
 						<label for="data_retorno"> Data de Retorno</label> <input type="date"
 							class="form-control" id="data_retorno" placeholder="data de retorno"
 							autofocus="autofocus" th:field="*{data_retorno}"> <br>
 					</div>
-					
+				</div>
+				
+				<div class="form-row ">
 					<div class="form-group col-lg-4 ">
-					<label for="tipo_id"> Tipo de Convênio </label>
+						<label for="tipo_id"> Tipo de Convênio </label>
 						<select th:field="*{tipo_id}" class="form-control">
 							<option value="">SELECIONE</option>
 							<option th:each="t: ${tipoconvenio}" th:value="${t.id}" th:text="${t.nome}"></option>
 							
 						</select>
 						
-						</div>
+					</div>
 						
-						<div class="form-group col-5 ">
+					<div class="form-group col-4">
 						<label for="funcionario_id"> Funcionário</label>
 						<select th:field="*{funcionario_id}" class="form-control">
 							<option value="">SELECIONE</option>
 							<option th:each="f: ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
 						
 						</select>
-				</div>
-						
-					<div class="form-group col-9">
+					</div>
+					<div class="form-group col-4">
 						<label for="paciente_id"> Paciente </label>
 						<select th:field="*{paciente_id}" class="form-control">
 							<option value="">SELECIONE</option>
 							<option th:each="p: ${paciente}" th:value="${p.id}" th:text="${p.nome}"></option>
 							
-					</select>
+						</select>
 					</div>
-					</div>	
+				</div>
 			
-			</div>
-			
-				<div class="btn-toolbar" role="toolbar" style="margin-left:20%">
-				<input type="hidden" id="id" th:field="*{id}" /> 
-				
-				<input type="submit" class="btn btn-primary form-control col-md-2">
-				
-				<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
-				Voltar
-				</button>
+				<div class="btn-toolbar justify-content-center" role="toolbar">
+					<input type="hidden" id="id" th:field="*{id}" /> 
+					
+					<input type="submit" class="btn btn-primary form-control col-md-2">
+					
+					<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
+					Voltar
+					</button>
 				</div>
 
 			</form>
