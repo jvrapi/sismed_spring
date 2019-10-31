@@ -54,7 +54,7 @@ public class TConvenioController {
 		 * variavel
 		 */
 		model.addAttribute("tconvenio", tservice.buscarPorId(id));
-		return "/tconvenio/cadastro";
+		return "/tconvenio/editar";
 	}
 
 	@PostMapping("/editar")

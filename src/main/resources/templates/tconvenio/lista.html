@@ -8,45 +8,47 @@
 	<section layout:fragment="corpo">
 		<div th:replace="fragmentos/modal :: modal"></div>
 		<div th:replace="fragmentos/alert"></div>
-		<a class="btn btn btn-md"
-			style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-			href="/tconvenios/cadastrar" role="button"> <span
-			class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
-				Tipo de Convenio</span>
-				
-		</a> 
-		<br>
-		<br>
-		<br>
-		<div class="container" th:each="t : ${tconvenio}">
-			<a class="btn btn-info btn-sm"
-				th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" role="button">
-				<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+		 <br> <br> <br>
+		
+		
+		<div style="margin-left:70%;">
+			<a class="btn btn-success btn-sm " href="/tconvenios/cadastrar" role="button"> 
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"> </span> 
 			</a>
-			<button th:id="${#strings.concat ('/btn_tconvenios/excluir/',t.id)}"
-				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-				data-target="#myModal">
-				<span class="oi oi-circle-x" title="Excluir covenio"
-					aria-hidden="true"></span>
-			</button>
-			
-	 
-			<br> <br>
-			<div class="form-row" >
-				<div class="form-group col-md-4">
-					<label for="nome">Descricao</label> <input type="text"
-						class="form-control" id="nome" placeholder="Nome Completo"
-						name="nome" th:value="${t.nome}"
-						disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-			<br> <br> <br>
-
 		</div>
+			
+			<div class="" style="margin-left:48.5%;">
+				<label for="nome">Nome</label> 
+			</div>
+			
+		<div style="margin-left: 40%;">
+			<div class="container" th:each="t : ${tconvenio}">
 
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control text-center" id="nome"
+							th:value="${t.nome}" disabled>
+							
+						<div class="invalid-feedback"></div>
+					</div>
 
+					<div class="form-group col-md-2">
+						<a class="btn btn-info btn-sm"
+							th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" role="button">
+							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
+						<button
+							th:id="${#strings.concat ('/btn_tconvenios/excluir/',t.id)}"
+							type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+							data-target="#myModal">
+							<span class="oi oi-circle-x" title="Excluir covenio"
+								aria-hidden="true"></span>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
 </html>
