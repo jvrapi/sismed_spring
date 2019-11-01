@@ -48,13 +48,13 @@ public class PacientesController {
 	public String salvar(Paciente paciente, RedirectAttributes attr) {
 		service.salvar(paciente);
 		attr.addFlashAttribute("success","Paciente cadastrado com sucesso");
-		return "redirect:/pacientes/cadastrar";
+		return "redirect:/pacientes/listar";
 	}
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("paciente", service.buscarporId(id));
-		return "pacientes/cadastro";
+		return "pacientes/editar";
 	}
 	
 	@PostMapping("/editar")
@@ -88,10 +88,10 @@ public class PacientesController {
 		return convenioService.BuscarTodos();
 	}
 	
-	//@ModelAttribute("tipoconvenio")
-	//public List<TConvenio> listTipoConvenio() {
-	//	return tipoConvenioService.BuscarTodos();
-	//}
+	@ModelAttribute("tipoconvenio")
+	public List<TConvenio> listTipoConvenio() {
+		return tipoConvenioService.BuscarTodos();
+	}
 }
 
 

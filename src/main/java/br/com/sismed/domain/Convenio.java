@@ -28,33 +28,14 @@ public class Convenio extends AbstractEntity<Long>{
 	
 	@Column(nullable = false)
 	private String registro_ans;
-	
-	@OneToMany(mappedBy = "convenio")
-	@Fetch(FetchMode.JOIN)
-	private List<TConvenio> TiposConvenios;
-	
-	@OneToMany(mappedBy = "convenio")
-	private List<Agenda> agenda;
-	
-	@OneToMany(mappedBy ="convenio")
-	private List<Procedimento> procedimentos;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dados_bancarios")
 	private DadosBancarios dadosb;
 	
 	
 	/*Metodos get's e set's */
-	public List<Procedimento> getProcedimentos() {
-		return procedimentos;
-	}
 
-	public void setProcedimentos(List<Procedimento> procedimentos) {
-		this.procedimentos = procedimentos;
-	}
-	
-	
-	
 	
 	public String getNome() {
 		return nome;
@@ -75,26 +56,6 @@ public class Convenio extends AbstractEntity<Long>{
 	public void setData_adesao(LocalDate data_adesao) {
 		this.data_adesao = data_adesao;
 	}
-
-
-	public List<Agenda> getAgenda() {
-		return agenda;
-	}
-
-
-	public void setAgenda(List<Agenda> agenda) {
-		this.agenda = agenda;
-	}
-	
-	public List<TConvenio> getTiposConvenios() {
-		return TiposConvenios;
-	}
-	
-	
-	public void setTiposConvenios(List<TConvenio> tiposConvenios) {
-		TiposConvenios = tiposConvenios;
-	}
-
 
 
 	public String getCnpj() {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Exame;
@@ -92,5 +93,9 @@ public class ExameController {
 	return fservice.buscarTodos();
 	}
 	
+	@GetMapping("/pacientes/{id}")
+	public @ResponseBody Paciente paciente(@PathVariable("id") Long id) {
+	return pservice.buscarporId(id);
+	}
 }
 
