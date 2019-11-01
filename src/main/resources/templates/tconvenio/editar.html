@@ -12,7 +12,7 @@
 	
 			<div class="container" id="cadastroConvenio">
 				
-			<form th:action="@{/tconvenios/salvar}" 
+			<form th:action="${tconvenio.id == null} ? @{/tconvenios/salvar} : @{/tconvenios/editar}" 
 			th:object="${tconvenio}" method="POST">
 			
 				
@@ -23,8 +23,11 @@
 						
 						<br>
 						
+						
+						
 							<label for="Convenio">Convenio</label>
 							<input type="text" class="form-control" id="convenio" name="convenio" th:field="*{convenio.id}" >
+						
 						
 						
 						
@@ -37,7 +40,7 @@
 			<div  style="margin-left: 30%;">
 				<input type="hidden" id="id" th:field="*{id}"/>
 				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				
+			
 					<a  class="btn btn-secondary form-control col-md-4" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> Voltar</a>
 				
 			</div>
