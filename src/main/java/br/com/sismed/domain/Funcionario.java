@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -63,9 +64,6 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="escolaridade", nullable=false, length=45)
 	private String escolaridade;
 	
-	@Column(name="formacao", nullable=false, length=45)
-	private String formacao;
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
@@ -73,7 +71,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name="naturalidade", nullable=false, length=45)
 	private String naturalidade;
 	
-	@Column(name="nacionalidade", nullable=false, length=20)
+	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
 	
 	@Column(name="nivel_acesso", nullable=false, length=4)
@@ -164,13 +162,7 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setEscolaridade(String escolaridade) {
 		this.escolaridade = escolaridade;
 	}
-	public String getFormacao() {
-		return formacao;
-	}
-	public void setFormacao(String formacao) {
-		this.formacao = formacao;
-	}
-	
+
 	public String getNaturalidade() {
 		return naturalidade;
 	}

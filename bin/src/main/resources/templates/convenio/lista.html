@@ -8,131 +8,125 @@
 	<section layout:fragment="corpo">
 
 
-
-		<nav class="navbar">
-
-
-			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			</ul>
-
-
-		</nav>
-		<br>
-		<div class="container corpo">
+		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
 			<div th:replace="fragmentos/modal :: modal"></div>
 		</div>
-
-
-
-
-
-		<div class="container texte-center corpo" th:each="c : ${convenios}">
-
-
-
-
-			<div class="corpo">
-
-				<div class="form-group col-md-6 nomeTopo" >
-<!-- Tabela de conveio -->
-					<table >
+<br><br><br>
+	<table class="text-center convenio"  >
+					<thead>
 						<tr>
-							<th th:text="${c.nome}">Convenio</th>
-
+							<th scope="col">Nome</th>
+							<th scope="col">CNPJ</th>
+							<th scope="col">ANS</th>
+							<th scope="col">Adesão</th>
+							<th scope="col">Banco</th>
+							<th scope="col">Agencia</th>
+							<th scope="col">Conta</th>
+						</tr>
+					</thead>
+					<tbody th:each="c : ${convenios}">
+						<tr>
 							<td>
+								<div>
+									
+									<input type="text" class="form-control text-center " id="nome"
+										th:value="${c.nome}" disabled>
+									
+									<div class="invalid-feedback"></div>
+								</div>
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center " id="cnpj"
+										th:value="${c.cnpj}" disabled>
+									<div class="invalid-feedback"></div>
+								</div>
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center" id="ans"
+										th:value="${c.registro_ans}" disabled>
+									<div class="invalid-feedback"></div>
+								</div>
+
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center" id="adesao"
+										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"
+										disabled />
+									<div class="invalid-feedback"></div>
+								</div>
+
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center" id="banco"
+										th:value="${c.dadosb.banco}" disabled>
+									<div class="invalid-feedback"></div>
+								</div>
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center"
+										id="agencia" th:value="${c.dadosb.agencia}" disabled>
+									<div class="invalid-feedback"></div>
+								</div>
+							</td>
+							<td>
+								<div>
+									<input type="text" class="form-control text-center" id="conta"
+										th:value="${c.dadosb.conta}" disabled />
+									<div class="invalid-feedback"></div>
+								</div>
+
+
+							</td>
 							
+							
+							<td></td>
+							<td>
+							<a class="btn btn-info btn-sm botoesCRUD"
+									th:href="@{/tconvenios/listar/{id} (id=${c.id}) }" title="Listar Tipos de Convenio">
+										Tipos Convenio
+								</a>
+							</td>
+							
+							<td>
+							<a class="btn btn-info btn-sm botoesCRUD"
+									th:href="@{/procedimentos/listar/{id} (id=${c.id}) }" title="Listar Procedimentos">
+										Procedimentos
+								</a>
+							</td>
+						
+							<td style="margin-left: 20px;">
 								<a class="btn btn-info btn-sm botoesCRUD"
 									th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
 										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 								</a>
-								
 							</td>
-
+							
 							<td>
 								<button
 									th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}"
-									type="button" class="btn btn-danger btn-sm " data-toggle="modal"
-									data-target="#myModal">
+									type="button" class="btn btn-danger btn-sm "
+									data-toggle="modal" data-target="#myModal">
 									<span class="oi oi-circle-x" title="Excluir covenio"
 										aria-hidden="true"></span>
 								</button>
-
-							</td>
-
-							<td>
-							
-								<a class="btn btn-success btn-sm"
-									href="/convenios/cadastrar" role="button"> <span
-										class="oi oi-plus " title="Cadastrar novo convenio"
-										aria-hidden="true"></span>
-								</a>
-							
 							</td>
 						</tr>
-<!-- FIM -->
 
-	<!-- Tabela de tipo conveio -->
-
-					</table>
-					
-				</div>
-			</div>
-
-
-
-
-			<table class="table table-striped form-group col-md-4 tabela1 text-center">
-
-				<thead>
-					<tr>
-						<th>Tipos de Convenio</th>
-					</tr>
-				</thead>
-				<tbody th:each="tc : ${c.TiposConvenios}">
-					<tr>
-						<td th:text="${tc.getNome()}">1</td>
-
-					</tr>
-
-				</tbody>
-			</table>
-<!-- FIM -->
-
-<!-- Tabela de procedimentos -->
-			<table class="table table-striped form-group col-md-4 tabela2 text-center">
-
-				<thead>
-					<tr>
-						<th>Procedimentos</th>
-						<th>Valor</th>
-					</tr>
-				</thead>
-				<tbody th:each="tc : ${c.procedimentos}">
-					<tr>
-						<td th:text="${tc.getDescricao()}">1</td>
-						<td th:text="${tc.getValor()}">1</td>
-
-					</tr>
-
-				</tbody>
-			</table>
-
-<!-- FIM -->
-
-			<br> <br> <br>
-
-		</div>
-
-
-
-
-
-
-
-
-
-
+					</tbody>
+				</table>
+				
+				<br><br><br>
+				<a class="btn btn-success btn-sm " style="margin-left: 45%;" href="/convenios/cadastrar"
+				role="button"> 
+				<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
+				<span>Novo Convenio</span>
+			</a>
 
 	</section>
 </body>

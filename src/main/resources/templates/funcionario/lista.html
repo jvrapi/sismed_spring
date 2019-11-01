@@ -12,7 +12,14 @@
 				href="/funcionario/cadastrar" role="button"> <span
 				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
 					Funcionário</span></a>
+					
+					<br>
 
+			<a class="btn btn btn-md"
+				style="background-color: #D7E7F9; margin-top: 5px;"
+				href="/funcionario/cadastrar" role="button"> <span
+				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
+					Médico</span></a>
 		</nav>
 		<br>
 		
@@ -38,9 +45,9 @@
 
 				<div class="form-group col-md-6">
 					<label for="nome">Nome</label> <input type="text"
-						class="form-control" id="nome" placeholder="nome" name="nome"
+						class="form-control" id="nome" placeholder="NOME" name="nome"
 						th:value="${f.nome}" disabled>
-					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
+					<div class="invalid-feedback" style="text-transform: uppercase;" ></div>
 				</div>
 
 				<div class="form-group col-md-2">
@@ -93,7 +100,7 @@
 				<div class="form-group col-md-4">
 					<label for="nome">Email</label> <input type="text"
 						class="form-control" id="email" placeholder="email" name="email"
-						th:value="${f.email}" disabled>
+						th:value="${f.email}" disabled style="text-transform: uppercase;">
 					<div class="invalid-feedback"></div>
 				</div>
 
@@ -118,7 +125,7 @@
 						<label for="especialidade">Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" name="especialidade"
-							th:value="${f.especialidade}" disabled>
+							th:value="${f.especialidade}" disabled style="text-transform: uppercase;">
 						<div class="invalid-feedback"></div>
 					</div>
 					
@@ -145,17 +152,10 @@
 							<label for="escolaridade">Escolaridade</label> <input type="text"
 								class="form-control" id="escolaridade"
 								placeholder="escolaridade" name="escolaridade"
-								th:value="${f.escolaridade}" disabled>
+								th:value="${f.escolaridade}" disabled style="text-transform: uppercase;">
 							<div class="invalid-feedback"></div>
 						</div>
 
-						<div class="form-group col-md-5">
-							<label for="formacao">Formação</label> <input type="text"
-								class="form-control" id="formacao" placeholder="formacao"
-								name="formacao" th:value="${f.formacao}" disabled>
-							<div class="invalid-feedback"></div>
-						</div>
-						
 						</div>
 						
 						<div class="form-row">
@@ -164,14 +164,14 @@
 								<label for="naturalidade">Naturalidade</label> <input
 									type="text" class="form-control" id="naturalidade"
 									placeholder="naturalidade" name="naturalidade"
-									th:value="${f.naturalidade}" disabled>
+									th:value="${f.naturalidade}" disabled style="text-transform: uppercase;">
 								<div class="invalid-feedback"></div>
 							</div>
 
 							<div class="form-group col-md-6">
 								<label for="nacionalidade">Nacionalidade</label> <input
 									type="text" class="form-control" id="nacionalidade"
-									placeholder="nacionalidade" name="nacionalidade"
+									placeholder="NACIONALIDADE" name="nacionalidade"
 									th:value="${f.nacionalidade}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>
@@ -188,8 +188,8 @@
 						
 							<div class="form-group col-md-4">
 								<label for="endereco">Logradouro</label> <input type="text"
-									class="form-control" id="endereco" placeholder="endereco"
-									name="endereco" th:value="${f.endereco.logradouro}" disabled>
+									class="form-control" id="endereco" placeholder="lOGRADOURO"
+									name="endereco" th:value="${f.endereco.logradouro}" disabled style="text-transform: uppercase;">
 								<div class="invalid-feedback"></div>
 							</div>
 							
@@ -202,8 +202,8 @@
 							
 							<div class="form-group col-md-4">
 								<label for="endereco">Complemento</label> <input type="text"
-									class="form-control" id="endereco" placeholder="complemento"
-									name="endereco" th:value="${f.endereco.complemento}" disabled>
+									class="form-control" id="endereco" placeholder="COMPLEMENTO"
+									name="endereco" th:value="${f.endereco.complemento}" disabled style="text-transform: uppercase;">
 								<div class="invalid-feedback"></div>
 							</div>
 							
@@ -213,21 +213,21 @@
 
 							<div class="form-group col-md-5">
 								<label for="bairro">Bairro</label> <input type="text"
-									class="form-control" id="bairro" placeholder="bairro"
-									name="bairro" th:value="${f.endereco.bairro}" disabled>
+									class="form-control" id="bairro" placeholder="BAIRRO"
+									name="bairro" th:value="${f.endereco.bairro}" disabled style="text-transform: uppercase;">
 								<div class="invalid-feedback"></div>
 							</div>
 
 							<div class="form-group col-md-5">
 								<label for="cidade">Cidade</label> <input type="text"
-									class="form-control" id="cidade" placeholder="cidade"
-									name="cidade" th:value="${f.endereco.cidade}" disabled>
+									class="form-control" id="cidade" placeholder="CIDADE"
+									name="cidade" th:value="${f.endereco.cidade}" disabled style="text-transform: uppercase;">
 								<div class="invalid-feedback"></div>
 							</div>
 						
 							<div class="form-group col-md-2">
 								<label for="estado">Estado</label> <input type="text"
-									class="form-control" id="estado" placeholder="estado"
+									class="form-control" id="estado" placeholder="ESTADO"
 									name="estado" th:value="${f.endereco.estado}" disabled>
 								<div class="invalid-feedback"></div>
 							</div>

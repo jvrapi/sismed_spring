@@ -6,57 +6,65 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
-			
-			<div class="container corpo" id="cadastroConvenio">
-				<div th:replace="fragmentos/alert"></div>
+			<div class="container" style="margin-left: 35%;">
+				<div th:replace="fragmentos/alert" class="container"></div>
+			</div>
+	
+			<div class="container" id="cadastroConvenio">
+				
 			<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
 			th:object="${convenio}" method="POST">
 			
-				<div class="form-row ">
-					<div class="form-group col-md-6 ">
+				
+					<div class="form-group col-md-4 " style="margin-left: 35%;">
+					
 						<label for="nome"> Nome Convenio</label>
 						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
 						
 						<br>
 						
-						<label for="rs">Razão Social</label>
-						<input type="text" class="form-control" id="rs" placeholder="Ex. Amil Assitencia Médica Internacional S/A" onkeyup="maiuscula(this)" th:field="*{razao_social}">
-						
-						<br>
-						
 						<label for="cnpj">CNPJ</label>
-						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CNPJ"  th:field="*{cnpj}" >
+						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex. 29.309.127/0001-79"  th:field="*{cnpj}" >
 						
 						<br>
 						
 						<label for="ans">ANS</label>
-						<input type="text" class="form-control" id="ans" name="ans" placeholder="326305"  th:field="*{registro_ans}">
+						<input type="text" class="form-control" id="ans" name="ans" placeholder="Ex. 326305"  th:field="*{registro_ans}">
 						
 						<br>
 						<label for="dataAdesao"> Data de Adesão</label>
 						<input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}">
 						
 						<br>
-						<label for="nome"> Aceita </label>
-						<select th:field="*{aceita}" class="form-control">
-							<option value="1">SIM</option>
-							<option value="0">NAO</option>
-							
-						</select>
+						<label for="dataAdesao">Banco</label>
+						<input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" placeholder="EX. 001">
+						
+						<br>
+						
+						<label for="dataAdesao">Agência</label>
+						<input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764-9">
+						
+						<br>
+						
+						<label for="dataAdesao">Conta</label>
+						<input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" placeholder="Ex. 38600-6">
+						
 						<br>
 						
 						
-					</div>
-				
+					
 				</div>
 				
+			<div  style="margin-left: 30%;">
 				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-6" value="Salvar">
+				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+				<a  class="btn btn-secondary form-control col-md-4" href="/convenios/listar"> Voltar</a>
 			
+			</div>
 			</form>
 		
-		
 		</div>
+		
 	
 	
 	</section>

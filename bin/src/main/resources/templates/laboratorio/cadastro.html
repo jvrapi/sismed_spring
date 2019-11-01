@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
@@ -9,7 +8,9 @@
 	<section layout:fragment="corpo">
 
 		<div class="container" id="cadastroLaboratorio"
-		style="margin-left:10%;margin-top:1%;">
+		style="margin-top:1%;">
+		
+		<h4>Cadastro <strong>| Laboratório  </strong></h4>
 
 			<form
 				th:action="${laboratorio.id == null} ? @{/laboratorio/salvar} : @{/laboratorio/editar}"

@@ -26,30 +26,14 @@ html, body {
 	padding-top:0;
 }
 
-.corpo{
-	
-	
-}
+
 
 hr { display:none; }
 
-.tabela1 {
-    float: left;
-   
-}
-.tabela2 {
-    float: left;
-    margin-left: 20%;
+
+
+.btnCRUD{
+	text-align: right;
+	magin-left: 20px;
 }
 
-.nomeTopo{
-	margin-left: 30%;
-	font-size: 35px;
-	padding: 25px 50px 75px 100px;
-	margin-right: 25px;
-}
-
-.botoesCRUD{
-	margin-right: 5px;
-	margin-left: 10px;
-}
