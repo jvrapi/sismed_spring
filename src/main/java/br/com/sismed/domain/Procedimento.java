@@ -46,11 +46,13 @@ public  class Procedimento extends AbstractEntity<Long> {
 		this.valor = valor;
 	}
 
-	public Convenio getTconvenio() {
+	
+
+	public Convenio getConvenio() {
 		return convenio;
 	}
 
-	public void setTconvenio(Convenio convenio) {
+	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
 	}
 

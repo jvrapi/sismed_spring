@@ -43,9 +43,7 @@ public class Exame extends AbstractEntity<Long>{
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
 	
-	@ManyToOne
-	@JoinColumn(name = "tipo_id")
-	private TConvenio tipo_id;
+	
 
 	/*@ManyToMany
 	@JoinTable(
@@ -113,13 +111,7 @@ public class Exame extends AbstractEntity<Long>{
 		this.funcionario_id = funcionario_id;
 	}
 
-	public TConvenio getTipo_id() {
-		return tipo_id;
-	}
 
-	public void setTipo_id(TConvenio tipo_id) {
-		this.tipo_id = tipo_id;
-	}
 
 	
 }

@@ -6,14 +6,22 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
-
-
+		
+				<br><br><br>
+		<div style="margin-left:70%;">
+			<a class="btn btn-success btn-sm " style="margin-left: 45%;" href="/convenios/cadastrar"
+				role="button"> 
+				<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
+				<span>Novo Convenio</span>
+			</a>
+		</div>	
+			
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
 			<div th:replace="fragmentos/modal :: modal"></div>
 		</div>
-<br><br><br>
-	<table class="text-center convenio"  >
+<br><br>
+	<table class="text-center"  >
 					<thead>
 						<tr>
 							<th scope="col">Nome</th>
@@ -121,12 +129,8 @@
 					</tbody>
 				</table>
 				
-				<br><br><br>
-				<a class="btn btn-success btn-sm " style="margin-left: 45%;" href="/convenios/cadastrar"
-				role="button"> 
-				<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-				<span>Novo Convenio</span>
-			</a>
+			
+				
 
 	</section>
 </body>

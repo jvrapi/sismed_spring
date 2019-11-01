@@ -1,57 +1,69 @@
 <!DOCTYPE html>
-<html layout:decorate = ~{layout}>
+<html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 
 </head>
 <body>
-<section layout:fragment = "corpo">
+	<section layout:fragment="corpo">
+	<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
+			<div th:replace="fragmentos/modal :: modal"></div>
+		</div>
+		<br><br><br>
+		<div style="margin-left:70%;">
+			<a class="btn btn-success btn-sm " th:href="@{/procedimentos/cadastrar} " role="button"> 
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"> </span> 
+				<span> Novo Procedimento</span> 
+			</a>
+		</div>
+			
+			<div  style="margin-left:40%;" >
+				<label for="nome">Nome</label> 
+				<label for="nome" style="margin-left:30%;" >Valor</label> 
+			</div>
+			
+			
+			
+			
+			
+		<div style="margin-left: 25%;">
+			<div class="container" th:each="p : ${procedimento}">
 
-	<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/procedimentos/cadastrar" role="button"> 
-				<span
-					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-				<span>Cadastrar Procedimento</span>
-		</a>
-	
-	  <div class="container corpo">
-	          	<div th:replace="fragmentos/alert" ></div> 
-	          </div>  
-	  <div class="container"  th:each = "p : ${procedimento}">
-	            <a class="btn btn-info btn-sm" th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <a th:href="@{/procedimentos/excluir/{id} (id=${p.id}) }" type="button" class="btn btn-danger btn-sm"
-	                                    >
-	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-	                            </a>
-	                            <br><br>
-	                <div class="form-row">
-	                    <div class="form-group col-md-4">
-	                        <label for="nome">Nome</label>
-	                        <input type="text" class="form-control" id="nome" placeholder="Nome Completo"
-	                               name="nome" th:value="${p.descricao}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    <div class="form-group col-md-4">
-	                        <label for="data_adesao">Valor</label>
-	                        <input type="text" class="form-control" id="valor"  name="valir" th:value="|R$ ${{p.valor}}|" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    
-	                    <div class="form-group col-md-4">
-	                        <label for="data_adesao">Convenio</label>
-	                        <input type="text" class="form-control" id="valor"  name="valir" th:value="${p.tconvenio.nome}" disabled>
-	                        <div class="invalid-feedback">
-	
-	                        </div>
-	                    </div>
-	                    </div>
-	                    </div>
-</section>
+				<div class="form-row">
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control text-center" id="nome"
+							th:value="${p.descricao}" disabled>
+							
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control text-center" id="nome"
+							th:value="|R$ ${{p.valor}}|" disabled>
+							
+						<div class="invalid-feedback"></div>
+					</div>
+					
+					
+					
+					<div class="form-group col-md-2">
+						<a class="btn btn-info btn-sm"
+							th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" role="button">
+							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
+						<button
+							th:id="${#strings.concat ('/btn_procedimentos/excluir/',p.id,'/',p.convenio.id)}"
+							type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+							data-target="#myModal">
+							<span class="oi oi-circle-x" title="Excluir covenio"
+								aria-hidden="true"></span>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

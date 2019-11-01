@@ -13,11 +13,11 @@
 					<div th:replace="fragmentos/alert" ></div>
 				</div>
 			
-			<form th:action=" @{/procedimentos/salvar} " th:object="${procedimento}" method="POST">
+			<form th:action=" @{/procedimentos/editar/{id} (id=${procedimento.convenio.id}) } " th:object="${procedimento}" method="POST">
 			
 				<div class="form-row ">
 					<div class="form-group col-md-4 " style="margin-left: 35%;">
-						<h4>Cadastro <strong>| Procedimento  </strong></h4>
+						<h4>Cadastro <strong>| Procedimento </strong></h4>
 						
 						<label for="nome"> Nome </label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
@@ -29,19 +29,17 @@
 						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" >
 						
 						<br>
-						<label for="Convenio">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{convenio}">
-								
-								<option th:each="c : ${convenios}" th:value="${c.id}" th:text="${c.nome}"></option>
-							</select>
-						<br>
-						<input type="hidden" id="id" th:field="*{id}"/>
-						<input type="submit" class="btn btn-primary form-control">
+						<input type="hidden" id="id" th:field="*{convenio.id}"/>
+						
 					</div>
 				
 				</div>
+				<div  style="margin-left: 30%;">
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+				<a  class="btn btn-secondary form-control col-md-4" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> Voltar</a>
 				
-				
+			</div>
 			
 			</form>
 		

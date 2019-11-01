@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 
-	<head>
-		<meta charset="UTF-8">
-	</head>
-	
-	<body>
-		<section layout:fragment="corpo">
-		
-			<nav aria-label="breadcrumb">
-	 			<ol class="breadcrumb">
-	    			<li class="breadcrumb-item active" aria-current="page">Pacientes</li>
-	  			</ol>
-			</nav>
+<head>
+<meta charset="UTF-8">
+</head>
 
-			<nav class="navbar">
-				<a class="btn btn btn-md"
-					style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-					href="/pacientes/cadastrar" role="button"> <span
-					class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> 
-					<span>Cadastrar Paciente</span>
-				</a>
-				<div th:replace="fragmentos/alert"></div>
-			</nav>
-			
-			<br>
-			
-			<div class="container"  th:each = "p : ${paciente}">
-				<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
-					<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-				</a>
-				<button  th:id="${#strings.concat ('/btn_pacientes/excluir/', p.id)}" type="button" class="btn btn-danger btn-sm"
-					data-toggle="modal" data-target="#myModal">
-					<span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-				</button>
-				
-				<a class="btn btn-info btn-sm" th:href="@{/pacientes/detalhes/{id} (id=${p.id}) }" role="button">
-					<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-				</a>
-				
-				<br><br>
-				
-				<div class="form-row">
-					<div class="form-group col-md-4">
-						<label for="nome">Nome</label>
-						<input type="text" class="form-control" id="nome" th:value="${p.nome}" disabled>
-						<div class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-group col-md-2">
-						<label for="cpf">CPF</label>
-						<input type="text" class="form-control" id="cpf" th:value="${p.cpf}" disabled>
-						<div class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-group col-md-2">
-						<label for="rg">RG</label>
-						<input type="text" class="form-control" id="rg" th:value="${p.rg}" disabled>
-						<div class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-group col-md-2">
-						<label for="orgao_emissor">Orgão emissor</label>
-						<input type="text" class="form-control" id="orgao_emissor" th:value="${p.orgao_emissor}" disabled/>
-						<div class="invalid-feedback">
-						</div>
-					</div>
-					<div class="form-group col-md-2">
-						<label for="data_emissao">Data de emissão</label>
-						<input type="text" class="form-control" id="data_emissao" th:value="${#temporals.format(p.data_emissao, 'dd/MM/yyyy')}" disabled/>
-						<div class="invalid-feedback">
-						</div>
-					</div>
-				</div>
-				
-				
-				
-				<br><br>
-								
-			</div>
-			
-			<div th:replace="fragmentos/modal :: modal"></div>
-		</section>
+<body>
+	<section layout:fragment="corpo">
+
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active" aria-current="page">Pacientes</li>
+			</ol>
+		</nav>
+
+		<nav class="navbar">
+			<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px" href="/pacientes/cadastrar" role="button"> 
+				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar Paciente</span>
+			</a>
+			<div th:replace="fragmentos/alert"></div>
+		</nav>
 		
-	</body>
-	
+		<br>
+
+		<table class="text-center">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>RG</th>
+					<th>CPF</th>
+					<th>Convênio</th>
+					<th>Tipo Convênio</th>
+					<th>Telefone Fixo</th>
+					<th>Celular</th>
+					<th>Sexo</th>
+				</tr>
+			</thead>
+			<tbody th:each="p : ${paciente}">
+				<tr>
+					<td>
+						<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px" disabled>
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" disabled>
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}" disabled>
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled />
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled />
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" disabled />
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" disabled />
+					</td>
+					<td>
+						<input type="text" class="form-control text-center" id="sexo" th:value="${p.sexo}" disabled />
+					</td>
+					<td>
+						<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
+							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
+					</td>
+					<td>
+						<button th:id="${#strings.concat ('/btn_pacientes/excluir/', p.id)}" type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#myModal">
+							<span class="oi oi-circle-x" title="Excluir covenio" aria-hidden="true"></span>
+						</button>
+					</td>
+					<td>
+						<a class="btn btn-success btn-sm" th:href="@{/pacientes/detalhes/{id} (id=${p.id}) }" role="button">
+							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br>
+
+		<div th:replace="fragmentos/modal :: modal"></div> 
+	</section>
+
+</body>
+
 </html>
