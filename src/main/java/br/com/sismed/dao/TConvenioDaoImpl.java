@@ -34,4 +34,11 @@ public class TConvenioDaoImpl extends AbstractDao<TConvenio, Long> implements TC
 		return resultlist;
 	}
 
+	public List<TConvenio> ListaCad(Long id){
+		Query query = entityManager.createNativeQuery("SELECT c.id" + 
+				" FROM sismed_convenio c " + 
+				" WHERE c.id = ?1", TConvenio.class).setParameter(1, id);
+		List<TConvenio> resultlist = query.getResultList();
+		return resultlist;
+	}
 }

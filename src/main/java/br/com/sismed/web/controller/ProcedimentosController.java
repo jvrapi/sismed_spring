@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Procedimento;
 import br.com.sismed.domain.TConvenio;
+import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.ProcedimentoService;
 import br.com.sismed.service.TConvenioService;
 
@@ -29,7 +30,7 @@ public class ProcedimentosController {
 	private ProcedimentoService service;
 	
 	@Autowired
-	private TConvenioService tipoConvenioService;
+	private ConvenioService ConvenioService;
 	
 	@GetMapping("/cadastrar")
 	public String Cadastrar(Procedimento procedimento) {
@@ -40,6 +41,7 @@ public class ProcedimentosController {
 	@GetMapping("/listar/{id}")
 	public String listar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("procedimento", service.ListarProcedimento(id));
+		System.out.println(id);
 		return "/procedimentos/lista";
 	}
 	
@@ -47,7 +49,7 @@ public class ProcedimentosController {
 	public String salvar(Procedimento procedimento, RedirectAttributes attr) {
 		service.salvar(procedimento);
 		attr.addFlashAttribute("success","Procedimento cadastrado com sucesso");
-		return  "redirect:/procedimentos/listar";
+		return  "redirect:/procedimentos/cadastrar";
 	}
 	
 	@GetMapping("/editar/{id}") //ID do convenio que vem pela URL
@@ -55,27 +57,26 @@ public class ProcedimentosController {
 		/* @PathVariable = recupera da url o id enviado pela URL como um path
 		 	o objeto model serve para enviar para a pagina de cadastro o convenio como uma variavel*/ 
 		model.addAttribute("procedimento", service.BuscarPorId(id));
-		return "/procedimentos/cadastro";
+		return "/procedimentos/editar";
 	}
 	
-	@PostMapping("/editar")
-	public String editar(Procedimento procedimentos, RedirectAttributes attr) {
+	@PostMapping("/editar/{id}")
+	public String editar(@PathVariable("id") Long id,Procedimento procedimentos, RedirectAttributes attr) {
 		service.editar(procedimentos);
 		attr.addFlashAttribute("success","Procedimento editado com sucesso");
-		return "redirect:/procedimentos/listar";
+		return "redirect:/procedimentos/listar/" + id;
 	}
 	
 	
-	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		
-		model.addAttribute("success", "Procedimento excluido com sucesso");
+	@GetMapping("/excluir/{id}/{id2}")
+	public String excluir(@PathVariable("id") Long id, @PathVariable("id2") Long id2,RedirectAttributes attr) {
 		service.excluir(id);
-		return "redirect:/procedimentos/listar";
+		attr.addFlashAttribute("success", "Procedimento excluido com sucesso");
+		return "redirect:/procedimentos/listar/"+ id2;
 	}
 	
-	@ModelAttribute("tconvenio")
-	public List<TConvenio> listTipoConvenio() {
-		return tipoConvenioService.BuscarTodos();
+	@ModelAttribute("convenios")
+	public List<Convenio> listConvenio() {
+		return ConvenioService.BuscarTodos();
 	}
 }

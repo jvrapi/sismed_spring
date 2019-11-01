@@ -42,7 +42,7 @@ public class TConvenioController {
 	@PostMapping("/salvar")
 	public String salvar(TConvenio tconvenio, RedirectAttributes attr) {
 		tservice.salvar(tconvenio);
-		attr.addFlashAttribute("success", "Convenio cadastrado com sucesso");
+		attr.addFlashAttribute("success", "Tipo de Convenio cadastrado com sucesso");
 		return "redirect:/tconvenios/cadastrar";
 	}
 
@@ -57,19 +57,19 @@ public class TConvenioController {
 		return "/tconvenio/editar";
 	}
 
-	@PostMapping("/editar")
-	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
+	@PostMapping("/editar/{id}")
+	public String editar(@PathVariable("id") Long id,TConvenio tconvenio, RedirectAttributes attr) {
 		tservice.editar(tconvenio);
-		attr.addFlashAttribute("success", "Convenio editado com sucesso");
-		return "redirect:/tconvenios/listar";
+		attr.addFlashAttribute("success", "Tipo de Convenio editado com sucesso");
+		return "redirect:/tconvenios/listar/" + id;
 	}
 
-	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+	@GetMapping("/excluir/{id}/{id2}")
+	public String excluir(@PathVariable("id") Long id, @PathVariable("id2") Long id2,RedirectAttributes attr) {
 		tservice.excluir(id);
 		attr.addFlashAttribute("success", "Tipo de Convenio excluido com sucesso");
 
-		return "redirect:/tconvenios/listar";
+		return "redirect:/tconvenios/listar/" + id2;
 	}
 
 	@ModelAttribute("convenios")

@@ -61,4 +61,9 @@ public class TConvenioServiceImpl implements TConvenioService{
 		return dao.ListaComboBox(id);
 	}
 
+	@Override
+	public List<TConvenio> ListaCad(Long id) {
+		return dao.ListaCad(id);
+	}
+
 }

@@ -16,4 +16,5 @@ public interface TConvenioService {
 	List<TConvenio> BuscarTodos();
 	List<TConvenio> ListarTipoConvenio(Long id);
 	List<TConvenio> ListaComboBox(Long id);
+	List<TConvenio> ListaCad(Long id);
 }
