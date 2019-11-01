@@ -5,7 +5,22 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
+	
+<div class="dropdown">
 
+  <button class="btn dropdown-toggle fa fa-plus"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
+  aria-expanded="false" style="background-color: #D7E7F9; margin-top: 5px;margin-left: 5%; width: 20%; height: 10%;">
+
+   Novo Cadastro
+
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/funcionario/cadastrar">Funcionário</a>
+    <a class="dropdown-item" href="/funcionario/cadastrar_med">Médico</a>
+   
+  </div>
+</div>
+<!--  
 		<nav class="navbar">
 			<a class="btn btn btn-md"
 				style="background-color: #D7E7F9; margin-top: 5px;"
@@ -17,10 +32,10 @@
 
 			<a class="btn btn btn-md"
 				style="background-color: #D7E7F9; margin-top: 5px;"
-				href="/funcionario/cadastrar" role="button"> <span
+				href="/funcionario/cadastrar_med" role="button"> <span
 				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
 					Médico</span></a>
-		</nav>
+		</nav>-->
 		<br>
 		
 		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
@@ -32,13 +47,13 @@
 				th:href="@{/funcionario/editar/{id} (id=${f.id}) }" role="button">
 				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
 			</a> 
-			
+
 			<button th:id="${#strings.concat ('/btn_funcionario/excluir/',f.id)}"
 				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
 				data-target="#myModal"> <span class="oi oi-circle-x"
 				title="Excluir" aria-hidden="true"></span>
 			</button> 
-			
+
 			<br> <br>
 			
 			<div class="form-row">
