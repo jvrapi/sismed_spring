@@ -5,44 +5,57 @@
 
 </head>
 <body>
-<section layout:fragment = "corpo">
-
-	<div class="container corpo" id="cadastroTipoConvenio">
-				<div th:replace="fragmentos/alert"></div>
+	<section layout:fragment="corpo">
+			<div class="container" style="margin-left: 30%;">
+				<div th:replace="fragmentos/alert" class="container"></div>
+			</div>
+	
+			<br><br><br>
 			
-			<form th:action="${tconvenio.id == null} ? @{/tconvenios/salvar} : @{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
+			<div class="container" id="cadastroConvenio">
+				<form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
 			
-				<div class="form-row ">
-					<div class="form-group col-md-6 ">
-						
-						<label for="nome">Tipo de Convenio</label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Tipo Convenio" autofocus="autofocus" th:field="*{nome}"
-						 onkeyup="maiuscula(this)" >
-						
-						
-						<br>
-						<label for="Convenio"> Convenio </label>
-						<select th:field="*{convenio}" class="form-control">
-							<option value="">SELECIONE</option>
-							<option th:each="c: ${convenios}" th:value="${c.id}" th:text="${c.nome}">NAO</option>
-							
-						</select>
-						<br>
-						
-						
-					</div>
 				
+					<div class="form-group col-md-4 " style="margin-left: 35%;">
+						<h4>Cadastro <strong>| Tipo Convenio  </strong></h4>
+					
+						<label for="nome"> Nome</label>
+						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
+						<input type="text" id="id" th:field="*{id}"/>
+						
+						
+						<br>
+						
+							<label for="Convenio">Convenio</label>
+							<select id="convenio_id" class="form-control" th:field="*{convenio}">
+								
+								<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.id}"></option>
+							</select>
+						
+						
+						
+						<br>
+						
+						
+					
 				</div>
 				
-				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-6">
+			<div  style="margin-left: 30%;">
 				
+				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+				<input type="button" class="btn btn-secondary form-control col-md-4" onclick="location.href = document.referrer;"  value="Voltar">
+				
+			</div>
 			</form>
-			<br>
-			
-			<a class="btn btn-primary form-control col-md-6" href="/tconvenios/listar"  >Voltar</a>
 		
 		</div>
-</section>
+		
+	
+	
+	</section>
+	
+	
+	
+
 </body>
 </html>

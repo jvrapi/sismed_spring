@@ -51,9 +51,10 @@ public class PacientesController {
 		return "redirect:/pacientes/listar";
 	}
 	
-	@GetMapping("/editar/{id}")
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	@GetMapping("/editar/{id}/{cid}")
+	public String preEditar(@PathVariable("id") Long id, @PathVariable("cid") Long cid, ModelMap model) {
 		model.addAttribute("paciente", service.buscarporId(id));
+		model.addAttribute("tipoconvenio", tipoConvenioService.ListaComboBox(cid));
 		return "pacientes/editar";
 	}
 	
@@ -76,21 +77,14 @@ public class PacientesController {
 		return "pacientes/detalhes";
 	}
 	
-	
 	@GetMapping("/convenio/{id}")
-	public String listTipoConvenio(@PathVariable("id") Long id, Paciente paciente, ModelMap model) {
-		model.addAttribute("tipoconvenio", tipoConvenioService.ListaComboBox(id));
-		return "fragmentos/convenio :: resultsList";
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id, Paciente paciente) {
+		return tipoConvenioService.ListaComboBox(id);
 	}
 	
 	@ModelAttribute("convenio")
 	public List<Convenio> listConvenio() {
 		return convenioService.BuscarTodos();
-	}
-	
-	@ModelAttribute("tipoconvenio")
-	public List<TConvenio> listTipoConvenio() {
-		return tipoConvenioService.BuscarTodos();
 	}
 }
 

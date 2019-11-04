@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8">
+
+</head>
+<body>
+	<section layout:fragment="corpo">
+			<div class="container" style="margin-left: 35%;">
+				<div th:replace="fragmentos/alert" class="container"></div>
+			</div>
+	
+			<div class="container" id="cadastroConvenio">
+				
+			<form th:action="@{/tconvenios/editar/{id}  (id=${tconvenio.convenio.id}) }" th:object="${tconvenio}" method="POST">
+			
+				
+					<div class="form-group col-md-4 " style="margin-left: 35%;">
+					
+						<label for="nome"> Nome</label>
+						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
+						
+						<br>
+						
+						
+						
+							
+							
+						
+							<input type="hidden" id="id" th:field="*{convenio.id}"/>
+						
+						
+						<br>
+						
+						
+					
+				</div>
+				
+			<div  style="margin-left: 30%;">
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+				<a  class="btn btn-secondary form-control col-md-4" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> Voltar</a>
+				
+			</div>
+			</form>
+		
+		</div>
+		
+	
+	
+	</section>
+	
+	
+	
+
+</body>
+</html>

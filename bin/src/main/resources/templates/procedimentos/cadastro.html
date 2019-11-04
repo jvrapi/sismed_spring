@@ -6,13 +6,18 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
-<div class="container corpo" id="cadastroTipoConvenio">
-				<div th:replace="fragmentos/alert"></div>
+
+	<div class="container corpo" id="cadastroTipoConvenio">
+				<div class="container" style="margin-left: 30%;">
+				<br><br>
+					<div th:replace="fragmentos/alert" ></div>
+				</div>
 			
-			<form th:action="${procedimento.id == null} ? @{/procedimentos/salvar} : @{/procedimentos/editar}" th:object="${procedimento}" method="POST">
+			<form th:action=" @{/procedimentos/salvar} " th:object="${procedimento}" method="POST">
 			
 				<div class="form-row ">
-					<div class="form-group col-md-6 ">
+					<div class="form-group col-md-4 " style="margin-left: 35%;">
+						<h4>Cadastro <strong>| Procedimento  </strong></h4>
 						
 						<label for="nome"> Nome </label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
@@ -21,18 +26,26 @@
 						
 						<br>
 						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}"  
-						>
+						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" >
 						
 						<br>
-						
+						<label for="Convenio">Convenio</label>
+							<select id="convenio_id" class="form-control" th:field="*{convenio}">
+								
+								<option th:each="c : ${convenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+							</select>
+						<br>
+						<input type="hidden" id="id" th:field="*{id}"/>
 						
 					</div>
 				
 				</div>
 				
-				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-6">
+			<div  style="margin-left: 30%;">
+				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+				<input type="button" class="btn btn-secondary form-control col-md-4" onclick="location.href = document.referrer;"  value="Voltar">
+				
+			</div>
 			
 			</form>
 		

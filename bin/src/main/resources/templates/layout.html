@@ -17,8 +17,11 @@
 <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css"
 	rel="stylesheet" />
+<link rel="stylesheet" href="font-awesome/css/font-awesome.css">
 
 <link href="/css/style.css" rel="stylesheet" />
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -52,6 +55,7 @@
 		
 		$('button[id*="btn_"]').click(function() {
 			url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+			
 		});
 		
 		$('#ok_confirm').click(function() {
@@ -61,13 +65,18 @@
 	
 	<script type="text/javascript">
         $(document).ready(function(){
-            $("#valor").mask('##,##0,00');
+            $("#valor").mask('#.##0,00', {reverse: true});
             $('#cnpj').mask('00.000.000/0000-00');
-            $('.cpf').mask('000.000.000-00');
-            $('.rg').mask('00.000.000-0');
-            $('.telefone').mask('(00)0000-0000');    
-        	$('.celular').mask('(00) 0 0000-0000');      
-        	$('.crm').mask('000000');   //crm referente ao RJ
+            $('#cpf').mask('000.000.000-00');
+            $('#rg').mask('00.000.000-0');
+            $('#telefone_fixo').mask('(00) 0000-0000');   
+            $('#telefone_trabalho').mask('(00) 0000-0000');    
+        	$('#celular').mask('(00) 0 0000-0000');      
+        	$('#crm').mask('52 000000');   //crm referente ao RJ
+        	$('#banco').mask('000');
+        	$('#agencia').mask('0000'); 
+        	$('#conta').mask('00000-0');
+        	$('#ans').mask('000000');
         });
     </script>
     
@@ -137,5 +146,7 @@ function ApenasLetras(e, t) {
 }
 }
 </script>
+
+
 </body>
 </html>

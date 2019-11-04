@@ -2,6 +2,22 @@
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function valida() {
+			if($("#funcionario_radio").prop("checked") == true) {
+				$("#especialidade").prop("disabled", true);
+				$("#especialidade").val("");
+				$("#crm").prop("disabled", true);
+				$("#crm").val("");
+			} else {
+				$("#especialidade").prop("disabled", false);
+				$("#crm").prop("disabled", false);
+			}
+		}
+	</script>
+
 </head>
 <body>
 
@@ -16,6 +32,15 @@
 			<form
 				th:action="${funcionario.id == null} ? @{/funcionario/salvar} : @{/funcionario/editar}"
 				th:object="${funcionario}" method="POST">
+				
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="funcionario_radio" value="desabilita" onclick="valida()" checked>
+					<label class="form-check-label" for="exampleRadios1">Funcionário</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="medico_radio" value="habilita" onclick="valida()">
+					<label class="form-check-label" for="exampleRadios2">Médico</label>
+				</div>
 				
 				<h5>Dados Pessoais</h5>
 				

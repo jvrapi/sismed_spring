@@ -63,7 +63,7 @@
 						<input type="text" class="form-control text-center" id="sexo" th:value="${p.sexo}" disabled />
 					</td>
 					<td>
-						<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id} (id=${p.id}) }" role="button">
+						<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" role="button">
 							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 						</a>
 					</td>
