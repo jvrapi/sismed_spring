@@ -6,9 +6,11 @@
 </head>
 <body>
 	<section layout:fragment="corpo">
+	<br><br>
 			<div class="container" style="margin-left: 35%;">
-				<div th:replace="fragmentos/alert" class="container"></div>
-			</div>
+				<div th:replace="fragmentos/alert"></div>
+				
+		</div>
 	
 			<div class="container" id="cadastroConvenio">
 				
@@ -58,7 +60,7 @@
 					
 					<div class="form-group col-md-4 " >
 						<label for="dataAdesao">Agência</label>
-						<input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764-9">
+						<input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764">
 					</div>
 					
 						<br>

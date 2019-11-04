@@ -35,6 +35,7 @@ public class TConvenioController {
 
 	@GetMapping("/cadastrar") // segunda parte do href
 	public String cadastrar(@ModelAttribute("tconvenio") TConvenio tconvenio) {
+
 		return "/tconvenio/cadastro"; // retorna o caminho do arquivo
 
 	}
