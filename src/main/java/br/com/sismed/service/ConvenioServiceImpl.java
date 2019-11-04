@@ -57,6 +57,13 @@ public class ConvenioServiceImpl implements ConvenioService{
 		return dao.ListarConvenio();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Convenio> ListaComboBox(Long id) {
+		
+		return dao.ListaComboBox(id);
+	}
+
 	
 	
 	

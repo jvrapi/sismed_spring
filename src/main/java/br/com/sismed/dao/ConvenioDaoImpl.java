@@ -27,6 +27,11 @@ public class ConvenioDaoImpl extends AbstractDao<Convenio, Long> implements Conv
 		return resultlist;
 	}
 	
-	
+	public List<Convenio> ListaComboBox(Long id){
+		Query query = entityManager.createNativeQuery("SELECT * " + " FROM sismed_convenio c " 
+				+ " WHERE c.id = ?1",Convenio.class).setParameter(1, id);
+		List<Convenio> resultlist = query.getResultList();
+		return resultlist;
+	}
 	
 }

@@ -18,6 +18,6 @@ public interface ConvenioDao {
 	
 	List<Convenio> ListarConvenio();
 	
-	
+	List<Convenio> ListaComboBox(Long id);
 	
 }

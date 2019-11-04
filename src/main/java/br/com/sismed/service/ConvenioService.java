@@ -15,5 +15,6 @@ public interface ConvenioService {
 	List<Convenio> BuscarTodos();
 	List<Convenio> ListarConvenio();
 	
+	List<Convenio> ListaComboBox(Long id);
 	
 }

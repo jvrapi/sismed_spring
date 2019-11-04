@@ -12,6 +12,7 @@ public class DadosBancarios extends AbstractEntity<Long>{
 	private String banco;
 	private String agencia;
 	private String conta;
+	
 	public Long getId() {
 		return id;
 	}

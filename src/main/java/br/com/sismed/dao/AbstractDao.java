@@ -26,7 +26,7 @@ public abstract class AbstractDao<T, PK extends Serializable> {
 		return entityManager;
 	}
 	
-	public void save(T entity) { 
+	public void save(T entity) {
 
 		entityManager.persist(entity);
 	}
