@@ -16,8 +16,10 @@
 				
 			<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
 			th:object="${convenio}" method="POST">
-			<h4>Cadastro <strong>| Convenio  </strong></h4>
+			
+			<h4 class="text-center">Cadastro <strong>| Convenio  </strong></h4>
 			<br><br>
+			
 				<div class="form-row" style="margin-left: 20%;">
 					
 					

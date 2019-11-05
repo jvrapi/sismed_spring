@@ -13,11 +13,7 @@
 			</div>
 			<br><br><br>
 			<div style="margin-left:45%;" >
-				<a class="btn btn-success btn-sm "  href="/convenios/cadastrar"
-					role="button"> 
-					<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-					<span>Novo Convenio</span>
-				</a>
+				
 			</div>
 			
 		<div class="container" style="margin-left: 35%;">
@@ -25,6 +21,7 @@
 			<div th:replace="fragmentos/modal :: modal"></div>
 		</div>
 <br><br>
+
 	<table class="text-center"  >
 					<thead>
 						<tr>
@@ -39,111 +36,63 @@
 					</thead>
 					<tbody th:each="c : ${convenios}">
 						<tr>
-							<td>
-								<div>
-									
-									<input type="text" class="form-control text-center " id="nome"
-										th:value="${c.nome}" disabled>
-									
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center " id="cnpj"
-										th:value="${c.cnpj}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center" id="ans"
-										th:value="${c.registro_ans}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center" id="adesao"
-										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"
-										disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center" id="banco"
-										th:value="${c.dadosb.banco}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center"
-										id="agencia" th:value="${c.dadosb.agencia}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							<td>
-								<div>
-									<input type="text" class="form-control text-center" id="conta"
-										th:value="${c.dadosb.conta}" disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-
-
-							</td>
-							
-							
-							<td></td>
-							<td>
-							<a class="btn btn-info btn-sm botoesCRUD"
-									th:href="@{/tconvenios/listar/{id} (id=${c.id}) }" title="Listar Tipos de Convenio">
-										Tipos Convenio
-								</a>
-							</td>
-							
-							<td>
-							<a class="btn btn-info btn-sm botoesCRUD"
-									th:href="@{/procedimentos/listar/{id} (id=${c.id}) }" title="Listar Procedimentos">
-										Procedimentos
-								</a>
-							</td>
-							
-							<td>
-								<a class="btn btn-success btn-sm " th:href="@{/tconvenios/cadastrar/{id2} (id2=${c.id})} " role="button" title="Cadastrar novo tipo de convenio"> 
-									<span class="oi oi-plus"  aria-hidden="true"> </span> 
-									<span>  Tipo </span> 
-				
-								</a>
-							</td>
-							
-							<td>
-							<a class="btn btn-success btn-sm " th:href="@{/procedimentos/cadastrar} " role="button"> 
-								<span class="oi oi-plus" title="Cadastro" aria-hidden="true"> </span> 
-								<span> Procedimento</span> 
-							</a>
-							
-							</td>
 						
-							<td style="margin-left: 20px;">
-								<a class="btn btn-info btn-sm botoesCRUD"
-									th:href="@{/convenios/editar/{id} (id=${c.id}) }" role="button">
-										<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									
+										
+										<input type="text" class="form-control text-center " id="nome"
+											th:value="${c.nome}" style=" cursor: pointer" disabled>
 								</a>
 							</td>
-							
 							<td>
-								<button
-									th:id="${#strings.concat ('/btn_convenios/excluir/',c.id)}"
-									type="button" class="btn btn-danger btn-sm "
-									data-toggle="modal" data-target="#myModal">
-									<span class="oi oi-circle-x" title="Excluir covenio"
-										aria-hidden="true"></span>
-								</button>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center " id="cnpj"
+										th:value="${c.cnpj}" style=" cursor: pointer" disabled>
+								</a>
 							</td>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center" id="ans"
+										th:value="${c.registro_ans}" style=" cursor: pointer" disabled>
+									
+								</a>
+
+							</td>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center" id="adesao"
+										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}" style=" cursor: pointer" disabled />
+								</a>
+
+							</td>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center" id="banco"
+										th:value="${c.dadosb.banco}" style=" cursor: pointer" disabled>
+								</a>
+							</td>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center"
+										id="agencia" th:value="${c.dadosb.agencia}"style=" cursor: pointer" disabled>
+								</a>
+							</td>
+							<td>
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+									<input type="text" class="form-control text-center" id="conta"
+										th:value="${c.dadosb.conta}" style=" cursor: pointer" disabled />
+									
+								</a>
+
+
+							</td>
+							
+							
+							
+							
+							
+							
 						</tr>
 
 					</tbody>

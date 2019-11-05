@@ -57,7 +57,7 @@ public class ConvenioController {
 			/* @PathVariable = recupera da url o id enviado pela URL como um path
 			 	o objeto model serve para enviar para a pagina de cadastro o convenio como uma variavel*/ 
 			model.addAttribute("convenio", service.buscarPorId(id));
-			return "/convenio/cadastro";
+			return "/convenio/editar";
 		}
 		
 		@PostMapping("/editar")
