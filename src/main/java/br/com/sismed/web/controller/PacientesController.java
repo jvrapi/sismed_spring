@@ -61,7 +61,7 @@ public class PacientesController {
 	@PostMapping("/editar")
 	public String editar(Paciente paciente) {
 		service.editar(paciente);
-		return "redirect:/pacientes/cadastrar";
+		return "redirect:/pacientes/listar";
 	}
 	
 	@GetMapping("/excluir/{id}")

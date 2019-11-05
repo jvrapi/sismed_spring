@@ -23,6 +23,43 @@
 				});
 			});
 		</script>
+		
+		<script>
+			function executar(botao) {
+				$(botao).remove();
+				$(".classid").remove();
+				$("#div_botao").append("<button class='btn btn-secondary mr-1' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
+				$("#div_botao").append("<button class='btn btn-primary' id='btn_submit' type='submit'>Salvar</button>");
+				$("input").prop("disabled", false);
+				$("select").prop("disabled", false);
+				$('#form').find(':input').each(function(i, elem) {
+				      $(this).data("previous-value", $(this).val());
+				});
+			}
+		</script>
+		
+		<script>
+			function voltar(botao) {
+				$(botao).remove();
+				$("#btn_submit").remove();
+				$("#div_botao").append("<button class='btn btn-primary mr-1' id='btn_editar' type='button' onclick='executar(this)'>Editar</button>");
+				$("#div_botao").append("<button type='button' class='btn btn-danger classid' data-toggle='modal' data-target='#myModal'>Excluir</button>");
+				$("input").prop("disabled", true);
+				$("select").prop("disabled", true);
+				$('#form').find(':input').each(function(i, elem) {
+			        $(this).val($(this).data("previous-value"));
+			    });
+			}
+		</script>
+		
+		<script>
+		$(document).ready(function() {
+			var url = "http://localhost:8080/pacientes/excluir/" + $(".classid").attr('id');
+			$('#ok_confirm').click(function() {
+				document.location.href = url;
+			}); 
+		});
+		</script>
 	</head>
 	
 	<body>
@@ -37,21 +74,26 @@
 		
 			<div class="container" id="cadastroPaciente">
 				<h4>Edição <strong>| Paciente  </strong></h4>
+				
 				<div th:replace="fragmentos/alert"></div>
-				<form th:action="${paciente.id == null} ? @{/pacientes/salvar} : @{/pacientes/editar}" th:object="${paciente}" method="POST">
+				<form th:action="${paciente.id == null} ? @{/pacientes/salvar} : @{/pacientes/editar}" th:object="${paciente}" method="POST" id="form">
+					<div id="div_botao">
+						<button class="btn btn-primary" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+						<button th:id="${paciente.id}" type="button" class="btn btn-danger classid" data-toggle="modal" data-target="#myModal">Excluir</button>
+					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="nome">Nome</label>
 							<input type="text" class="form-control" id="nome" placeholder="Nome do paciente" autofocus="autofocus" th:field="*{nome}" 
-							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
+							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="cpf">CPF</label>
-							<input type="text" class="form-control" id="cpf" placeholder="___.___.___-__" autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99"/>
+							<input type="text" class="form-control" id="cpf" placeholder="___.___.___-__" autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99" disabled/>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="rg">RG</label>
-							<input type="text" class="form-control" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}"/>
+							<input type="text" class="form-control" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}" disabled/>
 						</div>
 					</div>
 					
@@ -59,30 +101,30 @@
 						<div class="form-group col-md-6">
 							<label for="orgao_emissor">Orgao emissor</label>
 							<input type="text" class="form-control" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
-							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
+							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="data_emissao">Data de emissão</label>
-							<input type="date" class="form-control" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}"/>
+							<input type="date" class="form-control" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" disabled/>
 						</div>
 					</div>
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="telefone_fixo">Telefone fixo</label>
-							<input type="text" class="form-control" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}"/>
+							<input type="text" class="form-control" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="telefone_trabalho">Telefone trabalho</label>
-							<input type="text" class="form-control" id="telefone_trabalho" placeholder="Telefone trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}"/>
+							<input type="text" class="form-control" id="telefone_trabalho" placeholder="Telefone trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="celular">Celular</label>
-							<input type="text" class="form-control" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}"/>
+							<input type="text" class="form-control" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}" disabled/>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="sexo">Sexo</label>
-							<select id="estado_civil" class="form-control" th:field="*{sexo}">
+							<select id="estado_civil" class="form-control" th:field="*{sexo}" disabled>
 								<option value="m">MASCULINO</option>
 								<option value="f">FEMININO</option>
 								<option value="nd">NÃO DECLARADO</option>
@@ -93,15 +135,15 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="data_nascimento">Data de nascimento</label>
-							<input type="date" class="form-control" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}"/>
+							<input type="date" class="form-control" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="email">Email</label>
-							<input type="text" class="form-control" id="email" placeholder="Email" autofocus="autofocus" th:field="*{email}"/>
+							<input type="text" class="form-control" id="email" placeholder="Email" autofocus="autofocus" th:field="*{email}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="estado_civil">Estado civil</label>
-							<select id="estado_civil" class="form-control" th:field="*{estado_civil}">
+							<select id="estado_civil" class="form-control" th:field="*{estado_civil}" disabled>
 								<option value="efc">SOLTEIRO(A)</option>
 								<option value="efi">CASADO(A)</option>
 								<option value="emc">DIVORCIADO(A)</option>
@@ -113,7 +155,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="escolaridade">Escolaridade</label>
-							<select id="escolaridade" class="form-control" th:field="*{escolaridade}">
+							<select id="escolaridade" class="form-control" th:field="*{escolaridade}" disabled>
 								<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
 								<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
 								<option value="emc">ENSINO MÉDIO COMPLETO</option>
@@ -126,11 +168,11 @@
 						</div>
 						<div class="form-group col-md-4">
 							<label for="profissao">Profissao</label>
-							<input type="text" class="form-control" id="profissao" placeholder="Profissao" autofocus="autofocus" th:field="*{profissao}"/>
+							<input type="text" class="form-control" id="profissao" placeholder="Profissao" autofocus="autofocus" th:field="*{profissao}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="recomandacao">Recomendação</label>
-							<input type="text" class="form-control" id="recomendacao" placeholder="Recomendacao" autofocus="autofocus" th:field="*{recomendacao}"/>
+							<input type="text" class="form-control" id="recomendacao" placeholder="Recomendacao" autofocus="autofocus" th:field="*{recomendacao}" disabled/>
 						</div>
 					</div>
 					
@@ -139,15 +181,15 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="naturalidade">Naturalidade</label>
-							<input type="text" class="form-control" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}"/>
+							<input type="text" class="form-control" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="nacionalidade">Nacionalidade</label>
-							<input type="text" class="form-control" id="nacionalidade" placeholder="Nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}"/>
+							<input type="text" class="form-control" id="nacionalidade" placeholder="Nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" disabled/>
 						</div>
 						<div class="form-group col-md-4">
 							<label for="situacao">Situação</label>
-							<input type="text" class="form-control" id="situacao" placeholder="Situação" autofocus="autofocus" th:field="*{situacao}"/>
+							<input type="text" class="form-control" id="situacao" placeholder="Situação" autofocus="autofocus" th:field="*{situacao}" disabled/>
 						</div>
 					</div>
 					
@@ -155,7 +197,7 @@
 						
 						<div class="form-group col-md-3">
 							<label for="convenio_id">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{tipo_convenio.convenio}">
+							<select id="convenio_id" class="form-control" th:field="*{tipo_convenio.convenio}" disabled>
 								<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
 							</select>
 						</div>
@@ -163,46 +205,46 @@
 						<div class="form-group col-md-3">
 						<div id="teste">
 							<label for="tipo_convenio_id">Tipo de convenio</label>
-							<select id="tipo_convenio_id" class="form-control my-select" th:field="*{tipo_convenio}">
+							<select id="tipo_convenio_id" class="form-control my-select" th:field="*{tipo_convenio}" disabled>
 								<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.nome} "></option>
 							</select>
 						</div>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="carteira_convenio">Carteira do convenio</label>
-							<input type="text" class="form-control" id="carteira_convenio" placeholder="Carteira do convenio" autofocus="autofocus" th:field="*{carteira_convenio}"/>
+							<input type="text" class="form-control" id="carteira_convenio" placeholder="Carteira do convenio" autofocus="autofocus" th:field="*{carteira_convenio}" disabled/>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="validade">Validade</label>
-							<input type="date" class="form-control" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}"/>
+							<input type="date" class="form-control" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}" disabled/>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="cep">CEP</label> 
-							<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required >
+							<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required  disabled>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="logradouro">Logradouro</label> 
-							<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required >
+							<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required  disabled>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="numero">Número</label>
-							 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" >
+							 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}"  disabled>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="complemento">Complemento</label> 
-							<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" >
+							<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}"  disabled>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="bairro">Bairro</label> 
-							<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required >
+							<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required  disabled>
 						</div>					
 						<div class="form-group col-md-6 ">
 							<label for="cidade">Cidade</label> 
-							<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required >
+							<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required  disabled>
 						</div>
 						<div class="form-group col-md-6 ">
 							<label for="uf">Estado</label> 
-							<select id="uf" class="form-control" th:field="*{endereco.estado}">
+							<select id="uf" class="form-control" th:field="*{endereco.estado}" disabled>
 								<option value="" selected hidden>Selecione</option>
 								<option value="AC">Acre</option>
 								<option value="AL">Alagoas</option>
@@ -235,9 +277,11 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
-					<button class="btn btn-primary float-right" type="submit">Salvar</button>
 				</form>
 			</div>
+			
+			<div th:replace="fragmentos/modal :: modal"></div>
+		
 		</section>
 		
 	</body>
