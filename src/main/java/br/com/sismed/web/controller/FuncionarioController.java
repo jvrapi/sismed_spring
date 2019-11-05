@@ -31,12 +31,6 @@ public class FuncionarioController {
 		return "/funcionario/cadastro";
 	}
 	
-	@GetMapping("/cadastrar_med") 
-	public String cadastrar_med(Funcionario funcionario) {
-		return "/funcionario/cadastro_med";
-	}
-	
-	
 	@PostMapping("/salvar")
 	public String salvar(Funcionario funcionario, RedirectAttributes attr) {
 		attr.addFlashAttribute("success","Funcionario(a) cadastrado(a) com sucesso");
