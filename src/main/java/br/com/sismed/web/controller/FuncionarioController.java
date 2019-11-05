@@ -41,7 +41,7 @@ public class FuncionarioController {
 	@GetMapping("/editar/{id}") 
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("funcionario", service.buscarporId(id));
-		return "/funcionario/cadastro";
+		return "/funcionario/editar";
 	}
 	
 	@PostMapping("/editar")

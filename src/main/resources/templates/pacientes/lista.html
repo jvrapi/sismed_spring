@@ -1,91 +1,77 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 
-<head>
-<meta charset="UTF-8">
-</head>
+	<head>
+		<meta charset="UTF-8">
+	</head>
 
-<body>
-	<section layout:fragment="corpo">
-
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item active" aria-current="page">Pacientes</li>
-			</ol>
-		</nav>
-
-		<nav class="navbar">
-			<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px" href="/pacientes/cadastrar" role="button"> 
-				<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar Paciente</span>
-			</a>
-			<div th:replace="fragmentos/alert"></div>
-		</nav>
-		
-		<br>
-
-		<table class="text-center">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>RG</th>
-					<th>CPF</th>
-					<th>Convênio</th>
-					<th>Tipo Convênio</th>
-					<th>Telefone Fixo</th>
-					<th>Celular</th>
-					<th>Sexo</th>
-				</tr>
-			</thead>
-			<tbody th:each="p : ${paciente}">
-				<tr>
-					<td>
-						<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px" disabled>
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" disabled>
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}" disabled>
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled />
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled />
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" disabled />
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" disabled />
-					</td>
-					<td>
-						<input type="text" class="form-control text-center" id="sexo" th:value="${p.sexo}" disabled />
-					</td>
-					<td>
-						<a class="btn btn-info btn-sm" th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" role="button">
-							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-						</a>
-					</td>
-					<td>
-						<button th:id="${#strings.concat ('/btn_pacientes/excluir/', p.id)}" type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#myModal">
-							<span class="oi oi-circle-x" title="Excluir covenio" aria-hidden="true"></span>
-						</button>
-					</td>
-					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/pacientes/detalhes/{id} (id=${p.id}) }" role="button">
-							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-						</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<br>
-
-		<div th:replace="fragmentos/modal :: modal"></div> 
-	</section>
-
-</body>
+	<body>
+		<section layout:fragment="corpo">
+	
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active" aria-current="page">Pacientes</li>
+				</ol>
+			</nav>
+			
+			<nav class="navbar">
+				<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px" href="/pacientes/cadastrar" role="button"> 
+					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar Paciente</span>
+				</a>
+				<div th:replace="fragmentos/alert"></div>
+			</nav>
+			
+			<br>
+	
+			<table class="text-center">
+				<thead>
+					<tr>
+						<th>Prontuário</th>
+						<th>Nome</th>
+						<th>RG</th>
+						<th>CPF</th>
+						<th>Convênio</th>
+						<th>Tipo Convênio</th>
+						<th>Telefone Fixo</th>
+						<th>Celular</th>
+					</tr>
+				</thead>
+				<tbody th:each="p : ${paciente}">
+					<tr >
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input  type="text" class="form-control text-center" id="id" th:value="${p.id}" style="width:120px; cursor: pointer" disabled></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px; cursor: pointer" disabled></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" style="cursor: pointer" disabled></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}" style="cursor: pointer" disabled></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" style="cursor: pointer" disabled/></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" style="cursor: pointer" disabled/></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" style="cursor: pointer" disabled/></a>
+						</td>
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+							<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" style="cursor: pointer" disabled/></a>
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+	
+			<br>
+	
+			<div th:replace="fragmentos/modal :: modal"></div> 
+		</section>
+	
+	</body>
 
 </html>

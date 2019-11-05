@@ -10,7 +10,7 @@
 				<h2> Lista<strong> | Funcionário(a) </strong></h2>
 			</div>
 			
-			<!-- 
+			
 			<div style="margin-left:45%;margin-top: -3%" >
 				<a class="btn btn-success btn-sm "  href="/funcionario/cadastrar"
 					role="button"> 
@@ -18,8 +18,7 @@
 					<span>Novo(a) Funcionário</span>
 				</a>
 			</div>
-			
-			 -->
+		
 		
 		<div class="container" style="text-align: center;">
 		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
@@ -28,10 +27,10 @@
 		
 		<br><br>
 		
-		<table class="table table-borderless" style="text-align: center;" >
-					<thead class="thead-info" style="text-align: center;">
+		<table class="table table-borderless table-sm" style="text-align: center;" >
+					<thead class="thead-info" style="text-align: center;" >
 						<tr>
-							<th scope="col" >Nº</th>
+							<th scope="col">Nº</th>
 							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
 							<th scope="col">CRM</th>
@@ -57,9 +56,9 @@
 							
 							<td width="20%">
 								<div>
-									
+									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center " id="nome"
-										th:value="${f.nome}" disabled>
+										th:value="${f.nome}" disabled >
 									
 									<div class="invalid-feedback"></div>
 								</div>
