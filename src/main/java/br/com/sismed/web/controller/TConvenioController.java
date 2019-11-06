@@ -30,6 +30,7 @@ public class TConvenioController {
 	@GetMapping("/listar/{id}") // segunda parte do href
 	public String listar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("tconvenio", tservice.ListarTipoConvenio(id));
+		model.addAttribute("convenio", service.buscarPorId(id));
 		return "/tconvenio/lista"; // retorna o caminho do arquivo
 	}
 
@@ -42,9 +43,11 @@ public class TConvenioController {
 
 	@PostMapping("/salvar")
 	public String salvar(TConvenio tconvenio, RedirectAttributes attr) {
+		Long id = tconvenio.getConvenio().getId() ;
+		
 		tservice.salvar(tconvenio);
 		attr.addFlashAttribute("success", "Tipo de Convenio cadastrado com sucesso");
-		return "redirect:/tconvenios/cadastrar";
+		return "redirect:/tconvenios/cadastrar/" + id;
 	}
 
 	@GetMapping("/editar/{id}") // ID do convenio que vem pela URL
