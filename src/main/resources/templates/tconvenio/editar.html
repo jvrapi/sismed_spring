@@ -2,32 +2,42 @@
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
-
+<script type="text/javascript" src="/js/tconvenio/modal.js"></script>
+<script type="text/javascript" src="/js/tconvenio/editar.js"></script>
 </head>
 <body>
 	<section layout:fragment="corpo">
+	<br><br>
 			<div class="container" style="margin-left: 35%;">
 				<div th:replace="fragmentos/alert" class="container"></div>
+				<div th:replace="fragmentos/modal" class="container"></div>
 			</div>
+	
+	
+	
+	
 	
 			<div class="container" id="cadastroConvenio">
 				
 			<form th:action="@{/tconvenios/editar/{id}  (id=${tconvenio.convenio.id}) }" th:object="${tconvenio}" method="POST">
 			
+					<h4  class="text-center">Cadastro<strong> | </strong> <strong th:text="${tconvenio.nome}"> </strong></h4>
+					
+					<br><br>
+					
+					<div  class="btnCRUD float-right" id="div_botao">
+						<button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+						<button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>				
+					</div>
 				
 					<div class="form-group col-md-4 " style="margin-left: 35%;">
 					
 						<label for="nome"> Nome</label>
-						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
+						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
 						
 						<br>
 						
-						
-						
-							
-							
-						
-							<input type="hidden" id="id" th:field="*{convenio.id}"/>
+							<input type="hidden"   class="convenioid" th:id="${tconvenio.convenio.id}"/>
 						
 						
 						<br>
@@ -36,10 +46,10 @@
 					
 				</div>
 				
-			<div  style="margin-left: 30%;">
+			<div  style="margin-left: 38%;">
 				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<a  class="btn btn-secondary form-control col-md-4" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> Voltar</a>
+				
+				<a  class="btn btn-secondary form-group col-md-5" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> Voltar</a>
 				
 			</div>
 			</form>
