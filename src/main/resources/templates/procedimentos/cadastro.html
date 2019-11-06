@@ -6,10 +6,11 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
-
+	<br>
+	
 	<div class="container corpo" id="cadastroTipoConvenio">
 				<div class="container" style="margin-left: 30%;">
-				<br><br>
+				
 					<div th:replace="fragmentos/alert" ></div>
 				</div>
 			
@@ -18,21 +19,27 @@
 				<div class="form-row ">
 					<div class="form-group col-md-4 " style="margin-left: 35%;">
 						<h4>Cadastro <strong>| Procedimento  </strong></h4>
-						
+						<br>
 						<label for="nome"> Nome </label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
-						maxlength="30" >
+						maxlength="30" required>
 						
 						
 						<br>
 						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" >
+						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" required>
 						
 						<br>
-						<label for="Convenio">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{convenio}">
+						<div th:each="c : ${convenio}">
+							<label for="Convenio">Convenio</label>
+							<input type="text" class="form-control" id="valor" name="valor"   th:value="${c.nome}" disabled>
+						</div>
+						
+						
+						
+							<select id="convenio_id" class="form-control" th:field="*{convenio.id}" hidden>
 								
-								<option th:each="c : ${convenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+								<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
 							</select>
 						<br>
 						<input type="hidden" id="id" th:field="*{id}"/>
@@ -41,9 +48,9 @@
 				
 				</div>
 				
-			<div  style="margin-left: 30%;">
+			<div  style="margin-left: 30%;" th:each="c : ${convenio}" >
 				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<input type="button" class="btn btn-secondary form-control col-md-4" onclick="location.href = document.referrer;"  value="Voltar">
+				<a type="button" class="btn btn-secondary form-control col-md-4" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > Voltar</a>
 				
 			</div>
 			

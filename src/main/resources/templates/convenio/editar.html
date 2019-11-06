@@ -33,7 +33,7 @@ $(document).ready(function() {
 			th:object="${convenio}" method="POST">
 			
 				
-					<h4  class="text-center">Cadastro<strong> | </strong> <strong th:text="${convenio.nome}"> </strong></h4>
+					<h2  class="text-center"> <strong th:text="${convenio.nome}"> </strong><strong> | </strong> Informações</h2>
 					
 				<br><br>
 				
@@ -113,8 +113,8 @@ $(document).ready(function() {
 					</a>
 					
 					
-					<a class="btn btn-success " th:href="@{/procedimentos/cadastrar} " role="button"> 
-						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"> </span> 
+					<a class="btn btn-success " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento"> 
+						<span class="oi oi-plus" aria-hidden="true"> </span> 
 						<span> Procedimento</span> 
 					</a>
 							

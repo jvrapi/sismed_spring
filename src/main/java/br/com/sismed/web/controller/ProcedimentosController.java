@@ -32,24 +32,26 @@ public class ProcedimentosController {
 	@Autowired
 	private ConvenioService ConvenioService;
 	
-	@GetMapping("/cadastrar")
-	public String Cadastrar(Procedimento procedimento) {
-		
+	@GetMapping("/cadastrar/{id2}")
+	public String Cadastrar(@PathVariable("id2") Long id, ModelMap model, Procedimento procedimento) {
+		model.addAttribute("convenio", ConvenioService.buscarPorId(id));
 		return "/procedimentos/cadastro";
 	}
 	
 	@GetMapping("/listar/{id}")
 	public String listar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("procedimento", service.ListarProcedimento(id));
+		model.addAttribute("convenio", ConvenioService.buscarPorId(id));
 		System.out.println(id);
 		return "/procedimentos/lista";
 	}
 	
 	@PostMapping("/salvar")
 	public String salvar(Procedimento procedimento, RedirectAttributes attr) {
+		Long id = procedimento.getConvenio().getId();
 		service.salvar(procedimento);
 		attr.addFlashAttribute("success","Procedimento cadastrado com sucesso");
-		return  "redirect:/procedimentos/cadastrar";
+		return  "redirect:/procedimentos/listar/" + id;
 	}
 	
 	@GetMapping("/editar/{id}") //ID do convenio que vem pela URL

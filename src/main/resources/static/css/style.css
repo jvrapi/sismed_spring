@@ -70,3 +70,12 @@ hr { display:none; }
 	margin-right: 3%;
 }
 
+.detalhes
+input{
+	cursor: pointer;
+}
+
+.detalhes
+a{
+	text-decoration: none;
+}

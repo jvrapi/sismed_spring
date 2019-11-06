@@ -47,7 +47,7 @@ public class TConvenioController {
 		
 		tservice.salvar(tconvenio);
 		attr.addFlashAttribute("success", "Tipo de Convenio cadastrado com sucesso");
-		return "redirect:/tconvenios/cadastrar/" + id;
+		return "redirect:/tconvenios/listar/" + id;
 	}
 
 	@GetMapping("/editar/{id}") // ID do convenio que vem pela URL

@@ -23,7 +23,7 @@
 			
 			<br>
 	
-			<table class="text-center">
+			<table class="text-center detalhes">
 				<thead>
 					<tr>
 						<th>Prontuário</th>
@@ -38,28 +38,28 @@
 				</thead>
 				<tbody th:each="p : ${paciente}">
 					<tr >
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input  type="text" class="form-control text-center" id="id" th:value="${p.id}" style="width:120px; cursor: pointer" disabled></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px; cursor: pointer" disabled></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" style="cursor: pointer" disabled></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}" style="cursor: pointer" disabled></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" style="cursor: pointer" disabled/></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" style="cursor: pointer" disabled/></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" style="cursor: pointer" disabled/></a>
 						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" style="text-decoration: none">
+						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
 							<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" style="cursor: pointer" disabled/></a>
 						</td>
 					</tr>

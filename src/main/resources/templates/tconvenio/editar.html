@@ -21,7 +21,7 @@
 				
 			<form th:action="@{/tconvenios/editar/{id}  (id=${tconvenio.convenio.id}) }" th:object="${tconvenio}" method="POST">
 			
-					<h4  class="text-center">Cadastro<strong> | </strong> <strong th:text="${tconvenio.nome}"> </strong></h4>
+					<h4  class="text-center"><strong th:text="${tconvenio.nome} + ' | ' "> </strong> Informações </h4>
 					
 					<br><br>
 					
@@ -33,12 +33,12 @@
 					<div class="form-group col-md-4 " style="margin-left: 35%;">
 					
 						<label for="nome"> Nome</label>
-						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
+						<input type="text" class="form-control" id="nome"  autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
 						
 						<br>
 						
 							<input type="hidden"   class="convenioid" th:id="${tconvenio.convenio.id}"/>
-						
+							<input type="hidden"   th:field="*{convenio.id}"/>
 						
 						<br>
 						
