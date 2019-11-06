@@ -14,8 +14,8 @@
 				</a>
 			</div>
 	
-	<div style="margin-top: 1%;text-align: center">
-				<h2> Lista<strong> | Funcionário(a) </strong></h2>
+	<div style="margin-top: -1%;text-align: center">
+				<h3> Lista<strong> | Funcionário(a) </strong></h3>
 			</div>
 			
 		<div class="container" style="text-align: center;">
@@ -44,7 +44,7 @@
 						<tr>
 						<td width="5%">
 								<div>
-									
+									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="" class="form-control text-center " id="id"
 										th:value="${f.id}" disabled>
 									
