@@ -40,6 +40,33 @@ hr { display:none; }
 	/* Top - Right - bottom - left*/
 }
 
+.w3-container {
+	
+	margin-left:5%;
+	margin-right:5%;
+	margin-top:1.5%;
+	
+}
 
+.form-check{
+	
+	margin-right: 3%;
+	text-align: right;
+	margin-top: -2%;
+}
+.form-check-label{
 
+	margin-right: 2%;
+}
+
+.titulo{
+	
+	margin-top: 1%;
+	margin-left: 5%;
+}
+
+.btn-toolbar{
+	
+	margin-right: 3%;
+}
 

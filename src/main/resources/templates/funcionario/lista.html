@@ -63,8 +63,10 @@
 									<div class="invalid-feedback"></div>
 								</div>
 							</td>
+							
 							<td width="8%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center " id="cpf"
 										th:value="${f.cpf}" disabled>
 									<div class="invalid-feedback"></div>
@@ -73,6 +75,7 @@
 
 							<td width="8%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center"
 										id="crm" th:value="${f.crm}" disabled>
 									<div class="invalid-feedback"></div>
@@ -80,6 +83,7 @@
 							</td>
 							<td width="15%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center" id="especialidade"
 										th:value="${f.especialidade}" disabled />
 									<div class="invalid-feedback"></div>
@@ -88,6 +92,7 @@
 							
 							<td width="8%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center" id="telefone"
 										th:value="${f.telefone}" disabled />
 									<div class="invalid-feedback"></div>
@@ -96,6 +101,7 @@
 							
 							<td width="8%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center" id="celular"
 										th:value="${f.celular}" disabled />
 									<div class="invalid-feedback"></div>
@@ -104,39 +110,18 @@
 					
 							<td width="10%">
 								<div>
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
 									<input type="text" class="form-control text-center" id="email"
 										th:value="${f.email}" disabled />
 									<div class="invalid-feedback"></div>
 								</div>
 							</td>
 				
-				<!--  
-							<td></td>
-					
-							<td style="margin-left: 20px;">
-								<a class="btn btn-info btn-sm botoesCRUD"
-									th:href="@{/funcionario/editar/{id} (id=${f.id}) }" role="button">
-										<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-								</a>
-							</td>
-							
-							<td>
-								<button
-									th:id="${#strings.concat ('/btn_funcionario/excluir/',f.id)}"
-									type="button" class="btn btn-danger btn-sm "
-									data-toggle="modal" data-target="#myModal">
-									<span class="oi oi-circle-x" title="Excluir Funcionario"
-										aria-hidden="true"></span>
-								</button>
-							</td>
-							-->
-							
 						</tr>
 
 					</tbody>
 				</table>
-				
-		
+			
 	</section>
 
 </body>
