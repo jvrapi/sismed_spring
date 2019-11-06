@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 	
 	
-<script type="text/javascript" src="/js/convenio/editar.js"></script>
+
 <script type="text/javascript" src="/js/convenio/modal.js"></script>
+<script type="text/javascript" src="/js/convenio/editar.js"></script>
+
 
 </head>
 <body>
@@ -28,32 +30,28 @@
 				
 				<br>
 				
-				<div style="margin-left:20%;" class="btnCRUD " >
+				<div style="margin-left:20%;" class="btnCRUD float-right" id="div_botao">
 				
-					<a class="btn btn-success btn-sm "  href="/convenios/cadastrar"role="button"> 
-						<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-						<span> Convenio</span>
-					</a>
 					
-					<a class="btn btn-success btn-sm " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio"> 
+					
+					<a class="btn btn-success  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio"> 
 									<span class="oi oi-plus"  aria-hidden="true"> </span> 
 									<span>  Tipo </span> 
 					</a>
 					
 					
-					<a class="btn btn-success btn-sm " th:href="@{/procedimentos/cadastrar} " role="button"> 
+					<a class="btn btn-success " th:href="@{/procedimentos/cadastrar} " role="button"> 
 						<span class="oi oi-plus" title="Cadastro" aria-hidden="true"> </span> 
 						<span> Procedimento</span> 
 					</a>
 							
-					<a class="btn btn-info btn-sm " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio" >Tipos Convenio</a>
+					<a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio" >Tipos Convenio</a>
 					
-					<a class="btn btn-info btn-sm " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
+					<a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
 					
 					
-						<button th:id="${id}" type="button" class="btn btn-sm btn-danger classid " data-toggle="modal" data-target="#myModal">Excluir</button>
-						
-						<button class="btn btn-primary btn-sm " role="button" id="btn_editar" type="button" onclick="executar(this)"> Editar </button>
+					<button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+					<button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
 						
 							
 				</div>
