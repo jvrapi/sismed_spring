@@ -6,20 +6,18 @@
 <body>
 	<section layout:fragment="corpo">
 	
+	<div style="margin-right:auto;margin-top: 1%" >
+				<a class="btn btn-success btn-sm "  href="/funcionario/cadastrar"
+					role="button"> 
+					<span class="oi oi-plus "title="Novo(a) Funcionário(a)" aria-hidden="true"></span>
+					<span>Novo(a) Funcionário(a)</span>
+				</a>
+			</div>
+	
 	<div style="margin-top: 1%;text-align: center">
 				<h2> Lista<strong> | Funcionário(a) </strong></h2>
 			</div>
 			
-			
-			<div style="margin-left:45%;margin-top: -3%" >
-				<a class="btn btn-success btn-sm "  href="/funcionario/cadastrar"
-					role="button"> 
-					<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-					<span>Novo(a) Funcionário</span>
-				</a>
-			</div>
-		
-		
 		<div class="container" style="text-align: center;">
 		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
 		<div th:replace="fragmentos/alert" style="text-align: center"></div>
