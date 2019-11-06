@@ -14,33 +14,33 @@
 		
 		<br>
 			
-		<div style="margin-left: 43%;" th:each="c : ${convenio}">
-				<h2> Tipos Convenios        
+		<div style="margin-left: 45%;" th:each="c : ${convenio}">
+				<h2> <strong th:text = ${c.nome}>  Convenio </strong>        
 				
 				<strong>  | </strong>
-				<strong th:text = ${c.nome}>  Convenio </strong>
 				
+				Tipos
 				
 				
 				</h2>
 		</div>
 			
-		<br>
-		
+		<br><br>
+		<!-- 
 		<div  style="margin-left:49%;" >
 				<label for="nome">Nome</label> 
 		</div>
-			
+			 -->
 			
 			
 			
 		<div style="margin-left: 40%;">
-			<div class="container" th:each="t : ${tconvenio}">
+			<div class="container detalhes" th:each="t : ${tconvenio}">
 					
 				<div class="form-row">
-					<div class="form-group col-md-4">
-						<a  th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" style="text-decoration: none" title="Mostrar informações">
-							<input type="text" class="form-control text-center" id="nome" th:value="${t.nome}" style=" cursor: pointer" disabled>
+					<div class="form-group col-md-4 detalhes">
+						<a  th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" title="Mostrar informações">
+							<input type="text" class="form-control text-center" id="nome" th:value="${t.nome}"  disabled>
 						</a>
 							
 						

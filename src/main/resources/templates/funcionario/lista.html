@@ -25,7 +25,7 @@
 		
 		<br><br>
 		
-		<table class="table table-borderless table-sm" style="text-align: center;" >
+		<table class="table table-borderless table-sm detalhes" style="text-align: center;" >
 					<thead class="thead-info" style="text-align: center;" >
 						<tr>
 							<th scope="col">Nº</th>
@@ -54,7 +54,7 @@
 							
 							<td width="20%">
 								<div>
-									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center " id="nome"
 										th:value="${f.nome}" disabled >
 									
@@ -64,7 +64,7 @@
 							
 							<td width="8%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center " id="cpf"
 										th:value="${f.cpf}" disabled>
 									<div class="invalid-feedback"></div>
@@ -73,7 +73,7 @@
 
 							<td width="8%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center"
 										id="crm" th:value="${f.crm}" disabled>
 									<div class="invalid-feedback"></div>
@@ -81,7 +81,7 @@
 							</td>
 							<td width="15%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center" id="especialidade"
 										th:value="${f.especialidade}" disabled />
 									<div class="invalid-feedback"></div>
@@ -90,7 +90,7 @@
 							
 							<td width="8%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center" id="telefone"
 										th:value="${f.telefone}" disabled />
 									<div class="invalid-feedback"></div>
@@ -99,7 +99,7 @@
 							
 							<td width="8%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center" id="celular"
 										th:value="${f.celular}" disabled />
 									<div class="invalid-feedback"></div>
@@ -108,7 +108,7 @@
 					
 							<td width="10%">
 								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
+								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
 									<input type="text" class="form-control text-center" id="email"
 										th:value="${f.email}" disabled />
 									<div class="invalid-feedback"></div>

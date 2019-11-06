@@ -27,7 +27,7 @@
 		
 <br>
 
-	<table class="text-center" style="margin: auto;" >
+	<table class="text-center detalhes" style="margin: auto;" >
 					<thead>
 						<tr>
 							<th scope="col">Nome</th>
@@ -43,50 +43,50 @@
 						<tr>
 						
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									
 										
 										<input type="text" class="form-control text-center " id="nome"
-											th:value="${c.nome}" style=" cursor: pointer" disabled>
+											th:value="${c.nome}"  disabled>
 								</a>
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center " id="cnpj"
-										th:value="${c.cnpj}" style=" cursor: pointer" disabled>
+										th:value="${c.cnpj}" disabled>
 								</a>
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center" id="ans"
-										th:value="${c.registro_ans}" style=" cursor: pointer" disabled>
+										th:value="${c.registro_ans}"  disabled>
 									
 								</a>
 
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center" id="adesao"
-										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}" style=" cursor: pointer" disabled />
+										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"  disabled />
 								</a>
 
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center" id="banco"
-										th:value="${c.dadosb.banco}" style=" cursor: pointer" disabled>
+										th:value="${c.dadosb.banco}"  disabled>
 								</a>
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center"
-										id="agencia" th:value="${c.dadosb.agencia}"style=" cursor: pointer" disabled>
+										id="agencia" th:value="${c.dadosb.agencia}" disabled>
 								</a>
 							</td>
 							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações" style="text-decoration: none" >
+								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
 									<input type="text" class="form-control text-center" id="conta"
-										th:value="${c.dadosb.conta}" style=" cursor: pointer" disabled />
+										th:value="${c.dadosb.conta}"  disabled />
 									
 								</a>
 

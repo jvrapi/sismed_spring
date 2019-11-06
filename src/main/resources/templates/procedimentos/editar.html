@@ -2,12 +2,13 @@
 <html layout:decorate = "~{layout}">
 <head>
 <meta charset="UTF-8">
-
+<script type="text/javascript" src="/js/procedimento/modal.js"></script>
+<script type="text/javascript" src="/js/procedimento/editar.js"></script>
 </head>
 <body>
 <section layout:fragment = "corpo">
 
-	<div class="container corpo" id="cadastroTipoConvenio">
+	<div class="container " id="cadastroTipoConvenio">
 				<div class="container" style="margin-left: 30%;">
 				<br><br>
 					<div th:replace="fragmentos/alert" ></div>
@@ -15,31 +16,38 @@
 			
 			<form th:action=" @{/procedimentos/editar/{id} (id=${procedimento.convenio.id}) } " th:object="${procedimento}" method="POST">
 			
-				<div class="form-row ">
-					<div class="form-group col-md-4 " style="margin-left: 35%;">
-						<h4>Cadastro <strong>| Procedimento </strong></h4>
-						
-						<label for="nome"> Nome </label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
-						maxlength="30" >
-						
-						
-						<br>
-						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" >
-						
-						<br>
-						<input type="hidden" id="id" th:field="*{convenio.id}"/>
-						
+				<h4  class="text-center"><strong th:text="${procedimento.descricao} + ' | ' "> </strong> Informações </h4>
+				
+				<br><br>
+				
+					<div  class="btnCRUD float-right" id="div_botao" >
+						<button th:id="${procedimento.id}" type="button" class="btn btn-danger classid " data-toggle="modal" data-target="#myModal">Excluir</button>
+						<button class="btn btn-primary  mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>				
 					</div>
 				
+				<br><br>
+				<div class="form-row" style="margin-left: 26%;">
+					<div class="form-group col-md-4 ">
+							<label for="descricao">Descrição</label>
+							<input type="text" class="form-control text-center" id="nome" th:field="*{descricao}" disabled>
+							
+						<div class="invalid-feedback"></div>
+					</div>
+
+					<div class="form-group col-md-4 ">
+							<label for="valor">Valor</label>
+							<input type="text" class="form-control text-center" id="valor" th:field="*{valor}"  disabled>
+					
+						<div class="invalid-feedback"></div>
+					</div>
+					
+					<input type="hidden"   class="convenioid" th:id="${procedimento.convenio.id}"/>
+					<input type="hidden" id="id" th:field="*{id}"/>
+					
+					<input type="hidden"   th:field="*{convenio.id}"/>
+
 				</div>
-				<div  style="margin-left: 30%;">
-				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<a  class="btn btn-secondary form-control col-md-4" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> Voltar</a>
 				
-			</div>
 			
 			</form>
 		
