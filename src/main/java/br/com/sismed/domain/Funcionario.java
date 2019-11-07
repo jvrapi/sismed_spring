@@ -20,61 +20,61 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name="sismed_funcionario")
 public class Funcionario extends AbstractEntity<Long> {
 	
-	@Column(name="nome", nullable=false, length=40)
+	@Column(name="nome", nullable=false)
 	private String nome;
 	
-	@Column(name="cpf", nullable=false, length=12)
+	@Column(name="cpf", nullable=false)
 	private String cpf;
 	
-	@Column(name="rg", nullable=false, length=10)
+	@Column(name="rg", nullable=false)
 	private String rg;
 	
-	@Column(name="orgao_emissor", nullable=false, length=30)
+	@Column(name="orgao_emissor", nullable=false)
 	private String orgao_emissor;
 	
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name="data_emissao", nullable=false, length=10)
+	@Column(name="data_emissao", nullable=false)
 	private LocalDate data_emissao;
 	
-	@Column(name="crm", nullable=true, length=10)
+	@Column(name="crm", nullable=true)
 	private String crm;
 	
-	@Column(name="especialidade", nullable=true, length=45)
+	@Column(name="especialidade", nullable=true)
 	private String especialidade;
 	
-	@Column(name="telefone", nullable=false, length=15)
-	private String telefone;
+	@Column(name="telefone_fixo", nullable=false)
+	private String telefone_fixo;
 	
-	@Column(name="celular", nullable=false, length=15)
+	@Column(name="celular", nullable=false)
 	private String celular;
 	
-	@Column(name="sexo", nullable=false, length=15)
+	@Column(name="sexo", nullable=false)
 	private String sexo;
 	
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name="data_nascimento", nullable=false, length=10)
+	@Column(name="data_nascimento", nullable=false)
 	private LocalDate data_nascimento;
 	
-	@Column(name="email", nullable=false, length=30)
+	@Column(name="email", nullable=false)
 	private String email;
 	
-	@Column(name="estado_civil", nullable=false, length=20)
+	@Column(name="estado_civil", nullable=false)
 	private String estado_civil;
 	
-	@Column(name="escolaridade", nullable=false, length=45)
+	@Column(name="escolaridade", nullable=false)
 	private String escolaridade;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
-	@Column(name="naturalidade", nullable=false, length=45)
+	@Column(name="naturalidade", nullable=false)
 	private String naturalidade;
 	
 	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
 	
-	@Column(name="nivel_acesso", nullable=false, length=4)
+	@Column(name="nivel_acesso", nullable=false)
 	private Long nivel_acesso;
 	
 	
@@ -120,11 +120,11 @@ public class Funcionario extends AbstractEntity<Long> {
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
-	public String getTelefone() {
-		return telefone;
+	public String getTelefone_fixo() {
+		return telefone_fixo;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone_fixo(String telefone_fixo) {
+		this.telefone_fixo = telefone_fixo;
 	}
 	public String getCelular() {
 		return celular;

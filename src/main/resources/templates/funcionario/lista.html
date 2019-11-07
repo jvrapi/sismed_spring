@@ -14,18 +14,18 @@
 				</a>
 			</div>
 	
-	<div style="margin-top: -1%;text-align: center">
+	<div style="margin-top: -1%;text-align: center;">
 				<h3> Lista<strong> | Funcionário(a) </strong></h3>
 			</div>
 			
 		<div class="container" style="text-align: center;">
-		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
-		<div th:replace="fragmentos/alert" style="text-align: center"></div>
+		<div  th:replace="fragmentos/modal :: modal"></div>
+		<div th:replace="fragmentos/alert" ></div>
 		</div>
 		
 		<br><br>
 		
-		<table class="table table-borderless table-sm detalhes" style="text-align: center;" >
+		<table class="table table-borderless table-sm detalhes" style="text-align: center; text-transform: uppercase;" >
 					<thead class="thead-info" style="text-align: center;" >
 						<tr>
 							<th scope="col">Nº</th>
@@ -91,8 +91,8 @@
 							<td width="8%">
 								<div>
 								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center" id="telefone"
-										th:value="${f.telefone}" disabled />
+									<input type="text" class="form-control text-center" id="telefone_fixo"
+										th:value="${f.telefone_fixo}" disabled />
 									<div class="invalid-feedback"></div>
 								</div>
 							</td>
@@ -119,6 +119,21 @@
 
 					</tbody>
 				</table>
+				
+		<nav aria-label="paginacao">
+  			<ul class="pagination justify-content-center pagination-md">
+    			<li class="page-item disabled">
+      				<a class="page-link" href="/funcionario/listar" tabindex="-1">Anterior</a>
+    			</li>
+    			<li class="page-item"><a class="page-link" href="#">1</a></li>
+    			<li class="page-item"><a class="page-link" href="#">2</a></li>
+    			<li class="page-item"><a class="page-link" href="#">3</a></li>
+    			<li class="page-item">
+      				<a class="page-link" href="#">Próximo</a>
+    			</li>
+  			</ul>
+		</nav>
+				
 			
 	</section>
 

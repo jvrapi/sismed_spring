@@ -33,7 +33,7 @@
 					<label class="form-check-label" for="exampleRadios2">Médico</label>
 				</div>
 			
-		<div class="w3-container w3-teal" id="cadastroFuncionario">
+		<div class="w3-container w3-teal" id="cadastroFuncionario" style="text-transform: uppercase;">
 		
 		<br>
 			<form
@@ -44,46 +44,46 @@
 		
 				<div class="form-row ">
 
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4" >
 						<label for="nome"> Nome</label> <input type="text"
 							class="form-control" id="nome" placeholder="nome"
-							autofocus="autofocus" th:field="*{nome}" style="text-transform: uppercase;" maxlength="40"> <br>
+							autofocus="autofocus" th:field="*{nome}" maxlength="40" required > <br>
 					</div>
 					
 					<div class="form-group col-md-1 ">
 						<label for="cpf"> CPF</label> <input type="text"
-							class="form-control" id="cpf" name="cpf" placeholder="cpf"
-							autofocus="autofocus" th:field="*{cpf}"> <br>
+							class="form-control" id="cpf" name="cpf" placeholder="CPF"
+							autofocus="autofocus" th:field="*{cpf}" required> <br>
 					</div>
 					
 					<div class="form-group col-md-1 ">
 						<label for="rg"> RG</label> <input type="text"
 							class="form-control" id="rg" name="rg" placeholder="RG"
-							autofocus="autofocus" th:field="*{rg}"> <br>
+							autofocus="autofocus" th:field="*{rg}" required> <br>
 					</div>
 					
 					<div class="form-group col-md-1 ">
 						<label for="orgao_emissor">Orgão Emissor</label> <input
 							type="text" class="form-control" id="orgao_emissor"
-							placeholder="emissor" autofocus="autofocus"
-							th:field="*{orgao_emissor}" style="text-transform: uppercase;" maxlength="8"> <br>
+							placeholder="emissor" autofocus="autofocus" 
+							th:field="*{orgao_emissor}" maxlength="8" required> <br>
 					</div>
 					
-						<div class="form-group col-md-1">
+						<div class="form-group col-md-1,2" >
 						<label for="data_emissao"> Data de Emissão</label> <input
 							type="date" class="form-control" id="data_emissao"
 							placeholder="data de emissao" autofocus="autofocus"
-							th:field="*{data_emissao}"> <br>
+							th:field="*{data_emissao}" required> <br>
 					</div>
 					
-					<div class="form-group col-md-1">
+					<div class="form-group col-md-1,2">
 						<label for="data_nascimento">Nascimento</label> <input
 							type="date" class="form-control" id="data_nascimento"
 							placeholder="DATA DE NASCIMENTO" autofocus="autofocus"
-							th:field="*{data_nascimento}"> <br>
+							th:field="*{data_nascimento}" required> <br>
 					</div>
 					
-					<div class="form-group col-md-2 ">
+					<div class="form-group col-md-1 " style="font-size: 15px">
 						<label for="sexo"> Sexo</label> 
 				<select id="estado_civil" class="form-control" th:field="*{sexo}">
 							
@@ -93,9 +93,9 @@
 						</select>
 				</div>
 				
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-1,6">
 						<label for="estado_civil"> Estado Civil</label>
-							<select id="estado_civil" class="form-control" th:field="*{estado_civil}">
+							<select id="estado_civil" class="form-control" th:field="*{estado_civil}" style="font-size: 15px">
 						
 						<option value="SOLTEIRO(A)">SOLTEIRO(A)</option>
 							<option value="CASADO(A)">CASADO(A)</option>
@@ -112,37 +112,34 @@
 				
 				    <div class="form-group col-md-3">
 						<label for="naturalidade"> Naturalidade</label> <input type="text"
-							class="form-control" id="naturalidade" placeholder="naturalidade"
-							autofocus="autofocus" th:field="*{naturalidade}" style="text-transform: uppercase;" maxlength="30"> <br>
+							class="form-control" id="naturalidade" placeholder="NATURALIDADE"
+							autofocus="autofocus" th:field="*{naturalidade}" style="text-transform: uppercase;" maxlength="30" required> <br>
 					</div>
 				  
 				  <div class="form-group col-md-2">
 						<label for="nacionalidade"> Nacionalidade</label> 
-						
-						<input
-							type="text" class="form-control" id="nacionalidade"
-							autofocus="autofocus" placeholder="nacionalidade"
-							th:field="*{nacionalidade}" style="text-transform: uppercase;" >
-						 
-						 <br>
+				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}">
+							<option value="BRASILEIRA">BRASILEIRA</option>
+							<option value="ESTRANGEIRA">ESTRANGEIRA</option>
+					</select>
 					</div>
 					
 					<div class="form-group col-md-2 ">
 						<label for="telefone"> Telefone</label> <input type="text"
-							class="form-control" id="telefone" placeholder="TELEFONE"
-							autofocus="autofocus" th:field="*{telefone}" maxlength="13"> <br>
+							class="form-control" id="telefone_fixo" placeholder="TELEFONE"
+							autofocus="autofocus" th:field="*{telefone_fixo}" maxlength="13" required> <br>
 					</div>
 					
 						<div class="form-group col-md-2 ">
 						<label for="celular"> Celular</label> <input type="text"
 							class="form-control" id="celular" placeholder="CELULAR"
-							autofocus="autofocus" th:field="*{celular}"> <br>
+							autofocus="autofocus" th:field="*{celular}" required> <br>
 					</div>
 					
 					<div class="form-group col-md-3">
 						<label for="email"> Email</label> <input type="text"
 							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;" maxlength="30"> <br>
+							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;" maxlength="30" required> <br>
 					</div>
 				
 					</div>
@@ -153,27 +150,27 @@
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled> <br>
+							th:field="*{especialidade}" style="text-transform: uppercase;" disabled required> <br>
 					</div>
 
 							<div class="form-group col-md-2 ">
 						<label for="crm"> CRM</label> <input type="text"
 							class="form-control" id="crm" placeholder="CRM"
-							autofocus="autofocus" th:field="*{crm}" disabled> <br>
+							autofocus="autofocus" th:field="*{crm}" disabled required> <br>
 					</div>
 					
 					<div class="form-group col-md-4 ">
 						<label for="escolaridade"> Escolaridade</label> <div class="input-group-prepend">
 				   <select id="escolaridade" class="form-control" th:field="*{escolaridade}">
 							
-							<option value="d">DOUTORADO</option>
-							<option value="m">MESTRADO</option>
-							<option value="esc">ENSINO SUPERIOR COMPLETO</option>
-							<option value="esi">ENSINO SUPERIOR INCOMPLETO</option>
-							<option value="emc">ENSINO MÉDIO COMPLETO</option>
-							<option value="emi">ENSINO MÉDIO INCOMPLETO</option>
-							<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
-							<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
+							<option value="DOUTORADO">DOUTORADO</option>
+							<option value="MESTRADO">MESTRADO</option>
+							<option value="ENSINO SUPERIOR COMPLETO">ENSINO SUPERIOR COMPLETO</option>
+							<option value="ENSINO SUPERIOR INCOMPLETO">ENSINO SUPERIOR INCOMPLETO</option>
+							<option value="ENSINO MÉDIO COMPLETO">ENSINO MÉDIO COMPLETO</option>
+							<option value="ENSINO MÉDIO INCOMPLETO">ENSINO MÉDIO INCOMPLETO</option>
+							<option value="ENSINO FUNDAMENTAL COMPLETO">ENSINO FUNDAMENTAL COMPLETO</option>
+							<option value="ENSINO FUNDAMENTAL INCOMPLETO">ENSINO FUNDAMENTAL INCOMPLETO</option>
 						
 						</select>
 					</div>
@@ -196,7 +193,7 @@
 
 					<div class="form-group col-md-1">
 						<label for="numero">Número</label>
-						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" placeholder="NÚMERO">
+						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" placeholder="NÚMERO" required>
 					</div>
 
 					<div class="form-group col-md-4 ">
@@ -266,15 +263,9 @@
 			</form>
 
 		</div>
-
+		
 	</section>
 	
-	<script type="text/javascript"> 
-							
-							var a = document.getElementById("nacionalidade"); a.value = "BRASILEIRA";
-							
-							</script> 
-
 </body>
 </html>
 
