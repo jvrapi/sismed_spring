@@ -20,7 +20,7 @@ public class TConvenioDaoImpl extends AbstractDao<TConvenio, Long> implements TC
 	private EntityManager entityManager;
 
 	public List<TConvenio> ListarTipoConvenio(Long id){
-		Query query = entityManager.createNativeQuery("SELECT tc.id,tc.nome, tc.convenio_id" + " FROM sismed_convenio c " 
+		Query query = entityManager.createNativeQuery("SELECT tc.id,tc.nome, tc.convenio_id " + " FROM sismed_convenio c " 
 				+ " INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id WHERE c.id = ?1 ORDER BY tc.nome",TConvenio.class).setParameter(1, id);
 		List<TConvenio> resultlist = query.getResultList();
 		return resultlist;

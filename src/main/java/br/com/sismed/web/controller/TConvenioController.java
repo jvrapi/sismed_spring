@@ -61,11 +61,12 @@ public class TConvenioController {
 		return "/tconvenio/editar";
 	}
 
-	@PostMapping("/editar/{id}")
-	public String editar(@PathVariable("id") Long id,TConvenio tconvenio, RedirectAttributes attr) {
+	@PostMapping("/editar")
+	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
+		Long id = tconvenio.getId();
 		tservice.editar(tconvenio);
 		attr.addFlashAttribute("success", "Tipo de Convenio editado com sucesso");
-		return "redirect:/tconvenios/listar/" + id;
+		return "redirect:/tconvenios/editar/" + id;
 	}
 
 	@GetMapping("/excluir/{id}/{id2}")

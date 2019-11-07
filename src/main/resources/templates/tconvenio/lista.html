@@ -12,9 +12,9 @@
 				<div th:replace="fragmentos/modal :: modal"></div>
 		</div>
 		
-		<br>
+		
 			
-		<div style="margin-left: 45%;" th:each="c : ${convenio}">
+		<div style="margin-left: 43%;" th:each="c : ${convenio}">
 				<h2> <strong th:text = ${c.nome}>  Convenio </strong>        
 				
 				<strong>  | </strong>
@@ -35,7 +35,7 @@
 			
 			
 		<div style="margin-left: 40%;">
-			<div class="container detalhes" th:each="t : ${tconvenio}">
+			<div class="container detalhes mx-auto" th:each="t : ${tconvenio}">
 					
 				<div class="form-row">
 					<div class="form-group col-md-4 detalhes">

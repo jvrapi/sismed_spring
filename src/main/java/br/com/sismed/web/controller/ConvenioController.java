@@ -49,7 +49,7 @@ public class ConvenioController {
 		public String salvar(Convenio convenio, RedirectAttributes attr) {
 			service.salvar(convenio);
 			attr.addFlashAttribute("success","Convenio cadastrado com sucesso");
-			return  "redirect:/convenios/cadastrar";
+			return  "redirect:/convenios/listar";
 		}
 		
 		@GetMapping("/editar/{id}") //ID do convenio que vem pela URL
@@ -62,9 +62,10 @@ public class ConvenioController {
 		
 		@PostMapping("/editar")
 		public String editar(Convenio convenio, RedirectAttributes attr) {
+			Long id = convenio.getId();
 			service.editar(convenio);
 			attr.addFlashAttribute("success","Convenio editado com sucesso");
-			return "redirect:/convenios/listar";
+			return "redirect:/convenios/editar/" + id;
 		}
 		
 		

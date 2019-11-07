@@ -19,10 +19,10 @@
 	
 			<div class="container" id="cadastroConvenio">
 				
-			<form th:action="@{/tconvenios/editar/{id}  (id=${tconvenio.convenio.id}) }" th:object="${tconvenio}" method="POST">
-			
+			<form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
+				<div class="mx-auto titulo">
 					<h4  class="text-center"><strong th:text="${tconvenio.nome} + ' | ' "> </strong> Informações </h4>
-					
+				</div>
 					<br><br>
 					
 					<div  class="btnCRUD float-right" id="div_botao">

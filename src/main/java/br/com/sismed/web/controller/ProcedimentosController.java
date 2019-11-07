@@ -62,11 +62,12 @@ public class ProcedimentosController {
 		return "/procedimentos/editar";
 	}
 	
-	@PostMapping("/editar/{id}")
-	public String editar(@PathVariable("id") Long id,Procedimento procedimentos, RedirectAttributes attr) {
+	@PostMapping("/editar")
+	public String editar(Procedimento procedimentos, RedirectAttributes attr) {
+		Long id = procedimentos.getId();
 		service.editar(procedimentos);
 		attr.addFlashAttribute("success","Procedimento editado com sucesso");
-		return "redirect:/procedimentos/listar/" + id;
+		return "redirect:/procedimentos/editar/" + id;
 	}
 	
 	

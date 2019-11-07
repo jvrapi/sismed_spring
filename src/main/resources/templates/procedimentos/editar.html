@@ -7,29 +7,31 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
-
+	<br>
 	<div class="container " id="cadastroTipoConvenio">
 				<div class="container" style="margin-left: 30%;">
 				<br><br>
 					<div th:replace="fragmentos/alert" ></div>
+					<div th:replace="fragmentos/modal" ></div>
 				</div>
 			
-			<form th:action=" @{/procedimentos/editar/{id} (id=${procedimento.convenio.id}) } " th:object="${procedimento}" method="POST">
+			<form th:action=" @{/procedimentos/editar } " th:object="${procedimento}" method="POST">
 			
 				<h4  class="text-center"><strong th:text="${procedimento.descricao} + ' | ' "> </strong> Informações </h4>
 				
 				<br><br>
 				
 					<div  class="btnCRUD float-right" id="div_botao" >
-						<button th:id="${procedimento.id}" type="button" class="btn btn-danger classid " data-toggle="modal" data-target="#myModal">Excluir</button>
-						<button class="btn btn-primary  mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>				
+						
+						<button class="btn btn-primary  mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>	
+						<button th:id="${procedimento.id}" type="button" class="btn btn-danger classid " data-toggle="modal" data-target="#myModal">Excluir</button>			
 					</div>
 				
 				<br><br>
 				<div class="form-row" style="margin-left: 26%;">
 					<div class="form-group col-md-4 ">
 							<label for="descricao">Descrição</label>
-							<input type="text" class="form-control text-center" id="nome" th:field="*{descricao}" disabled>
+							<input type="text" class="form-control text-center" id="nome" th:field="*{descricao}" onkeyup="maiuscula(this)" disabled>
 							
 						<div class="invalid-feedback"></div>
 					</div>
@@ -48,6 +50,11 @@
 
 				</div>
 				
+				
+				<br>
+				<div  style="margin-left: 38%;">
+					<a  class="btn btn-secondary form-group col-md-5" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> Voltar</a>
+				</div>
 			
 			</form>
 		

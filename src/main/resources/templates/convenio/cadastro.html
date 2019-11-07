@@ -17,7 +17,9 @@
 			<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
 			th:object="${convenio}" method="POST">
 			
-			<h4 class="text-center">Cadastro <strong>| Convenio  </strong></h4>
+			<div class="mx-auto titulo">
+				<h4 >Cadastro <strong>| Convenio  </strong></h4>
+			</div>
 			<br><br>
 			
 				<div class="form-row" style="margin-left: 20%;">
@@ -75,6 +77,7 @@
 						
 				</div>
 				
+				<br><br>
 			<div  style="margin-left: 30%;">
 				<input type="hidden" id="id" th:field="*{id}"/>
 				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
