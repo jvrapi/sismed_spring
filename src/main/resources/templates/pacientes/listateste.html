@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="/css/style2.css" rel="stylesheet" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,900' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <a><h3>SisMed</h3></a>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-home" style="margin-right: 15px;"></i> Início</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-calendar-alt" style="margin-right: 15px;"></i> Agenda</a>
+                </li>
+                <li class="active">
+                    <a href="pacientes/listar" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-user" style="margin-right: 15px; color: #0087cd;"></i> Pacientes</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Page 3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-user-md" style="margin-right: 15px;"></i> Funcionários</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-notes-medical" style="margin-right: 18px;"></i>Convênios</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-file-medical" style="margin-right: 18px;"></i>Regsitro Clínico</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-vial" style="margin-right: 15px;"></i>Laboratórios</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-briefcase-medical" style="margin-right: 15px;"></i>Exames</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fas fa-stream" style="margin-right: 15px;"></i>Relatório</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+              <div class="dropdown">
+                <a class="dropbtn" data-toggle="dropdown" href="#">
+  								<i class="fa fa-plus fa-fw"></i>Novo
+                </a>
+                <div class="dropdown-content">
+                  <a href="#">Agendamento</a>
+                  <a href="/pacientes/cadastrar">Paciente</a>
+                  <a href="#">Funcionário</a>
+                  <a href="#">Convênio</a>
+                  <a href="#">Exame</a>
+                  <a href="#">Laboratório</a>
+                </div>
+              </div>
+              <div id="divBusca">
+                <input type="text" id="txtBusca" placeholder="Buscar..."/>
+                <button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
+              </div>
+              <ul class="nav navbar-nav" style="margin-left: 900px; color: #fff">
+                <li><p class="a mr-4" style="color: #fff; margin-bottom: 0px; font-size: 1em;">Bem vindo, Leonardo</p></li>
+                <li style="margin-top: 2px;"><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+              </ul>
+            </div>
+          </nav>
+          
+          <div class="container-fluid" style="width: 98%">
+            <h3 style="display: inline; margin-left: 10px;">Lista | <strong>Pacientes</strong></h3>
+            <a class="btn btn-success float-right"  href="/pacientes/cadastrar"role="button" style="margin-right: 10px;">
+              <i class="fas fa-plus"></i> Novo Paciente</a>
+
+          <div class="card" style="margin-top: 25px; padding: 0px;">
+            <div class="card-body">
+              <table class="table table-borderless">
+        				<thead>
+        					<tr style="color: #5d6266; font-size: 1em;">
+        						<th>Prontuário</th>
+        						<th>Nome</th>
+        						<th>RG</th>
+        						<th>CPF</th>
+        						<th>Convênio</th>
+        						<th>Tipo Convênio</th>
+        						<th>Telefone Fixo</th>
+        						<th>Celular</th>
+        					</tr>
+        				</thead>
+        				<tbody th:each="p : ${paciente}">
+                  			<tr class="conteudo" style="font-size: 1em;">
+        						<td style="width: 110px;"> <a th:text="${p.id}"></a>
+        						</td>
+        						<td style="width: 350px;"> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" th:text="${p.nome}"></a>
+        						</td>
+        						<td> <a th:text="${p.rg}"></a>
+        						</td>
+        						<td> <a th:text="${p.cpf}"></a>
+        						</td>
+        						<td> <a th:text="${p.tipo_convenio.convenio.nome}"/></a>
+        						</td>
+        						<td> <a th:text="${p.tipo_convenio.nome}"/></a>
+        						</td>
+        						<td> <a th:text="${p.telefone_fixo}"/></a>
+        						</td>
+        						<td> <a th:text="${p.celular}"/></a>
+        						</td>
+        					</tr>
+        				</tbody>
+
+        			</table>
+            </div>
+          </div>
+          </div>
+		</div>
+        </div>
+   
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>

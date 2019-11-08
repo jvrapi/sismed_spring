@@ -14,16 +14,21 @@
 				</ol>
 			</nav>
 			
-			<nav class="navbar">
-				<a class="btn btn btn-md" style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px" href="/pacientes/cadastrar" role="button"> 
-					<span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar Paciente</span>
+			<div class="w3-container w3-teal">
+				<h2 style="display: inline"> Lista<strong> | Pacientes </strong></h2>
+				<a class="btn btn-success btn-sm float-right"  href="/pacientes/cadastrar"role="button"> 
+					<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
+					<span> Paciente</span>
 				</a>
-				<div th:replace="fragmentos/alert"></div>
-			</nav>
+			</div>
+			
+			<div class="mx-auto titulo" >
+				
+			</div>
 			
 			<br>
 	
-			<table class="text-center detalhes">
+			<table class="text-center detalhes" style="margin: auto;">
 				<thead>
 					<tr>
 						<th>Prontuário</th>
@@ -37,30 +42,30 @@
 					</tr>
 				</thead>
 				<tbody th:each="p : ${paciente}">
-					<tr >
+					<tr id="tr-conteudo">
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input  type="text" class="form-control text-center" id="id" th:value="${p.id}" style="width:120px; cursor: pointer" disabled></a>
+							<input  type="text" class="form-control text-center" id="id" th:value="${p.id}" style="width:120px" disabled></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px; cursor: pointer" disabled></a>
+							<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px" disabled></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" style="cursor: pointer" disabled></a>
+							<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" disabled></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}" style="cursor: pointer" disabled></a>
+							<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}"  disabled></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" style="cursor: pointer" disabled/></a>
+							<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" style="cursor: pointer" disabled/></a>
+							<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" style="cursor: pointer" disabled/></a>
+							<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" disabled/></a>
 						</td>
 						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" style="cursor: pointer" disabled/></a>
+							<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" disabled/></a>
 						</td>
 					</tr>
 				</tbody>

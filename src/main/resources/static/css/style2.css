@@ -1,0 +1,232 @@
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3f3f3;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 10px 10px;
+    background: #0087cd;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 25px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0.2, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 180px;
+    max-width: 180px;
+    background: #fff;
+    color: gray;
+    box-shadow: 10px 1px 10px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+}
+
+#sidebar .sidebar-header {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+#sidebar ul.components {
+    padding: 4px 0;
+}
+
+#sidebar ul li a {
+    padding: 15px 20px;
+    font-size: 0.9em;
+    display: block;
+    margin-left: 0px;
+    color: #5d6266;
+}
+
+#sidebar ul li a:hover {
+    background: #eee;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #5d6266;
+    font-weight: bold;
+    background: #eee;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+#divBusca{
+  background-color:#fff;
+  border-radius:3px;
+  width:405px;
+  height: 35px;
+  margin-left: 50px;
+}
+
+#txtBusca{
+  float:left;
+  background-color:transparent;
+  padding-left:5px;
+  font-size:13px;
+  border:none;
+  height:25px;
+  width:350px;
+  margin:5px 5px;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
+#btn_search {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+  color: gray;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+#content {
+    width: 100%;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+
+
+.dropbtn {
+  background-color: inherit;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-top: 15px;
+}
+
+.dropdown-content a {
+  color: #5d6266;
+  padding: 12px 16px;
+  font-size: 0.9em;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #eee;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {color: white ;background: #007fc1;}
+
+tr.conteudo:hover {
+    box-shadow: -2px 2px 10px 0px rgba(0,0,0,0.3);
+}

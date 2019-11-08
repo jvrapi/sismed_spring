@@ -36,12 +36,12 @@ public class PacientesController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("paciente", service.buscarTodos());
-		return "/pacientes/lista";
+		return "/pacientes/listateste";
 	}
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Paciente paciente) {
-		return "/pacientes/cadastro";
+		return "/pacientes/cadastroteste";
 	}
 	
 	@PostMapping("/salvar")
@@ -55,7 +55,7 @@ public class PacientesController {
 	public String preEditar(@PathVariable("id") Long id, @PathVariable("cid") Long cid, ModelMap model) {
 		model.addAttribute("paciente", service.buscarporId(id));
 		model.addAttribute("tipoconvenio", tipoConvenioService.ListaComboBox(cid));
-		return "pacientes/editar";
+		return "pacientes/editarteste";
 	}
 	
 	@PostMapping("/editar")
