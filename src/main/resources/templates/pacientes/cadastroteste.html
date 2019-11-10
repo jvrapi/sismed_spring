@@ -98,7 +98,7 @@
               </ul>
             </div>
           </nav>
-          
+         </div>
           <div class="container-fluid" style="width: 98%">
           	<!-- <a href="/pacientes/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a> -->
             <h3 style="display: inline; margin-left: 10px;">Cadastro | <strong>Paciente</strong></h3>
@@ -243,11 +243,11 @@
 					<div class="form-row"> 
 						<div class="form-group col-md-1">
 							<label for="cep">CEP</label> 
-							<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required >
+							<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}"  >
 						</div>
 						<div class="form-group col-md-6">
 							<label for="logradouro">Logradouro</label> 
-							<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" required >
+							<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)"  >
 						</div>
 						<div class="form-group col-md-1">
 							<label for="numero">Número</label>
@@ -262,11 +262,11 @@
 					<div class="form-row"> 
 						<div class="form-group col-md-5">
 							<label for="bairro">Bairro</label> 
-							<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required >
+							<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}"  >
 						</div>
 						<div class="form-group col-md-5 ">
 							<label for="cidade">Cidade</label> 
-							<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required >
+							<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}" >
 						</div>
 						<div class="form-group col-md-2 ">
 							<label for="uf">Estado</label> 
@@ -309,7 +309,7 @@
           </div>
           </div>
 		</div>
-        </div>
+     
    
 
 	

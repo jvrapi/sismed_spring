@@ -5,107 +5,56 @@
 
 </head>
 <body>
-	<section layout:fragment="corpo">
-		<br>
-				
-		<div class="container" style="margin-left: 35%;">
-			<div th:replace="fragmentos/alert"></div>
-			<div th:replace="fragmentos/modal :: modal"></div>
-		</div>
-		
-		<div style="margin-left: 45%;">
-				<h2> Lista<strong> | Convenios </strong></h2>
-			</div>
-			<br><br>
-			<div class="mx-auto titulo" >
-				<a class="btn btn-success btn-sm "  href="/convenios/cadastrar"role="button"> 
-						<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-						<span> Convenio</span>
-					</a>
-			</div>
-			
-		
-<br>
 
-	<table class="text-center detalhes" style="margin: auto;" >
-					<thead>
-						<tr>
-							<th scope="col">Nome</th>
-							<th scope="col">CNPJ</th>
-							<th scope="col">ANS</th>
-							<th scope="col">Adesão</th>
-							<th scope="col">Banco</th>
-							<th scope="col">Agencia</th>
-							<th scope="col">Conta</th>
+	<div layout:fragment="corpo" class="wrapper">
+	
+				
+		 <!-- Page Content  -->
+        <div id="content">
+          
+          
+          <div class="container-fluid" style="width: 98%">
+            <h3 style="display: inline; margin-left: 10px;">Lista | <strong>Convenios</strong></h3>
+            <a class="btn btn-success float-right"  href="/pacientes/cadastrar"role="button" style="margin-right: 10px;">
+              <i class="fas fa-plus"></i> Novo Convenio</a>
+
+          <div class="card" style="margin-top: 25px; padding: 0px;">
+            <div class="card-body">
+              <table class="table table-borderless">
+
+					<thead >
+						<tr style="color: #5d6266; font-size: 1em;">
+							<th>Nome</th>
+							<th>CNPJ</th>
+							<th>ANS</th>
+							<th>Adesão</th>
+							<th>Banco</th>
+							<th>Agencia</th>
+							<th>Conta</th>
 						</tr>
 					</thead>
 					<tbody th:each="c : ${convenios}">
-						<tr>
-						
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									
-										
-										<input type="text" class="form-control text-center " id="nome"
-											th:value="${c.nome}"  disabled>
-								</a>
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center " id="cnpj"
-										th:value="${c.cnpj}" disabled>
-								</a>
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center" id="ans"
-										th:value="${c.registro_ans}"  disabled>
-									
-								</a>
-
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center" id="adesao"
-										th:value="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"  disabled />
-								</a>
-
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center" id="banco"
-										th:value="${c.dadosb.banco}"  disabled>
-								</a>
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center"
-										id="agencia" th:value="${c.dadosb.agencia}" disabled>
-								</a>
-							</td>
-							<td>
-								<a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  >
-									<input type="text" class="form-control text-center" id="conta"
-										th:value="${c.dadosb.conta}"  disabled />
-									
-								</a>
-
-
-							</td>
-							
-							
-							
-							
-							
-							
+						<tr class="conteudo" style="font-size: 1em;">
+							<td style="width: 350px;"> <a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.nome}"> </a> </td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.cnpj}"> </a></td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.registro_ans}"></a></td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${#temporals.format(c.data_adesao, 'dd/MM/yyyy')}"></a></td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.dadosb.banco}"></a></td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.dadosb.agencia}" ></a></td>
+							<td><a th:href="@{/convenios/editar/{id} (id=${c.id}) }" title="Mostrar informações"  th:text="${c.dadosb.conta}"></a></td>
 						</tr>
 
 					</tbody>
 				</table>
 				
+					</div>
+				</div>
+			</div>
+		</div>
 			
 				
+</div>
+	
 
-	</section>
 </body>
 </html>
