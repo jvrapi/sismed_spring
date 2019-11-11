@@ -179,3 +179,18 @@ td a {
 input.tamanho-fonte, select.tamanho-fonte {
 	font-size: 14px;
 }
+
+
+.form-check{
+	
+	margin-right: 3%;
+	text-align: right;
+	margin-top: -3%;
+	
+}
+.form-check-label{
+
+	margin-right: 2%;
+
+}
+
