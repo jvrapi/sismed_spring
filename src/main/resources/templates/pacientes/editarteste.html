@@ -84,17 +84,16 @@
                     <a href="#"><i class="fas fa-calendar-alt" style="margin-right: 15px;"></i> Agenda</a>
                 </li>
                 <li class="active">
-                    <a href="/pacientes/listar"><i class="fas fa-user" style="margin-right: 15px; color: #0087cd;"></i> Pacientes</a>
-                    
+                    <a href="/pacientes/listar"><i class="fas fa-user" style="margin-right: 15px; color: #0087cd;"></i> Pacientes</a>          
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-user-md" style="margin-right: 15px;"></i> Funcionários</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-notes-medical" style="margin-right: 18px;"></i>Convênios</a>
+                    <a href="#"><i class="fas fa-notes-medical" style="margin-right: 15px;"></i>Convênios</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fas fa-file-medical" style="margin-right: 18px;"></i>Regsitro Clínico</a>
+                    <a href="#"><i class="fas fa-file-medical" style="margin-right: 15px;"></i>Regsitro Clínico</a>
                 </li>
                 <li>
                     <a href="#"><i class="fas fa-vial" style="margin-right: 15px;"></i>Laboratórios</a>
@@ -110,31 +109,29 @@
 
         <!-- Page Content  -->
         <div id="content">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-              <div class="dropdown">
-                <a class="dropbtn" data-toggle="dropdown" href="#">
-  								<i class="fa fa-plus fa-fw"></i>Novo
-                </a>
+          <nav class="navbar navbar-expand-lg">
+			<div class="dropdown">
+                <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
                 <div class="dropdown-content">
                   <a href="#">Agendamento</a>
-                  <a href="#">Paciente</a>
+                  <a href="/pacientes/cadastrar">Paciente</a>
                   <a href="#">Funcionário</a>
                   <a href="#">Convênio</a>
                   <a href="#">Exame</a>
                   <a href="#">Laboratório</a>
                 </div>
-              </div>
-              <div id="divBusca">
+			</div>
+			<div id="divBusca">
                 <input type="text" id="txtBusca" placeholder="Buscar..."/>
                 <button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
               </div>
-              <ul class="nav navbar-nav" style="margin-left: 900px; color: #fff">
-                <li><p class="a mr-4" style="color: #fff; margin-bottom: 0px; font-size: 1em;">Bem vindo, Leonardo</p></li>
-                <li style="margin-top: 2px;"><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-              </ul>
-            </div>
-          </nav>
+			    <div class="collapse navbar-collapse justify-content-end" id="myNavbar7">
+			        <ul class="navbar-nav" style="color: #fff; font-size: 0.9em;">
+			            <li class="nav-item"><p class="mr-4" style="color: #fff; margin-bottom: 0px;">Bem vindo, Leonardo</p></li>
+	                	<li class="nav-item" style="margin-top: 2px; margin-right: 25px;"><a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+			        </ul>
+			    </div>
+			</nav>
           
           <div class="container-fluid" style="width: 98%">
           <form th:action="${paciente.id == null} ? @{/pacientes/salvar} : @{/pacientes/editar}" th:object="${paciente}" method="POST" id="form">
@@ -149,40 +146,41 @@
           <div class="card" style="margin-top: 25px; padding: 0px;">
             <div class="card-body">
               
-					
+					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Dados Pessoais</h5>
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control" id="nome" placeholder="Nome do paciente" autofocus="autofocus" th:field="*{nome}" 
+							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" 
 							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-1">
 							<label for="cpf">CPF</label>
-							<input type="text" class="form-control" id="cpf" placeholder="___.___.___-__" autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99" disabled/>
 						</div>
-						<div class="form-group col-md-2">
+						<div class="form-group col-md-1">
 							<label for="rg">RG</label>
-							<input type="text" class="form-control" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="orgao_emissor">Orgao emissor</label>
-							<input type="text" class="form-control" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
+							<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
 							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="data_emissao">Data de emissão</label>
-							<input type="date" class="form-control" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" disabled/>
+							<label for="data_emissao">emissão</label>
+							<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" disabled/>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="data_nascimento">nascimento</label>
+							<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" disabled/>
 						</div>
 					</div>
 					
 					<div class="form-row">
-						<div class="form-group col-md-2">
-							<label for="data_nascimento">Data de nascimento</label>
-							<input type="date" class="form-control" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" disabled/>
-						</div>
+						
 						<div class="form-group col-md-2">
 							<label for="sexo">Sexo</label>
-							<select id="estado_civil" class="form-control" th:field="*{sexo}" disabled>
+							<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}" disabled>
 								<option value="m">MASCULINO</option>
 								<option value="f">FEMININO</option>
 								<option value="nd">NÃO DECLARADO</option>
@@ -190,46 +188,48 @@
 						</div>
 						<div class="form-group col-md-2">
 							<label for="estado_civil">Estado civil</label>
-							<select id="estado_civil" class="form-control" th:field="*{estado_civil}" disabled>
+							<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}" disabled>
 								<option value="efc">SOLTEIRO(A)</option>
 								<option value="efi">CASADO(A)</option>
 								<option value="emc">DIVORCIADO(A)</option>
 								<option value="em">VIUVO(A)</option>
 							</select>
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-2">
 							<label for="naturalidade">Naturalidade</label>
-							<input type="text" class="form-control" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" disabled/>
 						</div>
-						<div class="form-group col-md-3">
+						<div class="form-group col-md-2">
 							<label for="nacionalidade">Nacionalidade</label>
-							<input type="text" class="form-control" id="nacionalidade" placeholder="Nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" disabled/>
+						</div>
+						<div class="form-group col-md-1">
+							<label for="telefone_fixo">Telefone fixo</label>
+							<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
+						</div>
+						<div class="form-group col-md-1">
+							<label for="telefone_trabalho">Telefone trab</label>
+							<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" disabled/>
+						</div>
+						<div class="form-group col-md-2">
+							<label for="celular">Celular</label>
+							<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" disabled/>
 						</div>
 					</div>
 					
 					<div class="form-row">
-						<div class="form-group col-md-2">
-							<label for="telefone_fixo">Telefone fixo</label>
-							<input type="text" class="form-control" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
-						</div>
-						<div class="form-group col-md-2">
-							<label for="telefone_trabalho">Telefone trabalho</label>
-							<input type="text" class="form-control" id="telefone_trabalho" placeholder="Telefone trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" disabled/>
-						</div>
-						<div class="form-group col-md-2">
-							<label for="celular">Celular</label>
-							<input type="text" class="form-control" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}" disabled/>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="email">Email</label>
-							<input type="text" class="form-control" id="email" placeholder="Email" autofocus="autofocus" th:field="*{email}" disabled/>
-						</div>
+						
+						
 					</div>
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
+							<label for="email">Email</label>
+							<input type="text" class="form-control tamanho-fonte" id="email" autofocus="autofocus" th:field="*{email}" disabled/>
+						</div>
+						<div class="form-group col-md-3">
 							<label for="escolaridade">Escolaridade</label>
-							<select id="escolaridade" class="form-control" th:field="*{escolaridade}" disabled>
+							<select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}" disabled>
 								<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
 								<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
 								<option value="emc">ENSINO MÉDIO COMPLETO</option>
@@ -240,22 +240,23 @@
 								<option value="d">DOUTORADO</option>
 							</select>
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-2">
 							<label for="profissao">Profissao</label>
-							<input type="text" class="form-control" id="profissao" placeholder="Profissao" autofocus="autofocus" th:field="*{profissao}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="profissao" autofocus="autofocus" th:field="*{profissao}" disabled/>
 						</div>
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-3">
 							<label for="recomandacao">Recomendação</label>
-							<input type="text" class="form-control" id="recomendacao" placeholder="Recomendacao" autofocus="autofocus" th:field="*{recomendacao}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="recomendacao" autofocus="autofocus" th:field="*{recomendacao}" disabled/>
 						</div>
 					</div>
 					
 					<br>
 					
+					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Informações do convênio</h5>
 					<div class="form-row">
 						<div class="form-group col-md-3">
 							<label for="convenio_id">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{tipo_convenio.convenio}" disabled>
+							<select id="convenio_id" class="form-control tamanho-fonte" th:field="*{tipo_convenio.convenio}" disabled>
 								<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
 							</select>
 						</div>
@@ -263,58 +264,59 @@
 						<div class="form-group col-md-3">
 						<div id="teste">
 							<label for="tipo_convenio_id">Tipo de convenio</label>
-							<select id="tipo_convenio_id" class="form-control my-select" th:field="*{tipo_convenio}" disabled>
+							<select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled>
 								<option th:each="e : ${tipoconvenio}" th:value="${e.id}" th:text="${e.nome} "></option>
 							</select>
 						</div>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="carteira_convenio">Carteira do convenio</label>
-							<input type="text" class="form-control" id="carteira_convenio" placeholder="Carteira do convenio" autofocus="autofocus" th:field="*{carteira_convenio}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" autofocus="autofocus" th:field="*{carteira_convenio}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="validade">Validade</label>
-							<input type="date" class="form-control" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="validade" autofocus="autofocus" th:field="*{validade}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="situacao">Situação</label>
-							<input type="text" class="form-control" id="situacao" placeholder="Situação" autofocus="autofocus" th:field="*{situacao}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="situacao" autofocus="autofocus" th:field="*{situacao}" disabled/>
 						</div>
 					</div>
 
-					<br><br>
+					<br>
 
+					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
 					<div class="form-row">
 						<div class="form-group col-md-2 ">
 							<label for="cep">CEP</label> 
-							<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required  disabled>
+							<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required  disabled>
 						</div>
 						<div class="form-group col-md-5">
 							<label for="logradouro">Logradouro</label> 
-							<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" required  disabled>
+							<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" required  disabled>
 						</div>
 						<div class="form-group col-md-2 ">
 							<label for="numero">Número</label>
-							 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}"  disabled>
+							 <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}"  disabled>
 						</div>
 						<div class="form-group col-md-3 ">
 							<label for="complemento">Complemento</label> 
-							<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}"  disabled>
+							<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}"  disabled>
 						</div>	
 					</div>
 					
 					<div class="form-row">
 						<div class="form-group col-md-5 ">
 							<label for="bairro">Bairro</label> 
-							<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required  disabled>
+							<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required  disabled>
 						</div>					
 						<div class="form-group col-md-5 ">
 							<label for="cidade">Cidade</label> 
-							<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required  disabled>
+							<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}"required  disabled>
 						</div>
 						<div class="form-group col-md-2 ">
 							<label for="uf">Estado</label> 
-							<select id="uf" class="form-control" th:field="*{endereco.estado}" disabled>
+							<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}" disabled>
 								<option value="" selected hidden>Selecione</option>
 								<option value="AC">Acre</option>
 								<option value="AL">Alagoas</option>
