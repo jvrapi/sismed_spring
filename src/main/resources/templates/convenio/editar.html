@@ -6,16 +6,7 @@
 <script type="text/javascript" src="/js/convenio/modal.js"></script>
 <script type="text/javascript" src="/js/convenio/editar.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function() {
-	var url = "http://localhost:8080/convenios/excluir/" + $(".classid").attr('id');
-	$('#ok_confirm').click(function() {
-		document.location.href = url;
-	}); 
-});
 
-
-</script>
 
 </head>
 <body>
@@ -25,25 +16,23 @@ $(document).ready(function() {
 				<div th:replace="fragmentos/alert"></div>
 				<div th:replace="fragmentos/modal"></div>
 				
-		</div>
+			</div>
 	
-		<div class="container" id="cadastroConvenio">
+		<<div class="container-fluid" style="width: 98%">
 				
 			<form id="form" th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
 			th:object="${convenio}" method="POST">
 			
 				
-					<h2  style="margin-left: 35%;"> <strong th:text="${convenio.nome}"> </strong><strong> | </strong> Informações</h2>
-					
-				<br><br>
-				
-				<div  class="btnCRUD float-right" id="div_botao">
+				<div id="div_botao">
+            		<h3 style="display: inline; margin-left: 10px;">Edição | <strong>Convenio</strong></h3>
+            
 					<button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-					<button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
-									
-				</div>
-				
-				<br><br>
+					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
+				</div >
+
+          <div class="card" style="margin-top: 25px; padding: 0px;">
+            <div class="card-body">
 				<div class="form-row" style="margin: auto;">
 					
 					
@@ -122,7 +111,8 @@ $(document).ready(function() {
 					
 					<a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
 				</div>
-			
+			</div>
+			</div>
 			</form>
 		
 		</div>
