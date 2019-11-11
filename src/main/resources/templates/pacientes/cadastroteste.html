@@ -41,31 +41,31 @@
 				</div>
 				<ul class="list-unstyled components">
 					<li>
-						<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fas fa-home" style="margin-right: 15px;"></i> Início</a>
+						<a href="#homeSubmenu" class="decoration" data-toggle="collapse" aria-expanded="false"><i class="fas fa-home" style="margin-right: 15px;"></i> Início</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-calendar-alt" style="margin-right: 15px;"></i> Agenda</a>
+						<a href="#" class="decoration"><i class="fas fa-calendar-alt" style="margin-right: 15px;"></i> Agenda</a>
 					</li>
 					<li class="active">
-						<a href="/pacientes/listar"><i class="fas fa-user" style="margin-right: 15px; color: #0087cd;"></i>Pacientes</a>
+						<a href="/pacientes/listar" class="decoration"><i class="fas fa-user" style="margin-right: 15px; color: #0087cd;"></i>Pacientes</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-user-md" style="margin-right: 15px;"></i> Funcionários</a>
+						<a href="#" class="decoration"><i class="fas fa-user-md" style="margin-right: 15px;"></i> Funcionários</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-notes-medical" style="margin-right: 18px;"></i>Convênios</a>
+						<a href="#" class="decoration"><i class="fas fa-notes-medical" style="margin-right: 15px;"></i>Convênios</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-file-medical" style="margin-right: 18px;"></i>Regsitro Clínico</a>
+						<a href="#" class="decoration"><i class="fas fa-file-medical" style="margin-right: 15px;"></i>Regsitro Clínico</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-vial" style="margin-right: 15px;"></i>Laboratórios</a>
+						<a href="#" class="decoration"><i class="fas fa-vial" style="margin-right: 15px;"></i>Laboratórios</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-briefcase-medical" style="margin-right: 15px;"></i>Exames</a>
+						<a href="#" class="decoration"><i class="fas fa-briefcase-medical" style="margin-right: 15px;"></i>Exames</a>
 					</li>
 					<li>
-						<a href="#"><i class="fas fa-stream" style="margin-right: 15px;"></i>Relatório</a>
+						<a href="#" class="decoration"><i class="fas fa-stream" style="margin-right: 15px;"></i>Relatório</a>
 					</li>
 				</ul>
 			</nav>
@@ -74,7 +74,7 @@
 			<div id="content">
 				<nav class="navbar navbar-expand-lg">
 					<div class="dropdown">
-						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+						<a class="dropbtn decoration" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
 						<div class="dropdown-content">
 							<a href="#">Agendamento</a> 
 							<a href="/pacientes/cadastrar">Paciente</a>
@@ -94,7 +94,7 @@
 								<p class="mr-4" style="color: #fff; margin-bottom: 0px;">Bem vindo, Leonardo</p>
 							</li>
 							<li class="nav-item" style="margin-top: 2px; margin-right: 25px;">
-								<a href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+								<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
 							</li>
 						</ul>
 					</div>
@@ -107,11 +107,11 @@
 						<div class="card-body">
 							<form th:action="${paciente.id == null} ? @{/pacientes/salvar} : @{/pacientes/editar}" th:object="${paciente}" method="POST">
 							
-								<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Dados Pessoais</h5>
+								<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Dados pessoais</h5>
 								<div class="form-row">
 									<div class="form-group col-md-4">
 										<label for="nome">Nome</label> 
-										<input type="text" class="form-control tamanho-fonte" id="nome" placeholder="Nome do paciente" maxlength="40" autofocus="autofocus" th:field="*{nome}"
+										<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
 										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
 									</div>
 									<div class="form-group col-md-1">
@@ -120,20 +120,20 @@
 									</div>
 									<div class="form-group col-md-1">
 										<label for="rg">RG</label> 
-										<input type="text" class="form-control tamanho-fonte" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}" />
+										<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="orgao_emissor">Orgao emissor</label> 
-										<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
+										<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
 										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_emissao">Data de emissão</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" />
+										<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_nascimento">Data de nascimento</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" />
+										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" />
 									</div>
 								</div>
 	
@@ -157,30 +157,30 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="naturalidade">Naturalidade</label> 
-										<input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" />
+										<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="nacionalidade">Nacionalidade</label> 
-										<input type="text" class="form-control tamanho-fonte" id="nacionalidade" placeholder="Nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" />
+										<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" />
 									</div>
 									<div class="form-group col-md-1">
 										<label for="telefone_fixo">Telefone fixo</label> 
-										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" />
+										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" />
 									</div>
 									<div class="form-group col-md-1">
 										<label for="telefone_trabalho">Telefone trab</label> 
-										<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" placeholder="Telefone trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" />
+										<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="celular">Celular</label> 
-										<input type="text" class="form-control tamanho-fonte" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}" required />
+										<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" required />
 									</div>
 								</div>
 	
 								<div class="form-row">
 									<div class="form-group col-md-4">
 										<label for="email">Email</label> 
-										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="Email" maxlength="30" autofocus="autofocus" th:field="*{email}" />
+										<input type="text" class="form-control tamanho-fonte" id="email" maxlength="30" autofocus="autofocus" th:field="*{email}" />
 									</div>
 									<div class="form-group col-md-3">
 										<label for="escolaridade"> Escolaridade</label> 
@@ -197,11 +197,11 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="profissao">Profissao</label> 
-										<input type="text" class="form-control tamanho-fonte" id="profissao" placeholder="Profissao" autofocus="autofocus" th:field="*{profissao}" />
+										<input type="text" class="form-control tamanho-fonte" id="profissao" autofocus="autofocus" th:field="*{profissao}" />
 									</div>
 									<div class="form-group col-md-3">
 										<label for="recomandacao">Recomendação</label> 
-										<input type="text" class="form-control tamanho-fonte" id="recomendacao" placeholder="Recomendacao" autofocus="autofocus" th:field="*{recomendacao}" />
+										<input type="text" class="form-control tamanho-fonte" id="recomendacao" autofocus="autofocus" th:field="*{recomendacao}" />
 									</div>
 								</div>
 	
@@ -224,15 +224,15 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="carteira_convenio">Carteira do convenio</label> 
-										<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" placeholder="Carteira do convenio" autofocus="autofocus" th:field="*{carteira_convenio}" />
+										<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" autofocus="autofocus" th:field="*{carteira_convenio}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="validade">Validade</label> 
-										<input type="date" class="form-control tamanho-fonte" id="validade" placeholder="Validade" autofocus="autofocus" th:field="*{validade}" />
+										<input type="date" class="form-control tamanho-fonte" id="validade" autofocus="autofocus" th:field="*{validade}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="situacao">Situação</label> 
-										<select type="text" class="form-control tamanho-fonte" id="situacao" placeholder="Situação" autofocus="autofocus" th:field="*{situacao}">
+										<select type="text" class="form-control tamanho-fonte" id="situacao" autofocus="autofocus" th:field="*{situacao}">
 											<option value="ATIVO">ATIVO</option>
 											<option value="INVATIVO">INVATIVO</option>
 											<option value="FALECIDO">FALECIDO</option>
