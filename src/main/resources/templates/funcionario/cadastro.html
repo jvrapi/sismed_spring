@@ -1,386 +1,39 @@
-<!--  
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		function valida() {
-			if($("#funcionario_radio").prop("checked") == true) {
-				$("#especialidade").prop("disabled", true);
-				$("#especialidade").val("");
-				$("#crm").prop("disabled", true);
-				$("#crm").val("");
-			} else {
-				$("#especialidade").prop("disabled", false);
-				$("#crm").prop("disabled", false);
-			}
-		}
-	</script>
-
-</head>
-<body>
-
-	<section class="layout-content" layout:fragment="corpo">
-
-		<h4 class="titulo" >Cadastro <strong>| Funcionário(a)  </strong></h4>
-		
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="funcionario_radio" value="desabilita" onclick="valida()" checked>
-					<label class="form-check-label" for="exampleRadios1">Funcionário</label>
-			
-					<input class="form-check-input" type="radio" name="exampleRadios" id="medico_radio" value="habilita" onclick="valida()">
-					<label class="form-check-label" for="exampleRadios2">Médico</label>
-				</div>
-			
-		<div class="w3-container w3-teal" id="cadastroFuncionario" style="text-transform: uppercase;">
-		
-		<br>
-			<form
-				th:action="${funcionario.id == null} ? @{/funcionario/salvar} : @{/funcionario/editar}"
-				th:object="${funcionario}" method="POST">
-				
-				<br>
-		
-				<div class="form-row ">
-
-					<div class="form-group col-md-4" >
-						<label for="nome"> Nome</label> <input type="text"
-							class="form-control" id="nome" placeholder="nome"
-							autofocus="autofocus" th:field="*{nome}" maxlength="40" required > <br>
-					</div>
-					
-					<div class="form-group col-md-1 ">
-						<label for="cpf"> CPF</label> <input type="text"
-							class="form-control" id="cpf" name="cpf" placeholder="CPF"
-							autofocus="autofocus" th:field="*{cpf}" required> <br>
-					</div>
-					
-					<div class="form-group col-md-1 ">
-						<label for="rg"> RG</label> <input type="text"
-							class="form-control" id="rg" name="rg" placeholder="RG"
-							autofocus="autofocus" th:field="*{rg}" required> <br>
-					</div>
-					
-					<div class="form-group col-md-1 ">
-						<label for="orgao_emissor">Orgão Emissor</label> <input
-							type="text" class="form-control" id="orgao_emissor"
-							placeholder="emissor" autofocus="autofocus" 
-							th:field="*{orgao_emissor}" maxlength="8" required> <br>
-					</div>
-					
-						<div class="form-group col-md-1,2" >
-						<label for="data_emissao"> Data de Emissão</label> <input
-							type="date" class="form-control" id="data_emissao"
-							placeholder="data de emissao" autofocus="autofocus"
-							th:field="*{data_emissao}" required> <br>
-					</div>
-					
-					<div class="form-group col-md-1,2">
-						<label for="data_nascimento">Nascimento</label> <input
-							type="date" class="form-control" id="data_nascimento"
-							placeholder="DATA DE NASCIMENTO" autofocus="autofocus"
-							th:field="*{data_nascimento}" required> <br>
-					</div>
-					
-					<div class="form-group col-md-1 " style="font-size: 15px">
-						<label for="sexo"> Sexo</label> 
-				<select id="estado_civil" class="form-control" th:field="*{sexo}">
-							
-							<option value="FEMININO">FEMININO</option>
-							<option value="MASCULINO">MASCULINO</option>
-							<option value="NÃO DECLARADO">NÃO DECLARADO</option>
-						</select>
-				</div>
-				
-				<div class="form-group col-md-1,6">
-						<label for="estado_civil"> Estado Civil</label>
-							<select id="estado_civil" class="form-control" th:field="*{estado_civil}" style="font-size: 15px">
-						
-						<option value="SOLTEIRO(A)">SOLTEIRO(A)</option>
-							<option value="CASADO(A)">CASADO(A)</option>
-							<option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
-							<option value="VIÚVO(A)">VIÚVO(A)</option>
-							
-						</select>
-				  
-				  </div>
-					
-					</div>
-					
-					<div class="form-row ">
-				
-				    <div class="form-group col-md-3">
-						<label for="naturalidade"> Naturalidade</label> <input type="text"
-							class="form-control" id="naturalidade" placeholder="NATURALIDADE"
-							autofocus="autofocus" th:field="*{naturalidade}" style="text-transform: uppercase;" maxlength="30" required> <br>
-					</div>
-				  
-				  <div class="form-group col-md-2">
-						<label for="nacionalidade"> Nacionalidade</label> 
-				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}">
-							<option value="BRASILEIRA">BRASILEIRA</option>
-							<option value="ESTRANGEIRA">ESTRANGEIRA</option>
-					</select>
-					</div>
-					
-					<div class="form-group col-md-2 ">
-						<label for="telefone"> Telefone</label> <input type="text"
-							class="form-control" id="telefone_fixo" placeholder="TELEFONE"
-							autofocus="autofocus" th:field="*{telefone_fixo}" maxlength="13" required> <br>
-					</div>
-					
-						<div class="form-group col-md-2 ">
-						<label for="celular"> Celular</label> <input type="text"
-							class="form-control" id="celular" placeholder="CELULAR"
-							autofocus="autofocus" th:field="*{celular}" required> <br>
-					</div>
-					
-					<div class="form-group col-md-3">
-						<label for="email"> Email</label> <input type="text"
-							class="form-control" id="email" placeholder="email"
-							autofocus="autofocus" th:field="*{email}" style="text-transform: uppercase;" maxlength="30" required> <br>
-					</div>
-				
-					</div>
-					
-					<div class="form-row ">
-					
-				<div class="form-group col-md-6 ">
-						<label for="especialidade"> Especialidade</label> <input
-							type="text" class="form-control" id="especialidade"
-							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled required> <br>
-					</div>
-
-							<div class="form-group col-md-2 ">
-						<label for="crm"> CRM</label> <input type="text"
-							class="form-control" id="crm" placeholder="CRM"
-							autofocus="autofocus" th:field="*{crm}" disabled required> <br>
-					</div>
-					
-					<div class="form-group col-md-4 ">
-						<label for="escolaridade"> Escolaridade</label> <div class="input-group-prepend">
-				   <select id="escolaridade" class="form-control" th:field="*{escolaridade}">
-							
-							<option value="DOUTORADO">DOUTORADO</option>
-							<option value="MESTRADO">MESTRADO</option>
-							<option value="ENSINO SUPERIOR COMPLETO">ENSINO SUPERIOR COMPLETO</option>
-							<option value="ENSINO SUPERIOR INCOMPLETO">ENSINO SUPERIOR INCOMPLETO</option>
-							<option value="ENSINO MÉDIO COMPLETO">ENSINO MÉDIO COMPLETO</option>
-							<option value="ENSINO MÉDIO INCOMPLETO">ENSINO MÉDIO INCOMPLETO</option>
-							<option value="ENSINO FUNDAMENTAL COMPLETO">ENSINO FUNDAMENTAL COMPLETO</option>
-							<option value="ENSINO FUNDAMENTAL INCOMPLETO">ENSINO FUNDAMENTAL INCOMPLETO</option>
-						
-						</select>
-					</div>
-
-					</div>
-					
-					</div>
-		
-				<div class="form-row ">
-				
-					<div class="form-group col-md-1 ">
-						<label for="cep">CEP</label> 
-						<input id="cep" type="text" class="form-control" th:field="*{endereco.cep}" required placeholder="CEP">
-					</div>
-
-					<div class="form-group col-md-6 ">
-						<label for="logradouro">Logradouro</label> 
-						<input id="logradouro" class="form-control" type="text" th:field="*{endereco.logradouro}" placeholder="logradouro" style="text-transform: uppercase;">
-					</div>
-
-					<div class="form-group col-md-1">
-						<label for="numero">Número</label>
-						 <input id="numero" type="text" class="form-control" th:field="*{endereco.numero}" placeholder="NÚMERO" required>
-					</div>
-
-					<div class="form-group col-md-4 ">
-						<label for="complemento">Complemento</label> 
-						<input id="complemento" class="form-control" type="text" th:field="*{endereco.complemento}" placeholder="complemento" style="text-transform: uppercase;">
-					</div>
-					
-					</div>
-
-				<div class="form-row ">
-				
-					<div class="form-group col-md-5 ">
-						<label for="bairro">Bairro</label> 
-						<input id="bairro" type="text" class="form-control" th:field="*{endereco.bairro}" required placeholder="bairro" style="text-transform: uppercase;">
-					</div>
-
-						
-					<div class="form-group col-md-5 ">
-						<label for="cidade">Cidade</label> 
-						<input id="cidade" type="text" class="form-control" th:field="*{endereco.cidade}"required placeholder="cidade" style="text-transform: uppercase;">
-					</div>
-
-					<div class="form-group col-md-2 ">
-						<label for="uf">Estado</label> 
-						<select id="uf" class="form-control" th:field="*{endereco.estado}">
-							<option value="AC">ACRE</option>
-							<option value="AL">ALAGOAS</option>
-							<option value="AP">AMAPÁ</option>
-							<option value="AM">AMAZONAS</option>
-							<option value="BA">BAHIA</option>
-							<option value="CE">CEARÁ</option>
-							<option value="DF">DISTRITO FEDERAL</option>
-							<option value="ES">ESPÍRITO SANTO</option>
-							<option value="GO">GOIÁS</option>
-							<option value="MA">MARANHÃO</option>
-							<option value="MT">MATO GROSSO</option>
-							<option value="MS">MATO GROSSO DO SUL</option>
-							<option value="MG">MINAS GERAIS</option>
-							<option value="PA">PARÁ</option>
-							<option value="PB">PARAÍBA</option>
-							<option value="PR">PARANÁ</option>
-							<option value="PE">PERNAMBUCO</option>
-							<option value="PI">PIAUÍ</option>
-							<option value="RJ">RIO DE JANEIRO</option>
-							<option value="RN">RIO GRANDE DO NORTE</option>
-							<option value="RS">RIO GRANDE DO SUL</option>
-							<option value="RO">RONDÔNIA</option>
-							<option value="RR">RORAIMA</option>
-							<option value="SC">SANTA CATARINA</option>
-							<option value="SP">SÃO PAULO</option>
-							<option value="SE">SERGIPE</option>
-							<option value="TO">TOCANTINS</option>
-						</select>
-					</div>
-
-				</div>
-			
-			<div class="btn-toolbar justify-content-center" role="toolbar">
-				<input type="hidden" id="id" th:field="*{id}" /> 
-				
-				<button type="submit" class="btn btn-primary float-right mr-2">Confirmar</button>
-				
-				<a  class="btn btn-secondary float-right ml-2" href="/funcionario/listar">Voltar</a>
-				
-			</div>
-			
-			</form>
-
-		</div>
-		
-	</section>
-	
-</body>
-</html>
-
--->
-
-<!DOCTYPE html>
-<html>
-<head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link href="/css/style2.css" rel="stylesheet" />
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,900' rel='stylesheet' type='text/css'>
-	<script type="text/javascript">
-		function valida() {
-			if($("#funcionario_radio").prop("checked") == true) {
-				$("#especialidade").prop("disabled", true);
-				$("#especialidade").val("");
-				$("#crm").prop("disabled", true);
-				$("#crm").val("");
-			} else {
-				$("#especialidade").prop("disabled", false);
-				$("#crm").prop("disabled", false);
-			}
-		}
-	</script>
+	
+	<script type="text/javascript" src="/js/funcionario/valida.js"></script>
+
 	</head>
 
 	<body>
-		<div class="wrapper">
-		
-		
 	
-			<!-- Sidebar  -->
-			<nav id="sidebar">
-				<div class="sidebar-header">
-					<a role="button" href="#"><h3>SisMed</h3></a>
-				</div>
-				<ul class="list-unstyled components">
-					 <li>
-						<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="decoration"><i class="fas fa-home espaco "></i> Início</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-calendar-alt espaco" ></i> Agenda</a>
-					</li>
-					<li >
-						<a href="/pacientes/listar" class="decoration"><i class="fas fa-user espaco " ></i>Pacientes</a>
-					</li>
-					<li class="active">
-						<a href="/funcionario/listar" class="decoration"><i class="fas fa-user-md espaco corAtivo" ></i> Funcionários</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-notes-medical espaco" ></i>Convênios</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-file-medical espaco " ></i>Registro Clínico</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-vial espaco "></i>Laboratórios</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-briefcase-medical espaco " ></i>Exames</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-stream espaco " ></i>Relatório</a>
-					</li>
-				</ul>
-			</nav>
-	
-			<!-- Page Content  -->
-			<div id="content">
-				<nav class="navbar navbar-expand-lg">
-					<div class="dropdown">
-						<a class="dropbtn decoration" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a> 
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="#">Funcionário</a> 
-							<a href="#">Convênio</a> 
-							<a href="#">Exame</a>
-							<a href="#">Laboratório</a>
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end">
-						<ul class="navbar-nav" style="color: #fff; font-size: 0.9em;">
-							<li class="nav-item">
-								<p class="mr-4" style="color: #fff; margin-bottom: 0px;">Bem vindo, Nadia</p>
-							</li>
-							<li class="nav-item" style="margin-top: 2px; margin-right: 25px;">
-								<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+	<div layout:fragment="corpo"  >
+		
+		<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
+		</div>
 	
 				<div class="container-fluid" style="width: 98%">
 				
-					<h3 style="display: inline;"> Cadastro | <strong>Funcionário(a)</strong></h3>
+					<h3 style="display: inline;"><a  style="text-decoration: none;" class="btnVoltar" href="/funcionario/listar"> <i class="fas fa-chevron-left"></i> </a> Cadastro | <strong>Funcionário(a)</strong></h3>
 					
+					
+					<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
+					
+					<!--  
 					<a class="btn btn-secondary float-right" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+					-->
+					
 					<div class="card" style="margin-top: 25px; padding: 0px;">
 						<div class="card-body">
 							<form th:action=" @{/funcionario/salvar} " th:object="${funcionario}" method="POST">
 							
 								<h5 style=" margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; ">Dados Pessoais</h5>
 								
+								
+								<!--  
 									<div class="form-check" >
 										<input class="form-check-input" type="radio" name="exampleRadios" id="funcionario_radio" value="desabilita" onclick="valida()" checked>
 										<label class="form-check-label" for="exampleRadios1">Funcionário</label>
@@ -388,6 +41,7 @@
 										<input class="form-check-input" type="radio" name="exampleRadios" id="medico_radio" value="habilita" onclick="valida()">
 										<label class="form-check-label" for="exampleRadios2">Médico</label>
 									</div>
+									-->
 									
 									<br>
 								
@@ -565,18 +219,12 @@
 									</div>
 								</div>
 								<input type="hidden" id="id" th:field="*{id}"/> 
-								<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
+								
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
 	</body>
 </html>

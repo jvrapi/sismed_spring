@@ -1,281 +1,66 @@
-
-<!-- 
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
+
 <body>
-	<section layout:fragment="corpo">
+
+	<div layout:fragment="corpo" >  
 	
+		<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
+		</div>
 	
-	
-	<div style="margin-right:auto;margin-top: 1%" >
-				<a class="btn btn-success btn-sm "  href="/funcionario/cadastrar"
-					role="button"> 
-					<span class="oi oi-plus "title="Novo(a) Funcionário(a)" aria-hidden="true"></span>
-					<span>Novo(a) Funcionário(a)</span>
-				</a>
-			</div>
-	
-	<div style="margin-top: -1%;text-align: center;">
-				<h3> Lista<strong> | Funcionário(a) </strong></h3>
+          <div class="container-fluid" style="width: 98%">
+           
+            <h3 style="display: inline; margin-left: 10px;">Lista | <strong>Funcionários(as)</strong></h3>
+           	 
+           	 <a class="btn btn-success float-right"  href="/funcionario/cadastrar"role="button">
+              <i class="fas fa-plus"></i> Novo Funcionário(a)</a>     
+           	         
+	          <div class="card" style="margin-top: 25px; padding: 0px;">
+	            <div class="card-body">
+	              <table class="table table-borderless detalhes">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em;">
+
+									<th scope="col">Matrícula</th>
+									<th scope="col">Nome</th>
+									<th scope="col">CPF</th>
+									<th scope="col">CRM</th>
+									<th scope="col">Especialidade</th>
+									<th scope="col">Telefone</th>
+									<th scope="col">Celular</th>
+									<th scope="col">Email</th>
+									
+								</tr>
+							</thead>
+							<tbody th:each="f : ${funcionario}">
+								<tr class="conteudo" style="font-size: 1em;">
+								
+									<td><a th:text="${f.id}"></a></td>
+									
+								<td><a th:href="@{/funcionario/editar/{id} (id=${f.id}) }" title="Clique aqui para alterar"  th:text="${f.nome}"> </a> </td>
+								
+									<td><a th:text="${f.cpf}"></a></td>
+									<td><a th:text="${f.crm}"></a></td>
+									<td><a th:text="${f.especialidade}" /></a></td>
+									<td><a th:text="${f.telefone_fixo}" /></a></td>
+									<td><a th:text="${f.celular}" /></a></td>
+									<td><a th:text="${f.email}" /></a></td>
+								</tr>
+							</tbody>
+
+						</table>
+						
+					</div>
+				</div>
 			</div>
 			
-		<div class="container" style="text-align: center;">
-		<div  th:replace="fragmentos/modal :: modal"></div>
-		<div th:replace="fragmentos/alert" ></div>
 		</div>
-		
-		<br><br>
-		
-		<table class="table table-borderless table-sm detalhes" style="text-align: center; text-transform: uppercase;" >
-					<thead class="thead-info" style="text-align: center;" >
-						<tr>
-							<th scope="col">Nº</th>
-							<th scope="col">Nome</th>
-							<th scope="col">CPF</th>
-							<th scope="col">CRM</th>
-							<th scope="col">Especialidade</th>
-							<th scope="col">Telefone</th>
-							<th scope="col">Celular</th>
-							<th scope="col">Email</th>
-
-						</tr>
-						</thead>
-						
-							<tbody th:each="f : ${funcionario}">
-						<tr>
-						<td width="5%">
-								<div>
-									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" style="text-decoration: none">
-									<input type="" class="form-control text-center " id="id"
-										th:value="${f.id}" disabled>
-									
-									<div class="invalid-feedback"></div>
-								</div>
-							</td >
-							
-							<td width="20%">
-								<div>
-									<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center " id="nome"
-										th:value="${f.nome}" disabled >
-									
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							
-							<td width="8%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center " id="cpf"
-										th:value="${f.cpf}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-
-							<td width="8%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center"
-										id="crm" th:value="${f.crm}" disabled>
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							<td width="15%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center" id="especialidade"
-										th:value="${f.especialidade}" disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							
-							<td width="8%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center" id="telefone_fixo"
-										th:value="${f.telefone_fixo}" disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-							
-							<td width="8%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center" id="celular"
-										th:value="${f.celular}" disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-					
-							<td width="10%">
-								<div>
-								<a th:href="@{/funcionario/editar/{id} (id=${f.id})}" >
-									<input type="text" class="form-control text-center" id="email"
-										th:value="${f.email}" disabled />
-									<div class="invalid-feedback"></div>
-								</div>
-							</td>
-				
-						</tr>
-
-					</tbody>
-				</table>
-				
-		<nav aria-label="paginacao">
-  			<ul class="pagination justify-content-center pagination-md">
-    			<li class="page-item disabled">
-      				<a class="page-link" href="/funcionario/listar" tabindex="-1">Anterior</a>
-    			</li>
-    			<li class="page-item"><a class="page-link" href="#">1</a></li>
-    			<li class="page-item"><a class="page-link" href="#">2</a></li>
-    			<li class="page-item"><a class="page-link" href="#">3</a></li>
-    			<li class="page-item">
-      				<a class="page-link" href="#">Próximo</a>
-    			</li>
-  			</ul>
-		</nav>
-			 
-	</section>
-
+	
 </body>
-</html>
--->
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="/css/style2.css" rel="stylesheet"/>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-  </head>
-
-  <body>
-    <div class="wrapper">
-
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <a><h3>SisMed</h3></a>
-            </div>
-
-            <ul class="list-unstyled components">
-              <li>
-						<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="decoration"><i class="fas fa-home espaco "></i> Início</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-calendar-alt espaco" ></i> Agenda</a>
-					</li>
-					<li >
-						<a href="/pacientes/listar" class="decoration"><i class="fas fa-user espaco " ></i>Pacientes</a>
-					</li>
-					<li class="active">
-						<a href="/funcionario/listar" class="decoration"><i class="fas fa-user-md espaco corAtivo" ></i> Funcionários</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-notes-medical espaco" ></i>Convênios</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-file-medical espaco " ></i>Registro Clínico</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-vial espaco "></i>Laboratórios</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-briefcase-medical espaco " ></i>Exames</a>
-					</li>
-					<li>
-						<a href="#" class="decoration"><i class="fas fa-stream espaco " ></i>Relatório</a>
-					</li>
-            </ul>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-          <nav class="navbar navbar-expand-lg">
-			<div class="dropdown">
-                <a class="dropbtn decoration" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                <div class="dropdown-content">
-                  <a href="#">Agendamento</a>
-                  <a href="/pacientes/cadastrar">Paciente</a>
-                  <a href="/funcionario/cadastrar">Funcionário</a>
-                  <a href="#">Convênio</a>
-                  <a href="#">Exame</a>
-                  <a href="#">Laboratório</a>
-                </div>
-			</div>
-			<div id="divBusca">
-                <input type="text" id="txtBusca" placeholder="Buscar..."/>
-                <button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
-              </div>
-			    <div class="collapse navbar-collapse justify-content-end" id="myNavbar7">
-			        <ul class="navbar-nav" style="color: #fff; font-size: 0.9em;">
-			            <li class="nav-item"><p class="mr-4" style="color: #fff; margin-bottom: 0px;">Bem vindo, Nadia</p></li>
-	                	<li class="nav-item" style="margin-top: 2px; margin-right: 25px;"><a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-			        </ul>
-			    </div>
-			</nav>
-          
-          <div class="container-fluid" style="width: 98%">
-            <h3 style="display: inline;">Lista | <strong>Funcionários(as)</strong></h3>
-            <a class="btn btn-success float-right"  href="/funcionario/cadastrar"role="button">
-              <i class="fas fa-plus"></i> Novo Funcionário(a)</a>
-
-          <div class="card" style="margin-top: 25px;">
-            <div class="card-body">
-              <table class="table table-borderless">
-   				<thead>
-   					<tr style="color: #5d6266; font-size: 1em;">
-   					
-   							<th scope="col">Nº</th>
-							<th scope="col">Nome</th>
-							<th scope="col">CPF</th>
-							<th scope="col">CRM</th>
-							<th scope="col">Especialidade</th>
-							<th scope="col">Telefone</th>
-							<th scope="col">Celular</th>
-							<th scope="col">Email</th>
-   					</tr>
-   				</thead>
-   				<tbody th:each="f : ${funcionario}">
-             			<tr class="conteudo" style="font-size: 1em;">
-   						<td style="width: 110px;"> <a th:text="${f.id}"></a>
-   						</td>
-   						<td style="width: 350px;"> <a th:href="@{/funcionario/editar/{id}/(id=${f.id}) }" th:text="${f.nome}"></a>
-   						</td>
-   						<td> <a th:text="${f.cpf}"></a>
-   						</td>
-   						<td> <a th:text="${f.crm}"></a>
-   						</td>
-   						<td> <a th:text="${f.especialidade}"/></a>
-   						</td>
-   						<td> <a th:text="${f.telefone_fixo}"/></a>
-   						</td>
-   						<td> <a th:text="${f.celular}"/></a>
-   						</td>
-   						<td> <a th:text="${f.email}"/></a>
-   						</td>
-   					</tr>
-   				</tbody>
-
-   			</table>
-            </div>
-          </div>
-          </div>
-		</div>
-        </div>
-   
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-  </body>
 </html>
 
 
