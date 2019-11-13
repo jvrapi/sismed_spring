@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 <head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-	<link href="/css/style2.css" rel="stylesheet" />
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,900' rel='stylesheet' type='text/css'>
 	<script>
 		$(document).ready(function() {
 			$("#convenio_id").change(function() {
@@ -32,73 +26,8 @@
 	</head>
 
 	<body>
-		<div class="wrapper">
 	
-			<!-- Sidebar  -->
-			<nav id="sidebar">
-				<div class="sidebar-header">
-					<a role="button" href="/pacientes/listar"><h3>SisMed</h3></a>
-				</div>
-				<ul class="list-unstyled components">
-					<li>
-	                    <a href="#homeSubmenu" class="decoration" data-toggle="collapse" aria-expanded="false" ><i class="fas fa-home espaco"></i> Início</a>
-	                </li>
-	                <li>
-	                    <a href="#" class="decoration"><i class="fas fa-calendar-alt espaco"></i> Agenda</a>
-	                </li>
-	                <li class="active">
-	                    <a href="/pacientes/listar" class="decoration"><i class="fas fa-user corAtivo espaco"></i>Pacientes</a>
-	                </li>
-	                <li>
-	                    <a href="/funcionario/listar" class="decoration"><i class="fas fa-user-md espaco"></i> Funcionários</a>
-	                </li>
-	                <li>
-	                    <a href="/convenios/listar" class="decoration"><i class="fas fa-notes-medical espaco"></i>Convênios</a>
-	                </li>
-	                <li>
-	                    <a href="#" class="decoration"><i class="fas fa-file-medical espaco"></i>Regsitro Clínico</a>
-	                </li>
-	                <li>
-	                    <a href="/laboratorio/listar" class="decoration"><i class="fas fa-vial espaco" style="margin-right: 15px;"></i>Laboratórios</a>
-	                </li>
-	                <li>
-	                    <a href="/exame/listar" class="decoration"><i class="fas fa-briefcase-medical espaco"></i>Exames</a>
-	                </li>
-	                <li>
-	                    <a href="#" class="decoration"><i class="fas fa-stream espaco"></i>Relatório</a>
-	                </li>
-				</ul>
-			</nav>
-	
-			<!-- Page Content  -->
-			<div id="content">
-				<nav class="navbar navbar-expand-lg">
-					<div class="dropdown">
-						<a class="dropbtn decoration" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a>
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="/funcionario/cadastrar">Funcionário</a>
-							<a href="/convenios/cadastrar">Convênio</a>
-							<a href="/exame/cadastrar">Exame</a>
-							<a href="/laboratorio/cadastrar">Laboratório</a>
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end">
-						<ul class="navbar-nav" style="color: #fff; font-size: 0.9em;">
-							<li class="nav-item">
-								<p class="mr-4" style="color: #fff; margin-bottom: 0px;">Bem vindo, Leonardo</p>
-							</li>
-							<li class="nav-item" style="margin-top: 2px; margin-right: 25px;">
-								<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+				<section layout:fragment="corpo">
 	
 				<div class="container-fluid" style="width: 98%">
 					<h3 style="display: inline;"> Cadastro | <strong>Paciente</strong></h3>
@@ -311,8 +240,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+				</section>
+
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
