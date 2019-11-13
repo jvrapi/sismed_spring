@@ -194,3 +194,24 @@ input.tamanho-fonte, select.tamanho-fonte {
 
 }
 
+/* ---------------------------------------------------
+    PAGINAS DE CADASTRO STYLE
+----------------------------------------------------- */
+
+.CadPage{
+	margin-top: 25px; 
+	padding: 0px;
+}
+
+.detalhes
+a{
+	text-decoration: none;
+}
+
+.btnVoltar{
+	text-decoration: none;
+	color: black;
+}
+.btnVoltar:hover{
+	color: black;
+}

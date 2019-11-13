@@ -5,92 +5,83 @@
 
 </head>
 <body>
-	<section layout:fragment="corpo">
-	<br>
-			<div class="container" style="margin-left: 35%;">
-				<div th:replace="fragmentos/alert"></div>
-				
+	<div layout:fragment="corpo"  >
+		
+		<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
 		</div>
 	
-			<div class="container" id="cadastroConvenio">
+		 <div class="container-fluid" style="width: 98%">
+			<h3 style="display: inline;"> <a  style="text-decoration: none;" class="btnVoltar" href="/convenios/listar"> <i class="fas fa-chevron-left"></i> </a>Cadastro | <strong>Convênio</strong></h3>
+			
+			
+			<div class="card CadPage">
+				<div class="card-body">
+					<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
+						<div class="form-row" >
+							<div class="form-group col-md-4 " >
+								<label for="nome"> Nome Convenio</label>
+								<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}"  onkeyup="maiuscula(this)">
+							</div>
+					
+							<br>
+						
+							<div class="form-group col-md-4 " >
+								<label for="cnpj">CNPJ</label>
+								<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex. 29.309.127/0001-79"  th:field="*{cnpj}" >
+							</div>
+					
+							<br>
+						
+							<div class="form-group col-md-4 " >
+								<label for="ans">ANS</label>
+								<input type="text" class="form-control" id="ans" name="ans" placeholder="Ex. 326305"  th:field="*{registro_ans}">
+							</div>
+						</div>
+						
+						<br>
+						
+						<div class="form-row" >
+							<div class="form-group col-md-4 " >
+								<label for="dataAdesao"> Data de Adesão</label>
+								<input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}">
+							</div>
+								
+							<br>
+								
+							<div class="form-group col-md-4 " >
+								<label for="dataAdesao">Banco</label>
+								<input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" placeholder="EX. 001">
+							</div>
+							
+							<br>
+							
+							<div class="form-group col-md-4 " >
+								<label for="dataAdesao">Agência</label>
+								<input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764">
+							</div>
+							
+							<br>
+							
+							<div class="form-group col-md-4 " >
+								<label for="dataAdesao">Conta</label>
+								<input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" placeholder="Ex. 38600-6">
+							</div>
+							
+							<br>
+						
+						</div>
 				
-			<form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" 
-			th:object="${convenio}" method="POST">
-			
-			<div class="mx-auto titulo">
-				<h4 >Cadastro <strong>| Convenio  </strong></h4>
-			</div>
-			<br><br>
-			
-				<div class="form-row" style="margin-left: 20%;">
-					
-					
-					
-					<div class="form-group col-md-4 " >
-					
-						<label for="nome"> Nome Convenio</label>
-						<input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}"  onkeyup="maiuscula(this)">
-					</div>
-					
-						<br>
-						
-					<div class="form-group col-md-4 " >
-						<label for="cnpj">CNPJ</label>
-						<input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex. 29.309.127/0001-79"  th:field="*{cnpj}" >
-					</div>
-					
-						<br>
-						
-					<div class="form-group col-md-4 " >
-						<label for="ans">ANS</label>
-						<input type="text" class="form-control" id="ans" name="ans" placeholder="Ex. 326305"  th:field="*{registro_ans}">
-					</div>
-					
-						<br>
-						
-					<div class="form-group col-md-4 " >
-						<label for="dataAdesao"> Data de Adesão</label>
-						<input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}">
-					</div>
-						
-						<br>
-						
-					<div class="form-group col-md-4 " >
-						<label for="dataAdesao">Banco</label>
-						<input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" placeholder="EX. 001">
-					</div>
-					
-						<br>
-					
-					<div class="form-group col-md-4 " >
-						<label for="dataAdesao">Agência</label>
-						<input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764">
-					</div>
-					
-						<br>
-					
-					<div class="form-group col-md-4 " >
-						<label for="dataAdesao">Conta</label>
-						<input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" placeholder="Ex. 38600-6">
-					</div>
-						<br>
-						
+						<br><br>
+						<div  style="margin-left: 30%;">
+							<input type="hidden" id="id" th:field="*{id}"/>
+							<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
+						</div>
+					</form>
 				</div>
-				
-				<br><br>
-			<div  style="margin-left: 30%;">
-				<input type="hidden" id="id" th:field="*{id}"/>
-				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<a  class="btn btn-secondary form-control col-md-4" href="/convenios/listar"> Voltar</a>
-			
 			</div>
-			</form>
-		
 		</div>
-		
-	
-	
-	</section>
+	</div>
 	
 	
 	

@@ -6,21 +6,20 @@
 </head>
 <body>
 <section layout:fragment = "corpo">
-	<br>
 	
-	<div class="container corpo" id="cadastroTipoConvenio">
-				<div class="container" style="margin-left: 30%;">
-				
-					<div th:replace="fragmentos/alert" ></div>
-				</div>
-			
+		<div class="container ">
+				<div th:each="c : ${convenio}">
+				<h3 style="display: inline; margin-left: 10px;"> 
+				<a class="btnVoltar" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i></a> 
+				Cadastro <strong>| Tipo Convênio  </strong></h3>
+			</div>
+			<div class="card" style="margin-top: 25px; padding: 0px;">
+		    	 <div class="card-body">
 			<form th:action=" @{/procedimentos/salvar} " th:object="${procedimento}" method="POST">
 			
 				<div class="form-row ">
-					<div class="form-group col-md-4 " style="margin-left: 35%;">
-						<div class="mx-auto titulo">
-							<h4>Cadastro <strong>| Procedimento  </strong></h4>
-						</div>
+					<div class="form-group col-md-4 " style="margin: auto;">
+						
 						<br>
 						<label for="nome"> Nome </label>
 						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
@@ -32,32 +31,29 @@
 						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" required>
 						
 						<br>
+						
 						<div th:each="c : ${convenio}">
 							<label for="Convenio">Convenio</label>
 							<input type="text" class="form-control" id="valor" name="valor"   th:value="${c.nome}" disabled>
 						</div>
 						
+						<select id="convenio_id" class="form-control" th:field="*{convenio.id}" hidden>
+							<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+						</select>
 						
+						<br><br>
 						
-							<select id="convenio_id" class="form-control" th:field="*{convenio.id}" hidden>
-								
-								<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
-							</select>
-						<br>
 						<input type="hidden" id="id" th:field="*{id}"/>
-						
+						<input type="submit" class="btn btn-primary form-control "  value="Salvar">
 					</div>
 				
 				</div>
 				
-			<div  style="margin-left: 30%;" th:each="c : ${convenio}" >
-				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<a type="button" class="btn btn-secondary form-control col-md-4" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > Voltar</a>
-				
-			</div>
+			
 			
 			</form>
-		
+		</div>
+		</div>
 		
 		</div>
 </section>
