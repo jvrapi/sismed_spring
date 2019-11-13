@@ -195,13 +195,10 @@ input.tamanho-fonte, select.tamanho-fonte {
 }
 
 /* ---------------------------------------------------
-    PAGINAS DE CADASTRO STYLE
+    Rapi
 ----------------------------------------------------- */
 
-.CadPage{
-	margin-top: 25px; 
-	padding: 0px;
-}
+
 
 .detalhes
 a{
@@ -214,4 +211,24 @@ a{
 }
 .btnVoltar:hover{
 	color: black;
+}
+
+.detalhes
+input{
+	cursor: pointer;
+}
+
+.detalhes
+a{
+	text-decoration: none;
+}
+
+.titulo{
+	display: inline; 
+	margin-left: 10px;"
+}
+
+.ajustarCard{
+	margin-top: 25px; 
+	padding: 0px;"
 }
