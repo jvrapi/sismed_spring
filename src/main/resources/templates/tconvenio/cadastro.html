@@ -15,14 +15,11 @@
 
         <div class="container">
 
-            <div >
-                <h3 style="display: inline; margin-left: 10px;"> 
-				
-				Cadastro <strong>| Tipo Convênio  </strong></h3>
-            </div>
+            
 
             <form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
                 <div th:each="c : ${convenio}">
+                	<h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">  </strong>  Cadastro Tipo Convênio </h3>
                     <input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
                     <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i> Voltar</a>
                     <br>
@@ -38,10 +35,6 @@
 
                                 <br>
 
-                                <div th:each="c : ${convenio}">
-                                    <label for="convenio"> Convenio</label>
-                                    <input type="text" class="form-control " id="convenio" th:value="${c.nome}" disabled>
-                                </div>
                                 <select id="convenio_id" class="form-control" th:field="*{convenio}" hidden>
                                     <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
                                 </select>
