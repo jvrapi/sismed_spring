@@ -17,7 +17,7 @@
 
         <div class="container" style="width: 98%">
             <form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
-                <div id="div_botao">
+                <div id="div_botao" class="detalhes">
                     <h4 class="titulo"> 
 								<a  class="btnVoltar" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> 
 									<i class="fas fa-chevron-left"> </i>

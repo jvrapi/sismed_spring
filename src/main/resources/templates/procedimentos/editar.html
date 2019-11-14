@@ -19,7 +19,7 @@
             <form th:action=" @{/procedimentos/editar } " th:object="${procedimento}" method="POST">
 
                 <div id="div_botao">
-                    <h4 class="titulo"> 
+                    <h4 class="titulo detalhes"> 
 								<a  class="btnVoltar" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> 
 									<i class="fas fa-chevron-left"> </i>
 								</a>

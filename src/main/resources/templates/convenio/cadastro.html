@@ -14,11 +14,16 @@
         </div>
 
         <div class="container-fluid" style="width: 98%">
-            <h3 style="display: inline;"> <a  style="text-decoration: none;" class="btnVoltar" href="/convenios/listar"> <i class="fas fa-chevron-left"></i> </a>Cadastro | <strong>Convênio</strong></h3>
+            <h3 style="display: inline;"> Cadastro | <strong>Convênio</strong></h3>
 
-            <div class="card ajustarCard">
-                <div class="card-body">
-                    <form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
+            <form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
+                <div>
+                    <input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
+                    <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/convenios/listar"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                </div>
+                <br>
+                <div class="card ajustarCard">
+                    <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-md-4 ">
                                 <label for="nome"> Nome Convenio</label>
@@ -77,11 +82,11 @@
                         <br>
                         <div class="ajustarTexto">
                             <input type="hidden" id="id" th:field="*{id}" />
-                            <input type="submit" class="btn btn-primary form-control col-md-4" value="Salvar">
+
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

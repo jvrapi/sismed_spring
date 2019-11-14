@@ -23,9 +23,11 @@
             <form id="form" th:action="@{/convenios/editar}" th:object="${convenio}" method="POST">
 
                 <div id="div_botao">
-                    <h3 class="titulo"> <a class="btnVoltar"  href="/convenios/listar"> <i class="fas fa-chevron-left"> </i></a> Edição | <strong>Convenio</strong></h3>
+                    <h3 class="titulo">  Edição | <strong>Convenio</strong></h3>
+                     <a class="btn btn-secondary float-right ml-2"  href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
                     <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
                     <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+                   
                 </div>
                 <br>
                 <div class="card ajustarCard">
@@ -36,8 +38,7 @@
                                 <label for="nome"> Nome </label>
                                 <input type="text" class="form-control text-center" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" maxlength="50" disabled>
                             </div>
-                        </div>
-                        <div class="form-row" style="margin: auto;">
+
                             <br>
 
                             <div class="form-group col-md-4 ">
@@ -51,7 +52,8 @@
                                 <label for="ans">ANS</label>
                                 <input type="text" class="form-control" id="ans" name="ans" th:field="*{registro_ans}" disabled>
                             </div>
-
+                        </div>
+                        <div class="form-row" style="margin: auto;">
                             <br>
 
                             <div class="form-group col-md-4 ">
@@ -72,36 +74,39 @@
                                 <label for="dataAdesao">Agência</label>
                                 <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" disabled>
                             </div>
-
+							</div>
+							<div class="form-row" style="margin: auto;">
                             <br>
 
                             <div class="form-group col-md-4 ">
                                 <label for="dataAdesao">Conta</label>
                                 <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" disabled>
                             </div>
-                            <br>
+
+                            <div class="btnConvenio">
+
+                                <a class="btn btn-success  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
+                                    <span class="fas fa-plus" aria-hidden="true"> </span>
+                                    <span>  Tipo </span>
+                                </a>
+								
+                                <a class="btn btn-success " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
+                                    <span class="fas fa-plus" aria-hidden="true"> </span>
+                                    <span> Procedimento</span>
+                                </a>
+
+                                <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
+
+                                <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
+                                
+                                
+                            </div>
 
                         </div>
                         <input type="hidden" id="id" th:field="*{id}" />
 
                         <br>
 
-                        <div class="ajustarTexto">
-
-                            <a class="btn btn-success  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
-                                <span class="fas fa-plus" aria-hidden="true"> </span>
-                                <span>  Tipo </span>
-                            </a>
-
-                            <a class="btn btn-success " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
-                                <span class="fas fa-plus" aria-hidden="true"> </span>
-                                <span> Procedimento</span>
-                            </a>
-
-                            <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
-
-                            <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
-                        </div>
                     </div>
                 </div>
             </form>

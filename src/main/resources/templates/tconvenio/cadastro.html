@@ -15,15 +15,20 @@
 
         <div class="container">
 
-            <div th:each="c : ${convenio}">
+            <div >
                 <h3 style="display: inline; margin-left: 10px;"> 
-				<a class="btnVoltar" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i></a> 
+				
 				Cadastro <strong>| Tipo Convênio  </strong></h3>
             </div>
 
-            <div class="card" style="margin-top: 25px; padding: 0px;">
-                <div class="card-body">
-                    <form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
+            <form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
+                <div th:each="c : ${convenio}">
+                    <input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
+                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <br>
+                </div>
+                <div class="card" style="margin-top: 25px; padding: 0px;">
+                    <div class="card-body">
                         <div class="form-row ">
                             <div class="form-group col-md-4 " style="margin: auto;">
                                 <br>
@@ -45,12 +50,13 @@
                                 <br>
 
                                 <input type="hidden" id="id" th:field="*{id}" />
-                                <input type="submit" class="btn btn-primary form-control " value="Salvar">
+
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
+
         </div>
     </div>
 
