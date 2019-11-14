@@ -1,11 +1,17 @@
-function valida() {
-			if($("#funcionario_radio").prop("checked") == true) {
+$(document).ready(function() {
+		$("#tipo").change(function() {
+			var id =  $(this).val();
+			if(id == 2 ){
 				$("#especialidade").prop("disabled", true);
 				$("#especialidade").val("");
 				$("#crm").prop("disabled", true);
 				$("#crm").val("");
-			} else {
+				
+			}else{
+				
 				$("#especialidade").prop("disabled", false);
 				$("#crm").prop("disabled", false);
 			}
-		}
+			
+		});
+	});
