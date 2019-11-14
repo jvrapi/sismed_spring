@@ -14,7 +14,7 @@ public  class Agenda extends AbstractEntity<Long> {
 	
 	@ManyToOne
 	@JoinColumn(name = "paciente_id") // nome da chave estrangeira no banco de dados
-	private Paciente paciente_prontuario;
+	private Paciente paciente_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "procedimento_id") // nome da chave estrangeira no banco de dados
@@ -42,13 +42,14 @@ public  class Agenda extends AbstractEntity<Long> {
 	
 	@OneToMany(mappedBy = "agenda") // nome do atributo na classe Custos
 	private List<Custos> custos;
+
 	
-	public Paciente getPaciente_prontuario() {
-		return paciente_prontuario;
+	public Paciente getPaciente_id() {
+		return paciente_id;
 	}
 
-	public void setPaciente_prontuario(Paciente paciente_prontuario) {
-		this.paciente_prontuario = paciente_prontuario;
+	public void setPaciente_id(Paciente paciente_id) {
+		this.paciente_id = paciente_id;
 	}
 
 	public Procedimento getProcedimento() {

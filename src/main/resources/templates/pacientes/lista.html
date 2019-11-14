@@ -1,82 +1,59 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
 
-	<head>
-		<meta charset="UTF-8">
-	</head>
+  <body>
+  	<section layout:fragment="corpo">
+          
+         <div class="container-fluid" style="width: 98%">
+           <h3 style="display: inline;">Lista | <strong>Pacientes</strong></h3>
+           <a class="btn btn-success float-right"  href="/pacientes/cadastrar"role="button">
+             <i class="fas fa-plus"></i> Novo Paciente</a>
 
-	<body>
-		<section layout:fragment="corpo">
-	
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item active" aria-current="page">Pacientes</li>
-				</ol>
-			</nav>
-			
-			<div class="w3-container w3-teal">
-				<h2 style="display: inline"> Lista<strong> | Pacientes </strong></h2>
-				<a class="btn btn-success btn-sm float-right"  href="/pacientes/cadastrar"role="button"> 
-					<span class="oi oi-plus "title="Cadastrar novo convenio" aria-hidden="true"></span>
-					<span> Paciente</span>
-				</a>
-			</div>
-			
-			<div class="mx-auto titulo" >
-				
-			</div>
-			
-			<br>
-	
-			<table class="text-center detalhes" style="margin: auto;">
-				<thead>
-					<tr>
-						<th>Prontuário</th>
-						<th>Nome</th>
-						<th>RG</th>
-						<th>CPF</th>
-						<th>Convênio</th>
-						<th>Tipo Convênio</th>
-						<th>Telefone Fixo</th>
-						<th>Celular</th>
-					</tr>
-				</thead>
-				<tbody th:each="p : ${paciente}">
-					<tr id="tr-conteudo">
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input  type="text" class="form-control text-center" id="id" th:value="${p.id}" style="width:120px" disabled></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="nome" th:value="${p.nome}" style="width:300px" disabled></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="rg" th:value="${p.rg}" disabled></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="cpf" th:value="${p.cpf}"  disabled></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="telefone_fixo" th:value="${p.telefone_fixo}" disabled/></a>
-						</td>
-						<td> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" >
-							<input type="text" class="form-control text-center" id="celular" th:value="${p.celular}" disabled/></a>
-						</td>
-					</tr>
-				</tbody>
-				
-			</table>
-	
-			<br>
-	
-			<div th:replace="fragmentos/modal :: modal"></div> 
-		</section>
-	
-	</body>
+         <div class="card" style="margin-top: 25px;">
+           <div class="card-body">
+             <table class="table table-borderless">
+  				<thead>
+  					<tr style="color: #5d6266; font-size: 1em;">
+  						<th>Prontuário</th>
+  						<th>Nome</th>
+  						<th>RG</th>
+  						<th>CPF</th>
+  						<th>Convênio</th>
+  						<th>Tipo Convênio</th>
+  						<th>Telefone Fixo</th>
+  						<th>Celular</th>
+  					</tr>
+  				</thead>
+  				<tbody th:each="p : ${paciente}">
+            		<tr class="conteudo" style="font-size: 1em;">
+  						<td style="width: 110px;"> <a th:text="${p.id}"></a>
+  						</td>
+  						<td style="width: 350px;"> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" th:text="${p.nome}"></a>
+  						</td>
+  						<td> <a th:text="${p.rg}"></a>
+  						</td>
+  						<td> <a th:text="${p.cpf}"></a>
+  						</td>
+  						<td> <a th:text="${p.tipo_convenio.convenio.nome}"/></a>
+  						</td>
+  						<td> <a th:text="${p.tipo_convenio.nome}"/></a>
+  						</td>
+  						<td> <a th:text="${p.telefone_fixo}"/></a>
+  						</td>
+  						<td> <a th:text="${p.celular}"/></a>
+  						</td>
+  					</tr>
+  				</tbody>
 
+  			</table>
+           </div>
+         </div>
+         </div>
+         </section>
+
+
+  </body>
 </html>

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -23,20 +24,16 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	private String descricao;
 	
 	@ManyToOne
-	@JoinColumn(name = "paciente_prontuario", nullable = false)
-	private Paciente prontuario;
+	@JoinColumn(name = "prontuario_id", nullable = false)
+	private Paciente prontuario_id;
 	
 	@ManyToOne
-	@JoinColumn(name = "convenio", nullable = false)
-	private Convenio convenio;
-	
-	@ManyToOne
-	@JoinColumn(name = "tipo_convenio", nullable = false)
-	private TConvenio tipo_convenio;
-	
-	@ManyToOne
-	@JoinColumn(name = "sismed_funcionario_id", nullable = false)
+	@JoinColumn(name = "funcionario_id", nullable = false)
 	private Funcionario funcionario_id;
+	
+	@OneToOne
+	@JoinColumn(name= "agendamento_id", nullable = false)
+	private Agenda agendamento_id;
 	
 	public LocalDateTime getData() {
 		return data;
@@ -44,6 +41,14 @@ public class RegistroClinico extends AbstractEntity<Long>{
 
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+
+	public Agenda getAgendamento_id() {
+		return agendamento_id;
+	}
+
+	public void setAgendamento_id(Agenda agendamento_id) {
+		this.agendamento_id = agendamento_id;
 	}
 
 	public LocalDateTime getHora() {
@@ -62,28 +67,12 @@ public class RegistroClinico extends AbstractEntity<Long>{
 		this.descricao = descricao;
 	}
 
-	public Paciente getProntuario() {
-		return prontuario;
+	public Paciente getProntuario_id() {
+		return prontuario_id;
 	}
 
-	public void setProntuario(Paciente prontuario) {
-		this.prontuario = prontuario;
-	}
-
-	public Convenio getConvenio() {
-		return convenio;
-	}
-
-	public void setConvenio(Convenio convenio) {
-		this.convenio = convenio;
-	}
-
-	public TConvenio getTipo_convenio() {
-		return tipo_convenio;
-	}
-
-	public void setTipo_convenio(TConvenio tipo_convenio) {
-		this.tipo_convenio = tipo_convenio;
+	public void setProntuario_id(Paciente prontuario_id) {
+		this.prontuario_id = prontuario_id;
 	}
 
 	public Funcionario getFuncionario_id() {

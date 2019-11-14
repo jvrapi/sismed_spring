@@ -13,30 +13,48 @@
 			
 			<div class="row">
 				<div class="col-md-9">
-          			<div class="card" style="margin-top: 25px;">
-            			<div class="card-body">
-            				<div class="form-row">
-		            			<div class="form-group col-md-6">
-		            				<label for="nome_paciente">Nome do paciente</label> 
-									<input type="text" class="form-control tamanho-fonte" id="nome_paciente" disabled/> 
+					<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
+	          			<div class="card" style="margin-top: 25px;">
+	            			<div class="card-body">
+	            				<div class="form-row">
+			            			<div class="form-group col-md-3">
+			            				<label for="nome_paciente">Nome do paciente</label> 
+										<select class="form-control tamanho-fonte" id="nome_paciente" th:field="*{prontuario_id}"  disabled>
+											<option th:each="a : ${agenda}" th:value="${a.paciente_id.id}" th:text="${a.paciente_id.nome}"></option>
+										</select>
+									</div>
+									<div class="form-group col-md-3">
+			            				<label for="convenio">Convênio</label> 
+										<input type="text" class="form-control tamanho-fonte" id="convênio" th:each="a : ${agenda}" th:value="${a.paciente_id.tipo_convenio.convenio.nome}" disabled/>
+										 
+									</div>
+									<div class="form-group col-md-3">
+			            				<label for="tipo_convenio">Tipo de convênio</label> 
+										<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:each="a : ${agenda}" th:value="${a.paciente_id.tipo_convenio.nome}" disabled/> 
+									</div>
+									<div class="form-group col-md-3">
+			            				<label for="agendamento">Agendamento</label> 
+										<input type="text" class="form-control tamanho-fonte" id="agendamento" th:name="agendamento_id" th:each="a : ${agenda}" th:value="${a.id}" disabled/> 
+									</div>
+									<div class="form-group col-md-3">
+			            				<label for="hora">Hora</label> 
+										<input type="text" class="form-control tamanho-fonte" id="hora" th:field="*{hora}" disabled/> 
+									</div>
+									<div class="form-group col-md-3">
+			            				<label for="data">Data</label> 
+										<input type="text" class="form-control tamanho-fonte" id="data" th:field="*{data}" disabled/> 
+									</div>	
 								</div>
-								<div class="form-group col-md-3">
-		            				<label for="convenio">Convênio</label> 
-									<input type="text" class="form-control tamanho-fonte" id="convenio" disabled/> 
+								<div class="form-row">
+									<div class="form-group col-md-12">
+										<label for="descricao">Descrição</label> 
+										<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" style="resize: none;"></textarea>
+									</div>
 								</div>
-								<div class="form-group col-md-3">
-		            				<label for="tipo_convenio">Tipo do convênio</label> 
-									<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" disabled/> 
-								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-12">
-									<label for="descricao">Descrição</label> 
-									<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" style="resize: none;"></textarea>
-								</div>
-							</div>
-              			</div>
-              		</div>
+								<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
+	              			</div>
+	              		</div>
+              		</form>
               	</div>
 				<div class="col-md-3">
 			 		<div class="card" style="margin-top: 25px;">

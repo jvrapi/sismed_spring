@@ -1,13 +1,11 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -89,12 +87,6 @@ public class Paciente extends AbstractEntity<Long>{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
-	
-	@OneToMany(mappedBy = "paciente_id")
-	private List<Exame> exame;
-	
-	@OneToMany(mappedBy = "paciente_prontuario")
-	private List<Agenda> agenda;
 
 	public String getNome() {
 		return nome;
@@ -273,22 +265,4 @@ public class Paciente extends AbstractEntity<Long>{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	public List<Exame> getExame() {
-		return exame;
-	}
-
-	public void setExame(List<Exame> exame) {
-		this.exame = exame;
-	}
-
-	public List<Agenda> getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(List<Agenda> agenda) {
-		this.agenda = agenda;
-	}
-	
-	
 }
