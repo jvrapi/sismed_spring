@@ -10,43 +10,46 @@
 <body>
     <section layout:fragment="corpo">
 
-        <div class="container" style="margin-left: 35%;">
+        <div class="container ajustarTexto">
             <div th:replace="fragmentos/alert" class="container"></div>
             <div th:replace="fragmentos/modal" class="container"></div>
         </div>
 
         <div class="container" style="width: 98%">
-            <div id="div_botao">
-                <h4 class="titulo"> 
+            <form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
+                <div id="div_botao">
+                    <h4 class="titulo"> 
 								<a  class="btnVoltar" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> 
 									<i class="fas fa-chevron-left"> </i>
 								</a>
 								<strong th:text="${tconvenio.nome} + ' | ' "> </strong> Informações 
 							</h4>
-                <button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
-            </div>
-            <div class="card ajustarCard">
-                <div class="card-body">
-                    <form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
+                    <button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                    <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
+                </div>
+                <div class="card ajustarCard">
+                    <div class="card-body">
 
-                        <div class="form-group col-md-4 " style="margin-left: 35%;">
+                        <div class="form-group col-md-4 ajustarTexto">
 
                             <label for="nome"> Nome</label>
                             <input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
 
-                            <br>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group col-md-4 ajustarTexto">
 
                             <input type="hidden" class="convenioid" th:id="${tconvenio.convenio.id}" />
                             <input type="hidden" th:field="*{convenio.id}" />
                             <input type="hidden" id="id" th:field="*{id}" />
-                            <br>
+                            <div class="invalid-feedback"></div>
 
                         </div>
 
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
 
     </section>

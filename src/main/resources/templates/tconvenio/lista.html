@@ -8,6 +8,10 @@
 
 <body>
     <div layout:fragment="corpo">
+        <div class="container ajustarTexto">
+            <div th:replace="fragmentos/alert" class="container"></div>
+            <div th:replace="fragmentos/modal" class="container"></div>
+        </div>
         <div class="container" style="width: 98%">
             <div th:each="c : ${convenio}">
                 <h3 style="display: inline; margin-left: 10px;">
