@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
 </head>
+
 <body>
-	<div layout:fragment="corpo" >
-		
-	
-		<div class="container" >
-			
-			<div th:each="c : ${convenio}">
-				<h3 style="display: inline; margin-left: 10px;"> 
-				<a class="btnVoltar" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i></a> 
-				Cadastro <strong>| Tipo Convênio  </strong></h3>
-			</div>
-			
-			<div class="card" style="margin-top: 25px; padding: 0px;">
-		    	 <div class="card-body">
-					<form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">	
-						<div class="form-row ">
-							<div class="form-group col-md-4 " style="margin: auto;">
-								<br>					
-								<label for="nome"> Nome</label>
-								<input type="text" class="form-control " id="nome" placeholder="Ex. 400" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" required autocomplete="off">
-								<input type="hidden" id="id" th:field="*{id}"/>
-							
-						
-									
-								<br>
-								
-											
-								<div th:each="c : ${convenio}">
-									<label for="convenio"> Convenio</label>
-									<input type="text" class="form-control " id="convenio"  th:value="${c.nome}" disabled>
-								</div>
-								<select id="convenio_id" class="form-control" th:field="*{convenio}" hidden>
-									<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
-								</select>
-								
-								<br><br>
-								
-								<input type="hidden" id="id" th:field="*{id}"/>
-								<input type="submit" class="btn btn-primary form-control "  value="Salvar">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-			
-	
-	
-	
+    <div layout:fragment="corpo">
+        <div class="container ajustarTexto">
+            <div th:replace="fragmentos/alert" class="container"></div>
+            <div th:replace="fragmentos/modal" class="container"></div>
+        </div>
+
+        <div class="container">
+
+            
+
+            <form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
+                <div th:each="c : ${convenio}">
+                	<h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">  </strong>  Cadastro Tipo Convênio </h3>
+                    <input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
+                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <br>
+                </div>
+                <div class="card" style="margin-top: 25px; padding: 0px;">
+                    <div class="card-body">
+                        <div class="form-row ">
+                            <div class="form-group col-md-4 " style="margin: auto;">
+                                <br>
+                                <label for="nome"> Nome</label>
+                                <input type="text" class="form-control " id="nome" placeholder="Ex. 400" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" required autocomplete="off">
+                                <input type="hidden" id="id" th:field="*{id}" />
+
+                                <br>
+
+                                <select id="convenio_id" class="form-control" th:field="*{convenio}" hidden>
+                                    <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                </select>
+
+                                <br>
+                                <br>
+
+                                <input type="hidden" id="id" th:field="*{id}" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
 
 </body>
+
 </html>

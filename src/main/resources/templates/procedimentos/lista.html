@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
 </head>
+
 <body>
-	<section layout:fragment="corpo">
-	
-	<br>
-	<div  style="margin-left: 35%;">
-			<div th:replace="fragmentos/alert"></div>
-			<div th:replace="fragmentos/modal :: modal"></div>
-	</div>
-	<br>
-	<div style="margin-left: 43%;" th:each="c : ${convenio}">
-				<h2> <strong th:text = ${c.nome}>  Convenio </strong>        
-				
-				<strong>  | </strong>
-				
-				Procedimentos
-				
-				
-				</h2>
-		</div>
-	<br><br>
-		<div style="margin-left: 40%;">
-			<div class="container detalhes" th:each="p : ${procedimento}">
+    <div layout:fragment="corpo">
+        <div class="container ajustarTexto">
+            <div th:replace="fragmentos/alert" class="container"></div>
+            <div th:replace="fragmentos/modal" class="container"></div>
+        </div>
+        <div class="container" style="width: 98%">
+            <div th:each="c : ${convenio}" class="detalhes">
+                <h3 style="display: inline; margin-left: 10px;">
+						 
+						<strong th:text = "${c.nome + ' | ' }">  Convenio </strong> Procedimentos
+					</h3>
+					<a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > 
+							<i class="fas fa-chevron-left"></i> Voltar</a>
+            </div>
+            <div class="card ajustarCard">
+                <div class="card-body">
+                    <div style="margin-left: 40%;" th:each="p : ${procedimento}">
+                        <div class="container detalhes ">
 
-				<div class="form-row">
-					<div class="form-group col-md-4">
-						<a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" >
-							<input type="text" class="form-control text-center" id="nome" th:value="${p.descricao}" disabled>
-						</a>	
-						<div class="invalid-feedback"></div>
-					</div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4" style="">
+                                    <a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" title="Mostrar informações" th:text="${p.descricao}"> </a>
+                                </div>
 
-					
-					
-					
-					
-					
-						
+                            </div>
+                        </div>
 
-						
-					
+                    </div>
+                    <br>
+                    <br>
 
-				</div>
-			</div>
-		</div>
-		
-		<br><br>
-		<div style="margin-left: 41%;" th:each="c : ${convenio}">
-			<a type="button" class="btn btn-secondary form-control col-md-4" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > Voltar</a>
-		</div>
-	</section>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
