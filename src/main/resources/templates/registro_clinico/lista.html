@@ -4,8 +4,24 @@
 		<meta charset="UTF-8" />
 		<script>
 			function cadastrarRegistro() {
-				var url = "http://localhost:8080/RegistroClinico/cadastrar/1/" + $("#id").val();
+				var url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + $("#id").val();
 				document.location.href = url;
+			}
+		</script>
+		<script>
+			function busca() {
+				var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
+				document.location.href = url2;
+			}
+		</script>
+		<script>
+			function muda() {
+				$("#dropdownMenu2").text("ID");
+				$("#dropdownMenu2").val("1");
+			}
+			function muda2() {
+				$("#dropdownMenu2").text("Nome");
+				$("#dropdownMenu2").val("2");
 			}
 		</script>
 	</head>
@@ -25,7 +41,6 @@
 									<th>Descrição</th>
 									<th>Data</th>
 									<th>Hora</th>
-									<th>Agendamento</th>
 								</tr>
 							</thead>
 							<tbody th:each="r : ${registro}">
@@ -35,7 +50,6 @@
 									<td><a th:text="${r.descricao}"/></a></td>
 									<td><a th:text="${r.data}"></a></td>
 									<td><a th:text="${r.hora}"></a></td>
-									<td><a th:text="${r.agendamento_id.id}"/></a></td>
 									<td><input type="hidden" id="id" th:value="${r.paciente_id.id}"></td>
 								</tr>
 							</tbody>
@@ -45,4 +59,5 @@
 			</div>
 		</div>
 	</body>
+
 </html>

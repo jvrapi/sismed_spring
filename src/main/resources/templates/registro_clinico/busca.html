@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+	<head>
+		<meta charset="UTF-8" />
+		<script>
+			function busca() {
+				var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
+				document.location.href = url2;
+			}
+		</script>
+		<script>
+			function muda() {
+				$("#dropdownMenu2").text("ID");
+				$("#dropdownMenu2").val("1");
+			}
+			function muda2() {
+				$("#dropdownMenu2").text("Nome");
+				$("#dropdownMenu2").val("2");
+			}
+		</script>
+	</head>
+
+	<body>
+		<div layout:fragment="corpo">	
+			
+		</div>
+	</body>
+</html>

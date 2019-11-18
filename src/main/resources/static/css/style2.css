@@ -88,9 +88,9 @@ a[aria-expanded="true"] {
 #divBusca{
   background-color:#fff;
   border-radius:3px;
-  width:405px;
+  width:400px;
   height: 35px;
-  margin-left: 50px;
+  margin-left:0;
 }
 
 #txtBusca{
@@ -239,4 +239,18 @@ a{
 .btnConvenio{
 	margin-top:32px;
 	margin-left: 5px;
+}
+
+#dropdownMenu2 {
+	color: white;
+	width: 65px;
+	text-align: right;
+}
+
+#dropdownMenu3 {
+	color: white;
+}
+
+#dropdownMenu3:hover {
+	background: #007fc1;
 }

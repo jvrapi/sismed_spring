@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.sismed.domain.RegistroClinico;
 import br.com.sismed.service.AgendaService;
+import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.RegistroClinicoService;
 
 @Controller
@@ -22,17 +23,37 @@ public class RClinicoController {
 	
 	@Autowired
 	private AgendaService agendaService;
+	
+	@Autowired
+	private PacienteService pacienteSercice;
+	
+	@GetMapping("/buscar")
+	public String buscar() {
+		return "/registro_clinico/busca";
+	}
 
-	@GetMapping("/listar/{id}")
-	public String RClinico(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("registro", service.ListarRegPaciente(id));
-		return "/registro_clinico/lista";
+	@GetMapping("/listar/{id}/{dado}")
+	public String listar(@PathVariable("id") Integer id, @PathVariable("dado") String dado, ModelMap model) {
+		if(id == 1) {
+			model.addAttribute("registro", service.ListarRegPacienteAgen(dado));
+			return "/registro_clinico/lista";
+		}
+		else {
+			model.addAttribute("registro", service.ListarRegPaciente(dado));
+			return "/registro_clinico/lista";
+		}
 	}
 	
 	@GetMapping("/cadastrar/{id}")
 	public String cadastrar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
 		return "/registro_clinico/cadastro";
+	}
+	
+	@GetMapping("/cadastrarpac/{id}")
+	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
+		model.addAttribute("paciente", pacienteSercice.buscarporId(id));
+		return "/registro_clinico/cadastropac";
 	}
 	
 	@PostMapping("/salvar")
