@@ -71,7 +71,8 @@
           	<div id="div_botao">
             <h3 style="display: inline;">Edição | <strong>Paciente</strong></h3>
             
-				<button th:id="${paciente.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+            	<a class="btn btn-secondary float-right ml-2" href="/pacientes/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+				<button th:id="${paciente.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Delete</button>
 				<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
 			</div >
 

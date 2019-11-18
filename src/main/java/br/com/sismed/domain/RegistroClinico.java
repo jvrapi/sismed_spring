@@ -24,8 +24,8 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	private String descricao;
 	
 	@ManyToOne
-	@JoinColumn(name = "prontuario_id", nullable = false)
-	private Paciente prontuario_id;
+	@JoinColumn(name = "paciente_id", nullable = false)
+	private Paciente paciente_id;
 	
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id", nullable = false)
@@ -67,14 +67,6 @@ public class RegistroClinico extends AbstractEntity<Long>{
 		this.descricao = descricao;
 	}
 
-	public Paciente getProntuario_id() {
-		return prontuario_id;
-	}
-
-	public void setProntuario_id(Paciente prontuario_id) {
-		this.prontuario_id = prontuario_id;
-	}
-
 	public Funcionario getFuncionario_id() {
 		return funcionario_id;
 	}
@@ -82,4 +74,14 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	public void setFuncionario_id(Funcionario funcionario_id) {
 		this.funcionario_id = funcionario_id;
 	}
+
+	public Paciente getPaciente_id() {
+		return paciente_id;
+	}
+
+	public void setPaciente_id(Paciente paciente_id) {
+		this.paciente_id = paciente_id;
+	}
+	
+	
 }

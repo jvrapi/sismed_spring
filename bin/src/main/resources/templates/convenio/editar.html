@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+
+    <script type="text/javascript" src="/js/convenio/modal.js"></script>
+    <script type="text/javascript" src="/js/convenio/editar.js"></script>
+
+</head>
+
+<body>
+    <section layout:fragment="corpo">
+
+        <div class="container" style="margin-left: 35%;">
+            <div th:replace="fragmentos/alert"></div>
+            <div th:replace="fragmentos/modal"></div>
+
+        </div>
+
+        <div class="container-fluid" style="width: 98%">
+
+            <form id="form" th:action="@{/convenios/editar}" th:object="${convenio}" method="POST">
+
+                <div id="div_botao">
+                    <h3 class="titulo">  Edição | <strong>Convenio</strong></h3>
+                     <a class="btn btn-secondary float-right ml-2"  href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                    <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                    <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+                   
+                </div>
+                <br>
+                <div class="card ajustarCard">
+                    <div class="card-body">
+                        <div class="form-row" style="margin: auto;">
+                            <div class="form-group col-md-4 text-center">
+
+                                <label for="nome"> Nome </label>
+                                <input type="text" class="form-control text-center" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" maxlength="50" disabled>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="cnpj">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" th:field="*{cnpj}" disabled>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="ans">ANS</label>
+                                <input type="text" class="form-control" id="ans" name="ans" th:field="*{registro_ans}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-row" style="margin: auto;">
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="dataAdesao"> Data de Adesão</label>
+                                <input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}" disabled>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="dataAdesao">Banco</label>
+                                <input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" disabled>
+                            </div>
+
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="dataAdesao">Agência</label>
+                                <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" disabled>
+                            </div>
+							</div>
+							<div class="form-row" style="margin: auto;">
+                            <br>
+
+                            <div class="form-group col-md-4 ">
+                                <label for="dataAdesao">Conta</label>
+                                <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" disabled>
+                            </div>
+
+                            <div class="btnConvenio">
+
+                                <a class="btn btn-success  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
+                                    <span class="fas fa-plus" aria-hidden="true"> </span>
+                                    <span>  Tipo </span>
+                                </a>
+								
+                                <a class="btn btn-success " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
+                                    <span class="fas fa-plus" aria-hidden="true"> </span>
+                                    <span> Procedimento</span>
+                                </a>
+
+                                <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
+
+                                <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
+                                
+                                
+                            </div>
+
+                        </div>
+                        <input type="hidden" id="id" th:field="*{id}" />
+
+                        <br>
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <br>
+        <br>
+
+    </section>
+
+</body>
+
+</html>

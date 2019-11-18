@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html >
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	
+	
+        <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+              <div class="dropdown">
+                <a class="dropbtn" data-toggle="dropdown" href="#">
+  								<i class="fa fa-plus fa-fw"></i>Novo
+                </a>
+                <div class="dropdown-content">
+                  <a href="#">Agendamento</a>
+                  <a href="/pacientes/cadastrar">Paciente</a>
+                  <a href="#">Funcionário</a>
+                  <a href="/convenios/cadastrar">Convênio</a>
+                  <a href="#">Exame</a>
+                  <a href="#">Laboratório</a>
+                </div>
+              </div>
+              <div id="divBusca">
+                <input type="text" id="txtBusca" placeholder="Buscar..."/>
+                <button id="btn_search" class="btn"><i class="fas fa-search"></i></button>
+              </div>
+              <div class="collapse navbar-collapse justify-content-end" id="myNavbar7">
+              	<ul class="nav navbar-nav" style="margin-left: 900px; color: #fff">
+	                <li><p class="a mr-4" style="color: #fff; margin-bottom: 0px; font-size: 1em;">Bem vindo</p></li>
+	                <li class="nav-item" style="margin-top: 2px; margin-right: 25px;"><a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+              	</ul>
+              </div>
+            </div>
+          </nav>
+       
+        
+</body>
+</html>

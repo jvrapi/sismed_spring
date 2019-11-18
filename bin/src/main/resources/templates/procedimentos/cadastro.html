@@ -1,56 +1,64 @@
 <!DOCTYPE html>
-<html layout:decorate = "~{layout}">
+<html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
 </head>
-<body>
-<section layout:fragment = "corpo">
 
-	<div class="container corpo" id="cadastroTipoConvenio">
-				<div class="container" style="margin-left: 30%;">
-				<br><br>
-					<div th:replace="fragmentos/alert" ></div>
-				</div>
-			
-			<form th:action=" @{/procedimentos/salvar} " th:object="${procedimento}" method="POST">
-			
-				<div class="form-row ">
-					<div class="form-group col-md-4 " style="margin-left: 35%;">
-						<h4>Cadastro <strong>| Procedimento  </strong></h4>
-						
-						<label for="nome"> Nome </label>
-						<input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" 
-						maxlength="30" >
-						
-						
-						<br>
-						<label for="nome"> Valor </label>
-						<input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento"  th:field="*{valor}" >
-						
-						<br>
-						<label for="Convenio">Convenio</label>
-							<select id="convenio_id" class="form-control" th:field="*{convenio}">
-								
-								<option th:each="c : ${convenios}" th:value="${c.id}" th:text="${c.nome}"></option>
-							</select>
-						<br>
-						<input type="hidden" id="id" th:field="*{id}"/>
-						
-					</div>
-				
-				</div>
-				
-			<div  style="margin-left: 30%;">
-				<input type="submit" class="btn btn-primary form-control col-md-4"  value="Salvar">
-				<input type="button" class="btn btn-secondary form-control col-md-4" onclick="location.href = document.referrer;"  value="Voltar">
-				
-			</div>
-			
-			</form>
-		
-		
-		</div>
-</section>
+<body>
+    <section layout:fragment="corpo">
+        <div class="container ajustarTexto">
+            <div th:replace="fragmentos/alert" class="container"></div>
+            <div th:replace="fragmentos/modal" class="container"></div>
+        </div>
+
+        <div class="container ">
+            <div>
+               
+            </div>
+
+            <form th:action=" @{/procedimentos/salvar} " th:object="${procedimento}" method="POST">
+                <div th:each="c : ${convenio}">
+                	 <h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">   </strong> Cadastro Procedimento</h3>
+                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <input type="submit" class="btn btn-primary form-control float-right col-md-1 mr-2" value="Salvar">
+                    <br>
+                </div>
+                <div class="card" style="margin-top: 25px; padding: 0px;">
+                    <div class="card-body">
+                        <div class="form-row ">
+                            <div class="form-group col-md-4 " style="margin: auto;">
+
+                                <br>
+                                <label for="nome"> Nome </label>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome do Procedimento" autofocus="autofocus" th:field="*{descricao}" onkeyup="maiuscula(this)" maxlength="30" required>
+
+                                <br>
+                                <label for="nome"> Valor </label>
+                                <input type="text" class="form-control" id="valor" name="valor" placeholder="Valor do Procedimento" th:field="*{valor}" required>
+
+                                <br>
+
+                                <select id="convenio_id" class="form-control" th:field="*{convenio.id}" hidden>
+                                    <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                </select>
+
+                                <br>
+                                <br>
+
+                                <input type="hidden" id="id" th:field="*{id}" />
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </section>
 </body>
+
 </html>

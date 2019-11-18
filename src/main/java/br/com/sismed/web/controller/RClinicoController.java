@@ -23,8 +23,9 @@ public class RClinicoController {
 	@Autowired
 	private AgendaService agendaService;
 
-	@GetMapping("/listar")
-	public String RClinico() {
+	@GetMapping("/listar/{id}")
+	public String RClinico(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("registro", service.ListarRegPaciente(id));
 		return "/registro_clinico/lista";
 	}
 	

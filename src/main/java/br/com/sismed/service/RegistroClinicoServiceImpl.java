@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.RegistroClinicoDao;
+import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.RegistroClinico;
 
 @Service @Transactional
@@ -42,5 +43,10 @@ public class RegistroClinicoServiceImpl implements RegistroClinicoService{
 	public List<RegistroClinico> buscarTodos() {
 		
 		return dao.findAll();
+	}
+	
+	@Override
+	public List<RegistroClinico> ListarRegPaciente(Long id) {
+		return dao.ListarRegPaciente(id);
 	}
 }

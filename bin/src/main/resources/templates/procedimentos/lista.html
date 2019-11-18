@@ -1,75 +1,47 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
 </head>
+
 <body>
-	<section layout:fragment="corpo">
-	<br><br><br>
-	<div class="container" style="margin-left: 43%;">
-				<h2> Lista<strong> | Procedimentos  </strong></h2>
-			</div>
-	
-	
-	
-	<div class="container" style="margin-left: 35%;">
-			<div th:replace="fragmentos/alert"></div>
-			<div th:replace="fragmentos/modal :: modal"></div>
-		</div>
-		<br><br><br>
-		
-			<div  style="margin-left:40%;" >
-				<label for="nome">Nome</label> 
-				<label for="nome" style="margin-left:30%;" >Valor</label> 
-			</div>
-			
-			
-			
-			
-			
-		<div style="margin-left: 25%;">
-			<div class="container" th:each="p : ${procedimento}">
+    <div layout:fragment="corpo">
+        <div class="container ajustarTexto">
+            <div th:replace="fragmentos/alert" class="container"></div>
+            <div th:replace="fragmentos/modal" class="container"></div>
+        </div>
+        <div class="container" style="width: 98%">
+            <div th:each="c : ${convenio}" class="detalhes">
+                <h3 style="display: inline; margin-left: 10px;">
+						 
+						<strong th:text = "${c.nome + ' | ' }">  Convenio </strong> Procedimentos
+					</h3>
+					<a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > 
+							<i class="fas fa-chevron-left"></i> Voltar</a>
+            </div>
+            <div class="card ajustarCard">
+                <div class="card-body">
+                    <div style="margin-left: 40%;" th:each="p : ${procedimento}">
+                        <div class="container detalhes ">
 
-				<div class="form-row">
-					<div class="form-group col-md-4">
-						<input type="text" class="form-control text-center" id="nome"
-							th:value="${p.descricao}" disabled>
-							
-						<div class="invalid-feedback"></div>
-					</div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4" style="">
+                                    <a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" title="Mostrar informações" th:text="${p.descricao}"> </a>
+                                </div>
 
-					<div class="form-group col-md-4">
-						<input type="text" class="form-control text-center" id="nome"
-							th:value="|R$ ${{p.valor}}|" disabled>
-							
-						<div class="invalid-feedback"></div>
-					</div>
-					
-					
-					
-					<div class="form-group col-md-2">
-						<a class="btn btn-info btn-sm"
-							th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" role="button">
-							<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-						</a>
-						<button
-							th:id="${#strings.concat ('/btn_procedimentos/excluir/',p.id,'/',p.convenio.id)}"
-							type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#myModal">
-							<span class="oi oi-circle-x" title="Excluir covenio"
-								aria-hidden="true"></span>
-						</button>
-					</div>
+                            </div>
+                        </div>
 
-				</div>
-			</div>
-		</div>
-		
-		<br><br>
-		<div style="margin-left: 41%;">
-			<input type="button" class="btn btn-secondary form-control col-md-4" onclick="location.href = document.referrer;"  value="Voltar">
-		</div>
-	</section>
+                    </div>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

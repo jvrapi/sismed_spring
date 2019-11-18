@@ -2,21 +2,47 @@
 <html layout:decorate="~{layout}">
 	<head>
 		<meta charset="UTF-8" />
+		<script>
+			function cadastrarRegistro() {
+				var url = "http://localhost:8080/RegistroClinico/cadastrar/1/" + $("#id").val();
+				document.location.href = url;
+			}
+		</script>
 	</head>
-  
+
 	<body>
 		<div layout:fragment="corpo">
-	  		
-	  		<div class="container-fluid" style="width: 98%">
+			<div class="container-fluid" style="width: 98%">
 				<h3 style="display: inline;">Lista | <strong>Registros Clínicos</strong></h3>
-	           	<a class="btn btn-success float-right"  href="/RegistroClinico/cadastrar"role="button"><i class="fas fa-plus"></i> Novo Registro</a>
-	          	<div class="card" style="margin-top: 25px; padding: 0px;">
-	            	<div class="card-body">
-	              	</div>
+				<a class="btn btn-success float-right" href="#" onclick="cadastrarRegistro()" role="button"><i class="fas fa-plus"></i> Novo Registro</a>
+				<div class="card" style="margin-top: 25px; padding: 0px;">
+					<div class="card-body">
+						<table class="table table-borderless">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em;">
+									<th>Nº Registro</th>
+									<th>Paciente</th>
+									<th>Descrição</th>
+									<th>Data</th>
+									<th>Hora</th>
+									<th>Agendamento</th>
+								</tr>
+							</thead>
+							<tbody th:each="r : ${registro}">
+								<tr class="conteudo" style="font-size: 1em;">
+									<td><a th:text="${r.id}"></a></td>
+									<td><a th:text="${r.paciente_id.nome}"></a></td>
+									<td><a th:text="${r.descricao}"/></a></td>
+									<td><a th:text="${r.data}"></a></td>
+									<td><a th:text="${r.hora}"></a></td>
+									<td><a th:text="${r.agendamento_id.id}"/></a></td>
+									<td><input type="hidden" id="id" th:value="${r.paciente_id.id}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
-			
-	  	</div>
-  	</body>
-  
+		</div>
+	</body>
 </html>

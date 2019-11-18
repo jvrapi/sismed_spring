@@ -2,6 +2,7 @@ package br.com.sismed.service;
 
 import java.util.List;
 
+import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.RegistroClinico;
 
 public interface RegistroClinicoService {
@@ -14,4 +15,5 @@ public interface RegistroClinicoService {
 	
 	List<RegistroClinico> buscarTodos();
 
+	List<RegistroClinico> ListarRegPaciente(Long id);
 }
