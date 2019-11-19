@@ -12,4 +12,5 @@ public interface AgendaService {
 	Agenda buscarPorId(Long id);
 	
 	List<Agenda> BuscarTodos();
+	List<Agenda> ListarAgendamentos();
 }

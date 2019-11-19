@@ -31,6 +31,9 @@ public  class Agenda extends AbstractEntity<Long> {
 	private String compareceu;
 	
 	@Column(nullable = false)
+	private String primeira_vez;
+	
+	@Column(nullable = false)
 	private String pagou;
 	
 	@Column(nullable = false)
@@ -106,6 +109,30 @@ public  class Agenda extends AbstractEntity<Long> {
 
 	public void setHora(LocalDateTime hora) {
 		this.hora = hora;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
+	public String getPrimeira_vez() {
+		return primeira_vez;
+	}
+
+	public void setPrimeira_vez(String primeira_vez) {
+		this.primeira_vez = primeira_vez;
+	}
+
+	public List<Custos> getCustos() {
+		return custos;
+	}
+
+	public void setCustos(List<Custos> custos) {
+		this.custos = custos;
 	}
 	
 	

@@ -1,10 +1,25 @@
 package br.com.sismed.dao;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.sismed.domain.Agenda;
+import br.com.sismed.domain.Convenio;
 
 @Repository
 public class AgendaDaoImpl extends AbstractDao<Agenda, Long> implements AgendaDao{
-	/* Caso necessite de um novo metodo, crie aqui e coloque a assinatura do metodo no dao*/
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	public List<Agenda> ListarAgendamentos(){
+		Query query = entityManager.createNativeQuery("SELECT * " + " FROM sismed_agenda  " 
+				+ "order by  data desc, hora asc ",Agenda.class);
+		List<Agenda> resultlist = query.getResultList();
+		return resultlist;
+	}
 }
