@@ -17,21 +17,20 @@
 	
 				<div class="container-fluid" style="width: 98%">
 				
+				<form th:action=" @{/funcionario/salvar} " th:object="${funcionario}" method="POST">
 					<h3 style="display: inline;">
-					<!--  
-					<a  style="text-decoration: none;" href="/funcionario/listar"> <i class="fas fa-chevron-left"></i> </a> 
-					-->
+				
 					Cadastro | <strong>Funcionário(a)</strong></h3>
 					
 					
-				
-					<div class="card" style="margin-top: 25px; padding: 0px;">
-						<div class="card-body">
-							<form th:action=" @{/funcionario/salvar} " th:object="${funcionario}" method="POST">
-							
 							<input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
 					
 					<a class="btn btn-secondary float-right" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+							
+					
+					<div class="card" style="margin-top: 25px; padding: 0px;">
+						<div class="card-body">
+							
 							
 								<h5 style=" margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; ">Dados Pessoais</h5>
 								
@@ -179,7 +178,7 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="complemento">Complemento</label> 
-										<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" required>
+										<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}">
 									</div>
 								</div>
 	
@@ -224,17 +223,21 @@
 											<option value="SE">Sergipe</option>
 											<option value="TO">Tocantins</option>
 										</select>
-									</div>
-								</div>
-								
+							
 								<input type="hidden" id="id" th:field="*{id}"/> 
 								
-							</form>
+								</div>
 						</div>
-					</div>
-				</div>
+						</div>
+						</div>
+						
+						</form>
+					
 			</div>
-	
+			</div>
+							
+							
+						
 	</body>
 </html>
 

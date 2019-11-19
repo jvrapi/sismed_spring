@@ -46,7 +46,9 @@ public class ExameController {
 	}
 		
 	@GetMapping("/cadastrar") 
-	public String cadastrar (Exame exame) {
+	public String cadastrar (ModelMap model, Exame exame) {
+		model.addAttribute("paciente",pservice.buscarTodos());
+		model.addAttribute("funcionario",fservice.buscarTodos());
 		return "/exame/cadastro"; 
 	}
 	

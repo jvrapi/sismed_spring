@@ -2,9 +2,12 @@ package br.com.sismed.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -12,7 +15,7 @@ import javax.persistence.Table;
 @Table(name="sismed_laboratorio")
 public class Laboratorio extends AbstractEntity<Long>{
 	
-	@Column(name="cnpj", nullable=false, length=5)
+	@Column(name="cnpj", length=5)
 	private String cnpj;
 	
 	@Column(name="nome", nullable=false, length=30)
@@ -21,40 +24,15 @@ public class Laboratorio extends AbstractEntity<Long>{
 	@Column(name="responsavel", nullable=false, length=40)
 	private String responsavel;
 	
-	@Column(name="telefone", nullable=false, length=15)
-	private String telefone;
+	@Column(name="telefone_fixo", nullable=false, length=15)
+	private String telefone_fixo;
 	
 	@Column(name="email", nullable=false, length=30)
 	private String email;
 	
-	@Column(name="endereco", nullable=false, length=45)
-	private String endereco;
-	
-	@Column(name="bairro", nullable=false, length=30)
-	private String bairro;
-	
-	@Column(name="cidade", nullable=false, length=45)
-	private String cidade;
-	
-	@Column(name="estado", nullable=false, length=2)
-	private String estado;
-	
-	/*@ManyToMany(mappedBy = "laboratorio")
-	
-	Laboratorio l = l1;
-	List<Exame> ex = l.getExame();
-	
-	Laboratorio l1
-	
-	private List<Exame> exame;
-	
-	public List<Exame> getExame() {
-		return exame;
-	}
-
-	public void setExame(List<Exame> exame) {
-		this.exame = exame;
-	}*/
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
 
 	public String getCnpj() {
 		return cnpj;
@@ -80,12 +58,12 @@ public class Laboratorio extends AbstractEntity<Long>{
 		this.responsavel = responsavel;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getTelefone_fixo() {
+		return telefone_fixo;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone_fixo(String telefone_fixo) {
+		this.telefone_fixo = telefone_fixo;
 	}
 
 	public String getEmail() {
@@ -96,35 +74,12 @@ public class Laboratorio extends AbstractEntity<Long>{
 		this.email = email;
 	}
 
-	public String getEndereco() {
+	public Endereco getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	
 }

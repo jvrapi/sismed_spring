@@ -1,108 +1,84 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
-<meta charset="UTF-8" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$("#select_paciente").change(function() {
-				$.ajax({
-					url: "http://localhost:8080/exame/pacientes/" + $(this).val(),
-					method: "get",
-					success: function(data){
-						$("#convenio").val(data.tipo_convenio.convenio.nome);
-						$("#tipo_convenio").val(data.tipo_convenio.nome);
-					},
-				}); 
-			});
-		});
-	</script>
-</head>
-<body>
+	<meta charset="UTF-8" />
 
-<section layout:fragment="corpo">
-
-		<div class="container" id="cadastroExame" 
-		style="margin-top:1%;">
-
-		<h4>Cadastro <strong>| Exame  </strong></h4>
-			<form
-				th:action="${exame.id == null} ? @{/exame/salvar} : @{/exame/editar}"
-				th:object="${exame}" method="POST">
-
+	</head>
+	
+	<body>
+	
+<div layout:fragment="corpo"  >
+		
+		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
-
-				<div class="form-row ">
-					<div class="form-group col-md-12 ">
-						<label for="descricao"> Descrição</label> <textarea rows="5" type="text"
-							class="form-control" id="descricao" placeholder="descricao"
-							autofocus="autofocus" th:field="*{descricao}" style="text-transform: uppercase;"></textarea> <br>
-					</div>
-				</div>
-
-				<div class="form-row ">
-					<div class="form-group col-md-4">
-						<label for="data_coleta"> Data de Coleta</label> <input type="date"
-							class="form-control" id="data_coleta" placeholder="DATA DE COLETA"
-							autofocus="autofocus" th:field="*{data_coleta}"> <br>
-					</div>
-
-					<div class="form-group col-md-4 ">
-						<label for="data_envio"> Data de Envio</label> <input type="date"
-							class="form-control" id="data_envio" placeholder="DATA DE ENVIO"
-							autofocus="autofocus" th:field="*{data_envio}">
-						<br>
-					</div>
+		</div>
+	
+				<div class="container-fluid" style="width: 98%">
 				
-					<div class="form-group col-md-4">
-						<label for="data_retorno"> Data de Retorno</label> <input type="date"
-							class="form-control" id="data_retorno" placeholder="DATA DE RETORNO"
-							autofocus="autofocus" th:field="*{data_retorno}"> <br>
-					</div>
-				</div>
+				<form th:action=" @{/exame/salvar} " th:object="${exame}" method="POST">
+					<h3 style="display: inline;">
 				
-				<div class="form-row ">
-					<div class="form-group col-3">
-						<label for="paciente_id"> Paciente </label>
-						<select id="select_paciente" th:field="*{paciente_id}" class="form-control">
-							<option selected hidden value="">SELECIONE</option>
-							<option th:each="p: ${paciente}" th:value="${p.id}" th:text="${p.nome}"></option>		
-						</select>
-					</div>
+					Cadastro | <strong>Exame</strong></h3>
 					
-					<div class="form-group col-lg-3 ">
-					<label for="tipo_convenio">Convênio</label>
-						<input type="text" class="form-control" id="convenio" disabled>
-					</div>
+					<input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
 					
-					<div class="form-group col-lg-3 ">
-					<label for="tipo_convenio">Tipo de Convênio</label>
-						<input type="text" class="form-control" id="tipo_convenio" disabled>
-					</div>	
+					<a class="btn btn-secondary float-right" href="/exame/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 					
-					<div class="form-group col-3">
-						<label for="funcionario_id"> Funcionário</label>
-						<select th:field="*{funcionario_id}" class="form-control">
-							<option value="">SELECIONE</option>
-							<option th:each="f: ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
+					<div class="card" style="margin-top: 25px; padding: 0px;">
+						<div class="card-body">
+								<h5 style=" margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; ">Dados Pessoais</h5>
+								
+									<br>
+								
+								<div class="form-row">
+							
+									<div class="form-group col-md-4">
+										<label for="descricao">Descrição</label> 
+										 <textarea class="form-control" rows="7" id="descricao" maxlength="40" autofocus="autofocus" th:field="*{descricao}"
+										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required style="resize: none;" >
+										</textarea>
+									</div>
+									<div class="form-group col-md-2">
+										<label for="data_coleta">Data de Coleta</label> 
+										<input type="date" class="form-control tamanho-fonte" id="data_coletas" placeholder="Data de coleta" autofocus="autofocus" th:field="*{data_coleta}" required/>
+									</div>
+									<div class="form-group col-md-2">
+										<label for="data_envio">Data de Envio</label> 
+										<input type="date" class="form-control tamanho-fonte" id="data_envio" placeholder="Data de envio" autofocus="autofocus" th:field="*{data_envio}" required/>
+									</div>
+									
+									<div class="form-group col-md-2">
+										<label for="data_retorno">Data de Retorno</label> 
+										<input type="date" class="form-control tamanho-fonte" id="data_retorno" placeholder="Data de retorno" autofocus="autofocus" th:field="*{data_retorno}" />
+									</div>
+									
+								</div>
+	
+								<div class="form-row">
+								
+									<div class="form-group col-md-2 ">
+										<label for="nome">Funcionário</label> 
+										<select id="nome" class="form-control tamanho-fonte" th:field="*{funcionario_id}">
+											<option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
+										</select>
+									</div>
+									
+									<div class="form-group col-md-2 ">
+										<label for="nome">Paciente</label> 
+										<select id="nome" class="form-control tamanho-fonte" th:field="*{paciente_id}">
+											<option th:each="p : ${paciente}" th:value="${p.id}" th:text="${p.nome}"></option>
+										</select>
+									</div>
+									</div>
+								<input type="hidden" id="id" th:field="*{id}"/> 
+							
+						</div>
+					</form>
+				</div>
+			</div>
 						
-						</select>
-					</div>
-				</div>
-			
-				<div class="btn-toolbar justify-content-center" role="toolbar">
-					<input type="hidden" id="id" th:field="*{id}" /> 
-					
-					<input type="submit" class="btn btn-primary form-control col-md-2">
-					
-					<button type='button' class="btn btn-secondary form-control col-md-2" onclick='history.go(-1)'>
-					Voltar
-					</button>
-				</div>
-
-			</form>
-	</div>
- 
-	</section>
-</body>
+	</body>
 </html>
+
+
+

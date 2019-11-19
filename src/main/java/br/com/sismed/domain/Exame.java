@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "sismed_exame")
 public class Exame extends AbstractEntity<Long>{
 	
-	@Column(name = "descricao",nullable = false, length=30)
+	@Column(name = "descricao",nullable = false)
 	
 	private String descricao;
 	
@@ -43,25 +43,6 @@ public class Exame extends AbstractEntity<Long>{
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
 	
-	
-
-	/*@ManyToMany
-	@JoinTable(
-		name = "sismed_exame_laboratorio", 
-		joinColumns = @JoinColumn (
-		name = "exame_id"), inverseJoinColumns = 
-		@JoinColumn (name = "laboratorio_id")
-		)
-	
-	private List<Laboratorio> laboratorio;
-	
-	public List<Laboratorio> getLaboratorio() {
-		return laboratorio;
-	}
-
-	public void setLaboratorio(List<Laboratorio> laboratorio) {
-		this.laboratorio = laboratorio;
-	}*/
 
 	public String getDescricao() {
 		return descricao;
