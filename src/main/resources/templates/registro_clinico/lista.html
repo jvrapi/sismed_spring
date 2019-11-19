@@ -50,7 +50,7 @@
 									<td><a th:text="${r.id}"></a></td>
 									<td><a th:text="${r.paciente_id.nome}"></a></td>
 									<td><a th:text="${r.descricao}"/></a></td>
-									<td><a th:text="${r.data}"></a></td>
+									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
 									<td><a th:text="${r.hora}"></a></td>
 									<td><input type="hidden" id="id" th:value="${r.paciente_id.id}"></td>
 								</tr>

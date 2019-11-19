@@ -58,8 +58,9 @@ public class RClinicoController {
 	
 	@PostMapping("/salvar")
 	public String salvar(RegistroClinico registroclinico) {
+		Long id = registroclinico.getPaciente_id().getId();
 		service.salvar(registroclinico);
-		return "redirect:/pacientes/listar";
+		return "redirect:/RegistroClinico/listar/1/" + id;
 	}
 }
 

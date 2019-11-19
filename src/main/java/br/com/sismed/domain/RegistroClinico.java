@@ -32,7 +32,7 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	private Funcionario funcionario_id;
 	
 	@OneToOne
-	@JoinColumn(name= "agendamento_id", nullable = false)
+	@JoinColumn(name= "agendamento_id")
 	private Agenda agendamento_id;
 	
 	public LocalDateTime getData() {

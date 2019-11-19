@@ -59,6 +59,7 @@ a:focus {
     display: block;
     margin-left: 0px;
     color: #5d6266;
+    text-decoration: none;
 }
 
 .espaco {
@@ -152,7 +153,7 @@ a[aria-expanded="true"] {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {color: white ;background: #007fc1;}
+.dropdown:hover .dropbtn {background: #007fc1; text-decoration: none;}
 
 
 /* ---------------------------------------------------
