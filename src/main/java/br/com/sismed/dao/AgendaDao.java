@@ -12,4 +12,5 @@ public interface AgendaDao {
 	
 	Agenda findById(Long id);
 	List<Agenda> findAll();
+	List<Agenda> ListarAgendamentos();
 }

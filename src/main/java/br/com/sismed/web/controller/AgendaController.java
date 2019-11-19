@@ -23,7 +23,7 @@ public class AgendaController {
 	
 	@GetMapping("/agendamentos")
 	public String agendamentos(ModelMap model) {
-		model.addAttribute("agendamentos", serivce.BuscarTodos());
+		model.addAttribute("agendamentos", serivce.ListarAgendamentos());
 		return "/agenda/agendamentos";
 	}
 }

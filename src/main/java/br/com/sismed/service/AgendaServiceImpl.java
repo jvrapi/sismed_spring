@@ -45,4 +45,9 @@ public class AgendaServiceImpl implements AgendaService{
 		return dao.findAll();
 	}
 
+	@Override
+	public List<Agenda> ListarAgendamentos() {
+		return dao.ListarAgendamentos();
+	}
+
 }
