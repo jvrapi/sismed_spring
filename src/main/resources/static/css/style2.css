@@ -88,9 +88,8 @@ a[aria-expanded="true"] {
 #divBusca{
   background-color:#fff;
   border-radius:3px;
-  width:400px;
+  width:405px;
   height: 35px;
-  margin-left:0;
 }
 
 #txtBusca{
@@ -243,14 +242,21 @@ a{
 
 #dropdownMenu2 {
 	color: white;
-	width: 65px;
 	text-align: right;
+;
 }
 
 #dropdownMenu3 {
 	color: white;
+	margin-right: 5px
 }
 
 #dropdownMenu3:hover {
 	background: #007fc1;
+}
+
+.login ul {
+	color: #fff; 
+	font-size: 0.9em; 
+	margin-right: 25px;
 }

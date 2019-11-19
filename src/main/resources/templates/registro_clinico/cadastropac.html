@@ -4,13 +4,15 @@
 		<meta charset="UTF-8" />
 		<script>
 			function busca() {
-				var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
-				document.location.href = url2;
+				if($("#txtBusca").val() != ""){
+					var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
+					document.location.href = url2;
+				}
 			}
 		</script>
 		<script>
 			function muda() {
-				$("#dropdownMenu2").text("ID");
+				$("#dropdownMenu2").text("Prontuário");
 				$("#dropdownMenu2").val("1");
 			}
 			function muda2() {
@@ -58,8 +60,8 @@
 											<label for="descricao">Descrição</label> 
 											<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
 										</div>
-										<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
 									</div>
+									<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
 								</div>
 							</div>
 						</form>

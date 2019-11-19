@@ -18,37 +18,30 @@
 	            			<div class="card-body">
 	            				<div class="form-row">
 			            			<div class="form-group col-md-3">
-			            				<label for="nome_paciente">Nome do paciente</label> 
-										<select class="form-control tamanho-fonte" id="nome_paciente" th:field="*{prontuario_id}"  disabled>
-											<option th:each="a : ${agenda}" th:value="${a.paciente_id.id}" th:text="${a.paciente_id.nome}"></option>
-										</select>
+			            				<label for="nome_paciente">Nome do paciente</label>
+			            				<input type="text" class="form-control tamanho-fonte" th:value="${agenda.paciente_id.nome}" disabled>
+										<input type="hidden" class="form-control tamanho-fonte" id="nome_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}">
 									</div>
 									<div class="form-group col-md-3">
 			            				<label for="convenio">Convênio</label> 
-										<input type="text" class="form-control tamanho-fonte" id="convênio" th:each="a : ${agenda}" th:value="${a.paciente_id.tipo_convenio.convenio.nome}" disabled/>
-										 
+										<input type="text" class="form-control tamanho-fonte" id="convênio" th:value="${agenda.paciente_id.tipo_convenio.convenio.nome}" disabled> 
 									</div>
 									<div class="form-group col-md-3">
 			            				<label for="tipo_convenio">Tipo de convênio</label> 
-										<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:each="a : ${agenda}" th:value="${a.paciente_id.tipo_convenio.nome}" disabled/> 
+										<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${agenda.paciente_id.tipo_convenio.nome}" disabled> 
 									</div>
 									<div class="form-group col-md-3">
 			            				<label for="agendamento">Agendamento</label> 
-										<input type="text" class="form-control tamanho-fonte" id="agendamento" th:name="agendamento_id" th:each="a : ${agenda}" th:value="${a.id}" disabled/> 
+										<input type="text" class="form-control tamanho-fonte" id="agendamento" th:name="agendamento_id" th:value="${agenda.id}" readonly 
+											style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;"> 
 									</div>
-									<div class="form-group col-md-3">
-			            				<label for="hora">Hora</label> 
-										<input type="text" class="form-control tamanho-fonte" id="hora" th:field="*{hora}" disabled/> 
-									</div>
-									<div class="form-group col-md-3">
-			            				<label for="data">Data</label> 
-										<input type="text" class="form-control tamanho-fonte" id="data" th:field="*{data}" disabled/> 
-									</div>	
+										<input type="hidden" class="form-control tamanho-fonte" id="hora" th:field="*{hora}">
+										<input type="hidden" class="form-control tamanho-fonte" id="data" th:field="*{data}">
 								</div>
 								<div class="form-row">
 									<div class="form-group col-md-12">
 										<label for="descricao">Descrição</label> 
-										<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" style="resize: none;"></textarea>
+										<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
 									</div>
 								</div>
 								<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
