@@ -15,6 +15,5 @@ public interface RegistroClinicoService {
 	
 	List<RegistroClinico> buscarTodos();
 	
-	List<RegistroClinico> ListarRegPacienteAgen(String dado);
-	List<RegistroClinico> ListarRegPaciente(String dado);
+	List<RegistroClinico> ListarRegPaciente(Long id);
 }

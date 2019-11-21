@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.PacienteDao;
 import br.com.sismed.domain.Paciente;
+import br.com.sismed.domain.RegistroClinico;
 
 @Repository
 @Transactional(readOnly = false)
@@ -43,5 +44,15 @@ public class PacienteServiceImpl implements PacienteService{
 	public List<Paciente> buscarTodos() {
 		
 		return dao.findAll();
+	}
+	
+	@Override
+	public List<Paciente> ListarRegPacienteAgen(String dado) {
+		return dao.ListarRegPacienteAgen(dado);
+	}
+	
+	@Override
+	public List<Paciente> ListarRegPaciente(String dado) {
+		return dao.ListarRegPaciente(dado);
 	}
 }

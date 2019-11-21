@@ -13,6 +13,5 @@ public interface RegistroClinicoDao {
 	RegistroClinico findById(Long id);
 	List<RegistroClinico> findAll();
 	
-	List<RegistroClinico> ListarRegPacienteAgen(String dado);
-	List<RegistroClinico> ListarRegPaciente(String dado);
+	List<RegistroClinico> ListarRegPaciente(Long id);
 }

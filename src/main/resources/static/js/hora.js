@@ -33,4 +33,4 @@ function Horario(){
     } 
     Elem.innerHTML = Horas+":"+Minutos+":"+Segundos; 
 } 
-window.setInterval("Horario()",1000);
+window.setInterval("Horario()",60000);

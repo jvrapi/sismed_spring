@@ -3,6 +3,7 @@ package br.com.sismed.dao;
 import java.util.List;
 
 import br.com.sismed.domain.Paciente;
+import br.com.sismed.domain.RegistroClinico;
 
 public interface PacienteDao {
 
@@ -12,4 +13,7 @@ public interface PacienteDao {
 	
 	Paciente findById(Long id);
 	List<Paciente> findAll();
+
+	List<Paciente> ListarRegPacienteAgen(String dado);
+	List<Paciente> ListarRegPaciente(String dado);
 }

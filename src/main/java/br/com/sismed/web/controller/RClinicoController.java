@@ -1,5 +1,8 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,7 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.RegistroClinico;
 import br.com.sismed.service.AgendaService;
 import br.com.sismed.service.PacienteService;
@@ -32,17 +39,49 @@ public class RClinicoController {
 		return "/registro_clinico/busca";
 	}
 
-	@GetMapping("/listar/{id}/{dado}")
-	public String listar(@PathVariable("id") Integer id, @PathVariable("dado") String dado, ModelMap model) {
+	@GetMapping("/listar/{id}")
+	@ResponseBody
+	public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		if(id == 1) {
-			model.addAttribute("registro", service.ListarRegPacienteAgen(dado));
-			return "/registro_clinico/lista";
+			List<Paciente> allPacientes = pacienteSercice.ListarRegPacienteAgen(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
+				suggeestions.add(lv);
+			}
+		}
+		else if(id == 2) {
+			List<Paciente> allPacientes = pacienteSercice.ListarRegPaciente(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
+				suggeestions.add(lv);
+			}
+		}
+		return suggeestions;	
+	}
+	
+	/*@GetMapping("/listar/{id}")
+	@ResponseBody
+	public List<String> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+		List<String> suggeestions = new ArrayList<String>();
+		if(id == 1) {
+			List<RegistroClinico> allRegistroClinico = service.ListarRegPacienteAgen(term);
+			for (RegistroClinico registroclinico : allRegistroClinico) {
+				suggeestions.add(registroclinico.toString());
+			}
 		}
 		else {
-			model.addAttribute("registro", service.ListarRegPaciente(dado));
-			return "/registro_clinico/lista";
+			List<RegistroClinico> allRegistroClinico = service.ListarRegPacienteAgen(term);
+			for (RegistroClinico registroclinico : allRegistroClinico) {
+				suggeestions.add(registroclinico.toString());
+			}
 		}
-	}
+		return suggeestions;
+	}*/
 	
 	@GetMapping("/cadastrar/{id}")
 	public String cadastrar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
@@ -53,6 +92,7 @@ public class RClinicoController {
 	@GetMapping("/cadastrarpac/{id}")
 	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
 		model.addAttribute("paciente", pacienteSercice.buscarporId(id));
+		model.addAttribute("registro", service.ListarRegPaciente(id));
 		return "/registro_clinico/cadastropac";
 	}
 	
@@ -60,7 +100,9 @@ public class RClinicoController {
 	public String salvar(RegistroClinico registroclinico) {
 		Long id = registroclinico.getPaciente_id().getId();
 		service.salvar(registroclinico);
-		return "redirect:/RegistroClinico/listar/1/" + id;
+		return "redirect:/RegistroClinico/cadastrarpac/" + id;
 	}
+	
+	
 }
 
