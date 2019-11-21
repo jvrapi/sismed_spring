@@ -265,4 +265,6 @@ public class Paciente extends AbstractEntity<Long>{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
+	
 }
