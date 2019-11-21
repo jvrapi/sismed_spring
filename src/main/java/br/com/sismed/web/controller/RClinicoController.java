@@ -61,7 +61,7 @@ public class RClinicoController {
 				suggeestions.add(lv);
 			}
 		}
-		return suggeestions;	
+		return suggeestions;
 	}
 	
 	/*@GetMapping("/listar/{id}")
@@ -86,6 +86,7 @@ public class RClinicoController {
 	@GetMapping("/cadastrar/{id}")
 	public String cadastrar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
+		model.addAttribute("registro", service.ListarRegAgenda(id));
 		return "/registro_clinico/cadastro";
 	}
 	
@@ -102,7 +103,5 @@ public class RClinicoController {
 		service.salvar(registroclinico);
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;
 	}
-	
-	
 }
 

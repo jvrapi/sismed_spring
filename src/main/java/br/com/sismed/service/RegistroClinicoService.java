@@ -16,4 +16,5 @@ public interface RegistroClinicoService {
 	List<RegistroClinico> buscarTodos();
 	
 	List<RegistroClinico> ListarRegPaciente(Long id);
+	List<RegistroClinico> ListarRegAgenda(Long id);
 }

@@ -2,22 +2,78 @@
 <html layout:decorate="~{layout}">
 	<head>
 		<meta charset="UTF-8" />
-		<script>
+		<!-- <script>
 			function busca() {
 				if($("#txtBusca").val() != ""){
 					var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
 					document.location.href = url2;
 				}
 			}
-		</script>
+		</script> -->
 		<script>
+			$(document).ready(function() {
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			});
 			function muda() {
 				$("#dropdownMenu2").text("Prontuário");
 				$("#dropdownMenu2").val("1");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
 			}
 			function muda2() {
 				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("2");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/2",
+						minLength: 2,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}
+		</script>
+		<script>
+			$(document).ready(function() {
+				var now = new Date();
+				var mes = now.getMonth() +1;
+				var dia = now.getDate();
+				var ano = now.getFullYear();
+				$("#data").val(dia + "/" + mes + "/" + ano);
+			});
+		</script>
+		<script>
+			$(document).ready(time);
+			function time(){
+				today=new Date();
+				hora = today.getHours();
+				if(hora < 10) hora = "0"+hora;
+				minuto = today.getMinutes();
+				if(minuto < 10) minuto = "0"+minuto;
+				document.getElementById('hora').value=hora+":"+minuto;
+				setTimeout('time()',1000);
 			}
 		</script>
 	</head>
@@ -26,52 +82,70 @@
 		<div layout:fragment="corpo">
 
 			<div class="container-fluid" style="width: 98%">
-				<h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
-
-				<div class="row">
-					<div class="col-md-9">
-						<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
-							<div class="card" style="margin-top: 25px;">
-								<div class="card-body">
-									<div class="form-row">
-										<div class="form-group col-md-3">
-											<label for="nome_paciente">Nome do paciente</label>
-											<input type="text" class="form-control tamanho-fonte" th:value="${agenda.paciente_id.nome}" disabled>
-											<input type="hidden" class="form-control tamanho-fonte" id="nome_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}">
-										</div>
-										<div class="form-group col-md-3">
-											<label for="convenio">Convênio</label> 
-											<input type="text" class="form-control tamanho-fonte" id="convênio" th:value="${agenda.paciente_id.tipo_convenio.convenio.nome}" disabled> 
-										</div>
-										<div class="form-group col-md-3">
-											<label for="tipo_convenio">Tipo de convênio</label> 
-											<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${agenda.paciente_id.tipo_convenio.nome}" disabled> 
-										</div>
-										<div class="form-group col-md-3">
-											<label for="agendamento">Agendamento</label> 
-											<input type="text" class="form-control tamanho-fonte" id="agendamento" th:name="agendamento_id" th:value="${agenda.id}" readonly 
-											style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;"> 
-										</div>
-										
-									</div>
-	
-									<div class="form-row">
-										<div class="form-group col-md-12">
-											<label for="descricao">Descrição</label> 
-											<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
-										</div>
-									</div>
-									<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
+				<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST" style=" margin-bottom:15px;">
+					<h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
+					<button type="submit" class="btn btn-primary float-right">Salvar</button>
+					<div class="card" style="margin-top: 25px;">
+						<div class="card-body">
+							<div class="form-row">
+								<div class="form-group col-md-1">
+									<label for="prontuário">Prontuário</label> 
+									<input type="text" class="form-control tamanho-fonte" id="nome_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}" 
+									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="nome_paciente">Nome do paciente</label>
+									<input type="text" class="form-control tamanho-fonte" th:value="${agenda.paciente_id.nome}" disabled>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="convenio">Convênio</label> 
+									<input type="text" class="form-control tamanho-fonte" id="convênio" th:value="${agenda.paciente_id.tipo_convenio.convenio.nome}" disabled> 
+								</div>
+								<div class="form-group col-md-2">
+									<label for="tipo_convenio">Tipo de convênio</label> 
+									<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${agenda.paciente_id.tipo_convenio.nome}" disabled> 
+								</div>
+								<div class="form-group col-md-2">
+									<label for="data">Data</label> 
+									<input type="text" class="form-control tamanho-fonte" id="data" th:name="data" disabled> 
+								</div>
+								<div class="form-group col-md-1">
+									<label for="hora">Hora</label> 
+									<input type="text" class="form-control tamanho-fonte" id="hora" th:name="hora" disabled> 
 								</div>
 							</div>
-						</form>
-					</div>
-	
-					<div class="col-md-3">
-						<div class="card" style="margin-top: 25px;">
-							<div class="card-body">
+							
+							<div class="form-row">
+								<div class="form-group col-md-7">
+									<label for="descricao">Descrição</label> 
+									<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
+								</div>
 							</div>
 						</div>
+					</div>
+					<input type="hidden" th:name="agendamento_id" th:value="${agenda.id}">
+				</form>
+				<h5 style="display: inline;">Atendimentos anteriores</h5>
+				<div class="card" style="margin-top: 10px;">
+					<div class="card-body">
+						<table class="table table-borderless">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em;">
+									<th>Paciente</th>
+									<th>Descrição</th>
+									<th>Data</th>
+									<th>Hora</th>
+								</tr>
+							</thead>
+							<tbody th:each="r : ${registro}">
+								<tr class="conteudo" style="font-size: 1em;">
+									<td><a th:text="${r.paciente_id.nome}"></a></td>
+									<td><a th:text="${r.descricao}"></td>
+									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
+									<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

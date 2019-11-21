@@ -45,9 +45,13 @@ public class RegistroClinicoServiceImpl implements RegistroClinicoService{
 		return dao.findAll();
 	}
 	
-	
 	@Override
 	public List<RegistroClinico> ListarRegPaciente(Long id) {
 		return dao.ListarRegPaciente(id);
+	}
+	
+	@Override
+	public List<RegistroClinico> ListarRegAgenda(Long id) {
+		return dao.ListarRegAgenda(id);
 	}
 }

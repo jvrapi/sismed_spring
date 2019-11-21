@@ -17,10 +17,18 @@ public class RegistroClinicoDaoImpl extends AbstractDao<RegistroClinico, Long> i
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public List<RegistroClinico> ListarRegPaciente(Long id){
+	public List<RegistroClinico> ListarRegPaciente(Long id) {
 		Query query = entityManager.createNativeQuery("SELECT *" + 
 				" FROM sismed_registro_clinico  " + 
-				" WHERE paciente_id = ?1 ORDER BY id DESC LIMIT 6", RegistroClinico.class).setParameter(1, id);
+				" WHERE paciente_id = ?1 ORDER BY id DESC LIMIT 5", RegistroClinico.class).setParameter(1, id);
+		List<RegistroClinico> resultlist = query.getResultList();
+		return resultlist;
+	}
+	
+	public List<RegistroClinico> ListarRegAgenda(Long id) {
+		Query query = entityManager.createNativeQuery("SELECT r.*" + 
+				" FROM sismed_registro_clinico r JOIN sismed_agenda a ON r.paciente_id = a.paciente_id" + 
+				" WHERE a.id = ?1 ORDER BY r.id DESC LIMIT 5", RegistroClinico.class).setParameter(1, id);
 		List<RegistroClinico> resultlist = query.getResultList();
 		return resultlist;
 	}
