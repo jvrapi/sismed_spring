@@ -33,7 +33,7 @@ public class FuncionarioController {
 	
 	@PostMapping("/salvar")
 	public String salvar(Funcionario funcionario, RedirectAttributes attr) {
-		attr.addFlashAttribute("success","Funcionario(a) cadastrado(a) com sucesso");
+		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
 		service.salvar(funcionario);
 		return "redirect:/funcionario/listar";
 	}

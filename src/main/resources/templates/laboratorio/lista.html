@@ -1,118 +1,60 @@
-
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
+
 <body>
-	<section layout:fragment="corpo">
 
-		<nav class="navbar">
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/laboratorio/cadastrar" role="button"> <span
-				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
-					Laboratório</span></a>
-
+	<div layout:fragment="corpo" >  
+	
+		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
-		</nav>
-		
-		<br>
-		
-		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
-		<div th:replace="fragmentos/alert" style="text-align: center"></div>
-
-		<div class="container" th:each="l : ${laboratorio}">
-
-			<a class="btn btn-info btn-sm"
-				th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" role="button">
-				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> 
-			
-			<button th:id="${#strings.concat ('/btn_laboratorio/excluir/',l.id)}"
-				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-				data-target="#myModal"> <span class="oi oi-circle-x"
-				title="Excluir" aria-hidden="true"></span>
-			</button> 
-			
-			<br><br>
-			
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="cnpj">CNPJ</label> <input type="text"
-						class="form-control" id="nome" placeholder="cnpj" name="nome"
-						th:value="${l.cnpj}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-5">
-					<label for="nome">Nome</label> <input type="text"
-						class="form-control" id="nome" placeholder="nome" name="nome"
-						th:value="${l.nome}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-5">
-					<label for="responsavel">Responsável</label> <input type="text"
-						class="form-control" id="responsavel" placeholder="responsavel"
-						name="responsavel" th:value="${l.responsavel}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="telefone">Telefone</label> <input type="text"
-						class="form-control" id="telefone" placeholder="telefone"
-						name="telefone" th:value="${l.telefone}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-4">
-					<label for="nome">Email</label> <input type="text"
-						class="form-control" id="email" placeholder="email" name="email"
-						th:value="${l.email}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="endereco">Endereço</label> <input type="text"
-						class="form-control" id="endereco" placeholder="endereco"
-						name="endereco" th:value="${l.endereco}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-
-				<div class="form-group col-md-5">
-					<label for="bairro">Bairro</label> <input type="text"
-						class="form-control" id="bairro" placeholder="bairro"
-						name="bairro" th:value="${l.bairro}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="cidade">Cidade</label> <input type="text"
-						class="form-control" id="cidade" placeholder="cidade"
-						name="cidade" th:value="${l.cidade}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-1">
-					<label for="estado">Estado</label> <input type="text"
-						class="form-control" id="estado" placeholder="estado"
-						name="estado" th:value="${l.estado}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
 		</div>
+	
+          <div class="container-fluid" style="width: 98%">
+           
+            <h3 style="display: inline;">Lista | <strong>Laboratório</strong></h3>
+           	 
+           	 <a class="btn btn-success float-right"  href="/laboratorio/cadastrar"role="button">
+              <i class="fas fa-plus"></i> Novo Laboratório</a>     
+           	         
+	          <div class="card" style="margin-top: 25px; padding: 0px;">
+	            <div class="card-body">
+	              <table class="table table-borderless detalhes">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em; text-align: left">
 
-	</section>
+									<th scope="col">Nome</th>
+									<th scope="col">Responsável</th>
+									<th scope="col">Telefone</th>
+									<th scope="col">Bairro</th>
+									<th scope="col">Cidade</th>
+									
+								</tr>
+							</thead>
+							<tbody th:each="l : ${laboratorio}">
+								<tr class="conteudo" style="font-size: 1em; text-align: left">
+								
+								<td><a th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
+								
+									<td><a th:text="${l.responsavel}"></a></td>
+									<td><a th:text="${l.telefone_fixo}"></a></td>
+									<td><a th:text="${l.endereco.bairro}" /></a></td>
+									<td><a th:text="${l.endereco.cidade}" /></a></td>
+								
+								</tr>
+							</tbody>
 
+						</table>
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	
 </body>
 </html>
+
+

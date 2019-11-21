@@ -40,7 +40,7 @@ public class LaboratorioController {
 	@GetMapping("/editar/{id}") 
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("laboratorio", service.buscarporId(id));
-		return "/laboratorio/cadastro";
+		return "/laboratorio/editar";
 	}
 	
 	@PostMapping("/editar")
@@ -52,7 +52,7 @@ public class LaboratorioController {
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("success", "Laboratorio excluido com sucesso");
+		model.addAttribute("success", "Laboratório excluído com sucesso");
 		service.excluir(id);
 		
 		return listar(model);

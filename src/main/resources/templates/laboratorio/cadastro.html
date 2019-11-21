@@ -22,15 +22,12 @@
 					
 					<input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
 					
-					<a class="btn btn-secondary float-right" href="/labortorio/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+					<a class="btn btn-secondary float-right" href="/laboratorio/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 							
 					
 					<div class="card" style="margin-top: 25px; padding: 0px;">
 						<div class="card-body">
 							
-							
-								<h5 style=" margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; ">Dados Pessoais</h5>
-								
 									<br>
 								
 								<div class="form-row">
@@ -42,9 +39,9 @@
 										<div class="form-group col-md-4">
 										<label for="nome">Nome</label> 
 										<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
+										onkeyup="maiuscula(this)" required />
 									</div>
-									<div class="form-group col-md-3">
+									<div class="form-group col-md-2">
 										<label for="responsavel">Responsável</label> 
 										<input type="text" class="form-control tamanho-fonte" id="responsavel" maxlength="40" autofocus="autofocus" th:field="*{responsavel}"
 										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
@@ -55,9 +52,9 @@
 										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" required/>
 									</div>
 									
-									<div class="form-group col-md-2">
+									<div class="form-group col-md-3">
 										<label for="email">Email</label> 
-										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="Email" maxlength="30" autofocus="autofocus" th:field="*{email}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="email" onkeyup="maiuscula(this)" placeholder="Email" maxlength="40" autofocus="autofocus" th:field="*{email}" required/>
 									</div>
 
 								</div>
@@ -131,14 +128,11 @@
 						</div>
 						</div>
 						
-						</form>
+					</form>
 					
+				</div>
 			</div>
-			</div>
-							
-							
-						
-	
+		
 	</body>
 </html>
 

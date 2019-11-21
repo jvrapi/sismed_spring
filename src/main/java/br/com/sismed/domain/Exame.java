@@ -19,8 +19,10 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "sismed_exame")
 public class Exame extends AbstractEntity<Long>{
 	
-	@Column(name = "descricao",nullable = false)
+	@Column(name = "nome",nullable = false)
+	private String nome;
 	
+	@Column(name = "descricao",nullable = false)
 	private String descricao;
 	
 	@Column(name = "data_coleta",nullable = false)
@@ -43,6 +45,13 @@ public class Exame extends AbstractEntity<Long>{
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public String getDescricao() {
 		return descricao;

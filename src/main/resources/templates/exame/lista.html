@@ -4,90 +4,51 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-	<section layout:fragment="corpo">
+	<div layout:fragment="corpo" >  
+	
+		<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
+		</div>
+	
+          <div class="container-fluid" style="width: 98%">
+           
+            <h3 style="display: inline;">Lista | <strong>Exame</strong></h3>
+           	 
+           	 <a class="btn btn-success float-right"  href="/exame/cadastrar"role="button">
+              <i class="fas fa-plus"></i> Novo Exame</a>     
+           	         
+	          <div class="card" style="margin-top: 25px; padding: 0px;">
+	            <div class="card-body">
+	              <table class="table table-borderless detalhes">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em; text-align: left">
 
-		<nav class="navbar">
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/exame/cadastrar" role="button"> <span class="oi oi-plus"
-				title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
-					Exame</span></a>
-		</nav>
-		
-		<br>
-		
-		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
-		<div th:replace="fragmentos/alert" style="text-align: center"></div>
+									<th scope="col">Paciente</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Data da Coleta</th>
+									<th scope="col">Data do Envio</th>
+								
+								</tr>
+							</thead>
+							<tbody th:each="e : ${exame}">
+								<tr class="conteudo" style="font-size: 1em; text-align: left">
+								
+								<td><a th:href="@{/exame/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
+								
+									<td><a th:text="${e.paciente_id.nome}"></a></td>
+									<td><a th:text="${e.nome}"></a></td>
+									<td><a th:text="${e.endereco.bairro}" /></a></td>
+									<td><a th:text="${e.endereco.cidade}" /></a></td>
+								
+								</tr>
+							</tbody>
 
-		<div class="container" th:each="e : ${exame}">
-			
-			<a class="btn btn-info btn-sm"
-				th:href="@{/exame/editar/{id} (id=${e.id}) }" role="button"> <span
-				class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> 
-			
-		<button th:id="${#strings.concat ('/btn_exame/excluir/',e.id)}"
-				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-				data-target="#myModal"> <span class="oi oi-circle-x"
-				title="Excluir" aria-hidden="true"></span>
-			</button>  <br>
-			<br>
-
-			<div class="form-row">
-				<div class="form-group col-md-3">
-					<label for="descricao">Descrição</label> <input type="text"
-						class="form-control" id="descricao" placeholder="descrição"
-						name="descricao" th:value="${e.descricao}" disabled>
-					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="data_coleta">Data de Coleta</label> <input type="date"
-						class="form-control" id="data_coleta" placeholder="DATA DE COLETA"
-						name="data_de_coleta" th:value="${e.data_coleta}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="data_envio">Data de Envio</label> <input type="text"
-						class="form-control" id="data_envio" placeholder="data de envio"
-						name="data_envio" th:value="${e.data_envio}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="data_retorno">Data de Retorno</label> <input
-						type="date" class="form-control" id="data_retorno"
-						placeholder="DATA DE RETORNO" name="data_retorno"
-						th:value="${e.data_retorno}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-3">
-					<label for="tipoconvenio">Tipo de Convênio</label> <input
-						type="text" class="form-control" id="tipoconvenio"
-						th:value="${e.paciente_id.tipo_convenio.nome}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="paciente">Paciente</label> <input type="text"
-						class="form-control" id="paciente"
-						th:value="${e.paciente_id.nome}" disabled>
-					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="funcionario">Funcionário Responsável</label> <input
-						type="text" class="form-control" id="funcionario"
-						th:value="${e.funcionario_id.nome}" disabled>
-					<div class="invalid-feedback" style="text-transform: uppercase;"></div>
-				</div>
+						</table>
+						
+					</div>
 				</div>
 			</div>
-	</section>
+			
+		</div>
 </body>
 </html>

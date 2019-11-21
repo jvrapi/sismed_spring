@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ExameService;
@@ -80,10 +83,10 @@ public class ExameController {
 	return listar(model);
 	}
 		
-	@ModelAttribute("tipoconvenio")
+	/*@ModelAttribute("tipoconvenio")
 	public List<TConvenio> getTConvenio(){
 	return tservice.BuscarTodos();
-	}
+	}*/
 	
 	@ModelAttribute("paciente")
 	public List<Paciente> getPaciente(){
@@ -95,9 +98,27 @@ public class ExameController {
 	return fservice.buscarTodos();
 	}
 	
-	@GetMapping("/pacientes/{id}")
+	/*@GetMapping("/pacientes/{id}")
 	public @ResponseBody Paciente paciente(@PathVariable("id") Long id) {
 	return pservice.buscarporId(id);
+	}*/
+	
+	@GetMapping("/buscarpaciente")
+	@ResponseBody
+	public List<LabelValue> listar(@RequestParam (value="term", required=false, defaultValue="") String term) {
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		
+			List<Paciente> allPacientes = pservice.ListarRegPaciente(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
+				suggeestions.add(lv);
+			}
+		
+		return suggeestions;	
 	}
+	
+	
 }
 
