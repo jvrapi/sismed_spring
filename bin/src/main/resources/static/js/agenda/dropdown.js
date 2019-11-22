@@ -44,7 +44,6 @@ function muda() {
 			}
 			
 			function muda3() {
-				$('#txtBusca').mask('000.000.000-00');
 				$("#dropdownMenu2").text("CPF");
 				$("#dropdownMenu2").val("3");
 				$( function() {
@@ -61,7 +60,6 @@ function muda() {
 			}
 			
 			function muda4() {
-				$('#txtBusca').mask('(00) 0000-0000');
 				$("#dropdownMenu2").text("Telefone");
 				$("#dropdownMenu2").val("4");
 				$( function() {

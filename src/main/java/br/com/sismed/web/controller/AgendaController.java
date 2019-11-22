@@ -61,6 +61,24 @@ public class AgendaController {
 				suggeestions.add(lv);
 			}
 		}
+		else if(id == 3) {
+			List<Paciente> allPacientes = pacienteSercice.PesquisarCPF(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
+				suggeestions.add(lv);
+			}
+		}
+		else if(id == 4) {
+			List<Paciente> allPacientes = pacienteSercice.PesquisarTelefone(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
+				suggeestions.add(lv);
+			}
+		}
 		return suggeestions;	
 	}
 	

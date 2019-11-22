@@ -17,4 +17,6 @@ public interface PacienteService {
 	
 	List<Paciente> ListarRegPacienteAgen(String dado);
 	List<Paciente> ListarRegPaciente(String dado);
+	List<Paciente> PesquisarCPF(String dado);
+	List<Paciente> PesquisarTelefone(String dado);
 }

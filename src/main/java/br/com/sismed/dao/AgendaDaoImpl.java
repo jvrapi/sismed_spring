@@ -18,7 +18,7 @@ public class AgendaDaoImpl extends AbstractDao<Agenda, Long> implements AgendaDa
 
 	public List<Agenda> ListarAgendamentos(){
 		Query query = entityManager.createNativeQuery("SELECT * " + " FROM sismed_agenda  " 
-				+ "order by  data desc, hora asc ",Agenda.class);
+				+ "WHERE data = (CURDATE()) ORDER BY hora ASC ",Agenda.class);
 		List<Agenda> resultlist = query.getResultList();
 		return resultlist;
 	}

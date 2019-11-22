@@ -55,4 +55,14 @@ public class PacienteServiceImpl implements PacienteService{
 	public List<Paciente> ListarRegPaciente(String dado) {
 		return dao.ListarRegPaciente(dado);
 	}
+
+	@Override
+	public List<Paciente> PesquisarCPF(String dado) {
+		return dao.PesquisarCPF(dado);
+	}
+
+	@Override
+	public List<Paciente> PesquisarTelefone(String dado) {
+		return dao.PesquisarTelefone(dado);
+	}
 }
