@@ -194,11 +194,6 @@ input.tamanho-fonte, select.tamanho-fonte {
 
 }
 
-/* ---------------------------------------------------
-    Rapi
------------------------------------------------------ */
-
-
 
 .detalhes
 a{
@@ -263,10 +258,24 @@ a{
 }
 
 .btn_cadastrar {
+	/* estilo para os botes de cadastrar e novo*/
 	background: #0087cd;
 	color: white;
 }
 
 .btn_cadastrar:hover {
+	/* estilo para os botes de cadastrar e novo*/
 	color:white;
+}
+.sub_titulo{
+	/* estilo para subtitulos em paginas*/
+	margin-bottom: 15px; 
+	padding-bottom: 10px; 
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.tabela_lista{
+	/* estilo das tabelas para exibir dados*/
+	color: #5d6266; 
+	font-size: 1em;
 }

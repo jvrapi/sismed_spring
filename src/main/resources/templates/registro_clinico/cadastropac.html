@@ -170,16 +170,18 @@
 						<table class="table table-borderless">
 							<thead>
 								<tr style="color: #5d6266; font-size: 1em;">
+									<th style="width:120px;">Nº Registro</th>
 									<th>Paciente</th>
-									<th>Descrição</th>
 									<th>Data</th>
 									<th>Hora</th>
 								</tr>
 							</thead>
 							<tbody th:each="r : ${registro}">
 								<tr class="conteudo" style="font-size: 1em;">
+									<td><a class="btn_detalhes" href="#" data-toggle="modal" data-target="#modalEditProduto" th:attr="data-nome=${r.paciente_id.nome}, 
+										data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
+             						</td>
 									<td><a th:text="${r.paciente_id.nome}"></a></td>
-									<td><a th:text="${r.descricao}"></td>
 									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
 									<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
 								</tr>
@@ -188,6 +190,7 @@
 					</div>
 				</div>
 			</div>
+			<div th:replace="fragmentos/modal"></div>
 		</div>
 	
 	</body>

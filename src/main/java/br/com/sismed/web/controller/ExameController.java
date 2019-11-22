@@ -65,7 +65,7 @@ public class ExameController {
 	@GetMapping("/editar/{id}") 
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 	model.addAttribute("exame", service.buscarporId(id));
-	return "/exame/cadastro";
+	return "/exame/editar";
 	}
 		
 	@PostMapping("/editar")
@@ -113,6 +113,10 @@ public class ExameController {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
 				lv.setValue(paciente.getId());
+				lv.setConvenio(paciente.getTipo_convenio().getConvenio().getId());
+				lv.setNome_convenio(paciente.getTipo_convenio().getConvenio().getNome());
+				lv.setTipo(paciente.getTipo_convenio().getId());
+				lv.setNome_tipo(paciente.getTipo_convenio().getNome());
 				suggeestions.add(lv);
 			}
 		

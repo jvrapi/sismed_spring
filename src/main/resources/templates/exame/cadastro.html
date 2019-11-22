@@ -12,13 +12,19 @@
 					select: function (event, ui) {
 						$("#paciente").val(ui.item.label);
 						$("#paciente_id").val(ui.item.value);
+						//nome do convenio
+						$("#convenio").val(ui.item.nome_convenio);
+						
+						//nome e id do tipo de convenio
+						$("#tipo").val(ui.item.nome_tipo);
+						$("#tipo_id").val(ui.item.tipo);
 						return false;
 					}
 				});
 			});
 		</script>
 		<script>
-			//buscar paciente 
+			//buscar funcionario
 			$( function() {
 				$("#funcionario").autocomplete({
 					source: "buscarfuncionario",
@@ -94,18 +100,35 @@
 						<div class="card-body">
 							
 									<br>
+									
+									<div class="form-row">
+									
+									<div class="form-group col-md-3 ">
+										<label for="paciente">Paciente</label> 
+										<input type="text" id="paciente" class="form-control tamanho-fonte" required>
+										<input type="hidden" th:field="*{paciente_id}" id="paciente_id" required>
+									</div>
+									
+											<div class="form-group col-md-3 ">
+										<label for="convenio">Convênio</label> 
+										<input type="text" id="convenio" class="form-control tamanho-fonte" disabled>
+										
+									</div>
+									
+									<div class="form-group col-md-3 ">
+										<label for="tipo">Tipo de Convênio</label> 
+										<input type="text" id="tipo" class="form-control tamanho-fonte" 
+										style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly >
+										<input type="hidden" th:field="*{tipo}" id="tipo_id">
+									</div>
+									
+									</div>
 								
 								<div class="form-row">
 							
-							<div class="form-group col-md-2">
-										<label for="nome">Nome</label> 
-										<input type="text" class="form-control tamanho-fonte" id="nome" placeholder="nome" autofocus="autofocus" th:field="*{nome}" required/>
-									</div>
-									<div class="form-group col-md-4">
-										<label for="descricao">Descrição</label> 
-										 <textarea class="form-control" rows="7" id="descricao" maxlength="40" autofocus="autofocus" th:field="*{descricao}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required style="resize: none;" >
-										</textarea>
+									<div class="form-group col-md-3">
+										<label for="nome">Exame</label> 
+										<input type="text" class="form-control tamanho-fonte" id="nome" placeholder="nome" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{nome}" required/>
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_coleta">Data de Coleta</label> 
@@ -125,17 +148,25 @@
 	
 								<div class="form-row">
 								
+								<div class="form-group col-md-3">
+										<label for="descricao">Descrição</label> 
+										 <textarea class="form-control" rows="3" id="descricao" maxlength="250" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{descricao}"
+										 required style="resize: none;" >
+										</textarea>
+									</div>
+								
 									<div class="form-group col-md-3">
-										<label for="funcionario">Funcionário</label> 
+										<label for="funcionario">Quem Enviou</label> 
 										<input type="text" id="funcionario" class="form-control tamanho-fonte">
-										<input type="hidden" id="funcionario_id" th:field="*{funcionario_id}">
+										<input type="hidden" id="funcionario_id" th:field="*{funcionario_id}" required onkeyup="maiuscula(this)">
 									</div>
 									
-									<div class="form-group col-md-3 ">
-										<label for="paciente">Paciente</label> 
-										<input type="text" id="paciente" class="form-control tamanho-fonte">
-										<input type="hidden" th:field="*{paciente_id}" id="paciente_id">
+									<div class="form-group col-md-3">
+										<label for="funcionario">Quem Recebeu</label> 
+										<input type="text" id="funcionario" class="form-control tamanho-fonte">
+										<input type="hidden" id="funcionario_id" required onkeyup="maiuscula(this)">
 									</div>
+									
 								</div>
 							</div>
 						</div>

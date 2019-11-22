@@ -32,4 +32,22 @@ public class PacienteDaoImpl extends AbstractDao<Paciente, Long> implements Paci
 		List<Paciente> resultlist = query.getResultList();
 		return resultlist;
 	}
+	
+
+	public List<Paciente> PesquisarCPF(String dado){
+		Query query = entityManager.createNativeQuery("SELECT *" + 
+				" FROM sismed_paciente" + 
+				" WHERE cpf LIKE ?1", Paciente.class).setParameter(1, "%" + dado + "%");
+		List<Paciente> resultlist = query.getResultList();
+		return resultlist;
+	}
+	
+
+	public List<Paciente> PesquisarTelefone(String dado){
+		Query query = entityManager.createNativeQuery("SELECT *" + 
+				" FROM sismed_paciente" + 
+				" WHERE telefone_fixo LIKE ?1", Paciente.class).setParameter(1, "%" + dado + "%");
+		List<Paciente> resultlist = query.getResultList();
+		return resultlist;
+	}
 }
