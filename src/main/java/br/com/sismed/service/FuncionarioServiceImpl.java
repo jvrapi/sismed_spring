@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.FuncionarioDao;
 import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.Paciente;
 
 @Repository
 @Transactional(readOnly = false)
@@ -44,6 +45,10 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 		
 		return dao.findAll();
 	}
-
 	
+	@Override
+	public List<Funcionario> ListarFuncionarioId(String dado) {
+		return dao.ListarFuncionarioId(dado);
+	}
+
 }

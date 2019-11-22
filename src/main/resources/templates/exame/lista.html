@@ -5,6 +5,45 @@
 </head>
 <body>
 	<div layout:fragment="corpo" >  
+		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+				<div class="dropdown">
+					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+					<div class="dropdown-content">
+						<a href="#">Agendamento</a>
+						<a href="/pacientes/cadastrar">Paciente</a>
+						<a href="#">Funcionário</a>
+						<a href="/convenios/cadastrar">Convênio</a>
+						<a href="#">Exame</a>
+						<a href="#">Laboratório</a>
+					</div>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+						<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
+						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+					</div>
+				</div>
+				<div id="divBusca">
+					<input type="text" id="txtBusca" placeholder="Buscar..." />
+					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+				</div>
+				<div class="collapse navbar-collapse justify-content-end login">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="mr-4">Bem vindo</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 	
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
@@ -25,20 +64,19 @@
 
 									<th scope="col">Paciente</th>
 									<th scope="col">Nome</th>
-									<th scope="col">Data da Coleta</th>
-									<th scope="col">Data do Envio</th>
+									<th scope="col">Bairro</th>
+									<th scope="col">Cidade</th>
 								
 								</tr>
 							</thead>
 							<tbody th:each="e : ${exame}">
 								<tr class="conteudo" style="font-size: 1em; text-align: left">
 								
-								<td><a th:href="@{/exame/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
+								<td><a th:href="@{/exame/editar/{id} (id=${e.id}) }" title="Clique aqui para alterar"  th:text="${e.paciente_id.nome}"> </a> </td>
 								
-									<td><a th:text="${e.paciente_id.nome}"></a></td>
 									<td><a th:text="${e.nome}"></a></td>
-									<td><a th:text="${e.endereco.bairro}" /></a></td>
-									<td><a th:text="${e.endereco.cidade}" /></a></td>
+									<td><a th:text="${e.paciente_id.endereco.bairro}" /></a></td>
+									<td><a th:text="${e.paciente_id.endereco.cidade}" /></a></td>
 								
 								</tr>
 							</tbody>

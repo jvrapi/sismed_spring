@@ -261,3 +261,12 @@ a{
 	font-size: 0.9em; 
 	margin-right: 25px;
 }
+
+.btn_cadastrar {
+	background: #0087cd;
+	color: white;
+}
+
+.btn_cadastrar:hover {
+	color:white;
+}

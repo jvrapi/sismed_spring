@@ -1,28 +1,80 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-<head>
-	<meta charset="UTF-8" />
-	
-	<script>
-	
-	//buscar paciente 
-	$("#paciente").autocomplete({
-						source: "http://localhost:8080/exame/buscarpaciente",
-						minLength: 1
-						/* select: function (event, ui) {
-							$("#paciente").val(ui.item.label);
-							$("#paciente_id").val(ui.item.value);
-							return false;
-						} */
-					});
-
-	</script>
-	
+	<head>
+		<meta charset="UTF-8" />
+		
+		<script>
+			//buscar paciente 
+			$( function() {
+				$("#paciente").autocomplete({
+					source: "buscarpaciente",
+					minLength: 1,
+					select: function (event, ui) {
+						$("#paciente").val(ui.item.label);
+						$("#paciente_id").val(ui.item.value);
+						return false;
+					}
+				});
+			});
+		</script>
+		<script>
+			//buscar paciente 
+			$( function() {
+				$("#funcionario").autocomplete({
+					source: "buscarfuncionario",
+					minLength: 1,
+					select: function (event, ui) {
+						$("#funcionario").val(ui.item.label);
+						$("#funcionario_id").val(ui.item.value);
+						return false;
+					}
+				});
+			});
+		</script>
 	</head>
 	
 	<body>
 	
-<div layout:fragment="corpo"  >
+	<div layout:fragment="corpo"  >
+		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+				<div class="dropdown">
+					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+					<div class="dropdown-content">
+						<a href="#">Agendamento</a>
+						<a href="/pacientes/cadastrar">Paciente</a>
+						<a href="#">Funcionário</a>
+						<a href="/convenios/cadastrar">Convênio</a>
+						<a href="#">Exame</a>
+						<a href="#">Laboratório</a>
+					</div>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+						<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
+						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+					</div>
+				</div>
+				<div id="divBusca">
+					<input type="text" id="txtBusca" placeholder="Buscar..." />
+					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+				</div>
+				<div class="collapse navbar-collapse justify-content-end login">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="mr-4">Bem vindo</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
@@ -73,22 +125,18 @@
 	
 								<div class="form-row">
 								
-									<div class="form-group col-md-2 ">
-										<label for="nome">Funcionário</label> 
-										<select id="nome" class="form-control tamanho-fonte" th:field="*{funcionario_id}">
-											<option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
-										</select>
+									<div class="form-group col-md-3">
+										<label for="funcionario">Funcionário</label> 
+										<input type="text" id="funcionario" class="form-control tamanho-fonte">
+										<input type="hidden" id="funcionario_id" th:field="*{funcionario_id}">
 									</div>
 									
-									<div class="form-group col-md-2 ">
+									<div class="form-group col-md-3 ">
 										<label for="paciente">Paciente</label> 
 										<input type="text" id="paciente" class="form-control tamanho-fonte">
-										
 										<input type="hidden" th:field="*{paciente_id}" id="paciente_id">
-										
 									</div>
-									</div>
-								<input type="hidden" id="id" th:field="*{id}"/> 
+								</div>
 							</div>
 						</div>
 					</form>
