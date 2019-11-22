@@ -63,9 +63,9 @@
 								<tr style="color: #5d6266; font-size: 1em; text-align: left">
 
 									<th scope="col">Paciente</th>
-									<th scope="col">Nome</th>
-									<th scope="col">Bairro</th>
-									<th scope="col">Cidade</th>
+									<th scope="col">Exame</th>
+									<th scope="col">Coleta</th>
+									<th scope="col">Envio</th>
 								
 								</tr>
 							</thead>
@@ -73,11 +73,10 @@
 								<tr class="conteudo" style="font-size: 1em; text-align: left">
 								
 								<td><a th:href="@{/exame/editar/{id} (id=${e.id}) }" title="Clique aqui para alterar"  th:text="${e.paciente_id.nome}"> </a> </td>
-								
-									<td><a th:text="${e.nome}"></a></td>
-									<td><a th:text="${e.paciente_id.endereco.bairro}" /></a></td>
-									<td><a th:text="${e.paciente_id.endereco.cidade}" /></a></td>
-								
+								<td><a th:text="${e.nome}"></a></td>
+								<td><a th:text="${#temporals.format(e.data_coleta, 'dd/MM/yyyy')}" /></a></td>
+								<td><a th:text="${#temporals.format(e.data_envio, 'dd/MM/yyyy')}" /></a></td>
+									
 								</tr>
 							</tbody>
 
