@@ -28,13 +28,13 @@ public  class Agenda extends AbstractEntity<Long> {
 	private String observacao;
 	
 	@Column(nullable = false)
-	private String compareceu;
+	private Long compareceu;
 	
 	@Column(nullable = false)
-	private String primeira_vez;
+	private Long primeira_vez;
 	
 	@Column(nullable = false)
-	private String pagou;
+	private Long pagou;
 	
 	@Column(nullable = false)
 	private LocalDateTime data =  LocalDateTime.now();
@@ -79,19 +79,19 @@ public  class Agenda extends AbstractEntity<Long> {
 		this.observacao = observacao;
 	}
 
-	public String getCompareceu() {
+	public Long getCompareceu() {
 		return compareceu;
 	}
 
-	public void setCompareceu(String compareceu) {
+	public void setCompareceu(Long compareceu) {
 		this.compareceu = compareceu;
 	}
 
-	public String getPagou() {
+	public Long getPagou() {
 		return pagou;
 	}
 
-	public void setPagou(String pagou) {
+	public void setPagou(Long pagou) {
 		this.pagou = pagou;
 	}
 
@@ -119,11 +119,11 @@ public  class Agenda extends AbstractEntity<Long> {
 		this.observacao = observacao;
 	}
 
-	public String getPrimeira_vez() {
+	public Long getPrimeira_vez() {
 		return primeira_vez;
 	}
 
-	public void setPrimeira_vez(String primeira_vez) {
+	public void setPrimeira_vez(Long primeira_vez) {
 		this.primeira_vez = primeira_vez;
 	}
 

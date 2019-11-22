@@ -69,9 +69,8 @@
             <div class="card ajustarCard">
                 <div class="card-body">
                     <table class="table table-borderless detalhes">
-
                         <thead>
-                            <tr class="text-center" style="color: #5d6266; font-size: 1em;">
+                            <tr class="text-center tabela_lista" >
                                 <th>Prontuario</th>
 								<th>Nome</th>
 								<th>Telefone</th>
@@ -108,13 +107,13 @@
                                 </td>
                                 
                                 <td>
-                                    <a title="Mostrar informações" th:text="${a.primeira_vez == '1'} ? 'S' : 'N' "> </a>
+                                    <a title="Mostrar informações" th:text="${a.primeira_vez == 1} ? 'S' : 'N' "> </a>
                                 </td>
                                  <td>
-                                    <a title="Mostrar informações" th:text="${a.compareceu == '1'} ? 'S' : 'N' "> </a>
+                                    <a title="Mostrar informações" th:text="${a.compareceu == 1} ? 'S' : 'N' "> </a>
                                 </td>
                                  <td>
-                                    <a title="Mostrar informações" th:text="${a.pagou == '1'} ? 'S' : 'N' "> </a>
+                                    <a title="Mostrar informações" th:text="${a.pagou == 1} ? 'S' : 'N' "> </a>
                                 </td>
                                 <td>
                                     <a title="Mostrar informações"  class="classid" th:id="${a.paciente_id}"> IDADE</a>

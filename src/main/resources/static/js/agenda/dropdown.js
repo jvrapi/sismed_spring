@@ -4,7 +4,7 @@ $(document).ready(function() {
 				source: "http://localhost:8080/agenda/listar/1",
 				minLength: 1,
 				select: function (event, ui) {
-					url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+					url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 					document.location.href = url;
 					return false;
 				}
@@ -12,7 +12,7 @@ $(document).ready(function() {
 		});
 	});
 function muda() {
-	
+	$('#txtBusca').unmask();	
 				$("#dropdownMenu2").text("Prontuário");
 				$("#dropdownMenu2").val("1");
 				$( function() {
@@ -20,7 +20,7 @@ function muda() {
 						source: "http://localhost:8080/agenda/listar/1",
 						minLength: 1,
 						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -28,6 +28,7 @@ function muda() {
 				});
 			}
 			function muda2() {
+				$('#txtBusca').unmask();
 				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("2");
 				$( function() {
@@ -35,7 +36,7 @@ function muda() {
 						source: "listar/2",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -52,7 +53,7 @@ function muda() {
 						source: "listar/3",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -69,7 +70,7 @@ function muda() {
 						source: "listar/4",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
