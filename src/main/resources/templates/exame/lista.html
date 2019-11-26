@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 </head>
 <body>
-	<div layout:fragment="corpo" >  
+	<section layout:fragment="corpo" >  
 		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
 			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
 				<div class="dropdown">
@@ -69,23 +69,44 @@
 								
 								</tr>
 							</thead>
-							<tbody th:each="e : ${exame}">
+							<tbody th:each="e : ${exame.content}">
 								<tr class="conteudo" style="font-size: 1em; text-align: left">
 								
-								<td><a th:href="@{/exame/editar/{id} (id=${e.id}) }" title="Clique aqui para alterar"  th:text="${e.paciente_id.nome}"> </a> </td>
+								<td style="width: 350px;"><a th:href="@{/exame/editar/{id} (id=${e.id}) }" title="Clique aqui para alterar"  th:text="${e.paciente_id.nome}"> </a> </td>
+								
 								<td><a th:text="${e.nome}"></a></td>
+								
 								<td><a th:text="${#temporals.format(e.data_coleta, 'dd/MM/yyyy')}" /></a></td>
+								
 								<td><a th:text="${#temporals.format(e.data_envio, 'dd/MM/yyyy')}" /></a></td>
 									
 								</tr>
 							</tbody>
-
 						</table>
-						
 					</div>
+					
+			<div th:if="${exame.totalPages > 0}">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				  	<li class="page-item" th:if="${exame.hasPrevious()}">
+				  		<a class="page-link" th:href="@{/exame/listar(page=1)}">
+				  			<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+				  		</a>
+				  	</li>
+				    <li class="page-item"  th:each="e : ${pageNumbers}" th:classappend="${e==exame.pageable.pageNumber + 1} ? active">
+				    	<a class="page-link" th:text=${e} th:href="@{/exame/listar(page=${e})}"></a>
+					</li>
+					<li class="page-item" th:if="${exame.hasNext()}">
+						<a class="page-link" th:href="@{/exame/listar(page=${exame.totalPages})}">
+							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+						</a>
+					</li>
+				  </ul>
+				</nav>
+        	 </div>
+					
 				</div>
 			</div>
-			
-		</div>
+		</section>
 </body>
 </html>

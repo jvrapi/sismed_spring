@@ -6,7 +6,7 @@
 
 <body>
 
-	<div layout:fragment="corpo" >  
+	<section layout:fragment="corpo" >  
 	
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
@@ -21,7 +21,7 @@
            	         
 	          <div class="card" style="margin-top: 25px; padding: 0px;">
 	            <div class="card-body">
-	              <table class="table table-borderless detalhes">
+	              <table class="table table-borderless">
 							<thead>
 								<tr style="color: #5d6266; font-size: 1em; text-align: left">
 
@@ -33,26 +33,45 @@
 									
 								</tr>
 							</thead>
-							<tbody th:each="l : ${laboratorio}">
-								<tr class="conteudo" style="font-size: 1em; text-align: left">
+							<tbody th:each="l : ${laboratorio.content}">
+								<tr class="conteudo" style="font-size: 1em;">
 								
-								<td><a th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
+								<td style="width: 350px;"><a th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
 								
 									<td><a th:text="${l.responsavel}"></a></td>
+									
 									<td><a th:text="${l.telefone_fixo}"></a></td>
+									
 									<td><a th:text="${l.endereco.bairro}" /></a></td>
+									
 									<td><a th:text="${l.endereco.cidade}" /></a></td>
 								
 								</tr>
 							</tbody>
-
 						</table>
-						
 					</div>
+			<div th:if="${laboratorio.totalPages > 0}">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				  	<li class="page-item" th:if="${laboratorio.hasPrevious()}">
+				  		<a class="page-link" th:href="@{/laboratorio/listar(page=1)}">
+				  			<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+				  		</a>
+				  	</li>
+				    <li class="page-item"  th:each="l : ${pageNumbers}" th:classappend="${l==laboratorio.pageable.pageNumber + 1} ? active">
+				    	<a class="page-link" th:text=${l} th:href="@{/laboratorio/listar(page=${l})}"></a>
+					</li>
+					<li class="page-item" th:if="${laboratorio.hasNext()}">
+						<a class="page-link" th:href="@{/laboratorio/listar(page=${laboratorio.totalPages})}">
+							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+						</a>
+					</li>
+				  </ul>
+				</nav>
+        	 </div>
 				</div>
 			</div>
-			
-		</div>
+		</section>
 	
 </body>
 </html>

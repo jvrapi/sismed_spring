@@ -2,8 +2,13 @@ package br.com.sismed.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +24,7 @@ import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
-import br.com.sismed.domain.TConvenio;
+import br.com.sismed.repository.ExameRepository;
 import br.com.sismed.service.ExameService;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.PacienteService;
@@ -29,6 +34,9 @@ import br.com.sismed.service.TConvenioService;
 @RequestMapping("/exame")
 public class ExameController {
 
+	@Autowired
+	private ExameRepository eRepository;
+	
 	@Autowired
 	private ExameService service;
 		
@@ -43,9 +51,43 @@ public class ExameController {
 	
 	@GetMapping("/listar")
 	
-		public String listar(ModelMap model) {
-		model.addAttribute("exame",service.buscarTodos());
-		 return "/exame/lista"; 
+		public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
+		//model.addAttribute("exame",service.buscarTodos());
+		PageRequest pagerequest = PageRequest.of(page-1, 2, Sort.by("nome").ascending());
+		Page<Exame> exame = eRepository.findAll(pagerequest);
+		model.addAttribute("exame", exame);
+		int lastPage = exame.getTotalPages();
+		
+		if (lastPage == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(lastPage == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, lastPage).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && lastPage == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < lastPage - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == lastPage - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, lastPage).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == lastPage) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(lastPage - 2, lastPage).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		
+		return "/exame/lista"; 
 	}
 		
 	@GetMapping("/cadastrar") 
@@ -80,7 +122,7 @@ public class ExameController {
 	model.addAttribute("success", "Exame excluído com sucesso");
 	service.excluir(id);
 		
-	return listar(model);
+	return "redirect:/pacientes/listar";
 	}
 		
 	/*@ModelAttribute("tipoconvenio")

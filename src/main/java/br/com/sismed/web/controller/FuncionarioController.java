@@ -44,7 +44,7 @@ public class FuncionarioController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		else if(lastPage == 2) {
-			List<Integer> pageNumbers = IntStream.rangeClosed(2, lastPage).boxed().collect(Collectors.toList());
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, lastPage).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		else if (page == 2 && lastPage == 3) {
