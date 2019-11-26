@@ -6,7 +6,7 @@
 
 <body>
 
-	<div layout:fragment="corpo" >  
+	<section layout:fragment="corpo" >  
 	
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
@@ -21,7 +21,7 @@
            	         
 	          <div class="card" style="margin-top: 25px; padding: 0px;">
 	            <div class="card-body">
-	              <table class="table table-borderless detalhes">
+	              <table class="table table-borderless">
 							<thead>
 								<tr style="color: #5d6266; font-size: 1em;">
 
@@ -36,29 +36,53 @@
 									
 								</tr>
 							</thead>
-							<tbody th:each="f : ${funcionario}">
+							<tbody th:each="f : ${funcionario.content}">
 								<tr class="conteudo" style="font-size: 1em;">
 								
-									<td><a th:text="${f.id}"></a></td>
+									<td style="width: 110px;"><a th:text="${f.id}"></a>
+									</td>
 									
-								<td><a th:href="@{/funcionario/editar/{id} (id=${f.id}) }" title="Clique aqui para alterar"  th:text="${f.nome}"> </a> </td>
+								<td style="width: 350px;"><a th:href="@{/funcionario/editar/{id} (id=${f.id}) }" title="Clique aqui para alterar"  th:text="${f.nome}"> </a> </td>
 								
-									<td><a th:text="${f.cpf}"></a></td>
+									<td ><a th:text="${f.cpf}"></a></td>
+									
 									<td><a th:text="${f.crm}"></a></td>
+									
 									<td><a th:text="${f.especialidade}" /></a></td>
+									
 									<td><a th:text="${f.telefone_fixo}" /></a></td>
+									
 									<td><a th:text="${f.celular}" /></a></td>
+									
 									<td><a th:text="${f.email}" /></a></td>
 								</tr>
 							</tbody>
-
 						</table>
-						
 					</div>
+					
+			<div th:if="${funcionario.totalPages > 0}">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				  	<li class="page-item" th:if="${funcionario.hasPrevious()}">
+				  		<a class="page-link" th:href="@{/funcionario/listar(page=1)}">
+				  			<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+				  		</a>
+				  	</li>
+				    <li class="page-item"  th:each="f : ${pageNumbers}" th:classappend="${f==funcionario.pageable.pageNumber + 1} ? active">
+				    	<a class="page-link" th:text=${f} th:href="@{/funcionario/listar(page=${p})}"></a>
+					</li>
+					<li class="page-item" th:if="${funcionario.hasNext()}">
+						<a class="page-link" th:href="@{/funcionario/listar(page=${funcionario.totalPages})}">
+							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+						</a>
+					</li>
+				  </ul>
+				</nav>
+        	 </div>
+					
 				</div>
 			</div>
-			
-		</div>
+		</section>
 	
 </body>
 </html>
