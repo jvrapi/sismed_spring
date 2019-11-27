@@ -16,27 +16,21 @@ public class ConvenioServiceImpl implements ConvenioService{
 	@Autowired
 	private ConvenioRepository cRepository;
 
-	@Autowired
-	private ConvenioDao dao;
+	
 	
 	@Override
 	@Transactional(readOnly = false)
 	public void salvar(Convenio convenio) {
-		dao.save(convenio);
+		cRepository.save(convenio);
 		
 	}
 
-	@Override
-	@Transactional(readOnly = false)
-	public void editar(Convenio convenio) {
-		dao.update(convenio);
-		
-	}
+	
 
 	@Override
 	@Transactional(readOnly = false)
 	public void excluir(Long id) {
-		dao.delete(id);
+		cRepository.deleteById(id);
 		
 	}
 
@@ -44,7 +38,7 @@ public class ConvenioServiceImpl implements ConvenioService{
 	@Transactional(readOnly = true)
 	public Convenio buscarPorId(Long id) {
 		
-		return dao.findById(id);
+		return cRepository.getOne(id);
 	}
 
 	@Override
@@ -53,19 +47,15 @@ public class ConvenioServiceImpl implements ConvenioService{
 		return cRepository.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Convenio> ListarConvenio() {
-		
-		return dao.ListarConvenio();
-	}
-
+	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Convenio> ListaComboBox(Long id) {
 		
-		return dao.ListaComboBox(id);
+		return cRepository.ListaComboBox(id);
 	}
+
+
 
 	
 	

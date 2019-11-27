@@ -64,7 +64,7 @@ public class TConvenioController {
 	@PostMapping("/editar")
 	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
 		Long id = tconvenio.getId();
-		tservice.editar(tconvenio);
+		tservice.salvar(tconvenio);
 		attr.addFlashAttribute("success", "Tipo de Convenio editado com sucesso");
 		return "redirect:/tconvenios/editar/" + id;
 	}

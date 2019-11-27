@@ -63,7 +63,7 @@ public class ConvenioController {
 		@PostMapping("/editar")
 		public String editar(Convenio convenio, RedirectAttributes attr) {
 			Long id = convenio.getId();
-			service.editar(convenio);
+			service.salvar(convenio);
 			attr.addFlashAttribute("success","Convenio editado com sucesso");
 			return "redirect:/convenios/editar/" + id;
 		}

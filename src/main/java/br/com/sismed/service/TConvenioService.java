@@ -9,7 +9,7 @@ public interface TConvenioService {
 
 
 	void salvar(TConvenio convenio);
-	void editar(TConvenio convenio);
+	
 	void excluir(Long id);
 	TConvenio buscarPorId(Long id);
 	

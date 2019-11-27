@@ -22,21 +22,15 @@ public class TConvenioServiceImpl implements TConvenioService{
 	@Override
 	@Transactional(readOnly = false)
 	public void salvar(TConvenio tconvenio) {
-		dao.save(tconvenio);
+		tcRepository.save(tconvenio);
 		
 	}
 
-	@Override
-	@Transactional(readOnly = false)
-	public void editar(TConvenio tconvenio) {
-		dao.update(tconvenio);
-		
-	}
 
 	@Override
 	@Transactional(readOnly = false)
 	public void excluir(Long id) {
-		dao.delete(id);
+		tcRepository.deleteById(id);
 		
 	}
 
@@ -44,19 +38,19 @@ public class TConvenioServiceImpl implements TConvenioService{
 	@Transactional(readOnly = true)
 	public TConvenio buscarPorId(Long id) {
 		
-		return  dao.findById(id) ;
+		return  tcRepository.getOne(id) ;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<TConvenio> BuscarTodos() {
-		return dao.findAll();
+		return tcRepository.findAll();
 	}
 
 	@Override
 	public List<TConvenio> ListarTipoConvenio(Long id) {
 		
-		return dao.ListarTipoConvenio(id);
+		return tcRepository.ListarTipoConvenio(id);
 	}
 
 	@Override
@@ -66,7 +60,7 @@ public class TConvenioServiceImpl implements TConvenioService{
 
 	@Override
 	public List<TConvenio> ListaCad(Long id) {
-		return dao.ListaCad(id);
+		return tcRepository.ListaCad(id);
 	}
 
 }

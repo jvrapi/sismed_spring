@@ -6,62 +6,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sismed.dao.ProcedimentoDao;
+
 import br.com.sismed.domain.Procedimento;
+import br.com.sismed.repository.ProcedimentoRepository;
 
 @Service 
 public class ProcedimentoServiceImpl implements ProcedimentoService{
 
 	
 	@Autowired
-	private ProcedimentoDao dao;
+	private ProcedimentoRepository pRepository;
 	
 	@Override
 	@Transactional(readOnly = false)
 	public void salvar(Procedimento procedimento) {
-		dao.save(procedimento);
+		pRepository.save(procedimento);
 		
 	}
 
-	@Override
-	@Transactional(readOnly = false)
-	public void editar(Procedimento procedimento) {
-		dao.update(procedimento);
-		
-	}
-
-	@Override
-	@Transactional(readOnly = false)
-	public void deletar(Long id) {
-		dao.delete(id);
-		
-	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Procedimento BuscarPorId(Long id) {
 		
-		return dao.findById(id);
+		return pRepository.getOne(id);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Procedimento> BuscarTodos() {
 		
-		return dao.findAll();
+		return pRepository.findAll();
 	}
 
 	@Override
 	@Transactional(readOnly = false)
 	public void excluir(Long id) {
-		dao.delete(id);
+		pRepository.deleteById(id);
 		
 	}
 
 	@Override
 	public List<Procedimento> ListarProcedimento(Long id) {
 		
-		return dao.ListarProcedimento(id);
+		return pRepository.ListarProcedimento(id);
 	}
+
+
+	
 
 }
