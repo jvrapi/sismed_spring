@@ -76,6 +76,15 @@
 				setTimeout('time()',1000);
 			}
 		</script>
+		<script>
+		$(document).ready(function() {
+			$(".descricao").each(function() {
+				var html = $(this).text();
+				if(html.length > 20)
+					$(this).text(html.substring(0, 20) + '....');
+			});
+		});
+		</script>
 	</head>
 	  
 	<body>
@@ -172,6 +181,7 @@
 								<tr style="color: #5d6266; font-size: 1em;">
 									<th style="width:120px;">Nº Registro</th>
 									<th>Paciente</th>
+									<th>Descrição</th>
 									<th>Data</th>
 									<th>Hora</th>
 								</tr>
@@ -182,11 +192,31 @@
 										data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
              						</td>
 									<td><a th:text="${r.paciente_id.nome}"></a></td>
+									<td><a class="descricao" th:text="${r.descricao}"></a></td>
 									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
 									<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div th:if="${registro.totalPages > 0}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<li class="page-item" th:if="${registro.hasPrevious()}">
+									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrarpac/' + paciente.id}(page=1) }">
+										<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"  th:each="p : ${pageNumbers}" th:classappend="${p==registro.pageable.pageNumber + 1} ? active">
+									<a class="page-link" th:text=${p} th:href="@{${'/RegistroClinico/cadastrarpac/' + paciente.id}(page=${p}) }"></a>
+								</li>
+								<li class="page-item" th:if="${registro.hasNext()}">
+									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrarpac/' + paciente.id}(page=${registro.totalPages}) }">
+										<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>

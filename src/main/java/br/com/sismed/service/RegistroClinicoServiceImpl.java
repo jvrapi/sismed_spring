@@ -3,15 +3,20 @@ package br.com.sismed.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.RegistroClinicoDao;
-import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.RegistroClinico;
+import br.com.sismed.repository.RClinicoRepository;
 
 @Service @Transactional
 public class RegistroClinicoServiceImpl implements RegistroClinicoService{
+	
+	@Autowired
+	private RClinicoRepository rcRepository;
 
 	@Autowired
 	private RegistroClinicoDao dao;
@@ -46,12 +51,12 @@ public class RegistroClinicoServiceImpl implements RegistroClinicoService{
 	}
 	
 	@Override
-	public List<RegistroClinico> ListarRegPaciente(Long id) {
-		return dao.ListarRegPaciente(id);
+	public Page<RegistroClinico> ListarRegPac(Long id, Pageable pageable) {
+		return rcRepository.ListarRegPac(id, pageable);
 	}
 	
 	@Override
-	public List<RegistroClinico> ListarRegAgenda(Long id) {
-		return dao.ListarRegAgenda(id);
+	public Page<RegistroClinico> ListarRegAgenda(Long id, Pageable pageable) {
+		return rcRepository.ListarRegAgenda(id, pageable);
 	}
 }

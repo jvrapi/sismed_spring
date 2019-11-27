@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.sismed.domain.Paciente;
-import br.com.sismed.domain.RegistroClinico;
 
 @Repository
 public class PacienteDaoImpl extends AbstractDao<Paciente, Long> implements PacienteDao{

@@ -2,7 +2,9 @@ package br.com.sismed.service;
 
 import java.util.List;
 
-import br.com.sismed.domain.Agenda;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import br.com.sismed.domain.RegistroClinico;
 
 public interface RegistroClinicoService {
@@ -15,6 +17,6 @@ public interface RegistroClinicoService {
 	
 	List<RegistroClinico> buscarTodos();
 	
-	List<RegistroClinico> ListarRegPaciente(Long id);
-	List<RegistroClinico> ListarRegAgenda(Long id);
+	Page<RegistroClinico> ListarRegPac(Long id, Pageable pageable);
+	Page<RegistroClinico> ListarRegAgenda(Long id, Pageable pageable);
 }

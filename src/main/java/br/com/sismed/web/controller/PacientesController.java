@@ -22,7 +22,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
-import br.com.sismed.repository.PacienteRepository;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
@@ -32,32 +31,29 @@ import br.com.sismed.service.TConvenioService;
 public class PacientesController {
 	
 	@Autowired
-	private PacienteRepository pRepository;
+	private PacienteService service;
 	
 	@Autowired
 	private ConvenioService convenioService;
-	
-	@Autowired
-	private PacienteService service;
 	
 	@Autowired
 	private TConvenioService tipoConvenioService;
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
-		PageRequest pagerequest = PageRequest.of(page-1, 12, Sort.by("nome").ascending());
-		Page<Paciente> paciente = pRepository.findAll(pagerequest);
+		PageRequest pagerequest = PageRequest.of(page-1, 13, Sort.by("nome").ascending());
+		Page<Paciente> paciente = service.buscarTodos(pagerequest);
 		model.addAttribute("paciente", paciente);
-		int lastPage = paciente.getTotalPages();
-		if (lastPage == 1) {
+		int totalPages = paciente.getTotalPages();
+		if (totalPages == 1) {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		else if(lastPage == 2) {
-			List<Integer> pageNumbers = IntStream.rangeClosed(1, lastPage).boxed().collect(Collectors.toList());
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		else if (page == 2 && lastPage == 3) {
+		else if (page == 2 && totalPages == 3) {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
@@ -65,16 +61,16 @@ public class PacientesController {
 			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		else if(page > 2 && page < lastPage - 1) {
+		else if(page > 2 && page < totalPages - 1) {
 			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		else if(page == lastPage - 1) {
-			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, lastPage).boxed().collect(Collectors.toList());
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		else if(page == lastPage) {
-			List<Integer> pageNumbers = IntStream.rangeClosed(lastPage - 2, lastPage).boxed().collect(Collectors.toList());
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		return "/pacientes/lista";
@@ -108,7 +104,7 @@ public class PacientesController {
 	
 	@PostMapping("/editar")
 	public String editar(Paciente paciente) {
-		service.editar(paciente);
+		service.salvar(paciente);
 		return "redirect:/pacientes/listar";
 	}
 	

@@ -2,8 +2,13 @@ package br.com.sismed.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +49,7 @@ public class RClinicoController {
 	public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		if(id == 1) {
-			List<Paciente> allPacientes = pacienteSercice.ListarRegPacienteAgen(term);
+			List<Paciente> allPacientes = pacienteSercice.ListarPacId(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -53,7 +58,7 @@ public class RClinicoController {
 			}
 		}
 		else if(id == 2) {
-			List<Paciente> allPacientes = pacienteSercice.ListarRegPaciente(term);
+			List<Paciente> allPacientes = pacienteSercice.ListarPacNome(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -84,16 +89,78 @@ public class RClinicoController {
 	}*/
 	
 	@GetMapping("/cadastrar/{id}")
-	public String cadastrar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
+	public String cadastrar(ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
-		model.addAttribute("registro", service.ListarRegAgenda(id));
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("id").descending());
+		Page<RegistroClinico> rclinico = service.ListarRegAgenda(id, pagerequest);
+		model.addAttribute("registro", rclinico);
+		int totalPages = rclinico.getTotalPages();
+		if (totalPages == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && totalPages == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
 		return "/registro_clinico/cadastro";
 	}
 	
 	@GetMapping("/cadastrarpac/{id}")
-	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico) {
+	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
 		model.addAttribute("paciente", pacienteSercice.buscarporId(id));
-		model.addAttribute("registro", service.ListarRegPaciente(id));
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("id").descending());
+		Page<RegistroClinico> rclinico = service.ListarRegPac(id, pagerequest);
+		model.addAttribute("registro", rclinico);
+		int totalPages = rclinico.getTotalPages();
+		if (totalPages == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && totalPages == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
 		return "/registro_clinico/cadastropac";
 	}
 	
@@ -102,6 +169,12 @@ public class RClinicoController {
 		Long id = registroclinico.getPaciente_id().getId();
 		service.salvar(registroclinico);
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;
+	}
+	
+	@GetMapping("buscarregistros/{id}")
+	public @ResponseBody Page<RegistroClinico> listRegistros(@RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
+		PageRequest pagerequest = PageRequest.of(page-1, 3);
+		return service.ListarRegAgenda(id, pagerequest);
 	}
 }
 

@@ -44,7 +44,7 @@ public class AgendaController {
 	public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		if(id == 1) {
-			List<Paciente> allPacientes = pacienteService.ListarRegPacienteAgen(term);
+			List<Paciente> allPacientes = pacienteService.ListarPacId(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -53,7 +53,7 @@ public class AgendaController {
 			}
 		}
 		else if(id == 2) {
-			List<Paciente> allPacientes = pacienteService.ListarRegPaciente(term);
+			List<Paciente> allPacientes = pacienteService.ListarPacNome(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());

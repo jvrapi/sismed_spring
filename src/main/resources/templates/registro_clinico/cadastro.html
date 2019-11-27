@@ -78,8 +78,11 @@
 		</script>
 		<script>
 		$(document).ready(function() {
-			var html = $('.descricao').text();
-			$('.descricao').text(html.substring(0, 20));
+			$(".descricao").each(function() {
+				var html = $(this).text();
+				if(html.length > 20)
+					$(this).text(html.substring(0, 20) + '....');
+			});
 		});
 		</script>
 	</head>
@@ -171,7 +174,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" th:name="agendamento_id" th:value="${agenda.id}">
+					<input type="hidden" id="id_agendamento" th:name="agendamento_id" th:value="${agenda.id}">
 				</form>
 				<h5 style="display: inline;">Atendimentos anteriores</h5>
 				<div class="card" style="margin-top: 10px;">
@@ -186,18 +189,37 @@
 									<th>Hora</th>
 								</tr>
 							</thead>
-							<tbody th:each="r : ${registro}">
+							<tbody th:each="r : ${registro.content}">
 								<tr class="conteudo" style="font-size: 1em;">
 									<td><a class="btn_detalhes" href="#" data-toggle="modal" data-target="#modalEditProduto" th:attr="data-nome=${r.paciente_id.nome}, 
 										data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
              						</td>
-									<td><a th:text="${r.paciente_id.nome}"></a></td>
+									<td><a id="registro_pac_nome" th:text="${r.paciente_id.nome}"></a></td>
 									<td><a class="descricao" th:text="${r.descricao}"></a></td>
 									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
 									<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
 								</tr>
 							</tbody>
 						</table>
+					</div>
+					<div th:if="${registro.totalPages > 0}">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-center">
+								<li class="page-item" th:if="${registro.hasPrevious()}">
+									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=1) }">
+										<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item"  th:each="p : ${pageNumbers}" th:classappend="${p==registro.pageable.pageNumber + 1} ? active">
+									<a class="page-link" th:text=${p} th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=${p}) }"></a>
+								</li>
+								<li class="page-item" th:if="${registro.hasNext()}">
+									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=${registro.totalPages}) }">
+										<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>

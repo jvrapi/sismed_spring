@@ -8,9 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.TConvenioDao;
 import br.com.sismed.domain.TConvenio;
+import br.com.sismed.repository.TConvenioRepository;
 
 @Service 
 public class TConvenioServiceImpl implements TConvenioService{
+	
+	@Autowired
+	private TConvenioRepository tcRepository;
 
 	@Autowired
 	private TConvenioDao dao;
@@ -57,8 +61,7 @@ public class TConvenioServiceImpl implements TConvenioService{
 
 	@Override
 	public List<TConvenio> ListaComboBox(Long id) {
-		
-		return dao.ListaComboBox(id);
+		return tcRepository.ListaComboxBox(id);
 	}
 
 	@Override

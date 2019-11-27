@@ -8,9 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sismed.dao.ConvenioDao;
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.repository.ConvenioRepository;
 
 @Service 
 public class ConvenioServiceImpl implements ConvenioService{
+	
+	@Autowired
+	private ConvenioRepository cRepository;
 
 	@Autowired
 	private ConvenioDao dao;
@@ -46,8 +50,7 @@ public class ConvenioServiceImpl implements ConvenioService{
 	@Override
 	@Transactional(readOnly = true)
 	public List<Convenio> BuscarTodos() {
-		
-		return dao.findAll();
+		return cRepository.findAll();
 	}
 
 	@Override
