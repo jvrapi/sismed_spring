@@ -9,6 +9,11 @@ import br.com.sismed.domain.Funcionario;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 	
-	@Query(value = "SELECT * FROM sismed_funcionario WHERE nome = :dado", nativeQuery = true)
+	@Query(value = "SELECT * FROM sismed_funcionario WHERE id = :dado", nativeQuery = true)
+	Funcionario ListarFuncionarioId(String dado);
+	
+	@Query(value = "SELECT * FROM sismed_funcionario WHERE nome LIKE %:dado%", nativeQuery = true)
 	List<Funcionario> ListarFuncionarioNome(String dado);
+	
+	
 }

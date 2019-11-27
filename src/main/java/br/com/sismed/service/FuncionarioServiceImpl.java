@@ -54,5 +54,9 @@ public class FuncionarioServiceImpl implements FuncionarioService{
 	public List<Funcionario> ListarFuncionarioNome(String dado) {
 		return fRepository.ListarFuncionarioNome(dado);
 	}
+	
+	public Funcionario ListarFuncionarioId(String dado) {
+		return fRepository.ListarFuncionarioId(dado);
+	}
 
 }

@@ -20,4 +20,6 @@ public interface FuncionarioService {
 	List<Funcionario> findAll();
 	
 	List<Funcionario> ListarFuncionarioNome(String dado);
+	
+	Funcionario ListarFuncionarioId(String dado);
 }

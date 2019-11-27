@@ -26,17 +26,15 @@ import br.com.sismed.service.LaboratorioService;
 public class LaboratorioController {
 	
 	@Autowired
-	private LaboratorioRepository lRepository;
-	
-	@Autowired
 	private LaboratorioService service;
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
-		//model.addAttribute("laboratorio", service.buscarTodos());
-		PageRequest pagerequest = PageRequest.of(page-1, 2, Sort.by("nome").ascending());
-		Page<Laboratorio> laboratorio = lRepository.findAll(pagerequest);
+		
+		PageRequest pagerequest = PageRequest.of(page-1, 1, Sort.by("nome").ascending());
+		Page<Laboratorio> laboratorio = service.buscarTodos(pagerequest);
 		model.addAttribute("laboratorio", laboratorio);
+		
 		int lastPage = laboratorio.getTotalPages();
 		
 		if (lastPage == 1) {
@@ -92,7 +90,7 @@ public class LaboratorioController {
 	@PostMapping("/editar")
 	public String editar(Laboratorio laboratorio, RedirectAttributes attr) {
 		attr.addFlashAttribute("success","Laboratório alterado com sucesso");
-		service.editar(laboratorio);
+		service.salvar(laboratorio);
 		return "redirect:/laboratorio/listar";
 	}
 	

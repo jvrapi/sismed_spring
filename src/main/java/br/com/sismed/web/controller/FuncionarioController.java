@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.FuncionarioService;
 
 @Controller
@@ -84,6 +88,32 @@ public class FuncionarioController {
 		model.addAttribute("funcionario", service.buscarporId(id));
 		return "/funcionario/editar";
 	}
+	
+	@GetMapping("/buscar/{id}")
+	@ResponseBody
+	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		if(id == 1) {
+			Funcionario allFuncionario = service.ListarFuncionarioId(term);
+			
+				LabelValue lv = new LabelValue();
+				lv.setLabel(allFuncionario.getNome());
+				lv.setValue(allFuncionario.getId());
+				suggeestions.add(lv);
+			}
+		
+		else if(id == 2) {
+			List<Funcionario> allFuncionario = service.ListarFuncionarioNome(term);
+			for (Funcionario funcionario : allFuncionario) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(funcionario.getNome());
+				lv.setValue(funcionario.getId());
+				suggeestions.add(lv);
+			}
+		}
+		return suggeestions;
+	}
+	
 	
 	@PostMapping("/editar")
 	public String editar(Funcionario funcionario, RedirectAttributes attr) {
