@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+  <head>
+    <meta charset="UTF-8" />
+    
+     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
+    <script type="text/javascript" src="/js/funcionario/editar.js"></script>
+    
+  </head>
+
+  <body>
+  
+  	<section layout:fragment="corpo">
+	
+			<div class="container" style="margin-left: 35%;">
+				<div th:replace="fragmentos/alert"></div>
+				<div th:replace="fragmentos/modal"></div>
+				
+			</div>
+  
+    <div class="container-fluid" style="width: 98%">
+    
+    <form id="form" th:action="@{/exame/editar}" 
+			th:object="${exame}" method="POST">
+
+       		<div id="div_botao">
+            		<h3 style="display: inline;"> Edição | <strong>Exame</strong></h3>
+					
+					<a class="btn btn-secondary float-right ml-2"  href="/exame/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+					
+					<button th:id="${exame.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+					
+					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
+				</div >
+				
+				 <div class="card" style="margin-top: 25px; padding: 0px;">
+	            <div class="card-body">
+	            
+	           <div class="form-row">
+	           
+	           		<div class="form-group col-md-3">
+							<label for="paciente">Paciente</label>
+							<input type="text" class="form-control tamanho-fonte" id="paciente" autofocus="autofocus" th:field="*{paciente_id.nome}" disabled/>
+					</div>
+	           
+	           			<div class="form-group col-md-3">
+							<label for="convenio">Convênio</label>
+							<input type="text" class="form-control tamanho-fonte" id="convenio" th:value="*{tipo.convenio.nome}" autofocus="autofocus" disabled/>
+						</div>
+	      				<div class="form-group col-md-3">
+							<label for="tipo">Tipo de Convênio</label>
+							<input type="text" class="form-control tamanho-fonte" id="tipo_id" autofocus="autofocus" th:value="*{tipo.nome}" disabled/>
+							
+						</div>
+	           </div>
+	           
+	           <div class="form-row">
+	           
+						<div class="form-group col-md-3">
+							<label for="nome">Exame</label>
+							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" disabled/>
+						</div>
+						
+						<div class="form-group col-md-2">
+							<label for="data_coleta">Data de Coleta</label>
+							<input type="text" class="form-control tamanho-fonte" id="data_coleta" autofocus="autofocus" th:field="*{data_coleta}" disabled/>
+						</div>
+						
+						<div class="form-group col-md-2">
+							<label for="data_envio">Data de Envio</label>
+							<input type="text" class="form-control tamanho-fonte" id="data_envio" autofocus="autofocus" th:field="*{data_envio}" disabled/>
+						</div>
+	           			
+	           			<div class="form-group col-md-2">
+							<label for="data_retorno">Data de Retorno</label>
+							<input type="text" class="form-control tamanho-fonte" id="data_retorno" autofocus="autofocus" th:field="*{data_retorno}" disabled/>
+						</div>
+	           	</div>
+	           	
+	           	<br>
+	           	
+	           	 <div class="form-row">
+	           	 
+	           	 <div class="form-group col-md-3">
+							<label for="descricao">Descrição</label>
+							<input type="text" class="form-control tamanho-fonte" id="descricao" autofocus="autofocus" th:field="*{descricao}" disabled/>
+						</div>
+	           	 
+	           	 <div class="form-group col-md-3">
+							<label for="funcionario">Quem Enviou</label>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario_id" autofocus="autofocus" th:field="*{funcionario_id.nome}" disabled/>
+						</div>
+	           	 
+	           	  
+	           	 <div class="form-group col-md-3">
+							<label for="funcionario">Quem Enviou</label>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario_id" autofocus="autofocus" disabled/>
+						</div>
+	           	 
+	           	 </div>
+	            </div>
+					<input type="hidden" id="id" th:field="*{id}"/>
+				
+				</div>
+				
+				</form>
+            </div>
+    
+   <div th:replace="fragmentos/modal :: modal"></div>
+
+</section>
+  </body>
+</html>

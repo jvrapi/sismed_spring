@@ -1,47 +1,41 @@
 package br.com.sismed.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sismed.dao.ExameDao;
 import br.com.sismed.domain.Exame;
+import br.com.sismed.repository.ExameRepository;
 
 @Service
 @Transactional(readOnly = false)
 public class ExameServiceImp implements ExameService{
-
+	
 	@Autowired
-	private ExameDao dao;
+	private ExameRepository eRepository;
 	
 	@Override
 	public void salvar(Exame exame) {
-		dao.save(exame);
-	}
-
-	@Override
-	public void editar(Exame exame) {
-		dao.update(exame);
+		eRepository.save(exame);
 	}
 
 	@Override
 	public void excluir(Long id) {
-		dao.delete(id);
+		eRepository.deleteById(id);;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Exame buscarporId(Long id) {
-		
-		return dao.findById(id);
+		return eRepository.getOne(id);
 	}
 
 	@Override 
 	@Transactional(readOnly = true)
-	public List<Exame> buscarTodos() {
+	public Page<Exame> buscarTodos(Pageable pageable) {
 	
-		return dao.findAll();
+		return eRepository.findAll(pageable);
 	}
 }

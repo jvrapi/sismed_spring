@@ -24,7 +24,6 @@ import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
-import br.com.sismed.repository.ExameRepository;
 import br.com.sismed.service.ExameService;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.PacienteService;
@@ -33,9 +32,6 @@ import br.com.sismed.service.TConvenioService;
 @Controller
 @RequestMapping("/exame")
 public class ExameController {
-
-	@Autowired
-	private ExameRepository eRepository;
 	
 	@Autowired
 	private ExameService service;
@@ -54,7 +50,7 @@ public class ExameController {
 		public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
 		//model.addAttribute("exame",service.buscarTodos());
 		PageRequest pagerequest = PageRequest.of(page-1, 2, Sort.by("nome").ascending());
-		Page<Exame> exame = eRepository.findAll(pagerequest);
+		Page<Exame> exame = service.buscarTodos(pagerequest);
 		model.addAttribute("exame", exame);
 		int lastPage = exame.getTotalPages();
 		
@@ -92,8 +88,8 @@ public class ExameController {
 		
 	@GetMapping("/cadastrar") 
 	public String cadastrar (ModelMap model, Exame exame) {
-		model.addAttribute("paciente",pservice.buscarTodos());
-		model.addAttribute("funcionario",fservice.buscarTodos());
+		model.addAttribute("paciente",pservice.findAll());
+		model.addAttribute("funcionario",fservice.findAll());
 		return "/exame/cadastro"; 
 	}
 	
@@ -113,7 +109,7 @@ public class ExameController {
 	@PostMapping("/editar")
 	public String editar(Exame exame, RedirectAttributes attr) {
 	attr.addFlashAttribute("success","Exame alterado com sucesso");
-	service.editar(exame);
+	service.salvar(exame);
 	return "redirect:/exame/listar";
 	}
 	
@@ -132,12 +128,12 @@ public class ExameController {
 	
 	@ModelAttribute("paciente")
 	public List<Paciente> getPaciente(){
-	return pservice.buscarTodos();
+	return pservice.findAll();
 	}
 		
 	@ModelAttribute("funcionario")
 	public List<Funcionario> getFuncionario(){
-	return fservice.buscarTodos();
+	return fservice.findAll();
 	}
 	
 	/*@GetMapping("/pacientes/{id}")
@@ -150,7 +146,7 @@ public class ExameController {
 	public List<LabelValue> listarpaciente(@RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		
-			List<Paciente> allPacientes = pservice.ListarRegPaciente(term);
+			List<Paciente> allPacientes = pservice.ListarPacId(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -170,7 +166,7 @@ public class ExameController {
 	public List<LabelValue> listarfuncionario(@RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		
-			List<Funcionario> allFuncionarios = fservice.ListarFuncionarioId(term);
+			List<Funcionario> allFuncionarios = fservice.ListarFuncionarioNome(term);
 			for (Funcionario funcionario : allFuncionarios) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(funcionario.getNome());

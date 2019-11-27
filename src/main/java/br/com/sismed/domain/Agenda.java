@@ -24,6 +24,10 @@ public  class Agenda extends AbstractEntity<Long> {
 	@JoinColumn(name = "funcionario_id") // nome da chave estrangeira no banco de dados
 	private Funcionario funcionario;
 	
+	@ManyToOne
+	@JoinColumn(name = "tipo_convenio_id") // nome da chave estrangeira no banco de dados
+	private TConvenio tipo_convenio;
+	
 	@Column(nullable = false)
 	private String observacao;
 	
@@ -134,6 +138,16 @@ public  class Agenda extends AbstractEntity<Long> {
 	public void setCustos(List<Custos> custos) {
 		this.custos = custos;
 	}
+
+	public TConvenio getTipo_convenio() {
+		return tipo_convenio;
+	}
+
+	public void setTipo_convenio(TConvenio tipo_convenio) {
+		this.tipo_convenio = tipo_convenio;
+	}
+	
+	
 	
 	
 }

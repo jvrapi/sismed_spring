@@ -7,7 +7,7 @@ import br.com.sismed.domain.Agenda;
 public interface AgendaService {
 
 	void salvar(Agenda agenda);
-	void editar(Agenda agenda);
+	
 	void excluir(Long id);
 	Agenda buscarPorId(Long id);
 	

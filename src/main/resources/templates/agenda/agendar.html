@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="/js/agenda/dropdown.js"></script>
+    <script type="text/javascript" src="/js/agenda/tipoConvenio.js"></script>
+    <script type="text/javascript" src="/js/agenda/procedimentos.js"></script>
+    <script type="text/javascript" src="/js/agenda/valorProcedimento.js"></script>
 </head>
 
 <body>
@@ -56,8 +59,11 @@
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
             <div class="container-fluid" style="width: 98%">
+            <form th:action="@{/agenda/salvar}" th:object="${agenda}" method="POST">
                 <h3 style="display: inline; margin-left: 10px;"><strong >Novo Agendamento</strong></h3>
-                <form th:action="@{/agenda/salvar}" th:object="${agenda}" method="POST">
+                <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/agenda/agendamentos"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
+                
                     <div class="card ajustarCard">
                         <div class="card-body">
                             <h5 class="sub_titulo">Paciente</h5>
@@ -119,39 +125,57 @@
                             <br>
                             <h5 class="sub_titulo">Informações Agendamento</h5>
                             <div class="form-row">
-                            
-                            <div class="form-group col-md-2">
-                                    <label for="primeira_vez">Procedimento</label>
-                                    <select id="convenio_id" class="form-control" th:field="*{primeira_vez}" >
-                                    	<option value="1" >SIM</option>
-                                    	<option value="2" >NÃO</option>
-                                	</select>
+
+                                <div class="form-group col-md-2">
+                                    <label for="convenio_id">Convenio</label>
+                                    <select id="convenio_id" class="form-control tamanho-fonte" required>
+                                        <option value="" selected hidden>Selecione</option>
+                                        <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                    </select>
                                 </div>
+
+                                <div class="form-group col-md-2">
+
+                                    <label for="tipo_convenio_id">Tipo de convenio</label>
+                                    <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled required></select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="procedimento_id">Procedimento</label>
+                                    <select id="procedimento_id" class="form-control my-select tamanho-fonte" th:field="*{procedimento}" disabled required></select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="valor">Valor</label>
+                                    <input type="text" id="valor" class="form-control tamanho-fonte" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="Data">Data</label>
-                                    <input type="date" class="form-control tamanho-fonte" id="data" th:field="*{data}"/>
+                                    <input type="date" class="form-control tamanho-fonte" id="data" th:field="*{data}" />
                                 </div>
                                 <div class="form-group col-md-1">
                                     <label for="nome">Hora</label>
-                                    <input type="time" class="form-control tamanho-fonte" id="Hora" th:field="*{hora}"/>
+                                    <input type="time" class="form-control tamanho-fonte" id="Hora" th:field="*{hora}" />
                                 </div>
-                                
-								<div class="form-group col-md-2">
+
+                                <div class="form-group col-md-2">
                                     <label for="pagou">Pagou</label>
-                                    <select id="convenio_id" class="form-control" th:field="*{pagou}" >
-                                    	<option value="1" >SIM</option>
-                                    	<option value="2" >NÃO</option>
-                                	</select>
+                                    <select id="convenio_id" class="form-control" th:field="*{pagou}">
+                                        <option value="1">SIM</option>
+                                        <option value="2">NÃO</option>
+                                    </select>
                                 </div>
-								
+
                                 <div class="form-group col-md-2">
                                     <label for="primeira_vez">Primeira Vez</label>
-                                    <select id="convenio_id" class="form-control" th:field="*{primeira_vez}" >
-                                    	<option value="1" >SIM</option>
-                                    	<option value="2" >NÃO</option>
-                                	</select>
+                                    <select id="convenio_id" class="form-control" th:field="*{primeira_vez}">
+                                        <option value="1">SIM</option>
+                                        <option value="2">NÃO</option>
+                                    </select>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

@@ -266,5 +266,34 @@ public class Paciente extends AbstractEntity<Long>{
 		this.endereco = endereco;
 	}
 	
+public int calcularIdade(LocalDate nascimento) {
+		
+		LocalDate dataAtual = LocalDate.now();
+		
+		
+		//Dados da data atual
+		int anoAtual = dataAtual.getYear();
+		int mesAtual = dataAtual.getMonthValue();
+		int diaAtual = dataAtual.getDayOfWeek().ordinal();
+		
+		//Dados do paciente
+		int anoPaciente = nascimento.getYear();
+		int mesPaciente = nascimento.getMonthValue();
+		int diaPaciente = nascimento.getDayOfWeek().ordinal();
+
+		int idade = anoAtual - anoPaciente;
+		System.out.println(nascimento);
+		if(mesAtual < mesPaciente ) {
+			idade--;
+		}
+		else if(mesAtual == mesPaciente) {
+			if( diaAtual < diaPaciente ) {
+				idade-- ;
+			}
+		}
+		System.out.println(idade);
+		return idade;
+		
+	}
 	
 }

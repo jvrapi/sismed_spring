@@ -17,10 +17,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Procedimento;
-import br.com.sismed.domain.TConvenio;
+
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.ProcedimentoService;
-import br.com.sismed.service.TConvenioService;
+
 
 @Controller
 @RequestMapping("/procedimentos")
@@ -65,7 +65,7 @@ public class ProcedimentosController {
 	@PostMapping("/editar")
 	public String editar(Procedimento procedimentos, RedirectAttributes attr) {
 		Long id = procedimentos.getId();
-		service.editar(procedimentos);
+		service.salvar(procedimentos);
 		attr.addFlashAttribute("success","Procedimento editado com sucesso");
 		return "redirect:/procedimentos/editar/" + id;
 	}

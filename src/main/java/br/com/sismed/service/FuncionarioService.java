@@ -2,6 +2,8 @@ package br.com.sismed.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.sismed.domain.Funcionario;
@@ -10,13 +12,12 @@ import br.com.sismed.domain.Funcionario;
 public interface FuncionarioService {
 	
 	void salvar(Funcionario funcionario);
-	void editar(Funcionario funcionario);
 	void excluir(Long id);
 	
 	Funcionario buscarporId(Long id);
 	
-	List<Funcionario> buscarTodos();
+	Page<Funcionario> buscarTodos(Pageable pageable);
+	List<Funcionario> findAll();
 	
-	List<Funcionario> ListarFuncionarioId(String dado);
-
+	List<Funcionario> ListarFuncionarioNome(String dado);
 }
