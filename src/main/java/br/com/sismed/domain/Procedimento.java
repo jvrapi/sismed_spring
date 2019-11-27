@@ -27,8 +27,7 @@ public  class Procedimento extends AbstractEntity<Long> {
 	@JoinColumn(name = "convenio_id")
 	private Convenio convenio;
 	
-	@OneToMany(mappedBy = "procedimento") // nome do atributo na classe Agenda
-	private List<Agenda> agenda;
+	
 	
 	public String getDescricao() {
 		return descricao;
@@ -56,13 +55,7 @@ public  class Procedimento extends AbstractEntity<Long> {
 		this.convenio = convenio;
 	}
 
-	public List<Agenda> getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(List<Agenda> agenda) {
-		this.agenda = agenda;
-	}
+	
 	
 		
 	

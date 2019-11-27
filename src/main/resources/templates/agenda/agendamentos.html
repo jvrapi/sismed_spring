@@ -64,8 +64,7 @@
         </div>
         <div class="container-fluid" style="width: 98%">
             <h3 style="display: inline; margin-left: 10px;">Agenda | <strong th:text="${#dates.format(#dates.createNow(),'dd/MM/YYYY')}">31/12/2015 15:00</strong></h3>
-            <a class="btn  float-right" href="/convenios/cadastrar" role="button" style="margin-right: 10px; background: #0087cd; color: white;"><i class="fas fa-plus"></i> Novo Agendamento</a>
-
+           
             <div class="card ajustarCard">
                 <div class="card-body">
                     <table class="table table-borderless detalhes">
@@ -87,10 +86,11 @@
                         <tbody th:each="a : ${agendamentos}">
                             <tr class="conteudo text-center" style="font-size: 1em;">
                                 <td>
-                                    <a th:href="@{/pacientes/editar/{id}/{cid} (id=${a.paciente_id.id} , cid=${a.paciente_id.tipo_convenio.convenio.id}) }" title="Mostrar informações" th:text="${a.paciente_id.id}"> </a>
+                                    <a th:href="@{/pacientes/editar/{id}/{cid} (id=${a.paciente_id.id} , cid=${a.paciente_id.tipo_convenio.convenio.id}) }" 
+                                    title="Clique aqui para abrir o cadastro completo do paciente" th:text="${a.paciente_id.id}"> </a>
                                 </td>
                                 <td>
-                                    <a title="Mostrar informações" th:href="@{/RegistroClinico/cadastrar/{id} (id = ${a.id})}" th:text="${a.paciente_id.nome}"> </a>
+                                    <a title="Clique aqui para acessar os registros clinicos do paciente" th:href="@{/RegistroClinico/cadastrar/{id} (id = ${a.id})}" th:text="${a.paciente_id.nome}"> </a>
                                 </td>
                                 <td>
                                 	<a title="Mostrar informações" th:text="${a.paciente_id.telefone_fixo}"></a>
@@ -116,7 +116,7 @@
                                     <a title="Mostrar informações" th:text="${a.pagou == 1} ? 'S' : 'N' "> </a>
                                 </td>
                                 <td>
-                                    <a title="Mostrar informações"  class="classid" th:id="${a.paciente_id}"> IDADE</a>
+                                    <a title="Mostrar informações"  class="classid" th:text="${a.paciente_id.calcularIdade(a.paciente_id.data_nascimento)} + ' ANOS '"> IDADE</a>
                                 </td>
                                 
                                 <td>
