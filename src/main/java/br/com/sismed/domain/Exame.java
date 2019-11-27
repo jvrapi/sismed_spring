@@ -1,13 +1,11 @@
 package br.com.sismed.domain;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -113,7 +111,35 @@ public class Exame extends AbstractEntity<Long>{
 		this.tipo = tipo;
 	}
 
-	
+	/*public boolean VerificaDataColetaEnvio(){
+		
+		boolean data;
+		
+		if(getData_coleta().isBefore(getData_envio())) {
+			
+			data = true;
+		}
+		else {
+			
+			data = false;
+		}
 
+		return data;
+		}
 	
+		public boolean VerificaDataEnvioRetorno(){
+			
+			boolean data;
+			
+			if(getData_envio().isAfter(getData_retorno())) {
+				
+				data = true;
+			}
+			else {
+				
+				data = false;
+			}
+
+			return data;
+			}*/
 }
