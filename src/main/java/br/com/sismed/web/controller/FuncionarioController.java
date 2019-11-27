@@ -18,15 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Funcionario;
-import br.com.sismed.repository.FuncionarioRepository;
 import br.com.sismed.service.FuncionarioService;
 
 @Controller
 @RequestMapping("/funcionario")
 public class FuncionarioController {
-
-	@Autowired
-	private FuncionarioRepository fRepository;
 	
 	@Autowired
 	private FuncionarioService service;
@@ -34,8 +30,8 @@ public class FuncionarioController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page){
 		//model.addAttribute("funcionario", service.buscarTodos());
-		PageRequest pagerequest = PageRequest.of(page-1,2,Sort.by("nome").ascending());
-		Page<Funcionario> funcionario = fRepository.findAll(pagerequest);
+		PageRequest pagerequest = PageRequest.of(page-1,12,Sort.by("id").ascending());
+		Page<Funcionario> funcionario = service.buscarTodos(pagerequest);
 		model.addAttribute("funcionario", funcionario);
 		int lastPage = funcionario.getTotalPages();
 		
@@ -92,7 +88,7 @@ public class FuncionarioController {
 	@PostMapping("/editar")
 	public String editar(Funcionario funcionario, RedirectAttributes attr) {
 		attr.addFlashAttribute("success","Funcionario(a) alterado(a) com sucesso");
-		service.editar(funcionario);
+		service.salvar(funcionario);
 		return "redirect:/funcionario/listar";
 	}
 	

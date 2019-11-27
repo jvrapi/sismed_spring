@@ -69,7 +69,7 @@
 				  		</a>
 				  	</li>
 				    <li class="page-item"  th:each="f : ${pageNumbers}" th:classappend="${f==funcionario.pageable.pageNumber + 1} ? active">
-				    	<a class="page-link" th:text=${f} th:href="@{/funcionario/listar(page=${p})}"></a>
+				    	<a class="page-link" th:text=${f} th:href="@{/funcionario/listar(page=${f})}"></a>
 					</li>
 					<li class="page-item" th:if="${funcionario.hasNext()}">
 						<a class="page-link" th:href="@{/funcionario/listar(page=${funcionario.totalPages})}">
