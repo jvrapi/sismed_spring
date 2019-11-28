@@ -85,15 +85,15 @@
 		</script>
 		<script>
 			function mudaPágina(element) {
-				var url = "http://localhost:8080/RegistroClinico/find/1?page=" + element.text;
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + element.text;
 				$("#resultsBlock").load(url);
 			}
 			function primeiraPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/1?page=1";
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=1";
 				$("#resultsBlock").load(url);
 			}
 			function ultimaPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/1?page=" + $("#ultimaPagina").val();
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + $("#ultimaPagina").val();
 				$("#resultsBlock").load(url);
 			}
 		</script>
