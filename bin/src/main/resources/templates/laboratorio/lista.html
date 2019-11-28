@@ -1,118 +1,119 @@
-
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
 </head>
+
 <body>
-	<section layout:fragment="corpo">
 
-		<nav class="navbar">
-			<a class="btn btn btn-md"
-				style="background-color: #D7E7F9; margin-top: 5px; margin-left: 20px"
-				href="/laboratorio/cadastrar" role="button"> <span
-				class="oi oi-plus" title="Cadastro" aria-hidden="true"></span> <span>Cadastrar
-					Laboratório</span></a>
-
-			<div th:replace="fragmentos/alert"></div>
+	<section layout:fragment="corpo" >  
+	
+		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+				<div class="dropdown">
+					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+					<div class="dropdown-content">
+						<a href="#">Agendamento</a>
+						<a href="/pacientes/cadastrar">Paciente</a>
+						<a href="#">Funcionário</a>
+						<a href="/convenios/cadastrar">Convênio</a>
+						<a href="#">Exame</a>
+						<a href="#">Laboratório</a>
+					</div>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+						<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
+						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+					</div>
+				</div>
+				<div id="divBusca">
+					<input type="text" id="txtBusca" placeholder="Buscar..." />
+					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+				</div>
+				<div class="collapse navbar-collapse justify-content-end login">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="mr-4">Bem vindo</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</nav>
-		
-		<br>
-		
-		<div  th:replace="fragmentos/modal :: modal" style="text-align: center"></div>
-		<div th:replace="fragmentos/alert" style="text-align: center"></div>
-
-		<div class="container" th:each="l : ${laboratorio}">
-
-			<a class="btn btn-info btn-sm"
-				th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" role="button">
-				<span class="oi oi-pencil" title="Editar" aria-hidden="true"></span>
-			</a> 
-			
-			<button th:id="${#strings.concat ('/btn_laboratorio/excluir/',l.id)}"
-				type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-				data-target="#myModal"> <span class="oi oi-circle-x"
-				title="Excluir" aria-hidden="true"></span>
-			</button> 
-			
-			<br><br>
-			
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="cnpj">CNPJ</label> <input type="text"
-						class="form-control" id="nome" placeholder="cnpj" name="nome"
-						th:value="${l.cnpj}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-5">
-					<label for="nome">Nome</label> <input type="text"
-						class="form-control" id="nome" placeholder="nome" name="nome"
-						th:value="${l.nome}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-5">
-					<label for="responsavel">Responsável</label> <input type="text"
-						class="form-control" id="responsavel" placeholder="responsavel"
-						name="responsavel" th:value="${l.responsavel}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-				<div class="form-group col-md-2">
-					<label for="telefone">Telefone</label> <input type="text"
-						class="form-control" id="telefone" placeholder="telefone"
-						name="telefone" th:value="${l.telefone}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-4">
-					<label for="nome">Email</label> <input type="text"
-						class="form-control" id="email" placeholder="email" name="email"
-						th:value="${l.email}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="endereco">Endereço</label> <input type="text"
-						class="form-control" id="endereco" placeholder="endereco"
-						name="endereco" th:value="${l.endereco}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
-			<div class="form-row">
-
-				<div class="form-group col-md-5">
-					<label for="bairro">Bairro</label> <input type="text"
-						class="form-control" id="bairro" placeholder="bairro"
-						name="bairro" th:value="${l.bairro}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-6">
-					<label for="cidade">Cidade</label> <input type="text"
-						class="form-control" id="cidade" placeholder="cidade"
-						name="cidade" th:value="${l.cidade}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-				<div class="form-group col-md-1">
-					<label for="estado">Estado</label> <input type="text"
-						class="form-control" id="estado" placeholder="estado"
-						name="estado" th:value="${l.estado}" disabled>
-					<div class="invalid-feedback"></div>
-				</div>
-
-			</div>
-
+	
+		<div class="container" style="margin-left: 35%;">
+			<div th:replace="fragmentos/alert"></div>
 		</div>
+	
+          <div class="container-fluid" style="width: 98%">
+           
+            <h3 style="display: inline;">Lista | <strong>Laboratório</strong></h3>
+           	 
+           	 <a class="btn float-right btn_cadastrar"  href="/laboratorio/cadastrar"role="button">
+              <i class="fas fa-plus"></i> Novo Laboratório</a>     
+           	         
+	          <div class="card" style="margin-top: 25px; padding: 0px;">
+	            <div class="card-body">
+	              <table class="table table-borderless">
+							<thead>
+								<tr style="color: #5d6266; font-size: 1em; text-align: left">
 
-	</section>
-
+									<th scope="col">Nome</th>
+									<th scope="col">Responsável</th>
+									<th scope="col">Telefone</th>
+									<th scope="col">Bairro</th>
+									<th scope="col">Cidade</th>
+									
+								</tr>
+							</thead>
+							<tbody th:each="l : ${laboratorio.content}">
+								<tr class="conteudo" style="font-size: 1em;">
+								
+								<td style="width: 350px;"><a th:href="@{/laboratorio/editar/{id} (id=${l.id}) }" title="Clique aqui para alterar"  th:text="${l.nome}"> </a> </td>
+								
+									<td><a th:text="${l.responsavel}"></a></td>
+									
+									<td><a th:text="${l.telefone_fixo}"></a></td>
+									
+									<td><a th:text="${l.endereco.bairro}" /></a></td>
+									
+									<td><a th:text="${l.endereco.cidade}" /></a></td>
+								
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			<div th:if="${laboratorio.totalPages > 0}">
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination justify-content-center">
+				  	<li class="page-item" th:if="${laboratorio.hasPrevious()}">
+				  		<a class="page-link" th:href="@{/laboratorio/listar(page=1)}">
+				  			<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+				  		</a>
+				  	</li>
+				    <li class="page-item"  th:each="l : ${pageNumbers}" th:classappend="${l==laboratorio.pageable.pageNumber + 1} ? active">
+				    	<a class="page-link" th:text=${l} th:href="@{/laboratorio/listar(page=${l})}"></a>
+					</li>
+					<li class="page-item" th:if="${laboratorio.hasNext()}">
+						<a class="page-link" th:href="@{/laboratorio/listar(page=${laboratorio.totalPages})}">
+							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+						</a>
+					</li>
+				  </ul>
+				</nav>
+        	 </div>
+				</div>
+			</div>
+		</section>
+	
 </body>
 </html>
+
+

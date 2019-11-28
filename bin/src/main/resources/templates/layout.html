@@ -1,80 +1,98 @@
-
 <!DOCTYPE html >
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-<title>SISMED</title>
-<meta charset="UTF-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+    <title>SISMED</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="/css/style2.css" rel="stylesheet" />
-	<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300,900' rel='stylesheet' type='text/css'>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" ></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
-   	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-   
-</head>
-<body>
-	<div class="wrapper">
+    
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <link th:href="@{/css/style-home.css(v=${version}) }" rel="stylesheet" />
+    <link rel="icon" th:href="@{/image/favicon.ico}" />
+    
+    <script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js(v=${version}) }"></script>
 
-		<nav th:replace="fragmentos/sidebar :: sidebar">
-			<span>Menu</span>
-		</nav>
-	
-		<div id="content">
-			<nav th:replace="fragmentos/content :: content">
-				<span>Menu</span>
-			</nav>
-		
-			<div layout:fragment="corpo">
-				<div>conteudo principal das páginas</div>
-			</div>
-		</div>
-	
-		<footer th:replace="fragmentos/footer :: rodape">
-			<div>footer</div>
-		</footer>
-</div>
-	<script src="/js/jquery.mask.min.js"></script>
-	<script src="/js/maiuscula.js"></script>
-	<script src="/js/buscadorEndereco.js"></script>
-	<script src="/js/apenasLetras.js"></script>
-	<script src="/js/mascaras.js"></script>
-	<script type="text/javascript">
-	$("#cep").focusout(function(){
-		//Início do Comando AJAX
-		$.ajax({
-			//O campo URL diz o caminho de onde virá os dados
-			//É importante concatenar o valor digitado no CEP
-			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
-			//Aqui você deve preencher o tipo de dados que será lido,
-			//no caso, estamos lendo JSON.
-			dataType: 'json',
-			//SUCESS é referente a função que será executada caso
-			//ele consiga ler a fonte de dados com sucesso.
-			//O parâmetro dentro da função se refere ao nome da variável
-			//que você vai dar para ler esse objeto.
-			success: function(resposta){
-				//Agora basta definir os valores que você deseja preencher
-				//automaticamente nos campos acima.
-				$("#logradouro").val(resposta.logradouro);
-				$("#complemento").val(resposta.complemento);
-				$("#bairro").val(resposta.bairro);
-				$("#cidade").val(resposta.localidade);
-				$("#uf").val(resposta.uf);
-				//Vamos incluir para que o Número seja focado automaticamente
-				//melhorando a experiência do usuário
-				$("#numero").focus();
-			}
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <nav th:replace="fragmentos/sidebar :: sidebar">
+            <span>Menu</span>
+        </nav>
+        <div id="content">
+            <section layout:fragment="corpo">
+                <div>conteudo principal das páginas</div>
+            </section>
+        </div>
+    </div>
+    <!-- <footer th:replace="fragmentos/footer :: rodape">
+        <div>footer</div>
+    </footer> -->
+
+    <script src="/js/jquery.mask.min.js"></script>
+    <script src="/js/maiuscula.js"></script>
+    <script src="/js/buscadorEndereco.js"></script>
+    <script src="/js/apenasLetras.js"></script>
+    <script src="/js/mascaras.js"></script>
+    <script type="text/javascript">
+        $("#cep").focusout(function() {
+            //Início do Comando AJAX
+            $.ajax({
+                //O campo URL diz o caminho de onde virá os dados
+                //É importante concatenar o valor digitado no CEP
+                url: 'https://viacep.com.br/ws/' + $(this).val() + '/json/unicode/',
+                //Aqui você deve preencher o tipo de dados que será lido,
+                //no caso, estamos lendo JSON.
+                dataType: 'json',
+                //SUCESS é referente a função que será executada caso
+                //ele consiga ler a fonte de dados com sucesso.
+                //O parâmetro dentro da função se refere ao nome da variável
+                //que você vai dar para ler esse objeto.
+                success: function(resposta) {
+                    //Agora basta definir os valores que você deseja preencher
+                    //automaticamente nos campos acima.
+                    $("#logradouro").val(resposta.logradouro);
+                    $("#complemento").val(resposta.complemento);
+                    $("#bairro").val(resposta.bairro);
+                    $("#cidade").val(resposta.localidade);
+                    $("#uf").val(resposta.uf);
+                    //Vamos incluir para que o Número seja focado automaticamente
+                    //melhorando a experiência do usuário
+                    $("#numero").focus();
+                }
+            });
+        });
+    </script>
+
+	<script>
+		$(document).ready(function(){
+		  $("#modalEditProduto").on('show.bs.modal', function(event){
+		    var button = $(event.relatedTarget)
+			var recipientnome = button.data('nome');
+			var recipientdescricao = button.data('descricao');
+			var recipienthora = button.data('hora');
+			var recipientdata = button.data('data');
+			var modal = $(this);
+			modal.find('#recipient-name').val(recipientnome);
+			modal.find('#recipient-descricao').val(recipientdescricao);
+			modal.find('#recipient-hora').val(recipienthora);
+			modal.find('#recipient-data').val(recipientdata);
+		  });
 		});
-	});
 	</script>
 
 </body>
+
 </html>

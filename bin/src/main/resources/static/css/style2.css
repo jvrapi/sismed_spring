@@ -59,6 +59,7 @@ a:focus {
     display: block;
     margin-left: 0px;
     color: #5d6266;
+    text-decoration: none;
 }
 
 .espaco {
@@ -90,7 +91,6 @@ a[aria-expanded="true"] {
   border-radius:3px;
   width:405px;
   height: 35px;
-  margin-left: 50px;
 }
 
 #txtBusca{
@@ -153,7 +153,7 @@ a[aria-expanded="true"] {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {color: white ;background: #007fc1;}
+.dropdown:hover .dropbtn {background: #007fc1; text-decoration: none;}
 
 
 /* ---------------------------------------------------
@@ -193,11 +193,6 @@ input.tamanho-fonte, select.tamanho-fonte {
 	margin-right: 2%;
 
 }
-
-/* ---------------------------------------------------
-    Rapi
------------------------------------------------------ */
-
 
 
 .detalhes
@@ -239,4 +234,48 @@ a{
 .btnConvenio{
 	margin-top:32px;
 	margin-left: 5px;
+}
+
+#dropdownMenu2 {
+	color: white;
+	text-align: right;
+;
+}
+
+#dropdownMenu3 {
+	color: white;
+	margin-right: 5px
+}
+
+#dropdownMenu3:hover {
+	background: #007fc1;
+}
+
+.login ul {
+	color: #fff; 
+	font-size: 0.9em; 
+	margin-right: 25px;
+}
+
+.btn_cadastrar {
+	/* estilo para os botes de cadastrar e novo*/
+	background: #0087cd;
+	color: white;
+}
+
+.btn_cadastrar:hover {
+	/* estilo para os botes de cadastrar e novo*/
+	color:white;
+}
+.sub_titulo{
+	/* estilo para subtitulos em paginas*/
+	margin-bottom: 15px; 
+	padding-bottom: 10px; 
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.tabela_lista{
+	/* estilo das tabelas para exibir dados*/
+	color: #5d6266; 
+	font-size: 1em;
 }

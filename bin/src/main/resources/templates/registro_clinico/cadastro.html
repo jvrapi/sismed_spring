@@ -1,63 +1,202 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-  <head>
-  	<meta charset="UTF-8" />
-  </head>
-  
-  <body>
-  	<div layout:fragment="corpo">
-  		
-  		<div class="container-fluid" style="width: 98%">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <script>
+			function busca() {
+				if($("#txtBusca").val() != ""){
+					var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
+					document.location.href = url2;
+				}
+			}
+		</script> -->
+		<script>
+			$(document).ready(function() {
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			});
+			function muda() {
+				$("#dropdownMenu2").text("Prontuário");
+				$("#dropdownMenu2").val("1");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}
+			function muda2() {
+				$("#dropdownMenu2").text("Nome");
+				$("#dropdownMenu2").val("2");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "http://localhost:8080/RegistroClinico/listar/2",
+						minLength: 2,
+						select: function (event, ui) {
+							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}
+		</script>
+		<script>
+			$(document).ready(function() {
+				var now = new Date();
+				var mes = now.getMonth() +1;
+				var dia = now.getDate();
+				var ano = now.getFullYear();
+				$("#data").val(dia + "/" + mes + "/" + ano);
+			});
+		</script>
+		<script>
+			$(document).ready(time);
+			function time(){
+				today=new Date();
+				hora = today.getHours();
+				if(hora < 10) hora = "0"+hora;
+				minuto = today.getMinutes();
+				if(minuto < 10) minuto = "0"+minuto;
+				document.getElementById('hora').value=hora+":"+minuto;
+				setTimeout('time()',1000);
+			}
+		</script>
+		
+		<script>
+			$(document).ready(function() {
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val();
+				$("#resultsBlock").load(url);
+			});
+		</script>
+		<script>
+			function mudaPágina(element) {
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + element.text;
+				$("#resultsBlock").load(url);
+			}
+			function primeiraPagina() {
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=1";
+				$("#resultsBlock").load(url);
+			}
+			function ultimaPagina() {
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + $("#ultimaPagina").val();
+				$("#resultsBlock").load(url);
+			}
+		</script>
+		
+	</head>
 
-			<h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
-			
-			<div class="row">
-				<div class="col-md-9">
-					<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
-	          			<div class="card" style="margin-top: 25px;">
-	            			<div class="card-body">
-	            				<div class="form-row">
-			            			<div class="form-group col-md-3">
-			            				<label for="nome_paciente">Nome do paciente</label>
-			            				<input type="text" class="form-control tamanho-fonte" th:value="${agenda.paciente_id.nome}" disabled>
-										<input type="hidden" class="form-control tamanho-fonte" id="nome_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}">
-									</div>
-									<div class="form-group col-md-3">
-			            				<label for="convenio">Convênio</label> 
-										<input type="text" class="form-control tamanho-fonte" id="convênio" th:value="${agenda.paciente_id.tipo_convenio.convenio.nome}" disabled> 
-									</div>
-									<div class="form-group col-md-3">
-			            				<label for="tipo_convenio">Tipo de convênio</label> 
-										<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${agenda.paciente_id.tipo_convenio.nome}" disabled> 
-									</div>
-									<div class="form-group col-md-3">
-			            				<label for="agendamento">Agendamento</label> 
-										<input type="text" class="form-control tamanho-fonte" id="agendamento" th:name="agendamento_id" th:value="${agenda.id}" readonly 
-											style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;"> 
-									</div>
-										<input type="hidden" class="form-control tamanho-fonte" id="hora" th:field="*{hora}">
-										<input type="hidden" class="form-control tamanho-fonte" id="data" th:field="*{data}">
-								</div>
-								<div class="form-row">
-									<div class="form-group col-md-12">
-										<label for="descricao">Descrição</label> 
-										<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
-									</div>
-								</div>
-								<input type="submit" class="btn btn-primary form-control col-md-2 float-right" style="margin-top: 10px;" value="Salvar">
-	              			</div>
-	              		</div>
-              		</form>
-              	</div>
-				<div class="col-md-3">
-			 		<div class="card" style="margin-top: 25px;">
-            			<div class="card-body">
-            			</div>
+	<body>
+		<div layout:fragment="corpo">
+		
+		
+		
+			<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+					<div class="dropdown">
+						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+						<div class="dropdown-content">
+							<a href="#">Agendamento</a>
+							<a href="/pacientes/cadastrar">Paciente</a>
+							<a href="#">Funcionário</a>
+							<a href="/convenios/cadastrar">Convênio</a>
+							<a href="#">Exame</a>
+							<a href="#">Laboratório</a>
+						</div>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<div class="dropdown-menu">
+							<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
+							<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+						</div>
+					</div>
+					<div id="divBusca">
+						<input type="text" id="txtBusca" placeholder="Buscar..." />
+						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+					</div>
+					<div class="collapse navbar-collapse justify-content-end login">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="mr-4">Bem vindo</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+							</li>
+						</ul>
 					</div>
 				</div>
-            </div>
-  		
-  	</div>
-  </body>
+			</nav>
+
+			<div class="container-fluid" style="width: 98%">
+				<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST" style=" margin-bottom:15px;">
+					<h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
+					<button type="submit" class="btn btn-primary float-right">Salvar</button>
+					<div class="card" style="margin-top: 25px;">
+						<div class="card-body">
+							<div class="form-row">
+								<div class="form-group col-md-1">
+									<label for="prontuário">Prontuário</label> 
+									<input type="text" class="form-control tamanho-fonte" id="id_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}" 
+									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="nome_paciente">Nome do paciente</label>
+									<input type="text" class="form-control tamanho-fonte" th:value="${agenda.paciente_id.nome}" disabled>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="convenio">Convênio</label> 
+									<input type="text" class="form-control tamanho-fonte" id="convênio" th:value="${agenda.paciente_id.tipo_convenio.convenio.nome}" disabled> 
+								</div>
+								<div class="form-group col-md-2">
+									<label for="tipo_convenio">Tipo de convênio</label> 
+									<input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${agenda.paciente_id.tipo_convenio.nome}" disabled> 
+								</div>
+								<div class="form-group col-md-2">
+									<label for="data">Data</label> 
+									<input type="text" class="form-control tamanho-fonte" id="data" th:name="data" disabled> 
+								</div>
+								<div class="form-group col-md-1">
+									<label for="hora">Hora</label> 
+									<input type="text" class="form-control tamanho-fonte" id="hora" th:name="hora" disabled> 
+								</div>
+							</div>
+							
+							<div class="form-row">
+								<div class="form-group col-md-7">
+									<label for="descricao">Descrição</label> 
+									<textarea class="form-control" id="descricao" rows="7" autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<input type="hidden" id="id_agendamento" th:name="agendamento_id" th:value="${agenda.id}">
+				</form>
+				<h5 style="display: inline;">Atendimentos anteriores</h5>
+				<div class="card" style="margin-top: 10px;" id="resultsBlock">
+					
+				</div>
+			</div>
+			<div th:replace="fragmentos/modal"></div>
+		</div>
+
+	</body>
   
 </html>

@@ -33,7 +33,6 @@ public class FuncionarioController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page){
-		//model.addAttribute("funcionario", service.buscarTodos());
 		PageRequest pagerequest = PageRequest.of(page-1,12,Sort.by("id").ascending());
 		Page<Funcionario> funcionario = service.buscarTodos(pagerequest);
 		model.addAttribute("funcionario", funcionario);
@@ -111,6 +110,47 @@ public class FuncionarioController {
 				suggeestions.add(lv);
 			}
 		}
+		
+		else if(id == 3) {
+			List<Funcionario> allFuncionario = service.ListarFuncionarioCPF(term);
+			for (Funcionario funcionario : allFuncionario) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(funcionario.getNome());
+				lv.setValue(funcionario.getId());
+				suggeestions.add(lv);
+			}
+		}
+	
+		else if(id == 4) {
+			List<Funcionario> allFuncionario = service.ListarFuncionarioCelular(term);
+			for (Funcionario funcionario : allFuncionario) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(funcionario.getNome());
+				lv.setValue(funcionario.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		else if(id == 5) {
+			List<Funcionario> allFuncionario = service.ListarFuncionarioCRM(term);
+			for (Funcionario funcionario : allFuncionario) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(funcionario.getNome());
+				lv.setValue(funcionario.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		else if(id == 6) {
+			List<Funcionario> allFuncionario = service.ListarFuncionarioEspecialidade(term);
+			for (Funcionario funcionario : allFuncionario) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(funcionario.getNome());
+				lv.setValue(funcionario.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
 		return suggeestions;
 	}
 	

@@ -24,8 +24,12 @@
 			th:object="${funcionario}" method="POST">
 
        		<div id="div_botao">
-            		<h3 style="display: inline; margin-left: 10px;"> <a class="btnVoltar"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i></a> Edição | <strong>Funcionário(a)</strong></h3>
+            		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>
+					
+					<a class="btn btn-secondary float-right ml-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+					
 					<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+					
 					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
 				</div >
 				

@@ -2,52 +2,7 @@
 <html layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8" />
-
-	<script>
-			$(document).ready(function() {
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			});
-			function muda() {
-				$("#dropdownMenu2").text("Matrícula");
-				$("#dropdownMenu2").val("1");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-			function muda2() {
-				$("#dropdownMenu2").text("Nome");
-				$("#dropdownMenu2").val("2");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/2",
-						minLength: 2,
-						select: function (event, ui) {
-							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-		</script>
+<script type="text/javascript" src="/js/funcionario/busca.js"></script>
 
 </head>
 
@@ -64,20 +19,29 @@
 						<a href="/pacientes/cadastrar">Paciente</a>
 						<a href="#">Funcionário</a>
 						<a href="/convenios/cadastrar">Convênio</a>
-						<a href="#">Exame</a>
-						<a href="#">Laboratório</a>
+						<a href="/exame/cadastrar">Exame</a>
+						<a href="/laboratorio/cadastrar">Laboratório</a>
 					</div>
 				</div>
+				
+				
 				<div class="btn-group">
-					<button type="button" class="btn" id="dropdownMenu2" value="1">Matrícula</button>
+					<button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
 					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="sr-only">Toggle Dropdown</span>
 					</button>
 					<div class="dropdown-menu">
-						<button class="dropdown-item" type="button" value="1" onclick="muda()">Matrícula</button>
+					
 						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+						<button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
+						<button class="dropdown-item" type="button" value="5" onclick="muda5()">CRM</button>
+						<button class="dropdown-item" type="button" value="4" onclick="muda4()">Celular</button>
+						<button class="dropdown-item" type="button" value="1" onclick="muda()">Matrícula</button>
+						<button class="dropdown-item" type="button" value="6" onclick="muda6()">Especialidade</button>
 					</div>
 				</div>
+				
+				
 				<div id="divBusca">
 					<input type="text" id="txtBusca" placeholder="Buscar..." />
 					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>

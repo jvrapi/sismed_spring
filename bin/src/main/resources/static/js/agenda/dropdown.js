@@ -12,7 +12,9 @@ $(document).ready(function() {
 		});
 	});
 function muda() {
-	$('#txtBusca').unmask();	
+	
+				$('#txtBusca').unmask();
+				$('#txtBusca').val('');
 				$("#dropdownMenu2").text("Prontuário");
 				$("#dropdownMenu2").val("1");
 				$( function() {
@@ -29,6 +31,7 @@ function muda() {
 			}
 			function muda2() {
 				$('#txtBusca').unmask();
+				$('#txtBusca').val('');
 				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("2");
 				$( function() {
@@ -45,6 +48,7 @@ function muda() {
 			}
 			
 			function muda3() {
+				$('#txtBusca').val('');
 				$('#txtBusca').mask('000.000.000-00');
 				$("#dropdownMenu2").text("CPF");
 				$("#dropdownMenu2").val("3");
@@ -62,6 +66,7 @@ function muda() {
 			}
 			
 			function muda4() {
+				$('#txtBusca').val('');
 				$('#txtBusca').mask('(00) 0000-0000');
 				$("#dropdownMenu2").text("Telefone");
 				$("#dropdownMenu2").val("4");

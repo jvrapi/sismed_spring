@@ -1,14 +1,189 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<section layout:fragment="corpo">
-Novo agendamento 
-</section>
 
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/agenda/dropdown.js"></script>
+    <script type="text/javascript" src="/js/agenda/tipoConvenio.js"></script>
+    <script type="text/javascript" src="/js/agenda/procedimentos.js"></script>
+    <script type="text/javascript" src="/js/agenda/valorProcedimento.js"></script>
+</head>
+
+<body>
+    <section layout:fragment="corpo">
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
+                            <button class="dropdown-item" type="button" value="4" onclick="muda4()">Telefone</button>
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="mr-4">Bem vindo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container ajustarTexto">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+            </div>
+            <div class="container-fluid" style="width: 98%">
+            <form th:action="@{/agenda/salvar}" th:object="${agenda}" method="POST">
+                <h3 style="display: inline; margin-left: 10px;"><strong >Novo Agendamento</strong></h3>
+                <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/agenda/agendamentos"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
+                
+                    <div class="card ajustarCard">
+                        <div class="card-body">
+                            <h5 class="sub_titulo">Paciente</h5>
+                            <div th:each="p: ${paciente}">
+                                <div class="form-row">
+                                    <div class="form-group col-md-1">
+                                        <label for="prontuario">Prontuario</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="prontuario" th:value="${p.id}" disabled/>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="nome" th:value="${p.nome}" disabled/>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label for="convenio">Convenio</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/>
+                                    </div>
+
+                                    <div class="form-group col-md-1">
+                                        <label for="tipo_convenio">Tipo Convenio</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/>
+                                    </div>
+
+                                    <div class="form-group col-md-1">
+                                        <label for="CPF">CPF</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="CPF" th:value="${p.cpf}" disabled/>
+                                    </div>
+
+                                    <div class="form-group col-md-1">
+                                        <label for="RG">RG</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="RG" th:value="${p.rg}" disabled/>
+                                    </div>
+
+                                    <div class="form-group col-md-1">
+                                        <label for="nascimento">Nascimento</label>
+                                        <input type="text" class="form-control tamanho-fonte" id="nascimento" th:value="${#temporals.format(p.data_nascimento, 'dd / MM / yyyy')}" disabled/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <h5 class="sub_titulo">Medico(a)</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-1">
+                                    <label for="crm">CRM</label>
+                                    <input type="text" class="form-control tamanho-fonte" id="crm" disabled/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control tamanho-fonte" id="nome" disabled/>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="especialidade">Espcialidade</label>
+                                    <input type="text" class="form-control tamanho-fonte" id="especialidade" disabled/>
+                                </div>
+                            </div>
+
+                            <br>
+                            <h5 class="sub_titulo">Informações Agendamento</h5>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-2">
+                                    <label for="convenio_id">Convenio</label>
+                                    <select id="convenio_id" class="form-control tamanho-fonte" required>
+                                        <option value="" selected hidden>Selecione</option>
+                                        <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+
+                                    <label for="tipo_convenio_id">Tipo de convenio</label>
+                                    <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled required></select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="procedimento_id">Procedimento</label>
+                                    <select id="procedimento_id" class="form-control my-select tamanho-fonte" th:field="*{procedimento}" disabled required></select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="valor">Valor</label>
+                                    <input type="text" id="valor" class="form-control tamanho-fonte" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="Data">Data</label>
+                                    <input type="date" class="form-control tamanho-fonte" id="data" th:field="*{data}" />
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <label for="nome">Hora</label>
+                                    <input type="time" class="form-control tamanho-fonte" id="Hora" th:field="*{hora}" />
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="pagou">Pagou</label>
+                                    <select id="convenio_id" class="form-control" th:field="*{pagou}">
+                                        <option value="1">SIM</option>
+                                        <option value="2">NÃO</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label for="primeira_vez">Primeira Vez</label>
+                                    <select id="convenio_id" class="form-control" th:field="*{primeira_vez}">
+                                        <option value="1">SIM</option>
+                                        <option value="2">NÃO</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
 </body>
+
 </html>
