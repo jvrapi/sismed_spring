@@ -1,6 +1,8 @@
 package br.com.sismed.domain;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,16 +11,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_registro_clinico")
 public class RegistroClinico extends AbstractEntity<Long>{
 
+	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data", nullable = false)
-	private LocalDateTime data = LocalDateTime.now();
+	private LocalDate data;
 	
 	@Column(name = "hora", nullable = false)
-	private LocalDateTime hora = LocalDateTime.now();
+	private LocalTime hora;
 	
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
@@ -35,11 +41,11 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	@JoinColumn(name= "agendamento_id")
 	private Agenda agendamento_id;
 	
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
@@ -51,11 +57,11 @@ public class RegistroClinico extends AbstractEntity<Long>{
 		this.agendamento_id = agendamento_id;
 	}
 
-	public LocalDateTime getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalDateTime hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 
@@ -82,6 +88,5 @@ public class RegistroClinico extends AbstractEntity<Long>{
 	public void setPaciente_id(Paciente paciente_id) {
 		this.paciente_id = paciente_id;
 	}
-	
-	
+
 }

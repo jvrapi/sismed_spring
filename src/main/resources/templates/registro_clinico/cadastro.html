@@ -61,14 +61,14 @@
 				var mes = now.getMonth() +1;
 				var dia = now.getDate();
 				var ano = now.getFullYear();
-				$("#data").val(dia + "/" + mes + "/" + ano);
+				$("#data").val(ano + "-" + mes + "-" + dia);
 			});
 		</script>
 		<script>
 			$(document).ready(time);
 			function time(){
 				today=new Date();
-				hora = today.getHours();
+				hora = today.getHours() - 1;
 				if(hora < 10) hora = "0"+hora;
 				minuto = today.getMinutes();
 				if(minuto < 10) minuto = "0"+minuto;
@@ -79,21 +79,21 @@
 		
 		<script>
 			$(document).ready(function() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val();
+				var url = "http://localhost:8080/RegistroClinico/findagen/" + $("#id_agendamento").val();
 				$("#resultsBlock").load(url);
 			});
 		</script>
 		<script>
 			function mudaPágina(element) {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + element.text;
+				var url = "http://localhost:8080/RegistroClinico/findagen/" + $("#id_agendamento").val() + "?page=" + element.text;
 				$("#resultsBlock").load(url);
 			}
 			function primeiraPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=1";
+				var url = "http://localhost:8080/RegistroClinico/findagen/" + $("#id_agendamento").val() + "?page=1";
 				$("#resultsBlock").load(url);
 			}
 			function ultimaPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val() + "?page=" + $("#ultimaPagina").val();
+				var url = "http://localhost:8080/RegistroClinico/findagen/" + $("#id_agendamento").val() + "?page=" + $("#ultimaPagina").val();
 				$("#resultsBlock").load(url);
 			}
 		</script>
@@ -102,9 +102,7 @@
 
 	<body>
 		<div layout:fragment="corpo">
-		
-		
-		
+
 			<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
 				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
 					<div class="dropdown">
@@ -171,11 +169,11 @@
 								</div>
 								<div class="form-group col-md-2">
 									<label for="data">Data</label> 
-									<input type="text" class="form-control tamanho-fonte" id="data" th:name="data" disabled> 
+									<input type="date" class="form-control tamanho-fonte" id="data" th:name="data" readonly> 
 								</div>
 								<div class="form-group col-md-1">
 									<label for="hora">Hora</label> 
-									<input type="text" class="form-control tamanho-fonte" id="hora" th:name="hora" disabled> 
+									<input type="text" class="form-control tamanho-fonte" id="hora" th:name="hora" readonly> 
 								</div>
 							</div>
 							
