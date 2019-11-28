@@ -179,7 +179,7 @@ public class RClinicoController {
 	
 	@GetMapping("/find/{id}")
 	public String find(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
-		PageRequest pagerequest = PageRequest.of(page-1, 2, Sort.by("id").descending());
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("id").descending());
 		Page<RegistroClinico> rclinico = service.ListarRegAgenda(id, pagerequest);
 		model.addAttribute("registro", rclinico);
 		int totalPages = rclinico.getTotalPages();
