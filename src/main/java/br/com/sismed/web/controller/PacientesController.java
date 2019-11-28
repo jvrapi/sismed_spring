@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
@@ -124,6 +126,32 @@ public class PacientesController {
 	public List<Convenio> listConvenio() {
 		return convenioService.BuscarTodos();
 	}
+	
+	@GetMapping("/buscar/{id}")
+	@ResponseBody
+	public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		if(id == 1) {
+			List<Paciente> allPacientes = service.ListarPacId(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue2(paciente.getId() + "/" + paciente.getTipo_convenio().getConvenio().getId());
+				suggeestions.add(lv);
+			}
+		}
+		else if(id == 2) {
+			List<Paciente> allPacientes = service.ListarPacNome(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue2(paciente.getId() + "/" + paciente.getTipo_convenio().getConvenio().getId());
+				suggeestions.add(lv);
+			}
+		}
+		return suggeestions;
+	}
+	
 }
 
 

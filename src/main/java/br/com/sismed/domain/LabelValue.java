@@ -7,6 +7,7 @@ public class LabelValue {
 	private String label;
 	private String nome_tipo;
 	private String nome_convenio;
+	private String value2;
 	
 	public String getLabel() {
 		return label;
@@ -44,4 +45,11 @@ public class LabelValue {
 	public void setNome_convenio(String nome_convenio) {
 		this.nome_convenio = nome_convenio;
 	}
+	public String getValue2() {
+		return value2;
+	}
+	public void setValue2(String value2) {
+		this.value2 = value2;
+	}
+	
 }

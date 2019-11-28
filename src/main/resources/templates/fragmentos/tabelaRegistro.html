@@ -1,0 +1,56 @@
+<!DOCTYPE html >
+<html >
+<head>
+<meta charset="UTF-8" />
+	
+
+</head>
+<body>
+	<div  th:fragment="resultsList">
+		<div class="card-body">
+			<table class="table table-borderless">
+				<thead>
+					<tr style="color: #5d6266; font-size: 1em;">
+						<th style="width:120px;">Nº Registro</th>
+						<th>Paciente</th>
+						<th>Descrição</th>
+						<th>Data</th>
+						<th>Hora</th>
+					</tr>
+				</thead>
+				<tbody th:each="r : ${registro.content}">
+					<tr class="conteudo" style="font-size: 1em;">
+						<td><a class="btn_detalhes" href="#" data-toggle="modal" data-target="#modalEditProduto" th:attr="data-nome=${r.paciente_id.nome}, 
+							data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
+		        						</td>
+						<td><a id="registro_pac_nome" th:text="${r.paciente_id.nome}"></a></td>
+						<td><a class="descricao" th:text="${r.descricao}"></a></td>
+						<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
+						<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${registro.totalPages > 0}">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:if="${registro.hasPrevious()}">
+						<a class="page-link" href="#" onclick="primeiraPagina()"> <!-- th:href="@{${'/RegistroClinico/find/' + 1}(page=1) }" -->
+							<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+						</a>
+					</li>
+					<li class="page-item"  th:each="p : ${pageNumbers}" th:classappend="${p==registro.pageable.pageNumber + 1} ? active">
+						<a class="page-link" onclick="mudaPágina(this)" th:text=${p} href="#" th:value="${p}"></a>
+					</li>
+					<li class="page-item" th:if="${registro.hasNext()}">
+						<a class="page-link" onclick="ultimaPagina()" href="#"> <!-- th:href="@{${'/RegistroClinico/find/' + 1}(page=${registro.totalPages}) }" -->
+						<input type="hidden" id="ultimaPagina" th:value="${registro.totalPages}">
+							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

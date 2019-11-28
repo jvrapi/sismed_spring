@@ -3,6 +3,51 @@
 	
 	<head>
   		<meta charset="UTF-8" />
+  		<script>
+			$(document).ready(function() {
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "buscar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			});
+			function muda() {
+				$("#dropdownMenu2").text("Prontuário");
+				$("#dropdownMenu2").val("1");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "buscar/1",
+						minLength: 1,
+						select: function (event, ui) {
+							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}
+			function muda2() {
+				$("#dropdownMenu2").text("Nome");
+				$("#dropdownMenu2").val("2");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "buscar/2",
+						minLength: 2,
+						select: function (event, ui) {
+							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}
+		</script>
     </head>
 
 	<body>

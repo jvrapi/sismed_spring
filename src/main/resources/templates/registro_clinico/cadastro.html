@@ -76,6 +76,27 @@
 				setTimeout('time()',1000);
 			}
 		</script>
+		
+		<script>
+			$(document).ready(function() {
+				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_agendamento").val();
+				$("#resultsBlock").load(url);
+			});
+		</script>
+		<script>
+			function mudaPágina(element) {
+				var url = "http://localhost:8080/RegistroClinico/find/1?page=" + element.text;
+				$("#resultsBlock").load(url);
+			}
+			function primeiraPagina() {
+				var url = "http://localhost:8080/RegistroClinico/find/1?page=1";
+				$("#resultsBlock").load(url);
+			}
+			function ultimaPagina() {
+				var url = "http://localhost:8080/RegistroClinico/find/1?page=" + $("#ultimaPagina").val();
+				$("#resultsBlock").load(url);
+			}
+		</script>
 		<script>
 		$(document).ready(function() {
 			$(".descricao").each(function() {
@@ -141,7 +162,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-1">
 									<label for="prontuário">Prontuário</label> 
-									<input type="text" class="form-control tamanho-fonte" id="nome_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}" 
+									<input type="text" class="form-control tamanho-fonte" id="id_paciente" th:name="paciente_id" th:value="${agenda.paciente_id.id}" 
 									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly>
 								</div>
 								<div class="form-group col-md-4">
@@ -177,50 +198,8 @@
 					<input type="hidden" id="id_agendamento" th:name="agendamento_id" th:value="${agenda.id}">
 				</form>
 				<h5 style="display: inline;">Atendimentos anteriores</h5>
-				<div class="card" style="margin-top: 10px;">
-					<div class="card-body">
-						<table class="table table-borderless">
-							<thead>
-								<tr style="color: #5d6266; font-size: 1em;">
-									<th style="width:120px;">Nº Registro</th>
-									<th>Paciente</th>
-									<th>Descrição</th>
-									<th>Data</th>
-									<th>Hora</th>
-								</tr>
-							</thead>
-							<tbody th:each="r : ${registro.content}">
-								<tr class="conteudo" style="font-size: 1em;">
-									<td><a class="btn_detalhes" href="#" data-toggle="modal" data-target="#modalEditProduto" th:attr="data-nome=${r.paciente_id.nome}, 
-										data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
-             						</td>
-									<td><a id="registro_pac_nome" th:text="${r.paciente_id.nome}"></a></td>
-									<td><a class="descricao" th:text="${r.descricao}"></a></td>
-									<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
-									<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div th:if="${registro.totalPages > 0}">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<li class="page-item" th:if="${registro.hasPrevious()}">
-									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=1) }">
-										<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item"  th:each="p : ${pageNumbers}" th:classappend="${p==registro.pageable.pageNumber + 1} ? active">
-									<a class="page-link" th:text=${p} th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=${p}) }"></a>
-								</li>
-								<li class="page-item" th:if="${registro.hasNext()}">
-									<a class="page-link" th:href="@{${'/RegistroClinico/cadastrar/' + agenda.id}(page=${registro.totalPages}) }">
-										<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
+				<div class="card" style="margin-top: 10px;" id="resultsBlock">
+					
 				</div>
 			</div>
 			<div th:replace="fragmentos/modal"></div>
