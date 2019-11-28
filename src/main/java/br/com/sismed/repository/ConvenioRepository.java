@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.sismed.domain.Convenio;
 
-@Repository
+
 public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 
 	@Query(value = "SELECT * FROM sismed_convenio c WHERE c.id =  :id", nativeQuery=true)

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Procedimento;
-
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.ProcedimentoService;
 

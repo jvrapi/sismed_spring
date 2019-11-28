@@ -5,6 +5,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import br.com.sismed.domain.Convenio;
+
 import br.com.sismed.service.ConvenioService;
 
 @Component

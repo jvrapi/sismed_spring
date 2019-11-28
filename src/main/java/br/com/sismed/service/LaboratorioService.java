@@ -1,19 +1,45 @@
 package br.com.sismed.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import br.com.sismed.domain.Laboratorio;
+import br.com.sismed.repository.LaboratorioRepository;
 
-@Service
-public interface LaboratorioService {
+@Repository
+@Transactional(readOnly = false)
+public class LaboratorioService {
+
+	@Autowired
+	private LaboratorioRepository lRepository;
 	
-	void salvar(Laboratorio laboratorio);
-	void excluir(Long id);
 	
-	Laboratorio buscarporId(Long id);
+	public void salvar(Laboratorio laboratorio) {
+		lRepository.save(laboratorio);
+	}
+
 	
-	Page<Laboratorio> buscarTodos(Pageable pageable);
+	public void excluir(Long id) {
+		lRepository.deleteById(id);
+	}
+
 	
+	@Transactional(readOnly = true)
+	public Laboratorio buscarporId(Long id) {
+		
+		return lRepository.getOne(id);
+	}
+
+	
+	@Transactional(readOnly = true)
+	public Page<Laboratorio> buscarTodos(Pageable pageable) {
+		
+		return lRepository.findAll(pageable);
+	}
 }

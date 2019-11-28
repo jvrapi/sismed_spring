@@ -20,6 +20,7 @@ import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.Procedimento;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.AgendaService;
+
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.ProcedimentoService;

@@ -26,6 +26,7 @@ import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.ExameService;
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
 
