@@ -7,7 +7,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_endereco")
-public class Endereco extends AbstractEntity<Long>{
+public class Endereco extends AbstractEntity{
 
 	@Column(nullable = false)
 	private String logradouro;

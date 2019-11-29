@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_paciente")
-public class Paciente extends AbstractEntity<Long>{
+public class Paciente extends AbstractEntity{
 
 	@Column(name = "nome", nullable = false, length = 50)
 	private String nome;
@@ -47,7 +47,7 @@ public class Paciente extends AbstractEntity<Long>{
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_nascimento", length = 15)
-	private LocalDate data_nascimento;
+	private String data_nascimento;
 	
 	@Column(name = "email", length = 50)
 	private String email;
@@ -160,11 +160,11 @@ public class Paciente extends AbstractEntity<Long>{
 		this.sexo = sexo;
 	}
 
-	public LocalDate getData_nascimento() {
+	public String getData_nascimento() {
 		return data_nascimento;
 	}
 
-	public void setData_nascimento(LocalDate data_nascimento) {
+	public void setData_nascimento(String data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_dados_bancarios")
-public class DadosBancarios extends AbstractEntity<Long>{
+public class DadosBancarios extends AbstractEntity{
 
 	private Long id;
 	private String banco;
