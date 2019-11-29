@@ -14,7 +14,7 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_procedimento")
-public  class Procedimento extends AbstractEntity<Long> {
+public  class Procedimento extends AbstractEntity {
 	
 	@Column(nullable = false, length = 60)
 	private String descricao;

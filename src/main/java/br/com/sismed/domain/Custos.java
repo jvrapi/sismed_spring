@@ -7,7 +7,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_custos")
-public class Custos extends AbstractEntity<Long>{
+public class Custos extends AbstractEntity{
 
 	@ManyToOne
 	@JoinColumn(name="agenda_id")

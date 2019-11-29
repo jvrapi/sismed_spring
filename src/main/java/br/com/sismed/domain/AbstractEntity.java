@@ -10,17 +10,25 @@ import javax.persistence.*;
 /* Super classe Abstrata das classes entidades*/
 @SuppressWarnings("serial")
 @MappedSuperclass
-public abstract class AbstractEntity <ID extends Serializable> implements Serializable{
+public abstract class AbstractEntity  implements Serializable{
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) // Identity = auto incremento no mysql
-	private ID id;
+	private Long id;
 
-	public ID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(ID id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public boolean hasNotId() {
+		return id == null;
+	}
+
+	public boolean hasId() {
+		return id != null;
 	}
 
 	@Override
@@ -39,7 +47,7 @@ public abstract class AbstractEntity <ID extends Serializable> implements Serial
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AbstractEntity<?> other = (AbstractEntity<?>) obj;
+		AbstractEntity other = (AbstractEntity) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -50,8 +58,8 @@ public abstract class AbstractEntity <ID extends Serializable> implements Serial
 
 	@Override
 	public String toString() {
-		return "id = " + id + "";
-	}
+		return String.format("Entidade %s id: %s", this.getClass().getName(), getId());
+	}	
 	
 	
 }

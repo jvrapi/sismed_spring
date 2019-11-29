@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_laboratorio")
-public class Laboratorio extends AbstractEntity<Long>{
+public class Laboratorio extends AbstractEntity{
 	
 	@Column(name="cnpj", length=5)
 	private String cnpj;

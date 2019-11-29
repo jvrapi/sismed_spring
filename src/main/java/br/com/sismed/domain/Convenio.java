@@ -14,7 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_convenio")
-public class Convenio extends AbstractEntity<Long>{
+public class Convenio extends AbstractEntity{
 	
 	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;

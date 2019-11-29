@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_tipo_convenio")
-public class TConvenio extends AbstractEntity<Long>{
+public class TConvenio extends AbstractEntity{
 
 	@Column(nullable = false)
 	private String nome;

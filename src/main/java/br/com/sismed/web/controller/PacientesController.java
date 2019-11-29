@@ -45,6 +45,7 @@ public class PacientesController {
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
 		PageRequest pagerequest = PageRequest.of(page-1, 13, Sort.by("nome").ascending());
 		Page<Paciente> paciente = service.buscarTodos(pagerequest);
+		
 		model.addAttribute("paciente", paciente);
 		int totalPages = paciente.getTotalPages();
 		if (totalPages == 1) {
