@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.repository.LaboratorioRepository;
 
@@ -43,14 +42,22 @@ public class LaboratorioService {
 		return lRepository.findAll(pageable);
 	}
 
-
 	public List<Laboratorio> ListarLaboratorioNome(String dado) {
 		return lRepository.ListarLaboratorioNome(dado);
 		
 	}
 
-
 	public Laboratorio ListarLaboratorioId(String dado) {
 		return lRepository.ListarLaboratorioId(dado);
+	}
+
+
+	public List<Laboratorio> ListarLaboratorioTelefone(String dado) {
+		return lRepository.ListarLaboratorioTelefone(dado);
+	}
+
+
+	public List<Laboratorio> ListarLaboratorioBairro(String dado) {
+		return lRepository.ListarLaboratorioBairro(dado);
 	}
 }

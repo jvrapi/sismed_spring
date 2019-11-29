@@ -35,6 +35,9 @@ public class Exame extends AbstractEntity<Long>{
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate data_retorno;
 	
+	@Column(name = "funcionario_lab",nullable = false)
+	private String funcionario_lab;
+	
 	@ManyToOne
 	@JoinColumn(name = "paciente_id") 
 	private Paciente paciente_id;
@@ -111,6 +114,16 @@ public class Exame extends AbstractEntity<Long>{
 		this.tipo = tipo;
 	}
 
+	public String getFuncionario_lab() {
+		return funcionario_lab;
+	}
+
+	public void setFuncionario_lab(String funcionario_lab) {
+		this.funcionario_lab = funcionario_lab;
+	}
+
+	
+	
 	/*public boolean VerificaDataColetaEnvio(){
 		
 		boolean data;

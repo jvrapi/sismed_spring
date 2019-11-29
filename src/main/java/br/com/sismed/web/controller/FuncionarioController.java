@@ -21,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
-import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.FuncionarioService;
 
 @Controller
@@ -92,6 +91,7 @@ public class FuncionarioController {
 	@ResponseBody
 	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		
 		if(id == 1) {
 			Funcionario allFuncionario = service.ListarFuncionarioId(term);
 			

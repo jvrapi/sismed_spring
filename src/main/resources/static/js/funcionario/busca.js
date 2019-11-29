@@ -27,6 +27,7 @@ $(document).ready(function() {
 				});
 			}
 			function muda2() {
+				$('#txtBusca').unmask();
 				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("2");
 				$( function() {
@@ -61,7 +62,8 @@ $(document).ready(function() {
 			}
 			
 			function muda4() {
-				$('#txtBusca').mask('000.000.000-00');
+				$('#txtBusca').unmask();
+				$('#txtBusca').mask('(00) 9 0000-0000');
 				$("#dropdownMenu2").text("Celular");
 				$("#dropdownMenu2").val("4");
 				$( function() {
@@ -78,7 +80,7 @@ $(document).ready(function() {
 			}
 			
 			function muda5() {
-				
+				$('#txtBusca').mask('00 000000');   
 				$("#dropdownMenu2").text("CRM");
 				$("#dropdownMenu2").val("5");
 				$( function() {

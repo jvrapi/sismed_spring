@@ -15,4 +15,9 @@ public interface LaboratorioRepository extends JpaRepository<Laboratorio, Long>{
 	@Query(value = "SELECT * FROM sismed_laboratorio WHERE nome LIKE %:dado%", nativeQuery = true)
 	List<Laboratorio> ListarLaboratorioNome(String dado);
 
+	@Query(value = "SELECT * FROM sismed_laboratorio WHERE telefone_fixo LIKE %:dado%", nativeQuery = true)
+	List<Laboratorio> ListarLaboratorioTelefone(String dado);
+	
+	@Query(value = "SELECT * FROM sismed_laboratorio l JOIN sismed_endereco e ON l.endereco_id = e.id WHERE bairro LIKE %:dado%", nativeQuery = true)
+	List<Laboratorio> ListarLaboratorioBairro(String dado);
 }

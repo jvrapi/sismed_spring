@@ -1,5 +1,7 @@
 package br.com.sismed.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,4 +40,18 @@ public class ExameService {
 	
 		return eRepository.findAll(pageable);
 	}
+
+	public List<Exame> ListarExameNome(String dado) {
+		return eRepository.ListarExameNome(dado);
+	}
+	
+	public Exame ListarExameId(String dado) {
+		return eRepository.ListarExameId(dado);
+	}
+
+
+	public List<Exame> ListarExamePaciente(String dado) {
+		return eRepository.ListarExamePaciente(dado);
+	}
+
 }

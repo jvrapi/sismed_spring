@@ -63,17 +63,17 @@
 						
 						<div class="form-group col-md-2">
 							<label for="data_coleta">Data de Coleta</label>
-							<input type="text" class="form-control tamanho-fonte" id="data_coleta" autofocus="autofocus" th:field="*{data_coleta}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_coleta" autofocus="autofocus" th:field="*{data_coleta}" disabled/>
 						</div>
 						
 						<div class="form-group col-md-2">
 							<label for="data_envio">Data de Envio</label>
-							<input type="text" class="form-control tamanho-fonte" id="data_envio" autofocus="autofocus" th:field="*{data_envio}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_envio" autofocus="autofocus" th:field="*{data_envio}" disabled/>
 						</div>
 	           			
 	           			<div class="form-group col-md-2">
 							<label for="data_retorno">Data de Retorno</label>
-							<input type="text" class="form-control tamanho-fonte" id="data_retorno" autofocus="autofocus" th:field="*{data_retorno}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_retorno" autofocus="autofocus" th:field="*{data_retorno}" disabled/>
 						</div>
 	           	</div>
 	           	
@@ -88,13 +88,15 @@
 	           	 
 	           	 <div class="form-group col-md-3">
 							<label for="funcionario">Quem Enviou</label>
-							<input type="text" class="form-control tamanho-fonte" id="funcionario_id" autofocus="autofocus" th:field="*{funcionario_id.nome}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario_id" autofocus="autofocus" th:value="*{funcionario_id}" disabled/>
+							<!--  <input type="hidden" th:field="*{}"-->
 						</div>
 	           	 
 	           	  
 	           	 <div class="form-group col-md-3">
-							<label for="funcionario">Quem Enviou</label>
-							<input type="text" class="form-control tamanho-fonte" id="funcionario_id" autofocus="autofocus" disabled/>
+							<label for="funcionario_lab">Quem Recebeu</label>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario_lab" autofocus="autofocus" th:field= "*{funcionario_lab}" disabled/>
+							
 						</div>
 	           	 
 	           	 </div>

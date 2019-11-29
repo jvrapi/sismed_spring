@@ -23,9 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.ExameService;
-import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
@@ -105,6 +105,35 @@ public class ExameController {
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 	model.addAttribute("exame", service.buscarporId(id));
 	return "/exame/editar";
+	}
+	
+
+	@GetMapping("/buscar/{id}")
+	@ResponseBody
+	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		
+		if(id == 2) {
+			List<Exame> allExame = service.ListarExamePaciente(term);
+			for (Exame exame : allExame) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(exame.getNome());
+				lv.setValue(exame.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		if(id == 3) {
+			List<Exame> allExame = service.ListarExameNome(term);
+			for (Exame exame : allExame) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(exame.getNome());
+				lv.setValue(exame.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		return suggeestions;
 	}
 		
 	@PostMapping("/editar")

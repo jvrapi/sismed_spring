@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Laboratorio;
-import br.com.sismed.repository.LaboratorioRepository;
 import br.com.sismed.service.LaboratorioService;
 
 @Controller
@@ -96,17 +94,28 @@ public class LaboratorioController {
 	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		
-		if(id == 1) {
-			Laboratorio allLaboratorio = service.ListarLaboratorioId(term);
-			
+		if(id == 2) {
+			List<Laboratorio> allLaboratorio = service.ListarLaboratorioNome(term);
+			for (Laboratorio laboratorio : allLaboratorio) {
 				LabelValue lv = new LabelValue();
-				lv.setLabel(allLaboratorio.getNome());
-				lv.setValue(allLaboratorio.getId());
+				lv.setLabel(laboratorio.getNome());
+				lv.setValue(laboratorio.getId());
 				suggeestions.add(lv);
 			}
+		}
 		
-		else if(id == 2) {
-			List<Laboratorio> allLaboratorio = service.ListarLaboratorioNome(term);
+		else if(id == 3) {
+			List<Laboratorio> allLaboratorio = service.ListarLaboratorioTelefone(term);
+			for (Laboratorio laboratorio : allLaboratorio) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(laboratorio.getNome());
+				lv.setValue(laboratorio.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		else if(id == 4) {
+			List<Laboratorio> allLaboratorio = service.ListarLaboratorioBairro(term);
 			for (Laboratorio laboratorio : allLaboratorio) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(laboratorio.getNome());
