@@ -14,4 +14,10 @@ public interface RClinicoRepository extends JpaRepository<RegistroClinico, Long>
 	
 	@Query(value = "SELECT * FROM sismed_registro_clinico WHERE paciente_id = :id", nativeQuery = true)
 	Page<RegistroClinico> ListarRegPac(Long id, Pageable pageable);
+	
+	@Query(value = "SELECT COUNT(id) FROM sismed_registro_clinico WHERE paciente_id = :id", nativeQuery = true)
+	Long qntIds(Long id);
+	
+	@Query(value = "SELECT * FROM sismed_registro_clinico WHERE paciente_id = :id ORDER BY id DESC LIMIT 1", nativeQuery = true)
+	RegistroClinico ListarRegPac2(Long id);
 }

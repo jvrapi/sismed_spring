@@ -55,4 +55,12 @@ public class RegistroClinicoService{
 	public Page<RegistroClinico> ListarRegAgenda(Long id, Pageable pageable) {
 		return rcRepository.ListarRegAgenda(id, pageable);
 	}
+	
+	public Long qntIds(Long id) {
+		return rcRepository.qntIds(id);
+	}
+	
+	public RegistroClinico ListarRegPac2(Long id) {
+		return rcRepository.ListarRegPac2(id);
+	}
 }

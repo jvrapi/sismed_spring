@@ -1,6 +1,7 @@
 package br.com.sismed.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -63,5 +64,9 @@ public class PacienteService{
 	
 	public List<Paciente> PesquisarTelefone(String dado) {
 		return pRepository.ListarPacTel(dado);
+	}
+	
+	public Page<Integer> ContaId(Pageable pageable) {
+		return pRepository.ContaId(pageable);
 	}
 }
