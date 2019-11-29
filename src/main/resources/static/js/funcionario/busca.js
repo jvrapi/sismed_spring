@@ -44,6 +44,7 @@ $(document).ready(function() {
 			
 			function muda3() {
 				$('#txtBusca').unmask();
+				$('#txtBusca').mask('000.000.000-00');
 				$("#dropdownMenu2").text("CPF");
 				$("#dropdownMenu2").val("3");
 				$( function() {
@@ -60,6 +61,7 @@ $(document).ready(function() {
 			}
 			
 			function muda4() {
+				$('#txtBusca').mask('000.000.000-00');
 				$("#dropdownMenu2").text("Celular");
 				$("#dropdownMenu2").val("4");
 				$( function() {

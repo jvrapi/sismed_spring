@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.repository.LaboratorioRepository;
 import br.com.sismed.service.LaboratorioService;
@@ -85,6 +89,33 @@ public class LaboratorioController {
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("laboratorio", service.buscarporId(id));
 		return "/laboratorio/editar";
+	}
+	
+	@GetMapping("/buscar/{id}")
+	@ResponseBody
+	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		
+		if(id == 1) {
+			Laboratorio allLaboratorio = service.ListarLaboratorioId(term);
+			
+				LabelValue lv = new LabelValue();
+				lv.setLabel(allLaboratorio.getNome());
+				lv.setValue(allLaboratorio.getId());
+				suggeestions.add(lv);
+			}
+		
+		else if(id == 2) {
+			List<Laboratorio> allLaboratorio = service.ListarLaboratorioNome(term);
+			for (Laboratorio laboratorio : allLaboratorio) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(laboratorio.getNome());
+				lv.setValue(laboratorio.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		return suggeestions;
 	}
 	
 	@PostMapping("/editar")
