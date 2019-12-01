@@ -47,7 +47,7 @@ public class Paciente extends AbstractEntity{
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_nascimento", length = 15)
-	private String data_nascimento;
+	private LocalDate data_nascimento;
 	
 	@Column(name = "email", length = 50)
 	private String email;
@@ -160,11 +160,11 @@ public class Paciente extends AbstractEntity{
 		this.sexo = sexo;
 	}
 
-	public String getData_nascimento() {
+	public LocalDate getData_nascimento() {
 		return data_nascimento;
 	}
 
-	public void setData_nascimento(String data_nascimento) {
+	public void setData_nascimento(LocalDate data_nascimento) {
 		this.data_nascimento = data_nascimento;
 	}
 
