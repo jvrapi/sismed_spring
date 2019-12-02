@@ -7,13 +7,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.com.sismed.domain.PerfilTipo;
 import br.com.sismed.service.FuncionarioService;
 
 
 
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
-
+	
+	private static final String ADMIN = PerfilTipo.ADMIN.getDesc();
+	 private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
+	    private static final String FUNCIONARIO = PerfilTipo.FUNCIONARIO.getDesc();
 	@Autowired
 	private FuncionarioService service;
 	
@@ -23,19 +27,12 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		// acessos públicos liberados
 		.antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**").permitAll()
-		.antMatchers("/", "/home").permitAll()
 		
-		/*
-		//acessos privados admin
-		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
-				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("ADMIN")
-		//acessos privados medicos
-		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
-				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("MEDICO")
 		
-		//acessos privados funcionario
-		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
-				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("ADMIN")*/
+		/*.antMatchers("/agenda/**", "/funcionarios/**").hasAuthority(ADMIN)
+		
+		.antMatchers("/agenda/**").hasAuthority(MEDICO)*/
+		
 		
 		.anyRequest().authenticated()
 		.and()

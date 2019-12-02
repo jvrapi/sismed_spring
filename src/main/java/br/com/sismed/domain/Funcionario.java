@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -85,6 +86,22 @@ public class Funcionario extends AbstractEntity {
         inverseJoinColumns = { @JoinColumn(name = "perfis_id", referencedColumnName = "id") }
 	)
 	private List<Perfil> perfis;
+	
+	public Funcionario() {
+		super();
+	}
+
+	public Funcionario(Long id) {
+		super.setId(id);
+	}
+	
+	// adiciona perfis a lista
+		public void addPerfil(PerfilTipo tipo) {
+			if (this.perfis == null) {
+				this.perfis = new ArrayList<>();
+			}
+			this.perfis.add(new Perfil(tipo.getCod()));
+		}
 	
 	public LocalDate getData_emissao() {
 		return data_emissao;

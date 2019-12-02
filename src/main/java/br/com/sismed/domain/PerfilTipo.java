@@ -2,7 +2,7 @@ package br.com.sismed.domain;
 
 public enum PerfilTipo {
 
-	ADMIN(1, "ADMIN"), MEDICO(2, "MEDICO"), SECRETARIA(3, "SECRETARIA");
+	ADMIN(1, "ADMIN"), MEDICO(2, "MEDICO"), FUNCIONARIO(3, "FUNCIONARIO");
 	
 	private long cod;
 	private String desc;
