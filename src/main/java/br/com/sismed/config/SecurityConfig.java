@@ -7,13 +7,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.sismed.service.UsuarioService;
+import br.com.sismed.service.FuncionarioService;
+
+
 
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UsuarioService service;
+	private FuncionarioService service;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -22,6 +24,18 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		// acessos públicos liberados
 		.antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**").permitAll()
 		.antMatchers("/", "/home").permitAll()
+		
+		/*
+		//acessos privados admin
+		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
+				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("ADMIN")
+		//acessos privados medicos
+		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
+				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("MEDICO")
+		
+		//acessos privados funcionario
+		.antMatchers("/agenda/**", "/convenios/**","/relatorios/**","/exame/**","/funcionario/**",
+				"/laboratorio/**","/pacientes/**","/procedimentos/**","/RegistroClinico/**","/tconvenios/**").hasAuthority("ADMIN")*/
 		
 		.anyRequest().authenticated()
 		.and()
