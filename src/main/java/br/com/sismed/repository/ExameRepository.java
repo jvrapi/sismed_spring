@@ -13,7 +13,7 @@ public interface ExameRepository extends JpaRepository<Exame, Long> {
 	@Query(value = "SELECT * FROM sismed_exame WHERE id = :dado", nativeQuery = true)
 	Exame ListarExameId(String dado);
 	
-	@Query(value = "SELECT * FROM sismed_exame e JOIN sismed_paciente p ON e.paciente_id = p.id WHERE P.nome LIKE %:dado%", nativeQuery = true)
+	@Query(value = "SELECT * FROM sismed_exame e JOIN sismed_paciente p ON e.paciente_id = p.id WHERE p.nome LIKE %:dado%", nativeQuery = true)
 	List<Exame> ListarExamePaciente(String dado);
 	
 	@Query(value = "SELECT * FROM sismed_exame WHERE nome LIKE %:dado%", nativeQuery = true)
