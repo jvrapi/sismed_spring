@@ -17,7 +17,7 @@ public class DemoSismedApplication {
 	
 	public static void main(String[] args) {
 		//System.out.println(new BCryptPasswordEncoder().encode("@Rapi172010@"));
-	
+		//System.out.println(new BCryptPasswordEncoder().encode("*10"));
 		
 		SpringApplication.run(DemoSismedApplication.class, args);
 	}
