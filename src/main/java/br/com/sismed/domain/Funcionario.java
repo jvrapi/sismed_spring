@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.CascadeType;
@@ -74,9 +75,16 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
 	
-	@Column(name="nivel_acesso", nullable=false)
-	private Long nivel_acesso;
+	@Column(name="senha", nullable=false)
+	private String senha;
 	
+	@ManyToMany
+	@JoinTable(
+		name = "sismed_funcionario_perfil", 
+        joinColumns = { @JoinColumn(name = "funcionario_id", referencedColumnName = "id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "perfis_id", referencedColumnName = "id") }
+	)
+	private List<Perfil> perfis;
 	
 	public LocalDate getData_emissao() {
 		return data_emissao;
@@ -175,18 +183,27 @@ public class Funcionario extends AbstractEntity {
 	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
-	public Long getNivel_acesso() {
-		return nivel_acesso;
-	}
-	public void setNivel_acesso(Long nivel_acesso) {
-		this.nivel_acesso = nivel_acesso;
-	}
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
+	}
+	
+	
 	
 	
 }

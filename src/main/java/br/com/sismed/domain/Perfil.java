@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "sismed_perfis")
+@Table(name = "sismed_perfil")
 public class Perfil extends AbstractEntity {
 
 	@Column(name = "descricao", nullable = false, unique = true)
