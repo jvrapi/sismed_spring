@@ -75,8 +75,8 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="estado_civil">Estado civil</label> 
-										<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}">
-											<option value="SOLTEIRO(A)">SOLTEIRO(A)</option>
+										<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}" style="text-transform: uppercase;">
+											<option value="solteiro(a)">SOLTEIRO(A)</option>
 											<option value="CASADO(A)">CASADO(A)</option>
 											<option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
 											<option value="VIÚVO(A)">VIÚVO(A)</option>
@@ -107,19 +107,19 @@
 								<div class="form-row">
 									<div class="form-group col-md-3">
 										<label for="email">Email</label> 
-										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="Email" maxlength="30" autofocus="autofocus" th:field="*{email}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="Email" maxlength="30" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{email}" required/>
 									</div>
 									<div class="form-group col-md-3">
 										<label for="escolaridade"> Escolaridade</label> 
 										<select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}">
-											<option value="esc">ENSINO SUPERIOR COMPLETO</option>
-											<option value="esi">ENSINO SUPERIOR INCOMPLETO</option>
-											<option value="emc">ENSINO MÉDIO COMPLETO</option>
-											<option value="emi">ENSINO MÉDIO INCOMPLETO</option>
-											<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
-											<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
-											<option value="d">DOUTORADO</option>
-											<option value="m">MESTRADO</option>
+											<option value="D">DOUTORADO</option>
+											<option value="M">MESTRADO</option>
+											<option value="ESC">ENSINO SUPERIOR COMPLETO</option>
+											<option value="ESI">ENSINO SUPERIOR INCOMPLETO</option>
+											<option value="EMC">ENSINO MÉDIO COMPLETO</option>
+											<option value="EMI">ENSINO MÉDIO INCOMPLETO</option>
+											<option value="EFC">ENSINO FUNDAMENTAL COMPLETO</option>
+											<option value="EFI">ENSINO FUNDAMENTAL INCOMPLETO</option>
 											
 										</select>
 									</div>
@@ -132,10 +132,10 @@
 							<div class="form-row align-items-center">
 						    <div class="col-auto my-1">
 						      <label class="mr-sm-2" for="inlineFormCustomSelect">Selecione</label>
-						      <select class="custom-select mr-sm-2" id="tipo" th:field="*{nivel_acesso}">
-						        <option value="" selected>Escolha um...</option>
-						        <option  value="1" >Médico(a)</option>
-						        <option  value="2">Funcionário(a)</option>
+						      <select class="custom-select mr-sm-2" id="tipo">
+						        <option value="" selected>ESCOLHA UM...</option>
+						        <option  value="1" >MÉDICO(A)</option>
+						        <option  value="2">FUNCIONÁRIO(A)</option>
 						      
 						      </select>
 						    </div>	
@@ -149,7 +149,7 @@
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled required> 
+							th:field="*{especialidade}" onkeyup="maiuscula(this)" disabled required> 
 					</div>
 
 							<div class="form-group col-md-5 ">
@@ -177,22 +177,22 @@
 									</div>
 									<div class="form-group col-md-4">
 										<label for="complemento">Complemento</label> 
-										<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}">
+										<input id="complemento" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" type="text" th:field="*{endereco.complemento}">
 									</div>
 								</div>
 	
 								<div class="form-row">
 									<div class="form-group col-md-5">
 										<label for="bairro">Bairro</label> 
-										<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required>
+										<input id="bairro" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.bairro}" required>
 									</div>
 									<div class="form-group col-md-5 ">
 										<label for="cidade">Cidade</label> 
-										<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" required>
+										<input id="cidade" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.cidade}" required>
 									</div>
 									<div class="form-group col-md-2 ">
 										<label for="uf">Estado</label> 
-										<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}">
+										<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}"   style="text-transform: uppercase;">
 											<option value="" selected hidden>Selecione</option>
 											<option value="AC">Acre</option>
 											<option value="AL">Alagoas</option>
@@ -231,12 +231,9 @@
 						</div>
 						
 						</form>
+			</div>
+			</div>
 					
-			</div>
-			</div>
-							
-							
-						
 	</body>
 </html>
 
