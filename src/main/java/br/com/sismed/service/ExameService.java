@@ -34,24 +34,27 @@ public class ExameService {
 		return eRepository.getOne(id);
 	}
 
-	 
 	@Transactional(readOnly = true)
 	public Page<Exame> buscarTodos(Pageable pageable) {
 	
 		return eRepository.findAll(pageable);
 	}
 
-	public List<Exame> ListarExameNome(String dado) {
-		return eRepository.ListarExameNome(dado);
-	}
-	
 	public Exame ListarExameId(String dado) {
 		return eRepository.ListarExameId(dado);
 	}
-
 
 	public List<Exame> ListarExamePaciente(String dado) {
 		return eRepository.ListarExamePaciente(dado);
 	}
 
+
+	public List<Exame> ListarExameNome(String dado) {
+		return eRepository.ListarExameNome(dado);
+	}
+
+
+	public List<Exame> ListarExameDataColeta(String dado) {
+		return eRepository.ListarExameDataColeta(dado);
+	}
 }
