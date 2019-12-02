@@ -150,6 +150,24 @@ public class PacientesController {
 				suggeestions.add(lv);
 			}
 		}
+		else if(id == 3) {
+			List<Paciente> allPacientes = service.PesquisarCPF(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue2(paciente.getId() + "/" + paciente.getTipo_convenio().getConvenio().getId());
+				suggeestions.add(lv);
+			}
+		}
+		else if(id == 4) {
+			List<Paciente> allPacientes = service.PesquisarCelular(term);
+			for (Paciente paciente : allPacientes) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(paciente.getNome());
+				lv.setValue2(paciente.getId() + "/" + paciente.getTipo_convenio().getConvenio().getId());
+				suggeestions.add(lv);
+			}
+		}
 		return suggeestions;
 	}
 	

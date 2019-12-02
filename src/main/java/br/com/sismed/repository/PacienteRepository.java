@@ -25,6 +25,9 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>{
 	@Query(value = "SELECT * FROM sismed_paciente WHERE telefone_fixo LIKE %:dado%", nativeQuery = true)
 	List<Paciente> ListarPacTel(String dado);
 	
+	@Query(value = "SELECT * FROM sismed_paciente WHERE celular LIKE %:dado%", nativeQuery = true)
+	List<Paciente> ListarPacCel(String dado);
+	
 	@Query(value = "SELECT DISTINCT p.id FROM sismed_paciente p JOIN sismed_registro_clinico r ON p.id = r.paciente_id ORDER BY p.nome ASC", nativeQuery = true)
 	Page<Integer> ContaId(Pageable pageable);
 }

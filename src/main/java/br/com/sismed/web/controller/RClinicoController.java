@@ -2,7 +2,6 @@ package br.com.sismed.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,9 +41,10 @@ public class RClinicoController {
 	private PacienteService pacienteService;
 	
 	@GetMapping("/buscar")
-	public String buscar(ModelMap model) {
+	public String buscar(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
 		List<RcId> rcidList = new ArrayList<RcId>();
-		Page<Integer> listaIds = pacienteService.ContaId(PageRequest.of(0, 10));
+		Page<Integer> listaIds = pacienteService.ContaId(PageRequest.of(page-1, 2));
+		int totalPages = listaIds.getTotalPages();
 		for(Integer Ids : listaIds) {
 			Long Id2 = Long.valueOf (Ids);
 			RcId rcid = new RcId();
@@ -54,6 +54,35 @@ public class RClinicoController {
 			rcid.setQntId(qntIds);
 			rcidList.add(rcid);
 		}
+		if (totalPages == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && totalPages == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		model.addAttribute("pagination", listaIds);
 		model.addAttribute("registro", rcidList);
 		return "/registro_clinico/busca";
 	}

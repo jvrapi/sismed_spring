@@ -14,8 +14,8 @@
 			$(document).ready(function() {
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/RegistroClinico/listar/1",
-						minLength: 1,
+						source: "http://localhost:8080/RegistroClinico/listar/2",
+						minLength: 3,
 						select: function (event, ui) {
 							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
 							document.location.href = url;
@@ -45,7 +45,7 @@
 				$( function() {
 					$("#txtBusca").autocomplete({
 						source: "http://localhost:8080/RegistroClinico/listar/2",
-						minLength: 2,
+						minLength: 3,
 						select: function (event, ui) {
 							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
 							document.location.href = url;
@@ -58,8 +58,8 @@
 		<script>
 			$(document).ready(function() {
 				var now = new Date();
-				var mes = now.getMonth() +1;
-				var dia = now.getDate();
+				var dia = now.getDate(); if(dia < 10) dia = "0" + dia;
+				var mes = now.getMonth() +1; if(mes < 10) mes = "0" + mes;			
 				var ano = now.getFullYear();
 				$("#data").val(ano + "-" + mes + "-" + dia);
 			});
@@ -123,13 +123,13 @@
 						</div>
 					</div>
 					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+						<button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
 						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="sr-only">Toggle Dropdown</span>
 						</button>
 						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+							<button class="dropdown-item" type="button" value="1" onclick="muda2()">Nome</button>
+							<button class="dropdown-item" type="button" value="2" onclick="muda()">Prontuário</button>
 						</div>
 					</div>
 					<div id="divBusca">
@@ -152,7 +152,8 @@
 			<div class="container-fluid" style="width: 98%">
 				<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
 					<h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
-					<button type="submit" class="btn btn-primary float-right">Salvar</button>
+					<a class="btn btn-secondary float-right" href="/RegistroClinico/buscar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
+					<button type="submit" class="btn btn-primary float-right mr-2">Salvar</button>
 					<div class="card" style="margin-top: 25px; margin-bottom:15px;">
 						<div class="card-body">
 							<div class="form-row">
@@ -175,11 +176,13 @@
 								</div>
 								<div class="form-group col-md-2">
 									<label for="data">Data</label> 
-									<input type="date" class="form-control tamanho-fonte" id="data" th:name="data" disabled> 
+									<input type="date" class="form-control tamanho-fonte" id="data" th:name="data" 
+									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly> 
 								</div>
 								<div class="form-group col-md-1">
 									<label for="hora">Hora</label> 
-									<input type="time" class="form-control tamanho-fonte" id="hora" th:name="hora" disabled> 
+									<input type="time" class="form-control tamanho-fonte" id="hora" th:name="hora" 
+									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly> 
 								</div>
 								
 							</div>
