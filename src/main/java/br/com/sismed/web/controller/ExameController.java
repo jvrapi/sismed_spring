@@ -23,9 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.ExameService;
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.LaboratorioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
 
@@ -45,11 +47,13 @@ public class ExameController {
 	@Autowired
 	public FuncionarioService fservice;
 	
+	@Autowired
+	public LaboratorioService lservice;
+	
 	@GetMapping("/listar")
 	
 		public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
-		//model.addAttribute("exame",service.buscarTodos());
-		PageRequest pagerequest = PageRequest.of(page-1, 2, Sort.by("nome").ascending());
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("id").descending());
 		Page<Exame> exame = service.buscarTodos(pagerequest);
 		model.addAttribute("exame", exame);
 		int lastPage = exame.getTotalPages();
@@ -90,6 +94,7 @@ public class ExameController {
 	public String cadastrar (ModelMap model, Exame exame) {
 		model.addAttribute("paciente",pservice.findAll());
 		model.addAttribute("funcionario",fservice.findAll());
+		model.addAttribute("laboratorio", lservice.findAll());
 		return "/exame/cadastro"; 
 	}
 	
@@ -184,7 +189,7 @@ public class ExameController {
 	public List<LabelValue> listarpaciente(@RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		
-			List<Paciente> allPacientes = pservice.ListarPacId(term);
+			List<Paciente> allPacientes = pservice.ListarPacNome(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -215,6 +220,10 @@ public class ExameController {
 		return suggeestions;	
 	}
 	
-	
+	@GetMapping("/buscarlab/{id]")
+	@ResponseBody
+	public List<Laboratorio> listarlab(@PathVariable("id") Long id) {
+		return lservice.findAll();
+	}
 }
 

@@ -1,6 +1,5 @@
 package br.com.sismed.domain;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -49,6 +48,10 @@ public class Exame extends AbstractEntity{
 	@ManyToOne
 	@JoinColumn(name="tipo_id")
 	private TConvenio tipo;
+	
+	@ManyToOne
+	@JoinColumn(name="laboratorio_id")
+	private Laboratorio laboratorio_id;
 	
 	public String getNome() {
 		return nome;
@@ -120,6 +123,14 @@ public class Exame extends AbstractEntity{
 
 	public void setFuncionario_lab(String funcionario_lab) {
 		this.funcionario_lab = funcionario_lab;
+	}
+
+	public Laboratorio getLaboratorio_id() {
+		return laboratorio_id;
+	}
+
+	public void setLaboratorio_id(Laboratorio laboratorio_id) {
+		this.laboratorio_id = laboratorio_id;
 	}
 
 	

@@ -69,7 +69,7 @@
 									<th scope="col">Exame</th>
 									<th scope="col">Coleta</th>
 									<th scope="col">Envio</th>
-								
+									<th scope="col">Retorno</th>
 								</tr>
 							</thead>
 							<tbody th:each="e : ${exame.content}">
@@ -82,6 +82,9 @@
 								<td><a th:text="${#temporals.format(e.data_coleta, 'dd/MM/yyyy')}" /></a></td>
 								
 								<td><a th:text="${#temporals.format(e.data_envio, 'dd/MM/yyyy')}" /></a></td>
+								
+								<td th:if="${e.data_retorno != null}"><a th:text="${#temporals.format(e.data_retorno, 'dd/MM/yyyy')}"></a></td>
+								<td th:if="${e.data_retorno == null}"><a><strong>Pendente</strong></a></td>
 									
 								</tr>
 							</tbody>
