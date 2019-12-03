@@ -15,9 +15,10 @@ import br.com.sismed.service.FuncionarioService;
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 	
-	private static final String ADMIN = PerfilTipo.ADMIN.getDesc();
-	 private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
-	    private static final String FUNCIONARIO = PerfilTipo.FUNCIONARIO.getDesc();
+	
+    private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
+    private static final String FUNCIONARIO = PerfilTipo.FUNCIONARIO.getDesc();
+    
 	@Autowired
 	private FuncionarioService service;
 	
@@ -29,9 +30,9 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		.antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**").permitAll()
 		
 		
-		/*.antMatchers("/agenda/**", "/funcionarios/**").hasAuthority(ADMIN)
 		
-		.antMatchers("/agenda/**").hasAuthority(MEDICO)*/
+		
+		.antMatchers("/agenda/**").hasAuthority(MEDICO)
 		
 		
 		.anyRequest().authenticated()
