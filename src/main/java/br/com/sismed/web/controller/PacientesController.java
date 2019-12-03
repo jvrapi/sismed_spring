@@ -125,7 +125,7 @@ public class PacientesController {
 	
 	@ModelAttribute("convenio")
 	public List<Convenio> listConvenio() {
-		return convenioService.BuscarTodos();
+		return convenioService.findAll();
 	}
 	
 	@GetMapping("/buscar/{id}")

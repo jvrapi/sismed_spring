@@ -138,7 +138,7 @@ public class AgendaController {
 	
 	@ModelAttribute("convenio")
 	public List<Convenio> listConvenio() {
-		return convenioService.BuscarTodos();
+		return convenioService.findAll();
 	}
 	
 	@GetMapping("/convenio/{id}")

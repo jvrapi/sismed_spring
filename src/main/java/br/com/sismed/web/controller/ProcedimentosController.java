@@ -79,6 +79,6 @@ public class ProcedimentosController {
 	
 	@ModelAttribute("convenios")
 	public List<Convenio> listConvenio() {
-		return ConvenioService.BuscarTodos();
+		return ConvenioService.findAll();
 	}
 }

@@ -39,22 +39,24 @@
 						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
 					</div>
 					<div class="collapse navbar-collapse justify-content-end login">
-						<form th:action="@{/logout}" 
-					  method="post"  class="form-inline mt-2 mt-md-0">
-					<div class="btn-group mb-2 mr-sm-2">
-						<button type="button" class="btn btn-light">
-							<i class="fas fa-user"></i> <span class=""
-								>Bob</span>
-						</button>
-						<button type="button"
-							class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						</button>
-						<div class="dropdown-menu">
-							<button type="submit" class="dropdown-item">Sair</button>
-						</div>
-					</div>
-				</form>
+						  <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                                <div class="form-check mb-2 mr-sm-2">
+                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                                </div>
+                            </form>
+                            
+                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                                <div class="btn-group mb-2 mr-sm-2">
+                                    <button type="button" class="btn btn-light">
+                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                    </button>
+                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button type="submit" class="dropdown-item">Sair</button>
+                                    </div>
+                                </div>
+                            </form>
 					</div>
 				
 

@@ -3,6 +3,8 @@ package br.com.sismed.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,7 +46,12 @@ public class ConvenioService{
 
 	
 	@Transactional(readOnly = true)
-	public List<Convenio> BuscarTodos() {
+	public Page<Convenio> BuscarTodos(Pageable pageable) {
+		return cRepository.findAll(pageable);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Convenio> findAll() {
 		return cRepository.findAll();
 	}
 

@@ -3,10 +3,12 @@ package br.com.sismed.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.repository.TConvenioRepository;
 
@@ -41,14 +43,15 @@ public class TConvenioService {
 
 	
 	@Transactional(readOnly = true)
-	public List<TConvenio> BuscarTodos() {
+	public List<TConvenio> findAll() {
 		return tcRepository.findAll();
 	}
 
+
 	
-	public List<TConvenio> ListarTipoConvenio(Long id) {
+	public Page<TConvenio> ListarTipoConvenio(Long id, Pageable pageable ) {
 		
-		return tcRepository.ListarTipoConvenio(id);
+		return tcRepository.ListarTipoConvenio(id, pageable);
 	}
 
 	

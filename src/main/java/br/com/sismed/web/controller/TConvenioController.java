@@ -1,8 +1,13 @@
 package br.com.sismed.web.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
@@ -27,13 +33,47 @@ public class TConvenioController {
 	@Autowired
 	private TConvenioService tservice;
 
+	
+	
 	@GetMapping("/listar/{id}") // segunda parte do href
-	public String listar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("tconvenio", tservice.ListarTipoConvenio(id));
-		model.addAttribute("convenio", service.buscarPorId(id));
-		return "/tconvenio/lista"; // retorna o caminho do arquivo
+	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("nome").ascending());
+		Page<TConvenio> tconvenio = tservice.ListarTipoConvenio(id, pagerequest);
+		model.addAttribute("convenios", service.buscarPorId(id));
+		model.addAttribute("tconvenio", tconvenio);
+		int totalPages = tconvenio.getTotalPages();
+		if (totalPages == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && totalPages == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		return "/tconvenio/lista";
 	}
 
+	
 	@GetMapping("/cadastrar/{id2}") // segunda parte do href
 	public String cadastrar(@PathVariable("id2") Long id, ModelMap model, @ModelAttribute("tconvenio") TConvenio tconvenio) {
 		model.addAttribute("convenio", service.ListaComboBox(id));
@@ -79,6 +119,6 @@ public class TConvenioController {
 
 	@ModelAttribute("convenios")
 	public List<Convenio> listConvenio() {
-		return service.BuscarTodos();
+		return service.findAll();
 	}
 }
