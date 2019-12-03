@@ -1,6 +1,5 @@
 package br.com.sismed.domain;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
@@ -53,7 +52,11 @@ public class Exame extends AbstractEntity{
 	private TConvenio tipo;
 	
 	@ManyToOne
+
 	@JoinColumn(name = "laboratorio_id")
+
+	@JoinColumn(name="laboratorio_id")
+
 	private Laboratorio laboratorio_id;
 	
 	public String getNome() {

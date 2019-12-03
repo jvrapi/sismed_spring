@@ -90,7 +90,7 @@
 	
 				<div class="container-fluid" style="width: 98%">
 				
-				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST">
+				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST" onsubmit="validaData(this); return false;">
 					
 					<h3 style="display: inline;">Cadastro | <strong>Exame</strong></h3>
 					
@@ -130,8 +130,15 @@
 							
 								<div class="form-group col-md-2">
 										<label for="data_coleta">Data de Coleta</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_coletas" placeholder="Data de coleta" autofocus="autofocus" th:field="*{data_coleta}" value="" onblur="verificaData();" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_coletas" placeholder="Data de coleta" autofocus="autofocus" th:field="*{data_coleta}" required/>
 									</div>
+<<<<<<< HEAD
+=======
+									<div class="form-group col-md-2">
+										<label for="data_envio">Data de Envio</label> 
+										<input type="date" class="form-control tamanho-fonte" id="data_envio" placeholder="Data de envio" autofocus="autofocus" th:field="*{data_envio}" required/>
+									</div>
+>>>>>>> 51897800cf3026ad3a748436e04fef7e0853d6c9
 									
 									<div class="form-group col-md-4">
 										<label for="nome">Exame</label> 
@@ -159,10 +166,23 @@
 										</textarea>
 									</div>
 									
+<<<<<<< HEAD
 										<div class="form-group col-md-3">
 										<label for="funcionario">Quem Recebeu</label> 
 										<input type="text" id="funcionario" class="form-control tamanho-fonte">
 										<input type="hidden" id="funcionario_id" onkeyup="maiuscula(this)" required >
+=======
+									<div class="form-group col-md-3">
+										<label for="funcionario_lab">Quem Recebeu</label> 
+										<input type="text" id="funcionario_lab" class="form-control tamanho-fonte" th:field="*{funcionario_lab}">
+									</div>
+									<div class="form-group col-md-3">
+										<label for="laboratorio">Laboratórios</label> 
+										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}">
+											<option value="" selected hidden>Selecione</option>
+											<option th:each="l : ${laboratorio}" th:value="${l.id}" th:text="${l.nome}"></option>
+										</select>
+>>>>>>> 51897800cf3026ad3a748436e04fef7e0853d6c9
 									</div>
 									</div>
 									
