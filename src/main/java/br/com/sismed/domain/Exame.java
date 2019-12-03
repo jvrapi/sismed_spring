@@ -3,10 +3,12 @@ package br.com.sismed.domain;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +25,9 @@ public class Exame extends AbstractEntity{
 	@Column(name = "descricao",nullable = false)
 	private String descricao;
 	
+	@Column(name = "funcionario_lab",nullable = false)
+	private String funcionario_lab;
+	
 	@Column(name = "data_coleta",nullable = false)
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate data_coleta;
@@ -35,9 +40,6 @@ public class Exame extends AbstractEntity{
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate data_retorno;
 	
-	@Column(name = "funcionario_lab",nullable = false)
-	private String funcionario_lab;
-	
 	@ManyToOne
 	@JoinColumn(name = "paciente_id") 
 	private Paciente paciente_id;
@@ -49,6 +51,10 @@ public class Exame extends AbstractEntity{
 	@ManyToOne
 	@JoinColumn(name="tipo_id")
 	private TConvenio tipo;
+	
+	@ManyToOne
+	@JoinColumn(name = "laboratorio_id")
+	private Laboratorio laboratorio_id;
 	
 	public String getNome() {
 		return nome;
@@ -120,6 +126,14 @@ public class Exame extends AbstractEntity{
 
 	public void setFuncionario_lab(String funcionario_lab) {
 		this.funcionario_lab = funcionario_lab;
+	}
+
+	public Laboratorio getLaboratorio_id() {
+		return laboratorio_id;
+	}
+
+	public void setLaboratorio_id(Laboratorio laboratorio_id) {
+		this.laboratorio_id = laboratorio_id;
 	}
 
 	
