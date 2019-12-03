@@ -60,4 +60,8 @@ public class LaboratorioService {
 	public List<Laboratorio> ListarLaboratorioBairro(String dado) {
 		return lRepository.ListarLaboratorioBairro(dado);
 	}
+	
+	public List<Laboratorio> findAll() {
+		return lRepository.findAll();
+	}
 }
