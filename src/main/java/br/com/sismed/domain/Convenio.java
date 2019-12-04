@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -16,19 +21,26 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name = "sismed_convenio")
 public class Convenio extends AbstractEntity{
 	
+	@NotBlank
+	@Size(min = 3, max = 50)
 	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
+	
+	@NotNull
+	@PastOrPresent(message = "{PastOrPresent.convenio.data_adesao}")
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_adesao",nullable = false)
 	private LocalDate data_adesao ;
 	
+	@NotBlank
 	@Column(nullable = false)
 	private String cnpj;
 	
 	@Column(nullable = false)
 	private String registro_ans;
 
+	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dados_bancarios")
 	private DadosBancarios dadosb;

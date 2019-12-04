@@ -5,53 +5,104 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="/js/tconvenio/modal.js"></script>
     <script type="text/javascript" src="/js/tconvenio/editar.js"></script>
+    <script type="text/javascript" src="/js/tconvenio/busca.js"></script>
 </head>
 
 <body>
     <section layout:fragment="corpo">
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Nome</button>
 
-        <div class="container ajustarTexto">
-            <div th:replace="fragmentos/alert" class="container"></div>
-            <div th:replace="fragmentos/modal" class="container"></div>
-        </div>
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
 
-        <div class="container" style="width: 98%">
-            <form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
-                <div id="div_botao" class="detalhes">
-                    <h4 class="titulo"> 
-								
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </nav>
+            <div class="container ajustarTexto">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+            </div>
+
+            <div class="container" style="width: 98%">
+                <form th:action="@{/tconvenios/editar}" th:object="${tconvenio}" method="POST">
+                    <div id="div_botao" class="detalhes">
+                        <h4 class="titulo"> 
+
 								<strong th:text="${tconvenio.convenio.nome} + ' | ' "> </strong> Edição de Tipo 
 							</h4>
-							<a  class="btn btn-secondary float-right ml-2" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }"> 
-									<i class="fas fa-chevron-left"> </i> Voltar</a>
-                    <button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                    <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
-                </div>
-                <div class="card ajustarCard">
-                    <div class="card-body">
-
-                        <div class="form-group col-md-4 ajustarTexto">
-
-                            <label for="nome"> Nome</label>
-                            <input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
-
-                            <div class="invalid-feedback"></div>
-                        </div>
-
-                        <div class="form-group col-md-4 ajustarTexto">
-
-                            <input type="hidden" class="convenioid" th:id="${tconvenio.convenio.id}" />
-                            <input type="hidden" th:field="*{convenio.id}" />
-                            <input type="hidden" id="id" th:field="*{id}" />
-                            <div class="invalid-feedback"></div>
-
-                        </div>
-
+                        <a class="btn btn-secondary float-right ml-2" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }">
+                            <i class="fas fa-chevron-left"> </i> Voltar</a>
+                        <button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                        <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
                     </div>
-                </div>
-            </form>
-        </div>
+                    <div class="card ajustarCard">
+                        <div class="card-body">
 
+                            <div class="form-group col-md-4 ajustarTexto">
+
+                                <label for="nome"> Nome</label>
+                                <input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" disabled>
+
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class="form-group col-md-4 ajustarTexto">
+
+                                <input type="hidden" class="convenioid" th:id="${tconvenio.convenio.id}" />
+                                <input type="hidden" th:field="*{convenio.id}" />
+                                <input type="hidden" id="id" th:field="*{id}" />
+                                <div class="invalid-feedback"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
 </body>

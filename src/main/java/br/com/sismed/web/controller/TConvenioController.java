@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,9 +107,12 @@ public class TConvenioController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(TConvenio tconvenio, RedirectAttributes attr) {
+	public String salvar(@Valid TConvenio tconvenio, BindingResult result,RedirectAttributes attr) {
 		Long id = tconvenio.getConvenio().getId() ;
-		
+		if(result.hasErrors()) {
+			
+			return "redirect:/tconvenios/cadastrar/" + id;
+		}
 		tservice.salvar(tconvenio);
 		attr.addFlashAttribute("success", "Tipo de Convenio cadastrado com sucesso");
 		return "redirect:/tconvenios/listar/" + id;

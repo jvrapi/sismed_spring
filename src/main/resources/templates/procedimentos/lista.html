@@ -3,100 +3,97 @@
 
 <head>
     <meta charset="UTF-8">
-	<script type="text/javascript" src="/js/procedimento/busca.js"></script>
+    <script type="text/javascript" src="/js/procedimento/busca.js"></script>
 </head>
 
 <body>
     <section layout:fragment="corpo">
-    
-     <div id="content">
-		<nav class="navbar navbar-expand-lg navbar-light" >
-				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-					<div class="dropdown">
-						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a>
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="#">Funcionário</a>
-							<a href="/convenios/cadastrar">Convênio</a>
-							<a href="#">Exame</a>
-							<a href="#">Laboratório</a>
-						</div>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Descrição</button>
-						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Descrição</button>
-							
-							
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end login">
-						  <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
-                                </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
-					</div>
-				
 
-				
-				</div>
-			</nav>
-        <div class="container ajustarTexto">
-            <div th:replace="fragmentos/alert" class="container"></div>
-            <div th:replace="fragmentos/modal" class="container"></div>
-        </div>
-        <div class="container" style="width: 98%">
-            <div th:each="c : ${convenio}" class="detalhes">
-                <h3 style="display: inline; margin-left: 10px;">
-						 
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Descrição</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Descrição</button>
+
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </nav>
+            <div class="container ajustarTexto">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+            </div>
+            <div class="container" style="width: 98%">
+                <div th:each="c : ${convenio}" class="detalhes">
+                    <h3 style="display: inline; margin-left: 10px;">
+
 						<strong th:text = "${c.nome + ' | ' }">  Convenio </strong> Procedimentos
 					</h3>
-					<a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > 
-							<i class="fas fa-chevron-left"></i> Voltar</a>
-            </div>
-            <div class="card ajustarCard">
-                <div class="card-body">
-                    <div style="margin-left: 40%;" th:each="p : ${procedimento}">
-                        <div class="container detalhes ">
+                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }">
+                        <i class="fas fa-chevron-left"></i> Voltar</a>
+                </div>
+                <div class="card ajustarCard">
+                    <div class="card-body">
+                        <div style="margin-left: 40%;" th:each="p : ${procedimento}">
+                            <div class="container detalhes ">
 
-                            <div class="form-row">
-                                <div class="form-group col-md-4" style="">
-                                    <a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" title="Mostrar informações" th:text="${p.descricao}"> </a>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4" style="">
+                                        <a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" title="Mostrar informações" th:text="${p.descricao}"> </a>
+                                    </div>
+
                                 </div>
-
                             </div>
+
                         </div>
+                        <br>
+                        <br>
 
                     </div>
-                    <br>
-                    <br>
-
                 </div>
             </div>
         </div>
-    </div>
     </section>
 </body>
 

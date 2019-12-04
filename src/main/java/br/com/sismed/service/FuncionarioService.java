@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.Perfil;
 import br.com.sismed.repository.FuncionarioRepository;
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 
 @Service
@@ -28,6 +29,8 @@ public class FuncionarioService implements UserDetailsService{
 	
 	@Transactional(readOnly = false)
 	public void salvar(Funcionario funcionario) {
+		String senhac = new BCryptPasswordEncoder().encode(funcionario.getSenha());
+		funcionario.setSenha(senhac);
 		fRepository.save(funcionario);
 	}
 
@@ -91,17 +94,12 @@ public class FuncionarioService implements UserDetailsService{
 		return new User(
 				funcionario.getCpf(),
 				funcionario.getSenha(),
-				AuthorityUtils.createAuthorityList(getAtuthorities(funcionario.getPerfis()))
+				AuthorityUtils.createAuthorityList(funcionario.getPerfil().getDesc())
+				
 			);
 		}
 		
-		private String[] getAtuthorities(List<Perfil> perfis) {
-			String[] authorities = new String[perfis.size()];
-			for (int i = 0; i < perfis.size(); i++) {
-				authorities[i] = perfis.get(i).getDesc();
-			}
-			return authorities;
-		}
+		
 	}
 	
 	

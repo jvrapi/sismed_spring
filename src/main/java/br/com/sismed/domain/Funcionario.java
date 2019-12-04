@@ -11,8 +11,14 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -22,17 +28,23 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Table(name="sismed_funcionario")
 public class Funcionario extends AbstractEntity {
 	
+	
 	@Column(name="nome", nullable=false)
 	private String nome;
+	
+	
 	
 	@Column(name="cpf", nullable=false)
 	private String cpf;
 	
+	
 	@Column(name="rg", nullable=false)
 	private String rg;
 	
+	
 	@Column(name="orgao_emissor", nullable=false)
 	private String orgao_emissor;
+	
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_emissao", nullable=false)
@@ -44,14 +56,18 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="especialidade", nullable=true)
 	private String especialidade;
 	
+	
 	@Column(name="telefone_fixo", nullable=false)
 	private String telefone_fixo;
+	
+	
 	
 	@Column(name="celular", nullable=false)
 	private String celular;
 	
 	@Column(name="sexo", nullable=false)
 	private String sexo;
+	
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_nascimento", nullable=false)
@@ -66,6 +82,7 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="escolaridade", nullable=false)
 	private String escolaridade;
 	
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
@@ -79,13 +96,9 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="senha", nullable=false)
 	private String senha;
 	
-	@ManyToMany
-	@JoinTable(
-		name = "sismed_funcionario_perfil", 
-        joinColumns = { @JoinColumn(name = "funcionario_id", referencedColumnName = "id") }, 
-        inverseJoinColumns = { @JoinColumn(name = "perfis_id", referencedColumnName = "id") }
-	)
-	private List<Perfil> perfis;
+	@ManyToOne
+	@JoinColumn(name = "perfil_id")
+	private Perfil perfil;
 	
 	public Funcionario() {
 		super();
@@ -95,13 +108,7 @@ public class Funcionario extends AbstractEntity {
 		super.setId(id);
 	}
 	
-	// adiciona perfis a lista
-		public void addPerfil(PerfilTipo tipo) {
-			if (this.perfis == null) {
-				this.perfis = new ArrayList<>();
-			}
-			this.perfis.add(new Perfil(tipo.getCod()));
-		}
+	
 	
 	public LocalDate getData_emissao() {
 		return data_emissao;
@@ -213,11 +220,13 @@ public class Funcionario extends AbstractEntity {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public List<Perfil> getPerfis() {
-		return perfis;
+
+	public Perfil getPerfil() {
+		return perfil;
 	}
-	public void setPerfis(List<Perfil> perfis) {
-		this.perfis = perfis;
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 	
 	

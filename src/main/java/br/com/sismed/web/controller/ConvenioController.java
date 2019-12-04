@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -117,7 +120,11 @@ public class ConvenioController {
 		
 		
 		@PostMapping("/salvar")
-		public String salvar(Convenio convenio, RedirectAttributes attr) {
+		public String salvar(@Valid Convenio convenio, BindingResult result, RedirectAttributes attr) {
+			if(result.hasErrors()) {
+				return "/convenio/cadastro";
+			}
+			
 			service.salvar(convenio);
 			attr.addFlashAttribute("success","Convenio cadastrado com sucesso");
 			return  "redirect:/convenios/listar";
@@ -132,8 +139,13 @@ public class ConvenioController {
 		}
 		
 		@PostMapping("/editar")
-		public String editar(Convenio convenio, RedirectAttributes attr) {
+		public String editar(@Valid Convenio convenio,  BindingResult result ,RedirectAttributes attr) {
 			Long id = convenio.getId();
+			
+			if(result.hasErrors()) {
+				return "/convenio/editar/" + id;
+			}
+			
 			service.salvar(convenio);
 			attr.addFlashAttribute("success","Convenio editado com sucesso");
 			return "redirect:/convenios/editar/" + id;

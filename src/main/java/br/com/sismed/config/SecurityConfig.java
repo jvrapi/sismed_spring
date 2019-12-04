@@ -16,8 +16,7 @@ import br.com.sismed.service.FuncionarioService;
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 	
 	
-    private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
-    private static final String FUNCIONARIO = PerfilTipo.FUNCIONARIO.getDesc();
+    
     
 	@Autowired
 	private FuncionarioService service;
@@ -32,7 +31,7 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		
 		
 		//acessos privados de medico
-		.antMatchers("/agenda/**", "/pacientes/**", "/funcionario/**", "/convenios/**", "/tconvenios/**","/RegistroClinico/**","/laboratorio/**","/exame/**" ).hasAuthority(MEDICO)
+		.antMatchers("/RegistroClinico/**").hasAuthority("MEDICO")
 		
 		
 		.anyRequest().authenticated()
@@ -44,7 +43,10 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 			.permitAll()
 		.and()
 			.logout()
-			.logoutSuccessUrl("/");
+			.logoutSuccessUrl("/")
+		.and()
+			.exceptionHandling()
+			.accessDeniedPage("/acesso-negado");
 	}
 
 	@Override

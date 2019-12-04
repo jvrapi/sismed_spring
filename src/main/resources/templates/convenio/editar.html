@@ -6,170 +6,166 @@
 
     <script type="text/javascript" src="/js/convenio/modal.js"></script>
     <script type="text/javascript" src="/js/convenio/editar.js"></script>
-     <script type="text/javascript" src="/js/convenio/busca.js"></script>
+    <script type="text/javascript" src="/js/convenio/busca.js"></script>
 
 </head>
 
 <body>
     <section layout:fragment="corpo">
-<div id="content">
-		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
-				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-					<div class="dropdown">
-						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a>
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="#">Funcionário</a>
-							<a href="/convenios/cadastrar">Convênio</a>
-							<a href="#">Exame</a>
-							<a href="#">Laboratório</a>
-						</div>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
-						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Nome</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda2()">CNPJ</button>
-							<button class="dropdown-item" type="button" value="3" onclick="muda3()">ANS</button>
-							
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end login">
-						  <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Nome</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">CNPJ</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">ANS</button>
+
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
                                 </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
-					</div>
-				
+                            </div>
+                        </form>
+                    </div>
 
-				
-				</div>
-			</nav>
-        <div class="container" style="margin-left: 35%;">
-            <div th:replace="fragmentos/alert"></div>
-            <div th:replace="fragmentos/modal"></div>
-
-        </div>
-
-        <div class="container-fluid" style="width: 98%">
-
-            <form id="form" th:action="@{/convenios/editar}" th:object="${convenio}" method="POST">
-
-                <div id="div_botao">
-                    <h3 class="titulo">  Edição | <strong>Convenio</strong></h3>
-                     <a class="btn btn-secondary float-right ml-2"  href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
-                    <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                    <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
-                   
                 </div>
-                <br>
-                <div class="card ajustarCard">
-                    <div class="card-body">
-                        <div class="form-row" style="margin: auto;">
-                            <div class="form-group col-md-4 text-center">
+            </nav>
+            <div class="container" style="margin-left: 35%;">
+                <div th:replace="fragmentos/alert"></div>
+                <div th:replace="fragmentos/modal"></div>
 
-                                <label for="nome"> Nome </label>
-                                <input type="text" class="form-control text-center" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" maxlength="50" disabled>
-                            </div>
+            </div>
 
-                            <br>
+            <div class="container-fluid" style="width: 98%">
 
-                            <div class="form-group col-md-4 ">
-                                <label for="cnpj">CNPJ</label>
-                                <input type="text" class="form-control" id="cnpj" name="cnpj" th:field="*{cnpj}" disabled>
-                            </div>
+                <form id="form" th:action="@{/convenios/editar}" th:object="${convenio}" method="POST">
 
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="ans">ANS</label>
-                                <input type="text" class="form-control" id="ans" name="ans" th:field="*{registro_ans}" disabled>
-                            </div>
-                        </div>
-                        <div class="form-row" style="margin: auto;">
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao"> Data de Adesão</label>
-                                <input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}" disabled>
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Banco</label>
-                                <input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" disabled>
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Agência</label>
-                                <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" disabled>
-                            </div>
-							</div>
-							<div class="form-row" style="margin: auto;">
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Conta</label>
-                                <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" disabled>
-                            </div>
-
-                            <div class="btnConvenio">
-
-                                <a class="btn btn_cadastrar  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
-                                    <span class="fas fa-plus" aria-hidden="true"> </span>
-                                    <span>  Tipo </span>
-                                </a>
-								
-                                <a class="btn btn_cadastrar " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
-                                    <span class="fas fa-plus" aria-hidden="true"> </span>
-                                    <span> Procedimento</span>
-                                </a>
-
-                                <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
-
-                                <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
-                                
-                                
-                            </div>
-
-                        </div>
-                        <input type="hidden" id="id" th:field="*{id}" />
-
-                        <br>
+                    <div id="div_botao">
+                        <h3 class="titulo">  Edição | <strong>Convenio</strong></h3>
+                        <a class="btn btn-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                        <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                        <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
 
                     </div>
-                </div>
-            </form>
+                    <br>
+                    <div class="card ajustarCard">
+                        <div class="card-body">
+                            <div class="form-row" style="margin: auto;">
+                                <div class="form-group col-md-4 text-center">
+
+                                    <label for="nome"> Nome </label>
+                                    <input type="text" class="form-control text-center" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" maxlength="50" disabled>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" class="form-control" id="cnpj" name="cnpj" th:field="*{cnpj}" disabled>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="ans">ANS</label>
+                                    <input type="text" class="form-control" id="ans" name="ans" th:field="*{registro_ans}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin: auto;">
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao"> Data de Adesão</label>
+                                    <input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}" disabled>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Banco</label>
+                                    <input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" disabled>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Agência</label>
+                                    <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin: auto;">
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Conta</label>
+                                    <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" disabled>
+                                </div>
+
+                                <div class="btnConvenio">
+
+                                    <a class="btn btn_cadastrar  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
+                                        <span class="fas fa-plus" aria-hidden="true"> </span>
+                                        <span>  Tipo </span>
+                                    </a>
+
+                                    <a class="btn btn_cadastrar " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
+                                        <span class="fas fa-plus" aria-hidden="true"> </span>
+                                        <span> Procedimento</span>
+                                    </a>
+
+                                    <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
+
+                                    <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
+
+                                </div>
+
+                            </div>
+                            <input type="hidden" id="id" th:field="*{id}" />
+
+                            <br>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
 
         </div>
-
-      
-</div>
     </section>
 
 </body>

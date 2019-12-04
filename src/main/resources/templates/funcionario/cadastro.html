@@ -80,28 +80,31 @@
 									<div class="form-group col-md-4">
 										<label for="nome">Nome</label> 
 										<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
-									</div>
+										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"  th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{nome}"></span>
+                                </div>
 									<div class="form-group col-md-1">
 										<label for="cpf">CPF</label> 
-										<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" />
 									</div>
 									<div class="form-group col-md-1">
 										<label for="rg">RG</label> 
-										<input type="text" class="form-control tamanho-fonte" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}"  required/>
+										<input type="text" class="form-control tamanho-fonte" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}"  />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="orgao_emissor">Orgão Emissor</label> 
 										<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required/>
+										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_emissao">Data de Emissão</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_nascimento">Data de Nascimento</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" />
 									</div>
 								</div>
 	
@@ -125,30 +128,30 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="naturalidade">Naturalidade</label> 
-										<input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" />
 									</div>
 									<div class="form-group col-md-2">
 						<label for="nacionalidade"> Nacionalidade</label> 
-				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" required>
+				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" >
 							<option value="BRASILEIRA">BRASILEIRA</option>
 							<option value="ESTRANGEIRA">ESTRANGEIRA</option>
 					</select>
 					</div>
 									<div class="form-group col-md-1">
 										<label for="telefone_fixo">Telefone fixo</label> 
-										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" />
 									</div>
 								
 									<div class="form-group col-md-2">
 										<label for="celular">Celular</label> 
-										<input type="text" class="form-control tamanho-fonte" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}" required />
+										<input type="text" class="form-control tamanho-fonte" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}"  />
 									</div>
 								</div>
 	
 								<div class="form-row">
 									<div class="form-group col-md-3">
 										<label for="email">Email</label> 
-										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="name@example.com" maxlength="30" onblur="checarEmail();"  onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{email}" required/>
+										<input type="email" class="form-control tamanho-fonte" id="email" placeholder="name@example.com" maxlength="30" onblur="checarEmail();"  onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{email}" />
 									</div>
 									<div class="form-group col-md-3">
 										<label for="escolaridade"> Escolaridade</label> 
@@ -164,6 +167,11 @@
 											<option value="M">MESTRADO</option>
 											
 										</select>
+									</div>
+									
+									<div class="form-group col-md-3">
+										<label for="senha">Senha de Acesso</label> 
+										<input type="password" class="form-control tamanho-fonte" id="senha"  maxlength="30"   th:field="*{senha}" />
 									</div>
 									
 								</div>
@@ -191,13 +199,13 @@
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" onkeyup="maiuscula(this)" disabled required> 
+							th:field="*{especialidade}" onkeyup="maiuscula(this)" disabled > 
 					</div>
 
 							<div class="form-group col-md-5 ">
 						<label for="crm"> CRM</label> <input type="text"
 							class="form-control" id="crm" placeholder="CRM"
-							autofocus="autofocus" th:field="*{crm}" disabled required> 
+							autofocus="autofocus" th:field="*{crm}" disabled > 
 					</div>
 								</div>
 								
@@ -207,15 +215,15 @@
 								<div class="form-row">
 									<div class="form-group col-md-1">
 										<label for="cep">CEP</label> 
-										<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required>
+										<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" >
 									</div>
 									<div class="form-group col-md-6">
 										<label for="logradouro">Logradouro</label> 
-										<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" required>
+										<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" >
 									</div>
 									<div class="form-group col-md-1">
 										<label for="numero">Número</label> 
-										<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" required>
+										<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="complemento">Complemento</label> 
@@ -226,11 +234,11 @@
 								<div class="form-row">
 									<div class="form-group col-md-5">
 										<label for="bairro">Bairro</label> 
-										<input id="bairro" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.bairro}" required>
+										<input id="bairro" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.bairro}" >
 									</div>
 									<div class="form-group col-md-5 ">
 										<label for="cidade">Cidade</label> 
-										<input id="cidade" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.cidade}" required>
+										<input id="cidade" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.cidade}" >
 									</div>
 									<div class="form-group col-md-2 ">
 										<label for="uf">Estado</label> 

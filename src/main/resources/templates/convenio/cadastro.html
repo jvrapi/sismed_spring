@@ -3,95 +3,159 @@
 
 <head>
     <meta charset="UTF-8">
-
+    <script type="text/javascript" src="/js/convenio/busca.js"></script>
 </head>
 
 <body>
-    <div layout:fragment="corpo">
-
-        <div class="container" style="margin-left: 35%;">
-            <div th:replace="fragmentos/alert"></div>
-        </div>
-
-        <div class="container-fluid" style="width: 98%">
-            
-
-            <form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
-                <div>
-                <h3 style="display: inline;"> Cadastro | <strong>Convênio</strong></h3>
-                <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/convenios/listar"> <i class="fas fa-chevron-left"></i> Voltar</a>
-                    <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
-                    
-                </div>
-                
-                <div class="card ajustarCard">
-                    <div class="card-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-4 ">
-                                <label for="nome"> Nome Convenio</label>
-                                <input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)">
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="cnpj">CNPJ</label>
-                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex. 29.309.127/0001-79" th:field="*{cnpj}">
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="ans">ANS</label>
-                                <input type="text" class="form-control" id="ans" name="ans" placeholder="Ex. 326305" th:field="*{registro_ans}">
-                            </div>
+    <section layout:fragment="corpo">
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
                         </div>
-
-                        <br>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao"> Data de Adesão</label>
-                                <input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}">
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Banco</label>
-                                <input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" placeholder="EX. 001">
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Agência</label>
-                                <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764">
-                            </div>
-
-                            <br>
-
-                            <div class="form-group col-md-4 ">
-                                <label for="dataAdesao">Conta</label>
-                                <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" placeholder="Ex. 38600-6">
-                            </div>
-
-                            <br>
-
-                        </div>
-
-                        <br>
-                        <br>
-                        <div class="ajustarTexto">
-                            <input type="hidden" id="id" th:field="*{id}" />
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Nome</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">CNPJ</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">ANS</button>
 
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
 
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </nav>
+            <div class="container" style="margin-left: 35%;">
+                <div th:replace="fragmentos/alert"></div>
+
+            </div>
+
+            <div class="container-fluid" style="width: 98%">
+
+                <form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
+                    <div>
+                        
+                        <h3 style="display: inline;"> Cadastro | <strong>Convênio</strong></h3>
+                        <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/convenios/listar"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                        <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
+
+                    </div>
+
+                    <div class="card ajustarCard">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-4 ">
+                                    <label for="nome"> Nome Convenio</label>
+                                    <input type="text" class="form-control" id="nome" placeholder="Ex. AMIL" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{nome}"></span>
+                                </div>
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="cnpj">CNPJ</label>
+                                    <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="Ex. 29.309.127/0001-79" th:field="*{cnpj}" th:classappend="${#fields.hasErrors('cnpj')} ? 'is-invalid'">
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{cnpj}"></span>
+                                </div>
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="ans">ANS</label>
+                                    <input type="text" class="form-control" id="ans" name="ans" placeholder="Ex. 326305" th:field="*{registro_ans}">
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao"> Data de Adesão</label>
+                                    <input type="date" class="form-control" id="dataAdesao" th:field="*{data_adesao}" th:classappend="${#fields.hasErrors('data_adesao')} ? 'is-invalid'">
+                                </div>
+
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{cnpj}"></span>
+                                </div>
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Banco</label>
+                                    <input type="text" class="form-control" id="banco" th:field="*{dadosb.banco}" placeholder="EX. 001"th:classappend="${#fields.hasErrors('dadosb.banco')} ? 'is-invalid'">
+                                </div>
+
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{cnpj}"></span>
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Agência</label>
+                                    <input type="text" class="form-control" id="agencia" th:field="*{dadosb.agencia}" placeholder="Ex. 5764">
+                                </div>
+
+                                <br>
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="dataAdesao">Conta</label>
+                                    <input type="text" class="form-control" id="conta" th:field="*{dadosb.conta}" placeholder="Ex. 38600-6">
+                                </div>
+
+                                <br>
+
+                            </div>
+
+                            <br>
+                            <br>
+                            <div class="ajustarTexto">
+                                <input type="hidden" id="id" th:field="*{id}" />
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

@@ -3,14 +3,19 @@ package br.com.sismed.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_endereco")
 public class Endereco extends AbstractEntity{
 
+	
 	@Column(nullable = false)
 	private String logradouro;
+	
 	
 	@Column(nullable = false)
 	private String bairro;
@@ -18,13 +23,18 @@ public class Endereco extends AbstractEntity{
 	@Column(nullable = false)
 	private String cidade;
 	
+	@NotBlank
+	@Size(min = 3, max = 255, message = "{Size.endereco.cep}")
 	@Column(nullable = false, length = 9)
 	private String cep;
+	
 	
 	@Column(nullable = false, length = 5)
 	private Integer numero;
 	
+	
 	private String complemento;
+	
 	
 	@Column(nullable = false, length = 2)
 	private String estado;
