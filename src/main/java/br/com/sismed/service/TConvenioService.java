@@ -68,5 +68,9 @@ public class TConvenioService {
 	public List<TConvenio> ListarPorNome(String dado) {
 		return tcRepository.ListarPorNome(dado);
 	}
-
+	
+	public List<TConvenio> BuscarTConvenioLab(Long id) {
+		return tcRepository.BuscarTConvenioLab(id);
+	}
+	
 }

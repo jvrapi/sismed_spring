@@ -21,7 +21,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Laboratorio;
+import br.com.sismed.domain.Paciente;
+import br.com.sismed.domain.TConvenio;
+import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.LabTConvService;
 import br.com.sismed.service.LaboratorioService;
+import br.com.sismed.service.TConvenioService;
 
 @Controller
 @RequestMapping("/laboratorio")
@@ -29,6 +34,15 @@ public class LaboratorioController {
 	
 	@Autowired
 	private LaboratorioService service;
+	
+	@Autowired
+	private ConvenioService cService;
+	
+	@Autowired 
+	private TConvenioService tcService;
+	
+	@Autowired
+	private LabTConvService ltcService;
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
@@ -86,6 +100,7 @@ public class LaboratorioController {
 	@GetMapping("/editar/{id}") 
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("laboratorio", service.buscarporId(id));
+		model.addAttribute("convenio", cService.BuscarConvLab(id));
 		return "/laboratorio/editar";
 	}
 	
@@ -140,5 +155,16 @@ public class LaboratorioController {
 		service.excluir(id);
 		
 		return "redirect:/funcionario/listar";
+	}
+	
+	@GetMapping("/convenio/{id}")
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id, Paciente paciente) {
+		return tcService.BuscarTConvenioLab(id);
+	}
+	
+	@GetMapping("/excluirTConv/{id}")
+	@ResponseBody
+	public void excluirTConv(@PathVariable("id") Long id) {
+		ltcService.excluir(id);
 	}
 }

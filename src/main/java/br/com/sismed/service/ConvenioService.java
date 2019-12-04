@@ -81,7 +81,10 @@ public class ConvenioService{
 	}
 
 	
-	
+	@Transactional(readOnly = true)
+	public List<Convenio> BuscarConvLab(Long id) {
+		return cRepository.BuscarConvLab(id);
+	}
 	
 	
 

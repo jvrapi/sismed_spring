@@ -25,5 +25,6 @@ public interface TConvenioRepository extends JpaRepository<TConvenio, Long>{
 	@Query(value = "SELECT * FROM sismed_tipo_convenio t WHERE t.nome LIKE %:dado%", nativeQuery = true)
 	List<TConvenio> ListarPorNome(String dado);
 	
-	
+	@Query(value = "SELECT DISTINCT tc.* FROM sismed_tipo_convenio tc JOIN sismed_convenio c ON tc.convenio_id = c.id JOIN sismed_laboratorio_tconvenio lt ON lt.sismed_tipo_convenio_id = tc.id WHERE c.id = :id", nativeQuery = true)
+	List<TConvenio> BuscarTConvenioLab(Long id);
 }
