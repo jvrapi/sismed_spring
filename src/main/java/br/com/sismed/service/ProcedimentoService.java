@@ -46,13 +46,17 @@ public class ProcedimentoService {
 		
 	}
 
-	
+	@Transactional(readOnly = true)
 	public List<Procedimento> ListarProcedimento(Long id) {
 		
 		return pRepository.ListarProcedimento(id);
 	}
 
 
-	
+	@Transactional(readOnly = true)
+	public List<Procedimento> ListarPorDescricao(String dado) {
+		
+		return pRepository.ListarPorDescricao(dado);
+	}
 
 }

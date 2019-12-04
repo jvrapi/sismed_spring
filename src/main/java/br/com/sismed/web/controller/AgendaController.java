@@ -46,16 +46,7 @@ public class AgendaController {
 	private ConvenioService convenioService;
 	
 	
-	/*
-	  
-	 @GetMapping("/agendamentos")
-	public String agendamentos(ModelMap model) {
-		model.addAttribute("agendamentos", serivce.ListarAgendamentos());
-		return "/agenda/agendamentos";
-		
-	}
-	
-	*/
+
 	
 	
 	@GetMapping("/agendamentos")

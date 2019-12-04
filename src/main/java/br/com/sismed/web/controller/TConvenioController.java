@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.TConvenioService;
@@ -72,6 +75,25 @@ public class TConvenioController {
 		}
 		return "/tconvenio/lista";
 	}
+	
+	@GetMapping("/buscar/{id}")
+	@ResponseBody
+	public List<LabelValue> buscar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+		if(id == 1) {
+			List<TConvenio> allTipos = tservice.ListarPorNome(term);
+			for (TConvenio tconvenio : allTipos) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel(tconvenio.getNome());
+				lv.setValue(tconvenio.getId());
+				suggeestions.add(lv);
+			}
+		}
+		
+		
+		return suggeestions;	
+	}
+	
 
 	
 	@GetMapping("/cadastrar/{id2}") // segunda parte do href

@@ -12,4 +12,13 @@ public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 
 	@Query(value = "SELECT * FROM sismed_convenio c WHERE c.id =  :id", nativeQuery=true)
 	List<Convenio> ListaComboBox(Long id);
+	
+	@Query(value = "SELECT * FROM sismed_convenio c WHERE c.nome  LIKE %:dado%", nativeQuery=true)
+	List<Convenio> ListarPorNome(String dado);
+	
+	@Query(value = "SELECT * FROM sismed_convenio c WHERE c.cnpj  LIKE %:dado%", nativeQuery=true)
+	List<Convenio> ListarPorCNPJ(String dado);
+	
+	@Query(value = "SELECT * FROM sismed_convenio c WHERE c.ans  LIKE %:dado%", nativeQuery=true)
+	List<Convenio> ListarPorANS(String dado);
 }

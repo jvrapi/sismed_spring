@@ -53,10 +53,8 @@ public class Exame extends AbstractEntity{
 	
 	@ManyToOne
 
-	@JoinColumn(name = "laboratorio_id")
 
 	@JoinColumn(name="laboratorio_id")
-
 	private Laboratorio laboratorio_id;
 	
 	public String getNome() {
@@ -172,4 +170,6 @@ public class Exame extends AbstractEntity{
 
 			return data;
 			}*/
+	
+	
 }

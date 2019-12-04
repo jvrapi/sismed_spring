@@ -48,20 +48,25 @@ public class TConvenioService {
 	}
 
 
-	
+	@Transactional(readOnly = true)
 	public Page<TConvenio> ListarTipoConvenio(Long id, Pageable pageable ) {
 		
 		return tcRepository.ListarTipoConvenio(id, pageable);
 	}
 
-	
+	@Transactional(readOnly = true)
 	public List<TConvenio> ListaComboBox(Long id) {
 		return tcRepository.ListaComboxBox(id);
 	}
 
-	
+	@Transactional(readOnly = true)
 	public List<TConvenio> ListaCad(Long id) {
 		return tcRepository.ListaCad(id);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<TConvenio> ListarPorNome(String dado) {
+		return tcRepository.ListarPorNome(dado);
 	}
 
 }

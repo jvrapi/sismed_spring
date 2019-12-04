@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 
@@ -70,6 +72,41 @@ public class ConvenioController {
 				model.addAttribute("pageNumbers", pageNumbers);
 			}
 			return "/convenio/lista";
+		}
+		
+		@GetMapping("/buscar/{id}")
+		@ResponseBody
+		public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+			List<LabelValue> suggeestions = new ArrayList<LabelValue>();
+			if(id == 1) {
+				List<Convenio> allConvenios = service.ListarPorNome(term);
+				for (Convenio convenio : allConvenios) {
+					LabelValue lv = new LabelValue();
+					lv.setLabel(convenio.getNome());
+					lv.setValue(convenio.getId());
+					suggeestions.add(lv);
+				}
+			}
+			else if(id == 2) {
+				List<Convenio> allConvenios = service.ListarPorCNPJ(term);
+				for (Convenio convenio: allConvenios) {
+					LabelValue lv = new LabelValue();
+					lv.setLabel(convenio.getNome());
+					lv.setValue(convenio.getId());
+					suggeestions.add(lv);
+				}
+			}
+			else if(id == 3) {
+				List<Convenio> allConvenios = service.ListarPorANS(term);
+				for (Convenio convenio: allConvenios) {
+					LabelValue lv = new LabelValue();
+					lv.setLabel(convenio.getNome());
+					lv.setValue(convenio.getId());
+					suggeestions.add(lv);
+				}
+			}
+			
+			return suggeestions;	
 		}
 		
 		@GetMapping("/cadastrar") // segunda parte do href

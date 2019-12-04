@@ -63,7 +63,22 @@ public class ConvenioService{
 		return cRepository.ListaComboBox(id);
 	}
 
-
+	@Transactional(readOnly = true)
+	public List<Convenio> ListarPorNome(String dado) {
+		
+		return cRepository.ListarPorNome(dado);
+	}
+	@Transactional(readOnly = true)
+	public List<Convenio> ListarPorCNPJ(String dado) {
+		
+		return cRepository.ListarPorCNPJ(dado);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Convenio> ListarPorANS(String dado) {
+		
+		return cRepository.ListarPorANS(dado);
+	}
 
 	
 	
