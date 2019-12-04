@@ -170,7 +170,6 @@ public class FuncionarioController {
 		return suggeestions;
 	}
 	
-	
 	@PostMapping("/editar")
 	public String editar(@Valid Funcionario funcionario, RedirectAttributes attr) {
 		String crm = funcionario.getCrm();

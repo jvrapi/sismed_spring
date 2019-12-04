@@ -70,10 +70,7 @@
 									<th scope="col">Coleta</th>
 									<th scope="col">Envio</th>
 									<th scope="col">Retorno</th>
-<<<<<<< HEAD
-								
-=======
->>>>>>> 51897800cf3026ad3a748436e04fef7e0853d6c9
+
 								</tr>
 							</thead>
 							<tbody th:each="e : ${exame.content}">
@@ -87,12 +84,12 @@
 								
 								<td><a th:text="${#temporals.format(e.data_envio, 'dd/MM/yyyy')}" /></a></td>
 								
-<<<<<<< HEAD
+
 								<td><a th:text="${#temporals.format(e.data_retorno, 'dd/MM/yyyy')}" /></a></td>
-=======
+
 								<td th:if="${e.data_retorno != null}"><a th:text="${#temporals.format(e.data_retorno, 'dd/MM/yyyy')}"></a></td>
 								<td th:if="${e.data_retorno == null}"><a><strong>Pendente</strong></a></td>
->>>>>>> 51897800cf3026ad3a748436e04fef7e0853d6c9
+
 									
 								</tr>
 							</tbody>

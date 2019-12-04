@@ -21,3 +21,14 @@ function voltar(botao) {
         $(this).val($(this).data("previous-value"));
     });
 }
+
+function valida(){
+if (id == 2) {
+	textObject.readOnly = false;
+} 
+
+else {
+	textObject.readOnly = true;
+	}
+}
+});
