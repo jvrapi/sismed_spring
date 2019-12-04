@@ -5,6 +5,12 @@ function executar(botao) {
 	$("#div_botao").append("<button class='btn btn-secondary mr-2 float-right' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
 	$("input").prop("disabled", false);
 	$("select").prop("disabled", false);
+	
+	if($("#perfil_id").val() == 2){
+		
+		$("#crm").prop("disabled", true)
+		$("#especialidade").prop("disabled", true)
+	}
 	$('#form').find(':input').each(function(i, elem) {
 	      $(this).data("previous-value", $(this).val());
 	});
@@ -21,14 +27,3 @@ function voltar(botao) {
         $(this).val($(this).data("previous-value"));
     });
 }
-
-function valida(){
-if (id == 2) {
-	textObject.readOnly = false;
-} 
-
-else {
-	textObject.readOnly = true;
-	}
-}
-});
