@@ -8,7 +8,7 @@
             $('#telefone_trabalho').mask('(00) 0000-0000');    
             $('#telefone').mask('(00) 0000-0000');   
         	$('#celular').mask('(00) 9 0000-0000');      
-        	$('#crm').mask('00 000000');   //crm referente ao RJ
+        	$('#crm').mask('00 000000');   
         	$('#banco').mask('000');
         	$('#agencia').mask('0000'); 
         	$('#conta').mask('00000-0');

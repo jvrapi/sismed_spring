@@ -5,6 +5,7 @@
     
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
+    <script type="text/javascript" src="/js/funcionario/valida.js"></script>
    
   </head>
 
@@ -47,24 +48,24 @@
 						</div>
 						<div class="form-group col-md-1">
 							<label for="cpf">CPF</label>
-							<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" mask="999.999.999-99" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="cpf" th:field="*{cpf}" mask="999.999.999-99" disabled/>
 						</div>
 						<div class="form-group col-md-1">
 							<label for="rg">RG</label>
-							<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="rg"  th:field="*{rg}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="orgao_emissor">Orgao emissor</label>
-							<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
+							<label for="orgao_emissor">Orgão Emissor</label>
+							<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" th:field="*{orgao_emissor}"
 							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="data_emissao">Data de Emissão</label>
-							<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_emissao"  th:field="*{data_emissao}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
-							<label for="data_nascimento">Nascimento</label>
-							<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" disabled/>
+							<label for="data_nascimento">Data de Nascimento</label>
+							<input type="date" class="form-control tamanho-fonte" id="data_nascimento"  th:field="*{data_nascimento}" disabled/>
 						</div>
 					</div>
 					
@@ -89,31 +90,26 @@
 						</div>
 						<div class="form-group col-md-3">
 							<label for="naturalidade">Naturalidade</label>
-							<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="naturalidade"  th:field="*{naturalidade}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="nacionalidade">Nacionalidade</label>
-							<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="nacionalidade"  th:field="*{nacionalidade}" disabled/>
 						</div>
 						<div class="form-group col-md-1">
 							<label for="telefone_fixo">Telefone fixo</label>
-							<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="telefone_fixo"  th:field="*{telefone_fixo}" disabled/>
 						</div>
 						<div class="form-group col-md-2">
 							<label for="celular">Celular</label>
-							<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="celular"  th:field="*{celular}" disabled/>
 						</div>
-					</div>
-					
-					<div class="form-row">
-						
-						
 					</div>
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="email">Email</label>
-							<input type="text" class="form-control tamanho-fonte" id="email" autofocus="autofocus" th:field="*{email}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="email"  th:field="*{email}" disabled/>
 						</div>
 						<div class="form-group col-md-3">
 							<label for="escolaridade">Escolaridade</label>
@@ -139,14 +135,14 @@
 						<div class="form-group col-md-6 ">
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
-							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled required> 
+							placeholder="especialidade" 
+							th:field="*{especialidade}" style="text-transform: uppercase;" disabled onkeyup="verifica();"> 
 					</div>
 
 							<div class="form-group col-md-2 ">
 						<label for="crm"> CRM</label> <input type="text"
 							class="form-control" id="crm" placeholder="CRM"
-							autofocus="autofocus" th:field="*{crm}" disabled required> 
+							 th:field="*{crm}" disabled onkeyup="verifica();"> 
 					</div>
 					</div>
 
@@ -216,9 +212,10 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
+					<input type="hidden" id="perfil_id" th:field="*{perfil.id}"/>
+				</div>
+				</div>
 				
-				</div>
-				</div>
 				
 				</form>
             </div>

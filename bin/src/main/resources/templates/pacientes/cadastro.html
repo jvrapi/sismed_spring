@@ -22,51 +22,83 @@
 			});
 		});
 	</script>
-		<script>
-			$(document).ready(function() {
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/pacientes/buscar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
+	<script>
+		$(document).ready(function() {
+			$( function() {
+				$("#txtBusca").autocomplete({
+					source: "buscar/2",
+					minLength: 1,
+					select: function (event, ui) {
+						url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+						document.location.href = url;
+						return false;
+					}
 				});
 			});
-			function muda() {
-				$("#dropdownMenu2").text("Prontuário");
-				$("#dropdownMenu2").val("1");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/pacientes/buscar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
+		});
+		function muda() {
+			$('#txtBusca').unmask();
+			$("#dropdownMenu2").text("Prontuário");
+			$( function() {
+				$("#txtBusca").autocomplete({
+					source: "buscar/1",
+					minLength: 1,
+					select: function (event, ui) {
+						url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+						document.location.href = url;
+						return false;
+					}
 				});
-			}
-			function muda2() {
-				$("#dropdownMenu2").text("Nome");
-				$("#dropdownMenu2").val("2");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/pacientes/buscar/2",
-						minLength: 2,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
+			});
+		}
+		function muda2() {
+			$('#txtBusca').unmask();
+			$("#dropdownMenu2").text("Nome");
+			$( function() {
+				$("#txtBusca").autocomplete({
+					source: "buscar/2",
+					minLength: 2,
+					select: function (event, ui) {
+						url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+						document.location.href = url;
+						return false;
+					}
 				});
-			}
-		</script>
+			});
+		}
+		function muda3() {
+			$('#txtBusca').unmask();
+			$('#txtBusca').mask('000.000.000-00');
+			$("#dropdownMenu2").text("CPF");
+			$( function() {
+				$("#txtBusca").autocomplete({
+					source: "buscar/3",
+					minLength: 2,
+					select: function (event, ui) {
+						url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+						document.location.href = url;
+						return false;
+					}
+				});
+			});
+		}
+		function muda4() {
+			$('#txtBusca').unmask();
+			$('#txtBusca').mask('(00) 9 0000-0000');
+			$("#dropdownMenu2").text("Celular");
+			$( function() {
+				$("#txtBusca").autocomplete({
+					source: "buscar/4",
+					minLength: 2,
+					select: function (event, ui) {
+						url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
+						document.location.href = url;
+						return false;
+					}
+				});
+			});
+		}
+	</script>
 	</head>
 
 	<body>
@@ -86,13 +118,15 @@
 						</div>
 					</div>
 					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+						<button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
 						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<span class="sr-only">Toggle Dropdown</span>
 						</button>
 						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+							<button class="dropdown-item" type="button" value="1" onclick="muda2()">Nome</button>
+							<button class="dropdown-item" type="button" value="2" onclick="muda()">Prontuário</button>
+							<button class="dropdown-item" type="button" value="2" onclick="muda3()">CPF</button>
+							<button class="dropdown-item" type="button" value="2" onclick="muda4()">Celular</button>
 						</div>
 					</div>
 					<div id="divBusca">
@@ -125,28 +159,28 @@
 							<div class="form-group col-md-4">
 								<label for="nome">Nome</label> 
 								<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
-								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
+								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="cpf">CPF</label> 
-								<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}"/>
+								<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="rg">RG</label> 
-								<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" />
+								<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="orgao_emissor">Orgao emissor</label> 
 								<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
-								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"/>
+								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="data_emissao">Data de emissão</label> 
-								<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" />
+								<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="data_nascimento">Data de nascimento</label> 
-								<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" />
+								<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" autocomplete="off"/>
 							</div>
 						</div>
 	
@@ -170,30 +204,30 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="naturalidade">Naturalidade</label> 
-								<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" />
+								<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="nacionalidade">Nacionalidade</label> 
-								<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" />
+								<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="telefone_fixo">Telefone fixo</label> 
-								<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" />
+								<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="telefone_trabalho">Telefone trab</label> 
-								<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" />
+								<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="celular">Celular</label> 
-								<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" required />
+								<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" required autocomplete="off"/>
 							</div>
 						</div>
 	
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="email">Email</label> 
-								<input type="text" class="form-control tamanho-fonte" id="email" maxlength="30" autofocus="autofocus" th:field="*{email}" />
+								<input type="text" class="form-control tamanho-fonte" id="email" maxlength="30" autofocus="autofocus" th:field="*{email}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-3">
 								<label for="escolaridade"> Escolaridade</label> 
@@ -210,11 +244,11 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="profissao">Profissao</label> 
-								<input type="text" class="form-control tamanho-fonte" id="profissao" autofocus="autofocus" th:field="*{profissao}" />
+								<input type="text" class="form-control tamanho-fonte" id="profissao" autofocus="autofocus" th:field="*{profissao}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-3">
 								<label for="recomandacao">Recomendação</label> 
-								<input type="text" class="form-control tamanho-fonte" id="recomendacao" autofocus="autofocus" th:field="*{recomendacao}" />
+								<input type="text" class="form-control tamanho-fonte" id="recomendacao" autofocus="autofocus" th:field="*{recomendacao}" autocomplete="off"/>
 							</div>
 						</div>
 	
@@ -237,15 +271,15 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="carteira_convenio">Carteira do convenio</label> 
-								<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" autofocus="autofocus" th:field="*{carteira_convenio}" />
+								<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" autofocus="autofocus" th:field="*{carteira_convenio}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="validade">Validade</label> 
-								<input type="date" class="form-control tamanho-fonte" id="validade" autofocus="autofocus" th:field="*{validade}" />
+								<input type="date" class="form-control tamanho-fonte" id="validade" autofocus="autofocus" th:field="*{validade}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="situacao">Situação</label> 
-								<select type="text" class="form-control tamanho-fonte" id="situacao" autofocus="autofocus" th:field="*{situacao}">
+								<select type="text" class="form-control tamanho-fonte" id="situacao" autofocus="autofocus" th:field="*{situacao}" autocomplete="off">
 									<option value="ATIVO">ATIVO</option>
 									<option value="INVATIVO">INVATIVO</option>
 									<option value="FALECIDO">FALECIDO</option>
@@ -259,30 +293,30 @@
 						<div class="form-row">
 							<div class="form-group col-md-1">
 								<label for="cep">CEP</label> 
-								<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required>
+								<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" autocomplete="off">
 							</div>
 							<div class="form-group col-md-6">
 								<label for="logradouro">Logradouro</label> 
-								<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" required>
+								<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" autocomplete="off">
 							</div>
 							<div class="form-group col-md-1">
 								<label for="numero">Número</label> 
-								<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}">
+								<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" autocomplete="off">
 							</div>
 							<div class="form-group col-md-4">
 								<label for="complemento">Complemento</label> 
-								<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}">
+								<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" autocomplete="off">
 							</div>
 						</div>
 	
 						<div class="form-row">
 							<div class="form-group col-md-5">
 								<label for="bairro">Bairro</label> 
-								<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required>
+								<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" autocomplete="off">
 							</div>
 							<div class="form-group col-md-5 ">
 								<label for="cidade">Cidade</label> 
-								<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" required>
+								<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}"autocomplete="off">
 							</div>
 							<div class="form-group col-md-2 ">
 								<label for="uf">Estado</label> 

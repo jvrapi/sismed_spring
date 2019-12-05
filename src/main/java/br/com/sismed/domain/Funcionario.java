@@ -1,24 +1,15 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -98,7 +89,7 @@ public class Funcionario extends AbstractEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "perfil_id")
-	private Perfil perfil;
+	private Perfil perfil_id;
 	
 	public Funcionario() {
 		super();
@@ -221,15 +212,11 @@ public class Funcionario extends AbstractEntity {
 		this.senha = senha;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
+	public Perfil getPerfil_id() {
+		return perfil_id;
 	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
+	public void setPerfil_id(Perfil perfil_id) {
+		this.perfil_id = perfil_id;
 	}
-	
-	
-	
-	
 }

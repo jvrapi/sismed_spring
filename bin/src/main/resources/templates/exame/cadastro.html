@@ -58,13 +58,13 @@
 					</div>
 				</div>
 				<div class="btn-group">
-					<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
+					<button type="button" class="btn" id="dropdownMenu2" value="1"></button>
 					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="sr-only">Toggle Dropdown</span>
 					</button>
 					<div class="dropdown-menu">
-						<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
-						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+						<button class="dropdown-item" type="button" value="1" onclick="muda()"></button>
+						<button class="dropdown-item" type="button" value="2" onclick="muda2()"></button>
 					</div>
 				</div>
 				<div id="divBusca">
@@ -90,7 +90,7 @@
 	
 				<div class="container-fluid" style="width: 98%">
 				
-				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST">
+				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST" onsubmit="validaData(this); return false;">
 					
 					<h3 style="display: inline;">Cadastro | <strong>Exame</strong></h3>
 					
@@ -128,17 +128,14 @@
 								
 								<div class="form-row">
 							
-									<div class="form-group col-md-3">
-										<label for="nome">Exame</label> 
-										<input type="text" class="form-control tamanho-fonte" id="nome" placeholder="nome" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{nome}" required/>
-									</div>
-									<div class="form-group col-md-2">
+								<div class="form-group col-md-2">
 										<label for="data_coleta">Data de Coleta</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_coletas" placeholder="Data de coleta" autofocus="autofocus" th:field="*{data_coleta}" value="" onblur="liberar();" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_coletas" placeholder="Data de coleta" autofocus="autofocus" th:field="*{data_coleta}" required/>
 									</div>
+
 									<div class="form-group col-md-2">
 										<label for="data_envio">Data de Envio</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_envio" placeholder="Data de envio" autofocus="autofocus" th:field="*{data_envio}" disabled="disabled" value="" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_envio" placeholder="Data de envio" autofocus="autofocus" th:field="*{data_envio}" required/>
 									</div>
 									
 									<div class="form-group col-md-2">
@@ -146,18 +143,24 @@
 										<input type="date" class="form-control tamanho-fonte" id="data_retorno" placeholder="Data de retorno" autofocus="autofocus" th:field="*{data_retorno}" />
 									</div>
 									
-								</div>
-	
-								<div class="form-row">
-								
-								<div class="form-group col-md-3">
-										<label for="descricao">Descrição</label> 
-										 <textarea class="form-control" rows="3" id="descricao" maxlength="250" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{descricao}"
-										 required style="resize: none;" onkeypress="return ApenasLetras(event,this);">
-										</textarea>
+										<div class="form-group col-md-3">
+										<label for="laboratorio">Laboratório</label> 
+										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}">
+											<option value="" selected hidden>Selecione</option>
+											<option th:each="l : ${laboratorio}" th:value="${l.id}" th:text="${l.nome}"></option>
+										</select>
+
+									</div>
+									
 									</div>
 								
+									<div class="form-row">
 									<div class="form-group col-md-3">
+										<label for="nome">Exame</label> 
+										<input type="text" class="form-control tamanho-fonte" id="nome" placeholder="nome" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{nome}" required/>
+									</div>
+									
+										<div class="form-group col-md-3">
 										<label for="funcionario">Quem Enviou</label> 
 										<input type="text" id="funcionario" class="form-control tamanho-fonte">
 										<input type="hidden" id="funcionario_id" th:field="*{funcionario_id}" required onkeyup="maiuscula(this)">
@@ -166,16 +169,30 @@
 									<div class="form-group col-md-3">
 										<label for="funcionario">Quem Recebeu</label> 
 										<input type="text" id="funcionario" class="form-control tamanho-fonte">
-										<input type="hidden" id="funcionario_id" required onkeyup="maiuscula(this)">
+										<input type="hidden" id="funcionario_id" onkeyup="maiuscula(this)" required >
+										</div>
+								
+								</div>
+								
+								<div class="form-row">
+								
+									<div class="form-group col-md-3">
+										<label for="descricao">Descrição</label> 
+										 <textarea class="form-control" rows="3" id="descricao" maxlength="250" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{descricao}"
+										 required style="resize: none;" onkeypress="return ApenasLetras(event,this);">
+										</textarea>
 									</div>
+									
+									</div>
+									
 									
 								</div>
 							</div>
-						</div>
+					
 					</form>
 				</div>
 			</div>
-						
+					
 	</body>
 </html>
 

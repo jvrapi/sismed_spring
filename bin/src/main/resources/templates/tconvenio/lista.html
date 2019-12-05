@@ -3,44 +3,115 @@
 
 <head>
     <meta charset="UTF-8">
-
+    <script type="text/javascript" src="/js/tconvenio/busca.js"></script>
 </head>
 
 <body>
-    <div layout:fragment="corpo">
-        <div class="container ajustarTexto">
-            <div th:replace="fragmentos/alert" class="container"></div>
-            <div th:replace="fragmentos/modal" class="container"></div>
-        </div>
-        <div class="container" style="width: 98%">
-            <div th:each="c : ${convenio}" class="detalhes">
-                <h3 style="display: inline; margin-left: 10px;">
-						
+    <section layout:fragment="corpo">
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <div class="dropdown">
+                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                        <div class="dropdown-content">
+                            <a href="#">Agendamento</a>
+                            <a href="/pacientes/cadastrar">Paciente</a>
+                            <a href="#">Funcionário</a>
+                            <a href="/convenios/cadastrar">Convênio</a>
+                            <a href="#">Exame</a>
+                            <a href="#">Laboratório</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Nome</button>
+
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </nav>
+            <div class="container ajustarTexto">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+            </div>
+            <div class="container" style="width: 98%">
+                <div th:each="c : ${convenios}" class="detalhes">
+                    <h3 style="display: inline; margin-left: 10px;">
+
 						<strong th:text = "${c.nome + ' | ' }">  Convenio </strong> Tipos
 					</h3>
-					<a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }" > <i class="fas fa-chevron-left"></i> Voltar</a> 
-            </div>
-            <div class="card ajustarCard">
-                <div class="card-body">
-                    <div style="margin-left: 40%;" th:each="t : ${tconvenio}">
-                        <div class="container detalhes ">
+                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                </div>
+                <div class="card ajustarCard ">
+                    <div class="card-body ">
+                        <div style="margin-left: 40%;" th:each="t : ${tconvenio}">
+                            <div class="detalhes">
 
-                            <div class="form-row">
-                                <div class="form-group col-md-4" style="">
-                                    <a th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" title="Mostrar informações" th:text="${t.nome}"> </a>
+                                <div class="form-row ">
+                                    <div class="form-group col-md-4" style="margin-left: 80px;">
+                                        <a th:href="@{/tconvenios/editar/{id} (id=${t.id}) }" title="Mostrar informações" th:text="${t.nome}"> </a>
+                                    </div>
+
                                 </div>
-
                             </div>
+
                         </div>
+                        <br>
+                        <br>
 
                     </div>
-                    <br>
-                    <br>
-
+                    <div th:if="${tconvenio.totalPages > 0}">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item" th:if="${tconvenio.hasPrevious()}">
+                                    <a class="page-link" th:href="@{/tconvenios/listar(page=1)}">
+                                        <span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:each="p : ${pageNumbers}" th:classappend="${p==tconvenio.pageable.pageNumber + 1} ? active">
+                                    <a class="page-link" th:text=${p} th:href="@{'/tconvenios/listar/' + (page=${p})}"></a>
+                                </li>
+                                <li class="page-item" th:if="${tconvenio.hasNext()}">
+                                    <a class="page-link" th:href="@{/tconvenios/listar/(id = ${tconvenio.convenio.id})(page=${tconvenio.totalPages})}">
+                                        <span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </body>
 
 </html>

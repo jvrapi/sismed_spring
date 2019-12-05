@@ -85,11 +85,11 @@ public class FuncionarioController {
 		if(crm == null) {
 			Perfil perfil = new Perfil();
 			perfil.setId(2L);
-			funcionario.setPerfil(perfil);
+			funcionario.setPerfil_id(perfil);
 		}else {
 			Perfil perfil = new Perfil();
 			perfil.setId(1L);
-			funcionario.setPerfil(perfil);
+			funcionario.setPerfil_id(perfil);
 		}
 		
 		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
@@ -176,11 +176,11 @@ public class FuncionarioController {
 		if(crm == null) {
 			Perfil perfil = new Perfil();
 			perfil.setId(2L);
-			funcionario.setPerfil(perfil);
+			funcionario.setPerfil_id(perfil);
 		}else {
 			Perfil perfil = new Perfil();
 			perfil.setId(1L);
-			funcionario.setPerfil(perfil);
+			funcionario.setPerfil_id(perfil);
 		}
 		
 		attr.addFlashAttribute("success","Funcionario(a) alterado(a) com sucesso");

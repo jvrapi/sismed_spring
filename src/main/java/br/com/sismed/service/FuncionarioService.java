@@ -94,7 +94,7 @@ public class FuncionarioService implements UserDetailsService{
 		return new User(
 				funcionario.getCpf(),
 				funcionario.getSenha(),
-				AuthorityUtils.createAuthorityList(funcionario.getPerfil().getDesc())
+				AuthorityUtils.createAuthorityList(funcionario.getPerfil_id().getDesc())
 				
 			);
 		}

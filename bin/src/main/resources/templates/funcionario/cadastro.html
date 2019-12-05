@@ -3,13 +3,52 @@
 <head>
 	<meta charset="UTF-8" />
 	<script type="text/javascript" src="/js/funcionario/valida.js"></script>
-	
-	
+
 	</head>
 	
 	<body>
 	
 	<div layout:fragment="corpo"  >
+	
+			<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+				<div class="dropdown">
+					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+					<div class="dropdown-content">
+						<a href="#">Agendamento</a>
+						<a href="/pacientes/cadastrar">Paciente</a>
+						<a href="#">Funcionário</a>
+						<a href="/convenios/cadastrar">Convênio</a>
+						<a href="#">Exame</a>
+						<a href="#">Laboratório</a>
+					</div>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn" id="dropdownMenu2" value="1"></button>
+					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="sr-only">Toggle Dropdown</span>
+					</button>
+					<div class="dropdown-menu">
+						<button class="dropdown-item" type="button" value="1" onclick="muda()"></button>
+						<button class="dropdown-item" type="button" value="2" onclick="muda2()"></button>
+					</div>
+				</div>
+				<div id="divBusca">
+					<input type="text" id="txtBusca" placeholder="Buscar..." />
+					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+				</div>
+				<div class="collapse navbar-collapse justify-content-end login">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="mr-4">Bem vindo</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
 		
 		<div class="container" style="margin-left: 35%;">
 			<div th:replace="fragmentos/alert"></div>
@@ -40,28 +79,31 @@
 									<div class="form-group col-md-4">
 										<label for="nome">Nome</label> 
 										<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required />
-									</div>
+										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);"  th:classappend="${#fields.hasErrors('nome')} ? 'is-invalid'" />
+                                </div>
+                                <div class="invalid-feedback">
+                                    <span th:errors="*{nome}"></span>
+                                </div>
 									<div class="form-group col-md-1">
 										<label for="cpf">CPF</label> 
-										<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="cpf"  th:field="*{cpf}" />
 									</div>
 									<div class="form-group col-md-1">
 										<label for="rg">RG</label> 
-										<input type="text" class="form-control tamanho-fonte" id="rg" placeholder="RG" autofocus="autofocus" th:field="*{rg}"  required/>
+										<input type="text" class="form-control tamanho-fonte" id="rg" placeholder="RG" th:field="*{rg}"  />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="orgao_emissor">Orgão Emissor</label> 
-										<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" placeholder="Orgao emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
-										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required/>
+										<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" placeholder="Orgao emissor"  th:field="*{orgao_emissor}"
+										onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_emissao">Data de Emissão</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_emissao" placeholder="Data de emissao" autofocus="autofocus" th:field="*{data_emissao}" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_emissao" placeholder="Data de emissao"  th:field="*{data_emissao}" />
 									</div>
 									<div class="form-group col-md-2">
 										<label for="data_nascimento">Data de Nascimento</label> 
-										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" placeholder="Data de nascimento" autofocus="autofocus" th:field="*{data_nascimento}" required/>
+										<input type="date" class="form-control tamanho-fonte" id="data_nascimento" placeholder="Data de nascimento"  th:field="*{data_nascimento}" />
 									</div>
 								</div>
 	
@@ -76,8 +118,8 @@
 									</div>
 									<div class="form-group col-md-2">
 										<label for="estado_civil">Estado civil</label> 
-										<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}">
-											<option value="SOLTEIRO(A)">SOLTEIRO(A)</option>
+										<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}" style="text-transform: uppercase;">
+											<option value="solteiro(a)">SOLTEIRO(A)</option>
 											<option value="CASADO(A)">CASADO(A)</option>
 											<option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
 											<option value="VIÚVO(A)">VIÚVO(A)</option>
@@ -85,44 +127,50 @@
 									</div>
 									<div class="form-group col-md-3">
 										<label for="naturalidade">Naturalidade</label> 
-										<input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" autofocus="autofocus" th:field="*{naturalidade}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade"  th:field="*{naturalidade}" />
 									</div>
 									<div class="form-group col-md-2">
 						<label for="nacionalidade"> Nacionalidade</label> 
-				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" required>
+				   <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" >
 							<option value="BRASILEIRA">BRASILEIRA</option>
 							<option value="ESTRANGEIRA">ESTRANGEIRA</option>
 					</select>
 					</div>
 									<div class="form-group col-md-1">
 										<label for="telefone_fixo">Telefone fixo</label> 
-										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo" autofocus="autofocus" th:field="*{telefone_fixo}" required/>
+										<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" placeholder="Telefone fixo"  th:field="*{telefone_fixo}" />
 									</div>
 								
 									<div class="form-group col-md-2">
 										<label for="celular">Celular</label> 
-										<input type="text" class="form-control tamanho-fonte" id="celular" placeholder="Numero do celular" autofocus="autofocus" th:field="*{celular}" required />
+										<input type="text" class="form-control tamanho-fonte" id="celular" placeholder="Numero do celular"  th:field="*{celular}"  />
 									</div>
 								</div>
 	
 								<div class="form-row">
 									<div class="form-group col-md-3">
 										<label for="email">Email</label> 
-										<input type="text" class="form-control tamanho-fonte" id="email" placeholder="Email" maxlength="30" autofocus="autofocus" th:field="*{email}" required/>
+										<input type="email" class="form-control tamanho-fonte" id="email" placeholder="name@example.com" maxlength="30"   onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{email}" />
 									</div>
 									<div class="form-group col-md-3">
 										<label for="escolaridade"> Escolaridade</label> 
 										<select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}">
-											<option value="esc">ENSINO SUPERIOR COMPLETO</option>
-											<option value="esi">ENSINO SUPERIOR INCOMPLETO</option>
-											<option value="emc">ENSINO MÉDIO COMPLETO</option>
-											<option value="emi">ENSINO MÉDIO INCOMPLETO</option>
-											<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
-											<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
-											<option value="d">DOUTORADO</option>
-											<option value="m">MESTRADO</option>
+											
+											<option value="ESC">ENSINO SUPERIOR COMPLETO</option>
+											<option value="ESI">ENSINO SUPERIOR INCOMPLETO</option>
+											<option value="EMC">ENSINO MÉDIO COMPLETO</option>
+											<option value="EMI">ENSINO MÉDIO INCOMPLETO</option>
+											<option value="EFC">ENSINO FUNDAMENTAL COMPLETO</option>
+											<option value="EFI">ENSINO FUNDAMENTAL INCOMPLETO</option>
+											<option value="D">DOUTORADO</option>
+											<option value="M">MESTRADO</option>
 											
 										</select>
+									</div>
+									
+									<div class="form-group col-md-3">
+										<label for="senha">Senha de Acesso</label> 
+										<input type="password" class="form-control tamanho-fonte" id="senha"  maxlength="30"   th:field="*{senha}" />
 									</div>
 									
 								</div>
@@ -133,10 +181,10 @@
 							<div class="form-row align-items-center">
 						    <div class="col-auto my-1">
 						      <label class="mr-sm-2" for="inlineFormCustomSelect">Selecione</label>
-						      <select class="custom-select mr-sm-2" id="tipo" th:field="*{nivel_acesso}">
-						        <option value="" selected>Escolha um...</option>
-						        <option  value="1" >Médico(a)</option>
-						        <option  value="2">Funcionário(a)</option>
+						      <select class="custom-select mr-sm-2" id="tipo">
+						        <option value="" selected>ESCOLHA UM...</option>
+						        <option  value="1" >MÉDICO(A)</option>
+						        <option  value="2">FUNCIONÁRIO(A)</option>
 						      
 						      </select>
 						    </div>	
@@ -149,14 +197,14 @@
 							<div class="form-group col-md-5 ">
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
-							placeholder="especialidade" autofocus="autofocus"
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled required> 
+							placeholder="especialidade" 
+							th:field="*{especialidade}" onkeyup="maiuscula(this)" disabled > 
 					</div>
 
 							<div class="form-group col-md-5 ">
 						<label for="crm"> CRM</label> <input type="text"
 							class="form-control" id="crm" placeholder="CRM"
-							autofocus="autofocus" th:field="*{crm}" disabled required> 
+							th:field="*{crm}" disabled > 
 					</div>
 								</div>
 								
@@ -166,34 +214,34 @@
 								<div class="form-row">
 									<div class="form-group col-md-1">
 										<label for="cep">CEP</label> 
-										<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required>
+										<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" >
 									</div>
 									<div class="form-group col-md-6">
 										<label for="logradouro">Logradouro</label> 
-										<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" required>
+										<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" >
 									</div>
 									<div class="form-group col-md-1">
 										<label for="numero">Número</label> 
-										<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" required>
+										<input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" >
 									</div>
 									<div class="form-group col-md-4">
 										<label for="complemento">Complemento</label> 
-										<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}">
+										<input id="complemento" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" type="text" th:field="*{endereco.complemento}">
 									</div>
 								</div>
 	
 								<div class="form-row">
 									<div class="form-group col-md-5">
 										<label for="bairro">Bairro</label> 
-										<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required>
+										<input id="bairro" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.bairro}" >
 									</div>
 									<div class="form-group col-md-5 ">
 										<label for="cidade">Cidade</label> 
-										<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" required>
+										<input id="cidade" type="text" class="form-control tamanho-fonte" onkeyup="maiuscula(this)" th:field="*{endereco.cidade}" >
 									</div>
 									<div class="form-group col-md-2 ">
 										<label for="uf">Estado</label> 
-										<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}">
+										<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}"   style="text-transform: uppercase;">
 											<option value="" selected hidden>Selecione</option>
 											<option value="AC">Acre</option>
 											<option value="AL">Alagoas</option>
@@ -232,12 +280,9 @@
 						</div>
 						
 						</form>
+			</div>
+			</div>
 					
-			</div>
-			</div>
-							
-							
-						
 	</body>
 </html>
 
