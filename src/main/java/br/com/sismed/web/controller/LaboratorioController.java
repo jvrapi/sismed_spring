@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sismed.domain.LabTConv;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Laboratorio;
-import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.LabTConvService;
@@ -47,7 +48,7 @@ public class LaboratorioController {
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
 		
-		PageRequest pagerequest = PageRequest.of(page-1, 1, Sort.by("nome").ascending());
+		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("nome").ascending());
 		Page<Laboratorio> laboratorio = service.buscarTodos(pagerequest);
 		model.addAttribute("laboratorio", laboratorio);
 		
@@ -98,9 +99,10 @@ public class LaboratorioController {
 	}
 	
 	@GetMapping("/editar/{id}") 
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	public String preEditar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("labtconv") LabTConv labtconv) {
 		model.addAttribute("laboratorio", service.buscarporId(id));
 		model.addAttribute("convenio", cService.BuscarConvLab(id));
+		model.addAttribute("allconvenios", cService.findAll());
 		return "/laboratorio/editar";
 	}
 	
@@ -158,13 +160,25 @@ public class LaboratorioController {
 	}
 	
 	@GetMapping("/convenio/{id}")
-	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id, Paciente paciente) {
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id) {
 		return tcService.BuscarTConvenioLab(id);
+	}
+	
+	@GetMapping("/allconvenios/{id}/{labId}")
+	public @ResponseBody List<TConvenio> listAllTipoConvenio(@PathVariable("id") Long id, @PathVariable("labId") Long labId) {
+		if(tcService.ListaComboBoxLab(id, labId).isEmpty()) return tcService.ListaComboBoxLab2(id);
+		return tcService.ListaComboBoxLab(id, labId);
 	}
 	
 	@GetMapping("/excluirTConv/{id}")
 	@ResponseBody
 	public void excluirTConv(@PathVariable("id") Long id) {
 		ltcService.excluir(id);
+	}
+	
+	@PostMapping("/salvarTConv/{id}")
+	public String salvarTConv(LabTConv labtconv, @PathVariable("id") Long id) {
+		ltcService.salvar(labtconv);
+		return "redirect:/laboratorio/editar/" + id;
 	}
 }

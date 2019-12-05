@@ -27,4 +27,10 @@ public interface TConvenioRepository extends JpaRepository<TConvenio, Long>{
 	
 	@Query(value = "SELECT DISTINCT tc.* FROM sismed_tipo_convenio tc JOIN sismed_convenio c ON tc.convenio_id = c.id JOIN sismed_laboratorio_tconvenio lt ON lt.sismed_tipo_convenio_id = tc.id WHERE c.id = :id", nativeQuery = true)
 	List<TConvenio> BuscarTConvenioLab(Long id);
+	
+	@Query(value ="SELECT * from sismed_tipo_convenio WHERE id != (SELECT DISTINCT sismed_tipo_convenio_id FROM sismed_laboratorio_tconvenio where sismed_laboratorio_id = :labId) AND convenio_id = :id", nativeQuery = true)
+	List<TConvenio> ListaComboBoxLab(Long id, Long labId);
+	
+	@Query(value = "SELECT * from sismed_tipo_convenio WHERE convenio_id = :id", nativeQuery = true)
+	List<TConvenio> ListaComboBoxLab2(Long id);
 }
