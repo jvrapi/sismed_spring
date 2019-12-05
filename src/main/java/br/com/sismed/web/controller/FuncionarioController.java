@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -81,7 +82,7 @@ public class FuncionarioController {
 	
 	@PostMapping("/salvar")
 	public String salvar( Funcionario funcionario, RedirectAttributes attr) {
-		String crm = funcionario.getCrm();
+		Integer crm = funcionario.getCrm();
 		if(crm == null) {
 			Perfil perfil = new Perfil();
 			perfil.setId(2L);
@@ -92,8 +93,13 @@ public class FuncionarioController {
 			funcionario.setPerfil_id(perfil);
 		}
 		
-		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
+		try {
 		service.salvar(funcionario);
+		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
+		}catch(DataIntegrityViolationException ex){
+			attr.addFlashAttribute("fail","Cadastro não realizado, CPF já existente");
+		}
+		
 		return "redirect:/funcionario/listar";
 	}
 	
@@ -172,7 +178,7 @@ public class FuncionarioController {
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Funcionario funcionario, RedirectAttributes attr) {
-		String crm = funcionario.getCrm();
+		Integer crm = funcionario.getCrm();
 		if(crm == null) {
 			Perfil perfil = new Perfil();
 			perfil.setId(2L);

@@ -42,7 +42,7 @@ public class Funcionario extends AbstractEntity {
 	private LocalDate data_emissao;
 	
 	@Column(name="crm", nullable=true)
-	private String crm;
+	private Integer crm;
 	
 	@Column(name="especialidade", nullable=true)
 	private String especialidade;
@@ -131,10 +131,10 @@ public class Funcionario extends AbstractEntity {
 	public void setOrgao_emissor(String orgao_emissor) {
 		this.orgao_emissor = orgao_emissor;
 	}
-	public String getCrm() {
+	public Integer getCrm() {
 		return crm;
 	}
-	public void setCrm(String crm) {
+	public void setCrm(Integer crm) {
 		this.crm = crm;
 	}
 	public String getEspecialidade() {

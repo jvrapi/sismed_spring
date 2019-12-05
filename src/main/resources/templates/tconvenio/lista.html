@@ -98,7 +98,7 @@
                                     </a>
                                 </li>
                                 <li class="page-item" th:each="p : ${pageNumbers}" th:classappend="${p==tconvenio.pageable.pageNumber + 1} ? active">
-                                    <a class="page-link" th:text=${p} th:href="@{'/tconvenios/listar/' + (page=${p})}"></a>
+                                    <a class="page-link" th:text=${p} th:href="@{${'/tconvenios/listar/'}(page=${p})}"></a>
                                 </li>
                                 <li class="page-item" th:if="${tconvenio.hasNext()}">
                                     <a class="page-link" th:href="@{/tconvenios/listar/(id = ${tconvenio.convenio.id})(page=${tconvenio.totalPages})}">
