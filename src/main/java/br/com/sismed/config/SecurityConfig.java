@@ -7,17 +7,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import br.com.sismed.domain.PerfilTipo;
 import br.com.sismed.service.FuncionarioService;
-
-
 
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 	
-	
-    
-    
 	@Autowired
 	private FuncionarioService service;
 	

@@ -73,4 +73,11 @@ public class TConvenioService {
 		return tcRepository.BuscarTConvenioLab(id);
 	}
 	
+	public List<TConvenio> ListaComboBoxLab(Long id, Long labId) {
+		return tcRepository.ListaComboBoxLab(id, labId);
+	}
+	
+	public List<TConvenio> ListaComboBoxLab2(Long id) {
+		return tcRepository.ListaComboBoxLab2(id);
+	}
 }

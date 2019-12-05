@@ -92,6 +92,18 @@
 		  });
 		});
 	</script>
+	<script>
+		$(document).ready(function(){
+		  $("#modalCadastroLab").on('show.bs.modal', function(event){
+		    var button = $(event.relatedTarget);
+		    var recipientid = button.data('id');
+			var recipientnome = button.data('nome');
+			var modal = $(this);
+			modal.find('#recipient-name').val(recipientnome);
+			modal.find('#recipient-id').val(recipientid);
+		  });
+		});
+	</script>
 
 </body>
 
