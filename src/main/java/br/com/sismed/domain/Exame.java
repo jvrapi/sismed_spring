@@ -52,8 +52,6 @@ public class Exame extends AbstractEntity{
 	private TConvenio tipo;
 	
 	@ManyToOne
-
-
 	@JoinColumn(name="laboratorio_id")
 	private Laboratorio laboratorio_id;
 	

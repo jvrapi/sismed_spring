@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		
-		  <script type="text/javascript" src="/js/funcionario/comparahora.js"></script>
+		  <script type="text/javascript" src="/js/exame/comparahora.js"></script>
 		
 		<script>
 			//buscar paciente 
@@ -168,8 +168,8 @@
 									
 									<div class="form-group col-md-3">
 										<label for="funcionario_lab">Quem Recebeu</label> 
-										<input type="text" id="funcionario_lab" class="form-control tamanho-fonte">
-										<input type="hidden" id="funcionario_lab" onkeyup="maiuscula(this)" required >
+										<input type="text" id="funcionario_lab" class="form-control tamanho-fonte" th:field="*{funcionario_lab}"
+										onkeyup="maiuscula(this)" required >
 										</div>
 								
 								</div>
