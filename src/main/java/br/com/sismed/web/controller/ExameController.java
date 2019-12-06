@@ -94,7 +94,6 @@ public class ExameController {
 	public String cadastrar (ModelMap model, Exame exame) {
 		model.addAttribute("paciente",pservice.findAll());
 		model.addAttribute("funcionario",fservice.findAll());
-		model.addAttribute("laboratorio", lservice.findAll());
 		return "/exame/cadastro"; 
 	}
 	
@@ -220,10 +219,12 @@ public class ExameController {
 		return suggeestions;	
 	}
 	
-	@GetMapping("/buscarlab/{id]")
+	@GetMapping("/buscarlab/{id}")
 	@ResponseBody
 	public List<Laboratorio> listarlab(@PathVariable("id") Long id) {
-		return lservice.findAll();
+		List<Laboratorio> listLab = lservice.ListarLabTConv(id);
+		if(!listLab.isEmpty()) return listLab;
+		else return lservice.findAll();
 	}
 }
 

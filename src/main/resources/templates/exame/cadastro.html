@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		
 		  <script type="text/javascript" src="/js/exame/comparahora.js"></script>
-		  <script type="text/javascript" src="/js/exame/busca.js"></script>s
+		  <script type="text/javascript" src="/js/exame/busca.js"></script>
 		
 		<script>
 			//buscar paciente 
@@ -21,6 +21,20 @@
 						//nome e id do tipo de convenio
 						$("#tipo").val(ui.item.nome_tipo);
 						$("#tipo_id").val(ui.item.tipo);
+						var url = "http://localhost:8080/exame/buscarlab/" + $("#tipo_id").val();
+						$.ajax({
+							url : url,
+							method : "get",
+							success : function(data) {
+								var html = '';
+								$("#laboratorio").prop("disabled", false);
+								var html = '<option value="" hidden>Selecione</option>';
+								for (var i = 0; i < data.length; i++) {
+									html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
+								}
+								$("#laboratorio").html(html);
+							},
+						});
 						return false;
 					}
 				});
@@ -196,9 +210,7 @@
 									
 											<div class="form-group col-md-3">
 										<label for="laboratorio">Laboratório</label> 
-										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}">
-											<option value="" selected hidden>Selecione</option>
-											<option th:each="l : ${laboratorio}" th:value="${l.id}" th:text="${l.nome}"></option>
+										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}" disabled required>
 										</select>
 
 									</div>

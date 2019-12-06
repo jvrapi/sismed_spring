@@ -155,18 +155,16 @@ public class LaboratorioController {
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("success", "Laboratório excluído com sucesso");
 		service.excluir(id);
-		
 		return "redirect:/funcionario/listar";
 	}
 	
-	@GetMapping("/convenio/{id}")
-	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id) {
-		return tcService.BuscarTConvenioLab(id);
+	@GetMapping("/convenio/{id}/{labId}")
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id, @PathVariable("labId") Long labId) {
+		return tcService.BuscarTConvenioLab(id, labId);
 	}
 	
 	@GetMapping("/allconvenios/{id}/{labId}")
 	public @ResponseBody List<TConvenio> listAllTipoConvenio(@PathVariable("id") Long id, @PathVariable("labId") Long labId) {
-		if(tcService.ListaComboBoxLab(id, labId).isEmpty()) return tcService.ListaComboBoxLab2(id);
 		return tcService.ListaComboBoxLab(id, labId);
 	}
 	

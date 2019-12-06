@@ -61,6 +61,10 @@ public class LaboratorioService {
 		return lRepository.ListarLaboratorioBairro(dado);
 	}
 	
+	public List<Laboratorio> ListarLabTConv(Long id) {
+		return lRepository.ListarLabTConv(id);
+	}
+	
 	public List<Laboratorio> findAll() {
 		return lRepository.findAll();
 	}
