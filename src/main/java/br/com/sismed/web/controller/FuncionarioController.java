@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Perfil;
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.LoginService;
 
 @Controller
 @RequestMapping("/funcionario")
@@ -35,6 +38,9 @@ public class FuncionarioController {
 	
 	@Autowired
 	private FuncionarioService service;
+	
+	@Autowired
+	private LoginService lservice;
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page){
@@ -81,26 +87,23 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar( Funcionario funcionario, RedirectAttributes attr) {
-		Integer crm = funcionario.getCrm();
-		if(crm == null) {
-			Perfil perfil = new Perfil();
-			perfil.setId(2L);
-			funcionario.setPerfil_id(perfil);
-		}else {
-			Perfil perfil = new Perfil();
-			perfil.setId(1L);
-			funcionario.setPerfil_id(perfil);
-		}
-		
+	public String salvar( Funcionario funcionario, Login login,RedirectAttributes attr, Model model) {
 		try {
 		service.salvar(funcionario);
+		String cpf = funcionario.getCpf();
+		login.setFuncionario_id(funcionario);
+		login.setCpf(cpf);
+		Integer crm = funcionario.getCrm();
+		
+		if(crm == null)
+		
+		lservice.salvar(login);
 		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
 		}catch(DataIntegrityViolationException ex){
 			attr.addFlashAttribute("fail","Cadastro não realizado, CPF já existente");
 		}
 		
-		return "redirect:/funcionario/listar";
+		return "senha";
 	}
 	
 	@GetMapping("/editar/{id}") 
@@ -178,16 +181,6 @@ public class FuncionarioController {
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Funcionario funcionario, RedirectAttributes attr) {
-		Integer crm = funcionario.getCrm();
-		if(crm == null) {
-			Perfil perfil = new Perfil();
-			perfil.setId(2L);
-			funcionario.setPerfil_id(perfil);
-		}else {
-			Perfil perfil = new Perfil();
-			perfil.setId(1L);
-			funcionario.setPerfil_id(perfil);
-		}
 		
 		attr.addFlashAttribute("success","Funcionario(a) alterado(a) com sucesso");
 		service.salvar(funcionario);

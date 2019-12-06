@@ -22,15 +22,13 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 
 
 @Service
-public class FuncionarioService implements UserDetailsService{
+public class FuncionarioService {
 	
 	@Autowired
 	private FuncionarioRepository fRepository;
 	
 	@Transactional(readOnly = false)
 	public void salvar(Funcionario funcionario) {
-		String senhac = new BCryptPasswordEncoder().encode(funcionario.getSenha());
-		funcionario.setSenha(senhac);
 		fRepository.save(funcionario);
 	}
 
@@ -82,22 +80,9 @@ public class FuncionarioService implements UserDetailsService{
 		return fRepository.ListarFuncionarioCelular(dado);
 	}
 	
-	@Transactional(readOnly = true)
-	public Funcionario BuscarPorCPF(String cpf){
-		return fRepository.findByCpf(cpf);
-	}
+	
 
-	@Override @Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Funcionario funcionario = BuscarPorCPF(username);
-		
-		return new User(
-				funcionario.getCpf(),
-				funcionario.getSenha(),
-				AuthorityUtils.createAuthorityList(funcionario.getPerfil_id().getDesc())
-				
-			);
-		}
+	
 		
 		
 	}

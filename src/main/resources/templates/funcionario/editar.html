@@ -15,9 +15,8 @@
 			<div class="container" style="margin-left: 35%;">
 				<div th:replace="fragmentos/alert"></div>
 				<div th:replace="fragmentos/modal"></div>
-				<!--  <div th:replace="fragmentos/modalSenha"></div>-->
-			</div>
-  
+				<div th:replace="fragmentos/modalSenha"></div>
+  </div>
     <div class="container-fluid" style="width: 98%">
     
     <form id="form" th:action="@{/funcionario/editar}" 
@@ -126,8 +125,7 @@
 						<div class="form-group col-md-4">
 						<button th:id="${funcionario.id}" type="button" class="btn btn-secondary modalSenha" style="margin-top:30px;" data-toggle="modal" data-target="#modalSenha">Editar Senha</button>			
 						</div>
-						<input type="hidden" class="form-control tamanho-fonte" id="senha"  maxlength="30"   th:field="*{senha}" disabled required/>
-								
+							
 						
 					</div>
 					
@@ -215,7 +213,7 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
-					<input type="hidden" id="perfil_id" th:field="*{perfil_id.id}"/>
+					
 				</div>
 				</div>
 				
