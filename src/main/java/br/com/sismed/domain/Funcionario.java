@@ -84,12 +84,9 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
 	
-	@Column(name="senha", nullable=false)
-	private String senha;
 	
-	@ManyToOne
-	@JoinColumn(name = "perfil_id")
-	private Perfil perfil_id;
+	
+	
 	
 	public Funcionario() {
 		super();
@@ -205,18 +202,7 @@ public class Funcionario extends AbstractEntity {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 
-	public Perfil getPerfil_id() {
-		return perfil_id;
-	}
 
-	public void setPerfil_id(Perfil perfil_id) {
-		this.perfil_id = perfil_id;
-	}
+
 }

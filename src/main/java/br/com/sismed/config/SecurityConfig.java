@@ -8,12 +8,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.LoginService;
 
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	private FuncionarioService service;
+	private LoginService service;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
