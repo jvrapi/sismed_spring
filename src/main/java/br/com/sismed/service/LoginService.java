@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,4 +41,16 @@ public class LoginService implements UserDetailsService{
 				
 			);
 		}
+
+	public static boolean isSenhaCorreta(String senhaDigitada, String senhaArmazenada) {
+		
+		return new BCryptPasswordEncoder().matches(senhaDigitada, senhaArmazenada) ;
+	}
+
+	@Transactional(readOnly = false)
+	public void alterarSenha(Login login, String senha) {
+		
+		login.setSenha(new BCryptPasswordEncoder().encode(senha));
+		repository.save(login);
+	}
 }

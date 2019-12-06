@@ -12,6 +12,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -87,15 +89,23 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar( Funcionario funcionario, Login login,RedirectAttributes attr, Model model) {
+	public String salvar( Funcionario funcionario, RedirectAttributes attr) {
 		try {
 		service.salvar(funcionario);
+		Login login = new Login();
 		String cpf = funcionario.getCpf();
 		login.setFuncionario_id(funcionario);
 		login.setCpf(cpf);
 		Integer crm = funcionario.getCrm();
-		
-		if(crm == null)
+		Perfil perfil = new Perfil();
+		if(crm == null) {
+			
+			perfil.setId(2L);
+			login.setPerfis(perfil);
+		}else {
+			perfil.setId(1L);
+			login.setPerfis(perfil);
+		}
 		
 		lservice.salvar(login);
 		attr.addFlashAttribute("success","Funcionário(a) cadastrado(a) com sucesso");
@@ -103,7 +113,7 @@ public class FuncionarioController {
 			attr.addFlashAttribute("fail","Cadastro não realizado, CPF já existente");
 		}
 		
-		return "senha";
+		return "redirect:/funcionario/listar";
 	}
 	
 	@GetMapping("/editar/{id}") 
@@ -195,6 +205,25 @@ public class FuncionarioController {
 		return "redirect:/funcionario/listar";
 	}
 	
-	
+	@PostMapping("/trocarSenha")
+	public String editarSenha(@RequestParam("senha1") String s1, @RequestParam("senha2") String s2, 
+			@RequestParam("senha3") String s3, @RequestParam("funcionario_id") Long funcionario_id,@AuthenticationPrincipal User user, RedirectAttributes attr) {
+		
+		
+		if(!s1.equals(s2)) {
+			attr.addFlashAttribute("fail", "Senhas não conferem, tente novamente");
+			return "redirect: /funcionario/editar/" + funcionario_id;
+		}
+		
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		if(!LoginService.isSenhaCorreta(s3, l.getSenha())) {
+			attr.addFlashAttribute("falha", "Senha atual não confere, tente novamente");
+			return "redirect: /funcionario/editar/" + funcionario_id;
+		}
+		
+		lservice.alterarSenha(l, s1);
+		attr.addFlashAttribute("sucesso", "Senha alterado com sucesso!");
+		return "redirect: /funcionario/editar/" + funcionario_id;
+	}
 	
 }
