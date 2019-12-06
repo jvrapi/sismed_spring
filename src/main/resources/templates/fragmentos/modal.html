@@ -57,51 +57,6 @@
  			</div>
 		</div>
 	</div>
-	
-	<!-- <div class="modal fade" id="modalCadastroLab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Cadastro de Convênio</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form th:action="@{/laboratorio/salvarTConv/{id} (id=${laboratorio.id}) }" th:object=${labtconv} method="POST">
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="nome">Nome do laboratório</label>
-								<input type="text" class="form-control" name="nome" id="recipient-name" disabled>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="allconvenio_id">Convenios</label> 
-								<select id="allconvenio_id" class="form-control tamanho-fonte" required>
-									<option value="" selected hidden>Selecione</option>
-									<option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
-								</select>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<div id="teste">
-									<label for="alltipo_convenio_id">Tipos de convenio</label> 
-									<select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio_id} disabled required></select>
-								</div>
-							</div>
-						</div>
-						<input type="hidden" id="recipient-id" th:field=*{laboratorio_id}>
-						<div class="modal-footer">
-		                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		                    <button type="submit" class="btn btn-primary">Salvar</button>
-		                </div>
-	                </form>
-				</div>	
- 			</div>
-		</div>
-	</div> -->
     
 </body>
 </html>	

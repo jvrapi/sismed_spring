@@ -9,12 +9,11 @@
     <script>
 		$(document).ready(function() {
 			$("#convenio_id").change(function() {
-				var url = "http://localhost:8080/laboratorio/convenio/" + $(this).val();
+				var url = "http://localhost:8080/laboratorio/convenio/" + $(this).val() + "/" + $("#id").val();
 				$.ajax({
 					url : url,
 					method : "get",
 					success : function(data) {
-						$("#tipo_convenio_id").prop("disabled", false);
 						var html = '';
 						for (var i = 0; i < data.length; i++) {
 							html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
@@ -252,7 +251,9 @@
 		</form>
 		<div class="card" style="margin-top: 25px; padding: 0px;">
 			<div class="card-body">
-				<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;" >Convênios aceitos pelo laboratório</h5>
+				<h5 style="margin-bottom: 15px; padding-bottom: 10px; display: inline;" >Convênios aceitos pelo laboratório</h5>
+				<a class="btn btn-primary float-right" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}">Cadastrar</a>
+				<hr>
 				<div class="form-row">
 					<div class="form-group col-md-3">
 						<label for="convenio_id">Convenios</label> 
@@ -264,16 +265,60 @@
 					<div class="form-group col-md-3">
 						<div id="teste">
 							<label for="tipo_convenio_id">Tipos de convenio</label> 
-							<select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" disabled required></select>
+							<select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required></select>
 						</div>
 					</div>
 				</div>
-				<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}">Cadastrar</a>
+				
 				<a class="btn btn-danger" href="#" id="excluir">Excluir</a>
 			</div>
 		</div>
 	</div>
 	
+	<div class="modal fade" id="modalCadastroLab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Cadastro de Convênio</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/laboratorio/salvarTConv/{id} (id=${laboratorio.id}) }" th:object=${labtconv} method="POST">
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="nome">Nome do laboratório</label>
+								<input type="text" class="form-control" name="nome" id="recipient-name" disabled>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<label for="allconvenio_id">Convenios</label> 
+								<select id="allconvenio_id" class="form-control tamanho-fonte" required>
+									<option value="" selected hidden>Selecione</option>
+									<option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+								</select>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-12">
+								<div id="teste">
+									<label for="alltipo_convenio_id">Tipos de convenio</label> 
+									<select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio_id} disabled required></select>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" id="recipient-id" th:field=*{laboratorio_id}>
+						<div class="modal-footer">
+		                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+		                    <button type="submit" class="btn btn-primary">Salvar</button>
+		                </div>
+	                </form>
+				</div>	
+ 			</div>
+		</div>
+	</div>
 	<div th:replace="fragmentos/modal :: modal"></div>
 
 </section>

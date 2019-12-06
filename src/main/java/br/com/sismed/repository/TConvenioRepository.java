@@ -25,12 +25,10 @@ public interface TConvenioRepository extends JpaRepository<TConvenio, Long>{
 	@Query(value = "SELECT * FROM sismed_tipo_convenio t WHERE t.nome LIKE %:dado%", nativeQuery = true)
 	List<TConvenio> ListarPorNome(String dado);
 	
-	@Query(value = "SELECT DISTINCT tc.* FROM sismed_tipo_convenio tc JOIN sismed_convenio c ON tc.convenio_id = c.id JOIN sismed_laboratorio_tconvenio lt ON lt.sismed_tipo_convenio_id = tc.id WHERE c.id = :id", nativeQuery = true)
-	List<TConvenio> BuscarTConvenioLab(Long id);
+	@Query(value = "SELECT DISTINCT tc.* FROM sismed_tipo_convenio tc JOIN sismed_convenio c ON tc.convenio_id = c.id JOIN sismed_laboratorio_tconvenio lt ON lt.sismed_tipo_convenio_id = tc.id WHERE c.id = :id AND lt.sismed_laboratorio_id = :labId", nativeQuery = true)
+	List<TConvenio> BuscarTConvenioLab(Long id, Long labId);
 	
-	@Query(value ="SELECT * from sismed_tipo_convenio WHERE id != (SELECT DISTINCT sismed_tipo_convenio_id FROM sismed_laboratorio_tconvenio where sismed_laboratorio_id = :labId) AND convenio_id = :id", nativeQuery = true)
+	@Query(value ="SELECT * from sismed_tipo_convenio WHERE id not in (SELECT sismed_tipo_convenio_id FROM sismed_laboratorio_tconvenio where sismed_laboratorio_id = :labId) AND convenio_id = :id", nativeQuery = true)
 	List<TConvenio> ListaComboBoxLab(Long id, Long labId);
 	
-	@Query(value = "SELECT * from sismed_tipo_convenio WHERE convenio_id = :id", nativeQuery = true)
-	List<TConvenio> ListaComboBoxLab2(Long id);
 }

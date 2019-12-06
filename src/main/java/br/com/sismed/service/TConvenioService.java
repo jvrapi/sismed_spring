@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.repository.TConvenioRepository;
 
@@ -69,15 +68,12 @@ public class TConvenioService {
 		return tcRepository.ListarPorNome(dado);
 	}
 	
-	public List<TConvenio> BuscarTConvenioLab(Long id) {
-		return tcRepository.BuscarTConvenioLab(id);
+	public List<TConvenio> BuscarTConvenioLab(Long id, Long labId) {
+		return tcRepository.BuscarTConvenioLab(id, labId);
 	}
 	
 	public List<TConvenio> ListaComboBoxLab(Long id, Long labId) {
 		return tcRepository.ListaComboBoxLab(id, labId);
 	}
-	
-	public List<TConvenio> ListaComboBoxLab2(Long id) {
-		return tcRepository.ListaComboBoxLab2(id);
-	}
+
 }
