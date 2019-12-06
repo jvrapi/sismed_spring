@@ -23,8 +23,6 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="nome", nullable=false)
 	private String nome;
 	
-	
-	
 	@Column(name="cpf", nullable=false)
 	private String cpf;
 	
@@ -32,10 +30,8 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="rg", nullable=false)
 	private String rg;
 	
-	
 	@Column(name="orgao_emissor", nullable=false)
 	private String orgao_emissor;
-	
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_emissao", nullable=false)
@@ -98,8 +94,6 @@ public class Funcionario extends AbstractEntity {
 	public Funcionario(Long id) {
 		super.setId(id);
 	}
-	
-	
 	
 	public LocalDate getData_emissao() {
 		return data_emissao;

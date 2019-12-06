@@ -122,7 +122,7 @@
 									
 									<div class="form-group col-md-3 ">
 										<label for="paciente">Paciente</label> 
-										<input type="text" id="paciente" class="form-control tamanho-fonte" required>
+										<input type="text" id="paciente" class="form-control tamanho-fonte" placeholder="nome" required>
 										<input type="hidden" th:field="*{paciente_id}" id="paciente_id" required>
 									</div>
 									
@@ -158,13 +158,9 @@
 										<input type="date" class="form-control tamanho-fonte" id="data_retorno" placeholder="Data de retorno" autofocus="autofocus" th:field="*{data_retorno}" />
 									</div>
 									
-										<div class="form-group col-md-3">
-										<label for="laboratorio">Laboratório</label> 
-										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}">
-											<option value="" selected hidden>Selecione</option>
-											<option th:each="l : ${laboratorio}" th:value="${l.id}" th:text="${l.nome}"></option>
-										</select>
-
+									<div class="form-group col-md-3">
+										<label for="valor">Valor</label> 
+										<input type="text" class="form-control tamanho-fonte" id="valor" placeholder="R$" autofocus="autofocus" th:field="*{valor}" required/>
 									</div>
 									
 									</div>
@@ -196,6 +192,15 @@
 										 <textarea class="form-control" rows="3" id="descricao" maxlength="250" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{descricao}"
 										 required style="resize: none;" onkeypress="return ApenasLetras(event,this);">
 										</textarea>
+									</div>
+									
+											<div class="form-group col-md-3">
+										<label for="laboratorio">Laboratório</label> 
+										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}">
+											<option value="" selected hidden>Selecione</option>
+											<option th:each="l : ${laboratorio}" th:value="${l.id}" th:text="${l.nome}"></option>
+										</select>
+
 									</div>
 									
 									</div>

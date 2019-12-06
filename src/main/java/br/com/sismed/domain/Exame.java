@@ -2,12 +2,10 @@ package br.com.sismed.domain;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +21,9 @@ public class Exame extends AbstractEntity{
 	
 	@Column(name = "descricao",nullable = false)
 	private String descricao;
+	
+	@Column(name = "valor",nullable = false)
+	private String valor;
 	
 	@Column(name = "funcionario_lab",nullable = false)
 	private String funcionario_lab;
@@ -133,6 +134,14 @@ public class Exame extends AbstractEntity{
 
 	public void setLaboratorio_id(Laboratorio laboratorio_id) {
 		this.laboratorio_id = laboratorio_id;
+	}
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
 	}
 
 	
