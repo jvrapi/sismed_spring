@@ -5,6 +5,7 @@
     
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
+    <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
    
   </head>
 
@@ -77,7 +78,9 @@
 			<div class="container" style="margin-left: 35%;">
 				<div th:replace="fragmentos/alert"></div>
 				<div th:replace="fragmentos/modal"></div>
-				<div th:replace="fragmentos/modalSenha"></div>
+				
+				<div th:replace="fragmentos/modalSenha :: modalSenha"></div>
+				<div th:replace="fragmentos/modal :: modal"></div>
   </div>
     <div class="container-fluid" style="width: 98%">
     <button  type="button" class="btn btn-primary float-right mr-2 modalSenha"  data-toggle="modal" data-target="#modalSenha">Editar Senha</button>			
@@ -284,7 +287,7 @@
             </div>
     
    
-   <div th:replace="fragmentos/modal :: modal"></div>
+   
 
 </section>
   </body>
