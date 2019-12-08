@@ -45,3 +45,20 @@ $(document).ready(function() {
 					});
 				});
 			}
+			
+			function muda4() {
+				$('#txtBusca').unmask();
+				$("#dropdownMenu2").text("Data de Coleta");
+				$("#dropdownMenu2").val("4");
+				$( function() {
+					$("#txtBusca").autocomplete({
+						source: "buscar/4",
+						minLength: 2,
+						select: function (event, ui) {
+							url = "http://localhost:8080/exame/editar/" + ui.item.value;
+							document.location.href = url;
+							return false;
+						}
+					});
+				});
+			}

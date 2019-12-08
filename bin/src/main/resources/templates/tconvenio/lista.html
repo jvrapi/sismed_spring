@@ -93,19 +93,20 @@
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item" th:if="${tconvenio.hasPrevious()}">
-                                    <a class="page-link" th:href="@{/tconvenios/listar(page=1)}">
+                                    <a class="page-link"  th:href="@{${'/tconvenios/listar/' + convenios.id}(page=1)}">
                                         <span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
                                     </a>
                                 </li>
                                 <li class="page-item" th:each="p : ${pageNumbers}" th:classappend="${p==tconvenio.pageable.pageNumber + 1} ? active">
-                                    <a class="page-link" th:text=${p} th:href="@{'/tconvenios/listar/' + (page=${p})}"></a>
+                                    <a class="page-link" th:text=${p} th:href="@{${'/tconvenios/listar/' + convenios.id}(page=${p})  } "></a>
                                 </li>
                                 <li class="page-item" th:if="${tconvenio.hasNext()}">
-                                    <a class="page-link" th:href="@{/tconvenios/listar/(id = ${tconvenio.convenio.id})(page=${tconvenio.totalPages})}">
+                                    <a class="page-link"  th:href="@{${'/tconvenios/listar/' + convenios.id}(page=${tconvenio.totalPages})}">
                                         <span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
                                     </a>
                                 </li>
                             </ul>
+                            
                         </nav>
                     </div>
                 </div>

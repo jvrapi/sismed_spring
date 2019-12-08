@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
+</head>
+
+<body>
+    <!--CONFIRM MODAL-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalSenha" th:fragment="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header " style="background-color: #0087cd;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    <h4 class="modal-title ">Trocar Senha</h4>
+                </div>
+  <form th:action="@{/funcionario/trocarSenha}" method="POST" class="was-validated">
+                <div class="modal-body">
+                  
+                        <div class="mb-3">
+                            <label for="senha1">Nova senha</label>
+                            <input type="password" class="form-control pass" id="senha1" name="senha1" maxlength="20" placeholder="Insira sua senha de acesso" value="" required />
+                            <div class="invalid-feedback">Digite sua nova senha.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha2">Repita nova senha</label>
+                            <input type="password" class="form-control pass" id="senha2" name="senha2" maxlength="20" placeholder="Insira sua senha de acesso" value="" required />
+                            <div class="invalid-feedback">Repita sua nova senha.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha3">Senha atual</label>
+                            <input type="password" class="form-control" id="senha3" name="senha3" maxlength="20" placeholder="Insira sua senha de acesso" value="" required readonly/>
+                            <div class="invalid-feedback">Digite sua senha atual para confirmar.</div>
+                        </div>
+
+                       <div th:object="${funcionario}">
+                	<input type="hidden" id="funcionario_id" name="funcionario_id" th:value="${funcionario.id}">
+                </div>
+
+                    
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button  type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+                
+                
+            </form>    
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</body>
+
+</html>
