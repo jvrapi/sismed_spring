@@ -1,8 +1,9 @@
 function executar(botao) {
 	$(botao).remove();
 	$(".classid").remove();
-	$("#div_botao").append("<button class='btn btn-primary float-right' id='btn_submit' type='submit'>Salvar</button>");
-	$("#div_botao").append("<button class='btn btn-secondary mr-2 float-right' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
+	$("#div_botao").append("<button class='btn btn-primary float-middle' id='btn_submit' type='submit'>Salvar</button>");
+	
+	$("#div_botao").append("<button class='btn btn-secondary mr-2 float-middle' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
 	$("input").prop("disabled", false);
 	$("select").prop("disabled", false);
 	
