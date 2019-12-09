@@ -39,7 +39,7 @@ function validaData(form) {
 	dataEnvio.setDate(arrayDataEnvio[2]); dataEnvio.setMonth(arrayDataEnvio[1] - 1); dataEnvio.setFullYear(arrayDataEnvio[0]);
 	
 	if(dataEnvio.getTime() < dataColeta.getTime()) {
-		alert("Data inválida\nA data de envio deve ser menor que a data de coleta");
+		alert("Data inválida!!\nA Data de Envio deve ser igual ou maior que a Data de Coleta");
 		return false;
 	}
 	else if($("#data_retorno").val() != '') {
@@ -48,7 +48,7 @@ function validaData(form) {
 		dataRetorno.setDate(arrayDataRetorno[2]); dataRetorno.setMonth(arrayDataRetorno[1] - 1); dataRetorno.setFullYear(arrayDataRetorno[0]);
 		
 		if(dataRetorno.getTime() < dataEnvio.getTime()) {
-			alert("Data inválida\nA data de retorno deve ser menor que a data de envio");
+			alert("Data inválida!!\n A Data de Retorno deve ser maior que a Data de Envio");
 			return false;
 		}
 	}

@@ -5,6 +5,7 @@
     
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
+    <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
    
   </head>
 
@@ -77,16 +78,19 @@
 			<div class="container" style="margin-left: 35%;">
 				<div th:replace="fragmentos/alert"></div>
 				<div th:replace="fragmentos/modal"></div>
-				<div th:replace="fragmentos/modalSenha"></div>
+				
+				<div th:replace="fragmentos/modalSenha :: modalSenha"></div>
+				<div th:replace="fragmentos/modal :: modal"></div>
   </div>
-    <div class="container-fluid" style="width: 98%">
-    <button  type="button" class="btn btn-primary float-right mr-2 modalSenha"  data-toggle="modal" data-target="#modalSenha">Editar Senha</button>			
+    <div class="container-fluid" style="width: 98%">			
 					
     <form id="form" th:action="@{/funcionario/editar}" 
 			th:object="${funcionario}" method="POST">
 
        		<div id="div_botao">
             		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>
+            		 <button  type="button" class="btn btn-primary float-right mr-2 modalSenha"  data-toggle="modal" data-target="#modalSenha">Editar Senha</button>
+            		
 					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>	
 					
 					<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right mr-2" data-toggle="modal" data-target="#myModal">Excluir</button>
@@ -96,7 +100,7 @@
 					<br><br>
 				</div >
 				
-				 <div class="card" style="margin-top: 25px; padding: 0px;">
+				<div class="card" style="margin-top: 25px; padding: 0px;">
 	            <div class="card-body">
 	            
 	     
@@ -284,7 +288,7 @@
             </div>
     
    
-   <div th:replace="fragmentos/modal :: modal"></div>
+   
 
 </section>
   </body>

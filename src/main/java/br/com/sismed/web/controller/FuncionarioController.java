@@ -212,18 +212,19 @@ public class FuncionarioController {
 		
 		if(!s1.equals(s2)) {
 			attr.addFlashAttribute("fail", "Senhas não conferem, tente novamente");
-			return "redirect: /funcionario/editar/" + funcionario_id;
+			return "redirect:/funcionario/editar/" + funcionario_id;
 		}
 		
 		Login l = lservice.BuscarPorCPF(user.getUsername());
 		if(!LoginService.isSenhaCorreta(s3, l.getSenha())) {
-			attr.addFlashAttribute("falha", "Senha atual não confere, tente novamente");
-			return "redirect: /funcionario/editar/" + funcionario_id;
+			attr.addFlashAttribute("fail", "Senha atual não confere, tente novamente");
+			
+			return "redirect:/funcionario/editar/" + funcionario_id;
 		}
 		
 		lservice.alterarSenha(l, s1);
-		attr.addFlashAttribute("sucesso", "Senha alterado com sucesso!");
-		return "redirect: /funcionario/editar/" + funcionario_id;
+		attr.addFlashAttribute("success", "Senha alterado com sucesso!");
+		return "redirect:/funcionario/editar/" + funcionario_id;
 	}
 	
 }
