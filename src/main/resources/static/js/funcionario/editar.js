@@ -1,14 +1,15 @@
 function executar(botao) {
 	$(botao).remove();
 	$(".classid").remove();
-	$("#div_botao").append("<button class='btn btn-primary float-middle' id='btn_submit' type='submit'>Salvar</button>");
 	
-	$("#div_botao").append("<button class='btn btn-secondary mr-2 float-middle' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
-	$("input").prop("disabled", false);
-	$("select").prop("disabled", false);
+	$("#div_botao1").append("<button class='btn btn-primary float-right' id='btn_submit' type='submit'>Salvar</button>");
+
+	$("#div_botao1").append("<button class='btn btn-secondary mr-2 float-right' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
+
+	$("input").prop("disabled", true);
+	$("select").prop("disabled", true);
 	
 	if($("#perfil_id").val() == 2){
-		
 		$("#crm").prop("disabled", true)
 		$("#especialidade").prop("disabled", true)
 	}
