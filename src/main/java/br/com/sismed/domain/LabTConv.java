@@ -1,35 +1,38 @@
 package br.com.sismed.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_laboratorio_tconvenio")
-public class LabTConv {
+public class LabTConv extends AbstractEntity{
 
-	@Id
-	@Column(name = "sismed_tipo_convenio_id")
-	private Long tconvenio_id;
+	@ManyToOne
+	@JoinColumn(name = "sismed_tipo_convenio_id")
+	private TConvenio tconvenio_id;
 	
-	@Column(name = "sismed_laboratorio_id")
-	private Long laboratorio_id;
+	@ManyToOne
+	@JoinColumn(name = "sismed_laboratorio_id")
+	private Laboratorio laboratorio_id;
 
-	public Long getTconvenio_id() {
+	public TConvenio getTconvenio_id() {
 		return tconvenio_id;
 	}
 
-	public void setTconvenio_id(Long tconvenio_id) {
+	public void setTconvenio_id(TConvenio tconvenio_id) {
 		this.tconvenio_id = tconvenio_id;
 	}
 
-	public Long getLaboratorio_id() {
+	public Laboratorio getLaboratorio_id() {
 		return laboratorio_id;
 	}
 
-	public void setLaboratorio_id(Long laboratorio_id) {
+	public void setLaboratorio_id(Laboratorio laboratorio_id) {
 		this.laboratorio_id = laboratorio_id;
 	}
+
+	
 }

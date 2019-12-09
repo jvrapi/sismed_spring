@@ -47,7 +47,7 @@
 	<script>
 		$(document).ready(function() {
 			$("#excluir").click(function() {
-				url = "http://localhost:8080/laboratorio/excluirTConv/" + $('#tipo_convenio_id option:selected').val();
+				url = "http://localhost:8080/laboratorio/excluirTConv/" + $('#tipo_convenio_id option:selected').val() + "/" + $("#id").val();
 				$.ajax({
 					url : url,
 					method: "get",
@@ -285,7 +285,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form th:action="@{/laboratorio/salvarTConv/{id} (id=${laboratorio.id}) }" th:object=${labtconv} method="POST">
+					<form th:action="@{/laboratorio/salvarTConv/{labId} (labId=${laboratorio.id}) }" th:object=${labtconv} method="POST">
 						<div class="form-row">
 							<div class="form-group col-md-12">
 								<label for="nome">Nome do laboratório</label>

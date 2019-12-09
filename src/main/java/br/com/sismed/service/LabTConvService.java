@@ -1,5 +1,6 @@
 package br.com.sismed.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,8 @@ public class LabTConvService {
 		ltcRepository.save(ltc);
 	}
 	
-	public void excluir(Long id) {
-		ltcRepository.deleteById(id);
+	@Transactional
+	public void excluir(Long id, Long labId) {
+		ltcRepository.deleteTConvLab(id, labId);
 	}
 }

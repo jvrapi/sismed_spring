@@ -1,12 +1,12 @@
 package br.com.sismed.domain;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,6 +33,11 @@ public class Laboratorio extends AbstractEntity{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
+	
+	@OneToMany(mappedBy = "laboratorio_id")
+    Set<LabTConv> lab;
+	
+	private int flag;
 
 	public String getCnpj() {
 		return cnpj;
@@ -80,6 +85,14 @@ public class Laboratorio extends AbstractEntity{
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 	
 }

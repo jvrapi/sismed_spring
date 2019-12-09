@@ -168,15 +168,16 @@ public class LaboratorioController {
 		return tcService.ListaComboBoxLab(id, labId);
 	}
 	
-	@GetMapping("/excluirTConv/{id}")
+	@GetMapping("/excluirTConv/{id}/{labId}")
 	@ResponseBody
-	public void excluirTConv(@PathVariable("id") Long id) {
-		ltcService.excluir(id);
+	public void excluirTConv(@PathVariable("id") Long id, @PathVariable("labId") Long labId) {
+		ltcService.excluir(id, labId);
 	}
 	
-	@PostMapping("/salvarTConv/{id}")
-	public String salvarTConv(LabTConv labtconv, @PathVariable("id") Long id) {
+	@PostMapping("/salvarTConv/{labId}")
+	public String salvarTConv(LabTConv labtconv, @PathVariable("labId") Long labId) {
+		System.out.println(labtconv);
 		ltcService.salvar(labtconv);
-		return "redirect:/laboratorio/editar/" + id;
+		return "redirect:/laboratorio/editar/" + labId;
 	}
 }
