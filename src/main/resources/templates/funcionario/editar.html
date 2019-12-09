@@ -90,11 +90,11 @@
 
        		<div id="div_botao">
             		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>
-					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>	
+					<a class="btn btn-secondary float-right mr-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>	
 					
 					<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right mr-2" data-toggle="modal" data-target="#myModal">Excluir</button>
-					
-					<a class="btn btn-secondary float-right mr-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>			
+		
+					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>			
 					
 					<br><br>
 				</div >
@@ -278,6 +278,7 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
+					<input type="hidden" id="perfil_id" th:field="*{login.perfis.id}"/>
 					
 				</div>
 				</div>

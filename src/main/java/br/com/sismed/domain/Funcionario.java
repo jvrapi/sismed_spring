@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -81,9 +82,10 @@ public class Funcionario extends AbstractEntity {
 	private String nacionalidade;
 	
 	
+	@OneToOne(mappedBy = "funcionario_id")
+	private Login login;
 	
-	
-	
+
 	public Funcionario() {
 		super();
 	}
@@ -197,6 +199,14 @@ public class Funcionario extends AbstractEntity {
 		this.endereco = endereco;
 	}
 
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 
 
+	
 }

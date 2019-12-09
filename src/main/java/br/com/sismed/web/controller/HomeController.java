@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import br.com.sismed.domain.Login;
 
 @Controller
 public class HomeController {
@@ -41,5 +44,16 @@ public class HomeController {
 			model.addAttribute("message", "Você não tem acesso a está area ou ação");
 			
 			return "error";
+		}
+		
+		//primeiro acesso de usuario cadastrado
+		@GetMapping({"/primeiro/acesso"})
+		public String primeiroAcesso(Login login) {
+			return "primeiro-acesso";
+		}
+		
+		@PostMapping({"/primeiro/acesso"})
+		public String pesquisarUsuario() {
+			return "";
 		}
 }
