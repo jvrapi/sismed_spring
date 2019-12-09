@@ -53,4 +53,6 @@ public class LoginService implements UserDetailsService{
 		login.setSenha(new BCryptPasswordEncoder().encode(senha));
 		repository.save(login);
 	}
+
+	
 }

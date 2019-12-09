@@ -2,12 +2,16 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+  
+    
     <title>Clínica Spring Security ::: Login</title>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="clínica médica com agendamento de consultas online" />
     <link rel="icon" th:href="@{/image/favicon.ico}" />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
     <!-- Icons fontawesome -->
     <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous" rel="stylesheet" />
     <style>
@@ -29,16 +33,28 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/css/style-login.css(v=${version})}" rel="stylesheet" />
+  <script type="text/javascript" >
+  $(document).ready(function() {	
+		
+	  $('.pass').keyup(function(){
+	  		$('#senha1').val() === $('#senha2').val() 
+	  		? $('#button').removeAttr('disabled')
+	  		: $('#button').attr('disabled', 'disabled');
+	  	});
+	  	
+	  });
+    </script>
 </head>
 
 <body>
-    <form class="form-signin was-validated" method="post" th:action="@{/primeiro/acesso}">
+    <form class="form-signin was-validated" method="post" th:action="@{/verificarCPF}">
+
         <div class="text-center mb-4">
             <img class="mb-4" th:src="@{/image/spring-security.png}" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">SISMED</h1>
 
             <p class="font-weight-lighter">Seja bem-vindo.</p>
-
+            <p class="text-muted">Insira sua senha de acesso para continuar</p>
             <div th:if="${alerta != null}" th:class="${alerta == 'erro'} ? 'alert alert-danger' : 'alert alert-success'" role="alert">
                 <h4 th:text="${titulo}" class="alert-heading">Credenciais...</h4>
                 <p th:text="${texto}">Login ou senha incorretos...</p>
@@ -47,18 +63,19 @@
             </div>
         </div>
 
-        <div class="form-label-group">
-            <input type="text" id="inputCPF" class="form-control" placeholder="Email address" name="username" required autofocus>
-            <label for="inputEmail">CPF</label>
-            <div class="invalid-feedback">Use seu CPF cadastrado como login.</div>
+        <div class="mb-3">
+            <label for="senha1">Nova senha</label>
+            <input type="password" class="form-control pass" id="senha1" name="senha1" maxlength="20" placeholder="Insira sua senha de acesso" value="" required />
+            <div class="invalid-feedback">Digite sua nova senha.</div>
         </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+        <div class="mb-3">
+            <label for="senha2">Repita nova senha</label>
+            <input type="password" class="form-control pass" id="senha2" name="senha2" maxlength="20" placeholder="Insira sua senha de acesso" value="" required />
+            <div class="invalid-feedback">Repita sua nova senha.</div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
+        <button class="btn btn-lg btn-primary btn-block pass" id="button" type="submit" disabled>Entrar</button>
         <hr>
         <nav class="nav nav-pills flex-column flex-sm-row">
             <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/p/redefinir/senha}"><i class="fas fa-key"></i>&nbsp;Recuperar senha</a>
@@ -67,14 +84,8 @@
         <p class="mt-5 mb-3 text-muted text-center">Clínica Spring Security&copy; 2019</p>
     </form>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#inputCPF').mask('000.000.000-00');
+   
 
-        });
-    </script>
 </body>
 
 </html>

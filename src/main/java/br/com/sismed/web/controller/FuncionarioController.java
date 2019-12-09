@@ -216,6 +216,7 @@ public class FuncionarioController {
 		}
 		
 		Login l = lservice.BuscarPorCPF(user.getUsername());
+		
 		if(!LoginService.isSenhaCorreta(s3, l.getSenha())) {
 			attr.addFlashAttribute("fail", "Senha atual não confere, tente novamente");
 			
