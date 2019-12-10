@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <form class="form-signin was-validated" method="post" th:action="@{/verificarCPF}">
+    <form class="form-signin was-validated" method="post" th:action="@{/cadastrarSenha}">
 
         <div class="text-center mb-4">
             <img class="mb-4" th:src="@{/image/spring-security.png}" alt="" width="72" height="72">
@@ -81,6 +81,9 @@
             <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/p/redefinir/senha}"><i class="fas fa-key"></i>&nbsp;Recuperar senha</a>
             <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/}"><i class="fas fa-home"></i>&nbsp;Realizar Login</a>
         </nav>
+        <div th:object="${login}">
+        	<input type="hidden" id="id" name="id" th:field="*{id}">
+        </div>
         <p class="mt-5 mb-3 text-muted text-center">Clínica Spring Security&copy; 2019</p>
     </form>
 

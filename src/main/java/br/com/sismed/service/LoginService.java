@@ -54,5 +54,13 @@ public class LoginService implements UserDetailsService{
 		repository.save(login);
 	}
 
+	@Transactional(readOnly = false)
+	public void CadastrarSenha(Long id, String s1) {
+		Login l = repository.getOne(id);
+		l.setSenha(new BCryptPasswordEncoder().encode(s1));
+		repository.save(l);
+		
+	}
+
 	
 }

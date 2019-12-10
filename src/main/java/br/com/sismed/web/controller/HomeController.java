@@ -68,13 +68,14 @@ public class HomeController {
 		Login l = service.BuscarPorCPF(cpf);
 		try {
 			if(!l.getSenha().isEmpty()) {
-				System.out.println("aqui");
+				
 				model.addAttribute("alerta", "erro");
 				model.addAttribute("titulo", "CPF já possui senha");
 				model.addAttribute("texto", "CPF informado já possui uma senha cadastrada");
 				model.addAttribute("subtexto", "Utilize um CPF que não tenha uma senha, ou entre em contato.");
 				retorno = "/login/primeiroAcesso";
 			}else{
+				model.addAttribute("login", l);
 				retorno = "/login/cadastrarSenha";
 				
 			}
@@ -90,5 +91,24 @@ public class HomeController {
 		
 		
 		return retorno;
+		}
+		
+		@PostMapping("/cadastrarSenha")
+		public String cadastrarSenha(@RequestParam("senha1") String s1, @RequestParam("senha2") String s2, @RequestParam("id") Long id, ModelMap model) {
+			if(!s1.equals(s2)) {
+				model.addAttribute("alerta", "erro");
+				model.addAttribute("titulo", "Senhas não conferem");
+				model.addAttribute("texto", "As senhas digitas não são iguais!");
+				model.addAttribute("subtexto", "Por favor, insira as senhas novamente");
+				return "/login/cadastrarSenha";
+			}
+		
+			
+			service.CadastrarSenha(id, s1);
+			model.addAttribute("alerta", "sucesso");
+			model.addAttribute("titulo", "Sua senha foi cadastrada com sucesso");
+			model.addAttribute("texto", "Você agora possui acesso ao nosso sistema");
+			model.addAttribute("subtexto", "Utilize o seu CPF e a sua nova senha para realizar o login");
+			return "login";
 		}
 }
