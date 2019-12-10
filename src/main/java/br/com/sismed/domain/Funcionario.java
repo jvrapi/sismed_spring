@@ -84,7 +84,7 @@ public class Funcionario extends AbstractEntity {
 	@ManyToMany
 	@JoinTable(name = "sismed_funcionario_tconvenio",
 	joinColumns = @JoinColumn(name = "funcionario_id"),
-	inverseJoinColumns = @JoinColumn(name = "id"))
+	inverseJoinColumns = @JoinColumn(name = "tipo_convenio_id"))
 	public Set<Funcionario> funcionario;
 
 	public Funcionario() {

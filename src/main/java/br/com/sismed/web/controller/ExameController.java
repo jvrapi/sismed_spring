@@ -24,7 +24,6 @@ import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabFlag;
 import br.com.sismed.domain.LabelValue;
-import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.service.ExameService;
 import br.com.sismed.service.FuncionarioService;

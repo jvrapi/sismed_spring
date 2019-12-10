@@ -41,8 +41,8 @@ public class Laboratorio extends AbstractEntity{
 	
 	@ManyToMany
 	@JoinTable(name = "sismed_laboratorio_tconvenio",
-	joinColumns = @JoinColumn(name = "id"),
-	inverseJoinColumns = @JoinColumn(name = "id"))
+	joinColumns = @JoinColumn(name = "tipo_convenio_id"),
+	inverseJoinColumns = @JoinColumn(name = "laboratorio_id"))
 	public Set<Laboratorio> laboratorio;
 	
 	private int flag;
