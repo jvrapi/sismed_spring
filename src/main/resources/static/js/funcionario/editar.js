@@ -6,12 +6,12 @@ function executar(botao) {
 
 	$("#div_botao").append("<button class='btn btn-secondary mr-2 float-right' id='btn_cancelar' type='button' onclick='voltar(this)'>Cancelar</button>");
 
-	$("input").prop("disabled", true);
-	$("select").prop("disabled", true);
+	$("input").prop("disabled", false);
+	$("select").prop("disabled", false);
 	
 	if($("#perfil_id").val() == 2){
-		$("#crm").prop("readonly", true)
-		$("#especialidade").prop("readonly", true)
+		$("#crm").prop("disabled", true)
+		$("#especialidade").prop("disabled", true)
 	}
 	$('#form').find(':input').each(function(i, elem) {
 	      $(this).data("previous-value", $(this).val());

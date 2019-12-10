@@ -39,13 +39,7 @@ public class Laboratorio extends AbstractEntity{
 	@OneToMany(mappedBy = "laboratorio_id")
     Set<LabTConv> lab;
 	
-	@ManyToMany
-	@JoinTable(name = "sismed_laboratorio_tconvenio",
-	joinColumns = @JoinColumn(name = "tipo_convenio_id"),
-	inverseJoinColumns = @JoinColumn(name = "laboratorio_id"))
-	public Set<Laboratorio> laboratorio;
 	
-	private int flag;
 
 	public String getCnpj() {
 		return cnpj;
