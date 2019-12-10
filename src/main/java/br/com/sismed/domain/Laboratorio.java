@@ -94,13 +94,5 @@ public class Laboratorio extends AbstractEntity{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}
 	
 }

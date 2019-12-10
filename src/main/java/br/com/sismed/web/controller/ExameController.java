@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Exame;
 import br.com.sismed.domain.Funcionario;
+import br.com.sismed.domain.LabFlag;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Laboratorio;
 import br.com.sismed.domain.Paciente;
@@ -221,10 +222,18 @@ public class ExameController {
 	
 	@GetMapping("/buscarlab/{id}")
 	@ResponseBody
-	public List<Laboratorio> listarlab(@PathVariable("id") Long id) {
-		List<Laboratorio> listLab = lservice.ListarLabTConv(id);
-		if(!listLab.isEmpty()) return listLab;
-		else return lservice.findAll();
+	public LabFlag listarlab(@PathVariable("id") Long id) {
+		LabFlag listLabFlag = new LabFlag();
+		listLabFlag.setListLab(lservice.ListarLabTConv(id));
+		if(!listLabFlag.getListLab().isEmpty()) {
+			listLabFlag.setFlag(1);
+			return listLabFlag;
+		}
+		else {
+			listLabFlag.setListLab(lservice.findAll());
+			listLabFlag.setFlag(0);
+			return listLabFlag;
+		}
 	}
 }
 
