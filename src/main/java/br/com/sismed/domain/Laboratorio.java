@@ -36,8 +36,6 @@ public class Laboratorio extends AbstractEntity{
 	
 	@OneToMany(mappedBy = "laboratorio_id")
     Set<LabTConv> lab;
-	
-	private int flag;
 
 	public String getCnpj() {
 		return cnpj;
@@ -85,14 +83,6 @@ public class Laboratorio extends AbstractEntity{
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
 	}
 	
 }

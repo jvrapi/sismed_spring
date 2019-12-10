@@ -26,14 +26,26 @@
 							url : url,
 							method : "get",
 							success : function(data) {
-								var html = '';
-								$("#laboratorio").prop("disabled", false);
-								var html = '<option value="" hidden>Selecione</option>';
-								for (var i = 0; i < data.length; i++) {
-									html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
+								if(data.flag == 0) {
+									$("#convenio").val("Particular");
+									$("#tipo").val("Particular");
+									var html = '';
+									$("#laboratorio").prop("disabled", false);
+									var html = '<option value="" hidden>Selecione</option>';
+									for (var i = 0; i < data.listLab.length; i++) {
+										html += '<option value=' + data.listLab[i].id + '>' + data.listLab[i].nome + '</option>';
+									}
+								}
+								else {
+									var html = '';
+									$("#laboratorio").prop("disabled", false);
+									var html = '<option value="" hidden>Selecione</option>';
+									for (var i = 0; i < data.listLab.length; i++) {
+										html += '<option value=' + data.listLab[i].id + '>' + data.listLab[i].nome + '</option>';
+									}
 								}
 								$("#laboratorio").html(html);
-							},
+							}
 						});
 						return false;
 					}
