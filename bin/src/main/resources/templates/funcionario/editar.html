@@ -5,7 +5,8 @@
     
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
-   
+    <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
+    
   </head>
 
   <body>
@@ -77,30 +78,35 @@
 			<div class="container" style="margin-left: 35%;">
 				<div th:replace="fragmentos/alert"></div>
 				<div th:replace="fragmentos/modal"></div>
-				<div th:replace="fragmentos/modalSenha"></div>
+				
+				<div th:replace="fragmentos/modalSenha :: modalSenha"></div>
+				<div th:replace="fragmentos/modal :: modal"></div>
   </div>
-    <div class="container-fluid" style="width: 98%">
-    <button  type="button" class="btn btn-primary float-right mr-2 modalSenha"  data-toggle="modal" data-target="#modalSenha">Editar Senha</button>			
+  
+ 
+  
+    <div class="container-fluid" style="width: 98%">			
 					
     <form id="form" th:action="@{/funcionario/editar}" 
 			th:object="${funcionario}" method="POST">
-
-       		<div id="div_botao">
-            		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>
-					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>	
+			
+			<div id="div_botao1"></div>
+			
+       			<div id="div_botao">
+						<h3 style="display: inline;">Edição | <strong>Funcionário</strong></h3>
+						
+						<a class="btn btn-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+						
+						<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+						
+						<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
+					</div >
 					
-					<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right mr-2" data-toggle="modal" data-target="#myModal">Excluir</button>
-					
-					<a class="btn btn-secondary float-right mr-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>			
-					
-					<br><br>
-				</div >
-				
-				 <div class="card" style="margin-top: 25px; padding: 0px;">
+				<div class="card" style="margin-top: 25px; padding: 0px;">
 	            <div class="card-body">
 	            
 	     
-					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Dados pessoais</h5>
+					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Dados Pessoais</h5>
 					
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -135,7 +141,7 @@
 						
 						<div class="form-group col-md-2">
 							<label for="sexo">Sexo</label>
-							<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}" disabled>
+							<select id="sexo" class="form-control tamanho-fonte" th:field="*{sexo}" disabled>
 								<option value="m">MASCULINO</option>
 								<option value="f">FEMININO</option>
 								<option value="nd">NÃO DECLARADO</option>
@@ -187,7 +193,7 @@
 							</select>
 						</div>
 						
-							
+							<a class="btn btn-light float-right mr-2 modalSenha" data-toggle="modal" data-target="#modalSenha"><i class="far fa-arrow-alt-circle-up">Clique aqui para alterar a senha</i></a>
 						
 					</div>
 					
@@ -275,6 +281,8 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
+					  
+					<input type="hidden" id="perfil_id" th:field="*{login.perfis.id}">
 					
 				</div>
 				</div>
@@ -282,9 +290,6 @@
 				
 				</form>
             </div>
-    
-   
-   <div th:replace="fragmentos/modal :: modal"></div>
 
 </section>
   </body>

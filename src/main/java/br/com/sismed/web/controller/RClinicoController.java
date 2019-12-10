@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.RcId;
 import br.com.sismed.domain.RegistroClinico;
 import br.com.sismed.service.AgendaService;
+import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.RegistroClinicoService;
 
@@ -39,6 +43,9 @@ public class RClinicoController {
 	
 	@Autowired
 	private PacienteService pacienteService;
+	
+	@Autowired
+	private LoginService lService;
 	
 	@GetMapping("/buscar")
 	public String buscar(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
@@ -112,33 +119,23 @@ public class RClinicoController {
 		return suggeestions;
 	}
 	
-	/*@GetMapping("/listar/{id}")
-	@ResponseBody
-	public List<String> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
-		List<String> suggeestions = new ArrayList<String>();
-		if(id == 1) {
-			List<RegistroClinico> allRegistroClinico = service.ListarRegPacienteAgen(term);
-			for (RegistroClinico registroclinico : allRegistroClinico) {
-				suggeestions.add(registroclinico.toString());
-			}
-		}
-		else {
-			List<RegistroClinico> allRegistroClinico = service.ListarRegPacienteAgen(term);
-			for (RegistroClinico registroclinico : allRegistroClinico) {
-				suggeestions.add(registroclinico.toString());
-			}
-		}
-		return suggeestions;
-	}*/
-	
 	@GetMapping("/cadastrar/{id}")
-	public String cadastrar(ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
+	public String cadastrar(ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico, 
+		@RequestParam(value = "page", required=false, defaultValue="1") int page, 
+		@PathVariable("id") Long id,
+		@AuthenticationPrincipal User user) {
+		System.out.println(user.getUsername());
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
 		return "/registro_clinico/cadastro";
 	}
 	
 	@GetMapping("/cadastrarpac/{id}")
-	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("registroclinico") RegistroClinico registroclinico, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
+	public String cadastrarPac(@PathVariable("id") Long id, ModelMap model, 
+		@ModelAttribute("registroclinico") RegistroClinico registroclinico, 
+		@RequestParam(value = "page", required=false, defaultValue="1") int page,
+		@AuthenticationPrincipal User user) {
+		Login l = lService.BuscarPorCPF(user.getUsername());
+		model.addAttribute("funcionario", l);
 		model.addAttribute("paciente", pacienteService.buscarporId(id));
 		return "/registro_clinico/cadastropac";
 	}
