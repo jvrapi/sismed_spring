@@ -6,7 +6,7 @@
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
     <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
-   
+    
   </head>
 
   <body>
@@ -90,18 +90,18 @@
     <form id="form" th:action="@{/funcionario/editar}" 
 			th:object="${funcionario}" method="POST">
 			
-				<div id="div_botao1"></div>
-			
        		<div id="div_botao">
-            		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>
+            		<h3 style="display: inline;"> Edição | <strong>Funcionário(a)</strong></h3>		
             		
-					<a class="btn btn-secondary float-right mr-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>			
-			
-            		 <button  type="button" class="btn btn-primary float-right mr-2 modalSenha"  data-toggle="modal" data-target="#modalSenha">Editar Senha</button>
-            		
+            		 <button  type="button" class="btn btn-light float-right btn-link mr-2 modalSenha" data-toggle="modal" data-target="#modalSenha">
+						Senha
+					</button>
+            	
 					<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>	
 					
 					<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right mr-2" data-toggle="modal" data-target="#myModal">Excluir</button>
+					
+					<a class="btn btn-secondary float-right mr-2"  href="/funcionario/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
 					
 					</div >
 					
@@ -285,7 +285,7 @@
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
 					<!--  
-					<input type="hidden" id="perfil_id" th:field="*{perfil_id.id}>
+					<input type="hidden" id="perfil_id" th:field="*{login.perfil_id.id}">
 					-->
 				</div>
 				</div>
