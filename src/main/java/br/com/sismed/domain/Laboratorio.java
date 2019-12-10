@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -36,6 +38,12 @@ public class Laboratorio extends AbstractEntity{
 	
 	@OneToMany(mappedBy = "laboratorio_id")
     Set<LabTConv> lab;
+	
+	@ManyToMany
+	@JoinTable(name = "sismed_laboratorio_tconvenio",
+	joinColumns = @JoinColumn(name = "id"),
+	inverseJoinColumns = @JoinColumn(name = "id"))
+	public Set<Laboratorio> laboratorio;
 	
 	private int flag;
 

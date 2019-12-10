@@ -1,14 +1,14 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -48,14 +48,11 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="telefone_fixo", nullable=false)
 	private String telefone_fixo;
 	
-	
-	
 	@Column(name="celular", nullable=false)
 	private String celular;
 	
 	@Column(name="sexo", nullable=false)
 	private String sexo;
-	
 	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name="data_nascimento", nullable=false)
@@ -80,11 +77,15 @@ public class Funcionario extends AbstractEntity {
 	
 	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
-	
-	
+
 	@OneToOne(mappedBy = "funcionario_id")
 	private Login login;
 	
+	@ManyToMany
+	@JoinTable(name = "sismed_funcionario_tconvenio",
+	joinColumns = @JoinColumn(name = "funcionario_id"),
+	inverseJoinColumns = @JoinColumn(name = "id"))
+	public Set<Funcionario> funcionario;
 
 	public Funcionario() {
 		super();
