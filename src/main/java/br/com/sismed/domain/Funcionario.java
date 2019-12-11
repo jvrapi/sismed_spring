@@ -66,8 +66,7 @@ public class Funcionario extends AbstractEntity {
 	
 	@Column(name="escolaridade", nullable=false)
 	private String escolaridade;
-	
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
@@ -77,6 +76,14 @@ public class Funcionario extends AbstractEntity {
 	
 	@Column(name="nacionalidade", length=20)
 	private String nacionalidade;
+	
+	@Column(name = "data_inicio",nullable = false)
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_inicio;
+	
+	@Column(name = "data_termino",nullable = true)
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data_termino;
 
 	@OneToOne(mappedBy = "funcionario_id")
 	private Login login;
@@ -208,6 +215,29 @@ public class Funcionario extends AbstractEntity {
 		this.login = login;
 	}
 
+	public Set<Funcionario> getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Set<Funcionario> funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public LocalDate getData_inicio() {
+		return data_inicio;
+	}
+
+	public void setData_inicio(LocalDate data_inicio) {
+		this.data_inicio = data_inicio;
+	}
+
+	public LocalDate getData_termino() {
+		return data_termino;
+	}
+
+	public void setData_termino(LocalDate data_termino) {
+		this.data_termino = data_termino;
+	}
 
 	
 }

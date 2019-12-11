@@ -116,17 +116,17 @@
 	           
 	           		<div class="form-group col-md-3">
 							<label for="paciente">Paciente</label>
-							<input type="text" class="form-control tamanho-fonte" id="paciente" autofocus="autofocus" th:value="*{paciente_id.nome}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="paciente" autofocus="autofocus" th:value="*{paciente_id.nome}" readonly/>
 							<input type="hidden" th:field="*{paciente_id}">
 					</div>
 	           
 	           			<div class="form-group col-md-3">
 							<label for="convenio">Convênio</label>
-							<input type="text" class="form-control tamanho-fonte" id="convenio" th:value="*{tipo.convenio.nome}" autofocus="autofocus" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="convenio" th:value="*{tipo.convenio.nome}" autofocus="autofocus" readonly/>
 						</div>
 	      				<div class="form-group col-md-3">
 							<label for="tipo">Tipo de Convênio</label>
-							<input type="text" class="form-control tamanho-fonte" id="tipo" autofocus="autofocus" th:value="*{tipo.nome}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="tipo" autofocus="autofocus" th:value="*{tipo.nome}" readonly/>
 							<input type="hidden" th:field="*{tipo}">
 							
 						</div>
@@ -136,22 +136,22 @@
 	           
 						<div class="form-group col-md-3">
 							<label for="nome">Exame</label>
-							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" readonly/>
 						</div>
 						
 						<div class="form-group col-md-2">
 							<label for="data_coleta">Data de Coleta</label>
-							<input type="date" class="form-control tamanho-fonte" id="data_coletas" autofocus="autofocus" th:field="*{data_coleta}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_coletas" autofocus="autofocus" th:field="*{data_coleta}" readonly/>
 						</div>
 						
 						<div class="form-group col-md-2">
 							<label for="data_envio">Data de Envio</label>
-							<input type="date" class="form-control tamanho-fonte" id="data_envio" autofocus="autofocus" th:field="*{data_envio}" disabled/>
+							<input type="date" class="form-control tamanho-fonte" id="data_envio" autofocus="autofocus" th:field="*{data_envio}" readonly/>
 						</div>
 	           			
 	           			<div class="form-group col-md-2">
 							<label for="data_retorno">Data de Retorno</label>
-							<input type="date" class="form-control tamanho-fonte" id="data_retorno" autofocus="autofocus" th:field="*{data_retorno}" />
+							<input type="date" class="form-control tamanho-fonte" id="data_retorno" autofocus="autofocus" th:field="*{data_retorno}" disabled />
 						</div>
 	           	</div>
 	           	
@@ -162,20 +162,20 @@
 	           	 <div class="form-group col-md-5">
 							<label for="descricao">Descrição</label>
 							 <textarea class="form-control" rows="3" id="descricao" maxlength="250" onkeyup="maiuscula(this)" autofocus="autofocus" th:field="*{descricao}"
-							 required style="resize: none;" onkeypress="return ApenasLetras(event,this);" disabled>
+							 required style="resize: none;" onkeypress="return ApenasLetras(event,this);" readonly>
 							 </textarea>
 						</div>
 	           	 
 	           	 <div class="form-group col-md-2">
 							<label for="funcionario">Quem Enviou</label>
-							<input type="text" class="form-control tamanho-fonte" id="funcionario" autofocus="autofocus" th:value="*{funcionario_id.nome}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario" autofocus="autofocus" th:value="*{funcionario_id.nome}" readonly/>
 							<input type="hidden" th:field="*{funcionario_id}" >
 						</div>
 	           	 
 	           	  
 	           	 <div class="form-group col-md-2">
 							<label for="funcionario_lab">Quem Recebeu</label>
-							<input type="text" class="form-control tamanho-fonte" id="funcionario_lab" autofocus="autofocus" th:field="*{funcionario_lab}" disabled/>
+							<input type="text" class="form-control tamanho-fonte" id="funcionario_lab" autofocus="autofocus" th:field="*{funcionario_lab}" readonly/>
 						</div>
 	           	 
 	           	 </div>

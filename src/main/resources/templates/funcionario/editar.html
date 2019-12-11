@@ -175,7 +175,7 @@
 					</div>
 					
 					<div class="form-row">
-						<div class="form-group col-md-4">
+						<div class="form-group col-md-3">
 							<label for="email">Email</label>
 							<input type="text" class="form-control tamanho-fonte" id="email"  th:field="*{email}" disabled/>
 						</div>
@@ -192,9 +192,20 @@
 								<option value="d">DOUTORADO</option>
 							</select>
 						</div>
+					
+							<div class="form-group col-md-2">
+							<label for="data_inicio">Data de Início</label>
+							<input type="date" class="form-control tamanho-fonte" id="celular"  th:field="*{data_inicio}" disabled/>
+						</div>
 						
-							<a class="btn btn-light float-right mr-2 modalSenha" data-toggle="modal" data-target="#modalSenha"><i class="far fa-arrow-alt-circle-up">Clique aqui para alterar a senha</i></a>
+							<div class="form-group col-md-2">
+							<label for="celular">Data de Término</label>
+							<input type="date" class="form-control tamanho-fonte" id="celular"  th:field="*{data_termino}" disabled/>
+						</div>
 						
+						<div class="form-group col-md-2">
+					<button type="button" class="btn-outline-primary float-right mr-2 modalSenha" data-toggle="modal" data-target="#modalSenha"><i class="far fa-arrow-alt-circle-up">Clique aqui para alterar a senha</i></button>
+					</div>
 					</div>
 					
 					<br>
