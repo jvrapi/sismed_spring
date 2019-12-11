@@ -29,6 +29,9 @@ public class TConvenio extends AbstractEntity{
 	@OneToMany(mappedBy = "tconvenio_id")
     Set<LabTConv> tconv;
 	
+	@OneToMany(mappedBy = "tconvenio")
+    Set<FuncTConv> tconvenio;
+	
 	public String getNome() {
 		return nome;
 	}

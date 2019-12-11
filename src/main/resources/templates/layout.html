@@ -18,8 +18,7 @@
     
     <link th:href="@{/css/style-home.css(v=${version}) }" rel="stylesheet" />
     <link rel="icon" th:href="@{/image/favicon.ico}" />
-    
-    <script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js(v=${version}) }"></script>
 
 </head>
@@ -101,6 +100,18 @@
 			var modal = $(this);
 			modal.find('#recipient-name').val(recipientnome);
 			modal.find('#recipient-id').val(recipientid);
+		  });
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+		  $("#modalCadastroConv").on('show.bs.modal', function(event){
+		    var button = $(event.relatedTarget);
+		    var recipientid = button.data('id');
+			var recipientnome = button.data('nome');
+			var modal = $(this);
+			modal.find('#recipient-name2').val(recipientnome);
+			modal.find('#recipient-id2').val(recipientid);
 		  });
 		});
 	</script>

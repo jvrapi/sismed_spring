@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -88,11 +89,8 @@ public class Funcionario extends AbstractEntity {
 	@OneToOne(mappedBy = "funcionario_id")
 	private Login login;
 	
-	@ManyToMany
-	@JoinTable(name = "sismed_funcionario_tconvenio",
-	joinColumns = @JoinColumn(name = "funcionario_id"),
-	inverseJoinColumns = @JoinColumn(name = "tipo_convenio_id"))
-	public Set<Funcionario> funcionario;
+	@OneToMany(mappedBy = "funcionario")
+    Set<FuncTConv> func;
 
 	public Funcionario() {
 		super();
@@ -213,14 +211,6 @@ public class Funcionario extends AbstractEntity {
 
 	public void setLogin(Login login) {
 		this.login = login;
-	}
-
-	public Set<Funcionario> getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Set<Funcionario> funcionario) {
-		this.funcionario = funcionario;
 	}
 
 	public LocalDate getData_inicio() {

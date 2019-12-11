@@ -63,7 +63,6 @@ public class Login extends AbstractEntity{
 	public void setFuncionario_id(Funcionario funcionario_id) {
 		this.funcionario_id = funcionario_id;
 	}
-	
-	
+
 
 }

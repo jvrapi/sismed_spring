@@ -15,9 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,12 +25,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sismed.domain.FuncTConv;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Perfil;
+import br.com.sismed.domain.TConvenio;
+import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.FuncTConvService;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.LoginService;
+import br.com.sismed.service.TConvenioService;
 
 @Controller
 @RequestMapping("/funcionario")
@@ -42,7 +45,16 @@ public class FuncionarioController {
 	private FuncionarioService service;
 	
 	@Autowired
+	private ConvenioService cService;
+	
+	@Autowired
 	private LoginService lservice;
+	
+	@Autowired
+	private TConvenioService tcService;
+	
+	@Autowired
+	private FuncTConvService ftcService;
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page){
@@ -117,8 +129,9 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping("/editar/{id}") 
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	public String preEditar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("FuncTConv") FuncTConv functconv) {
 		model.addAttribute("funcionario", service.buscarporId(id));
+		model.addAttribute("allconvenios", cService.findAll());
 		return "/funcionario/editar";
 	}
 	
@@ -226,6 +239,18 @@ public class FuncionarioController {
 		lservice.alterarSenha(l, s1);
 		attr.addFlashAttribute("success", "Senha alterado com sucesso!");
 		return "redirect:/funcionario/editar/" + funcionario_id;
+	}
+	
+	@GetMapping("/allconvenios/{id}/{funcId}")
+	public @ResponseBody List<TConvenio> listAllTipoConvenio(@PathVariable("id") Long id, @PathVariable("funcId") Long funcId) {
+		return tcService.ListaComboBoxFunc(id, funcId);
+	}
+	
+	@PostMapping("/salvarTConv/{funcId}")
+	public String salvarTConv(FuncTConv functconv, @PathVariable("funcId") Long funcId) {
+		System.out.println(functconv);
+		ftcService.salvar(functconv);
+		return "redirect:/funcionario/editar/" + funcId;
 	}
 	
 }

@@ -75,5 +75,9 @@ public class TConvenioService {
 	public List<TConvenio> ListaComboBoxLab(Long id, Long labId) {
 		return tcRepository.ListaComboBoxLab(id, labId);
 	}
+	
+	public List<TConvenio> ListaComboBoxFunc(Long id, Long funcId) {
+		return tcRepository.ListaComboBoxFunc(id, funcId);
+	}
 
 }
