@@ -29,8 +29,6 @@ public class ConvenioService{
 	}
 
 	
-
-	
 	@Transactional(readOnly = false)
 	public void excluir(Long id) {
 		cRepository.deleteById(id);
@@ -55,6 +53,10 @@ public class ConvenioService{
 		return cRepository.findAll();
 	}
 
+	@Transactional(readOnly = true)
+	public List<Convenio> funcionarioConvenios(Long id) {
+		return cRepository.funcionarioConvenios(id);
+	}
 	
 	
 	@Transactional(readOnly = true)

@@ -23,17 +23,17 @@
 						</div>
 					</div>
 					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
-						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
-							<button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
-							<button class="dropdown-item" type="button" value="4" onclick="muda4()">Telefone</button>
-						</div>
-					</div>
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="2" onclick="muda()">Nome</button>
+                            <button class="dropdown-item" type="button" value="1" onclick="muda2()">Prontuário</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
+                            <button class="dropdown-item" type="button" value="4" onclick="muda4()">Telefone</button>
+                        </div>
+                    </div>
 					<div id="divBusca">
 						<input type="text" id="txtBusca" placeholder="Buscar..." />
 						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
@@ -113,7 +113,7 @@
                                 </td>
                                 
                                 <td>
-                                    <a title="Mostrar informações" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
+                                    <a th:href ="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 <td>
                                     <a title="Mostrar informações" th:text="${a.paciente_id.tipo_convenio.convenio.nome}"></a>

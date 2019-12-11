@@ -80,6 +80,9 @@ public class FuncionarioService {
 		return fRepository.ListarFuncionarioCelular(dado);
 	}
 	
+	public List<Funcionario>ListarMedicos(){
+		return fRepository.ListarMedicos();
+	}
 	
 
 	

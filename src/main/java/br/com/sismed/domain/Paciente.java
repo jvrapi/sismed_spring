@@ -282,7 +282,7 @@ public int calcularIdade(LocalDate nascimento) {
 		int diaPaciente = nascimento.getDayOfWeek().ordinal();
 
 		int idade = anoAtual - anoPaciente;
-		System.out.println(nascimento);
+		
 		if(mesAtual < mesPaciente ) {
 			idade--;
 		}
@@ -291,7 +291,7 @@ public int calcularIdade(LocalDate nascimento) {
 				idade-- ;
 			}
 		}
-		System.out.println(idade);
+		
 		return idade;
 		
 	}

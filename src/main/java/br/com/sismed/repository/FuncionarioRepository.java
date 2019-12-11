@@ -29,6 +29,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 	@Query(value = "SELECT * FROM sismed_funcionario WHERE especialidade LIKE %:dado%", nativeQuery = true)
 	List<Funcionario> ListarFuncionarioEspecialidade(String dado);
 	
+	@Query(value = "SELECT * FROM sismed_funcionario WHERE crm IS NOT NULL", nativeQuery = true)
+	List<Funcionario> ListarMedicos();
+	
 	
 	
 	

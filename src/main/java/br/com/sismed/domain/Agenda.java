@@ -1,10 +1,14 @@
 package br.com.sismed.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 
 @SuppressWarnings("serial")
@@ -41,10 +45,12 @@ public  class Agenda extends AbstractEntity {
 	private Long pagou;
 	
 	@Column(nullable = false)
-	private LocalDateTime data =  LocalDateTime.now();
+	@DateTimeFormat(iso = ISO.DATE)
+	private LocalDate data ;
 	
 	@Column(nullable = false)
-	private LocalDateTime hora =  LocalDateTime.now();
+	@DateTimeFormat(iso = ISO.TIME)
+	private LocalTime hora;
 
 	
 	@OneToMany(mappedBy = "agenda") // nome do atributo na classe Custos
@@ -99,19 +105,19 @@ public  class Agenda extends AbstractEntity {
 		this.pagou = pagou;
 	}
 
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(LocalDateTime data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-	public LocalDateTime getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalDateTime hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 

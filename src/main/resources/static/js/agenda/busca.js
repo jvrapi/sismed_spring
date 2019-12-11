@@ -2,7 +2,7 @@ $(document).ready(function() {
 		$( function() {
 			$("#txtBusca").autocomplete({
 				source: "http://localhost:8080/agenda/listar/1",
-				minLength: 1,
+				minLength: 2,
 				select: function (event, ui) {
 					url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 					document.location.href = url;
@@ -15,7 +15,7 @@ function muda() {
 	
 				$('#txtBusca').unmask();
 				$('#txtBusca').val('');
-				$("#dropdownMenu2").text("Prontuário");
+				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("1");
 				$( function() {
 					$("#txtBusca").autocomplete({
@@ -32,12 +32,12 @@ function muda() {
 			function muda2() {
 				$('#txtBusca').unmask();
 				$('#txtBusca').val('');
-				$("#dropdownMenu2").text("Nome");
+				$("#dropdownMenu2").text("Prontuario");
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
 						source: "http://localhost:8080/agenda/listar/2",
-						minLength: 2,
+						minLength: 1,
 						select: function (event, ui) {
 							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
