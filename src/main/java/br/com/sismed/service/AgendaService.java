@@ -48,6 +48,14 @@ public class AgendaService {
 		return dao.getOne(id);
 	}
 
+
+	public List<Agenda> ListarAgendamentosMedico(Long medico_id) {
+		return dao.ListarAgendamentosMedico(medico_id);
+	}
+
+
+
+
 	
 
 }

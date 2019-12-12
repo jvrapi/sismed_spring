@@ -137,7 +137,7 @@
                                 </div>
 
                                 <div class="btnConvenio">
-
+							<div sec:authorize="hasAuthority('ADMIN')">
                                     <a class="btn btn_cadastrar  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
                                         <span class="fas fa-plus" aria-hidden="true"> </span>
                                         <span>  Tipo </span>
@@ -147,7 +147,7 @@
                                         <span class="fas fa-plus" aria-hidden="true"> </span>
                                         <span> Procedimento</span>
                                     </a>
-
+</div>
                                     <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
 
                                     <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>

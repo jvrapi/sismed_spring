@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="/js/agenda/dropdown.js"></script>
+   
     <script type="text/javascript" src="/js/agenda/tipoConvenio.js"></script>
     <script type="text/javascript" src="/js/agenda/procedimentos.js"></script>
     <script type="text/javascript" src="/js/agenda/valorProcedimento.js"></script>
-     <script type="text/javascript" src="/js/agenda/medicos.js"></script>
-     <script type="text/javascript" src="/js/agenda/busca.js"></script>
+    <script type="text/javascript" src="/js/agenda/medicos.js"></script>
+    <script type="text/javascript" src="/js/agenda/busca.js"></script>
+     <script type="text/javascript" src="/js/agenda/verificarDataHora.js"></script>
+  
 </head>
 
 <body>
@@ -26,7 +28,9 @@
                             <a href="#">Exame</a>
                             <a href="#">Laboratório</a>
                         </div>
+                        
                     </div>
+                    
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -63,6 +67,7 @@
                                 </div>
                             </form>
                 </div>
+                </div>
             </nav>
 
             <div class="container ajustarTexto">
@@ -70,7 +75,7 @@
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
             <div class="container-fluid" style="width: 98%">
-            <form th:action="@{/agenda/salvar1}" th:object="${agenda}" method="POST">
+            <form th:action="@{/agenda/salvar1}" th:object="${agenda}"  method="POST">
                 <h3 style="display: inline; margin-left: 10px;"><strong >Novo Agendamento</strong></h3>
                 <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/agenda/agendamentos"> <i class="fas fa-chevron-left"></i> Voltar</a>
                 <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
@@ -183,6 +188,7 @@
                 </form>
             </div>
         </div>
+        
     </section>
 
 </body>

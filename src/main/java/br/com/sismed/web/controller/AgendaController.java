@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.Procedimento;
 import br.com.sismed.domain.TConvenio;
@@ -28,6 +31,7 @@ import br.com.sismed.service.AgendaService;
 
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.ProcedimentoService;
 import br.com.sismed.service.TConvenioService;
@@ -54,10 +58,46 @@ public class AgendaController {
 	@Autowired
 	private FuncionarioService fservice;
 
+	@Autowired
+	private LoginService lservice;
 	
 	
 	@GetMapping("/agendamentos")
-	public List<Agenda> lista(ModelMap model) {
+	public List<Agenda> lista(ModelMap model, @AuthenticationPrincipal User user) {
+		
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		Long perfil = l.getPerfis().getId();
+		Long medico_id = l.getFuncionario_id().getId();
+		
+		if( perfil == 1 || perfil == 2  ) {
+			
+			//Medico que esta logado
+			List<Agenda> Agendamentos = serivce.ListarAgendamentosMedico(medico_id);
+			
+			List<Agenda> lista = new ArrayList<Agenda>();
+			for(Agenda agenda: Agendamentos) {
+			
+				Agenda a = new Agenda();
+				
+				a.setId(agenda.getId());
+				a.setObservacao(agenda.getObservacao());
+				a.setPrimeira_vez(agenda.getPrimeira_vez());
+				a.setCompareceu(agenda.getCompareceu());
+				a.setPagou(agenda.getPagou());
+				a.setData(agenda.getData());
+				a.setHora(agenda.getHora());
+				a.setPaciente_id(agenda.getPaciente_id());
+				a.setFuncionario(agenda.getFuncionario());
+				a.setProcedimento(agenda.getProcedimento());
+				a.setTipo_convenio(agenda.getTipo_convenio());
+				
+				
+				lista.add(a);
+			}
+			model.addAttribute("agendamentos", lista);
+			return lista;
+		}
+		 
 		List<Agenda> Agendamentos = serivce.ListarAgendamentos();
 		List<Agenda> lista = new ArrayList<Agenda>();
 		for(Agenda agenda: Agendamentos) {
@@ -78,7 +118,9 @@ public class AgendaController {
 			
 			
 			lista.add(a);
+			
 		}
+		
 		model.addAttribute("agendamentos", lista);
 		return lista;
 		
@@ -90,6 +132,11 @@ public class AgendaController {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		if(id == 1) {
 			List<Paciente> allPacientes = pacienteService.ListarPacNome(term);
+			if(allPacientes.isEmpty()) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel("Paciente não encontrado");
+				lv.setValue(0L);
+			}
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -190,6 +237,14 @@ public class AgendaController {
 		serivce.salvar(agenda);
 		attr.addFlashAttribute("success","Informações alteradas com sucesso!");
 		return "redirect:/agenda/agendamentos";
+	}
+	
+	@GetMapping("/preCadastro")
+	public String preCadastro(ModelMap model) {
+		
+		model.addAttribute("paciente", pacienteService.Ultimoid());
+		
+		return "/agenda/preCadastro";
 	}
 	
 }

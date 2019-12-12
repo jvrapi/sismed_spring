@@ -72,4 +72,8 @@ public class PacienteService{
 	public Page<Integer> ContaId(Pageable pageable) {
 		return pRepository.ContaId(pageable);
 	}
+	
+	public Long Ultimoid() {
+		return pRepository.Ultimoid();
+	}
 }

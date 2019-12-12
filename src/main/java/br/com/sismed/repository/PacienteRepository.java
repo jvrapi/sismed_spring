@@ -30,4 +30,9 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>{
 	
 	@Query(value = "SELECT DISTINCT p.id FROM sismed_paciente p JOIN sismed_registro_clinico r ON p.id = r.paciente_id ORDER BY p.nome ASC", nativeQuery = true)
 	Page<Integer> ContaId(Pageable pageable);
+	
+	@Query(value = "select p.id from sismed_paciente p  ORDER BY id DESC limit 1", nativeQuery = true)
+	Long Ultimoid();
+	
+	 
 }

@@ -7,11 +7,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.com.sismed.domain.PerfilTipo;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.LoginService;
 
 @EnableWebSecurity
 public class SecurityConfig extends  WebSecurityConfigurerAdapter {
+	
+	private static final String ADMIN = PerfilTipo.ADMIN.getDesc();
+    private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
+    private static final String PACIENTE = PerfilTipo.FUNCIONARIO.getDesc();
 	
 	@Autowired
 	private LoginService service;
@@ -26,7 +31,8 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		
 		
 		//acessos privados de medico
-		.antMatchers("/RegistroClinico/**").hasAuthority("MEDICO")
+		.antMatchers("/RegistroClinico/**").hasAnyAuthority(ADMIN,MEDICO)
+		
 		
 		
 		.anyRequest().authenticated()
