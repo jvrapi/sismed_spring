@@ -12,6 +12,8 @@
 					<tr style="color: #5d6266; font-size: 1em;">
 						<th style="width:120px;">Nº Registro</th>
 						<th>Descrição</th>
+						<th>Médico</th>
+						<th>Especialidade</th>
 						<th>Data</th>
 						<th>Hora</th>
 					</tr>
@@ -22,6 +24,8 @@
 							data-descricao=${r.descricao}, data-data=${#temporals.format(r.data, 'dd/MM/yyyy')}, data-hora=${#temporals.format(r.hora, 'HH:mm')}" th:text="${r.id}"></a>
           				</td>
 						<td><a class="descricao" th:text="${r.descricao}"></a></td>
+						<td><a th:text="${r.funcionario_id.nome}"></a></td>
+						<td><a th:text="${r.funcionario_id.especialidade}"></a></td>
 						<td><a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a></td>
 						<td><a th:text="${#temporals.format(r.hora, 'HH:mm')}"></a></td>
 					</tr>

@@ -104,9 +104,10 @@ public class ExameController {
 	return "redirect:/exame/listar";
 	}
 		
-	@GetMapping("/editar/{id}") 
-	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+	@GetMapping("/editar/{id}/{tcid}") 
+	public String preEditar(@PathVariable("id") Long id, @PathVariable("tcid") Long tcid, ModelMap model) {
 	model.addAttribute("exame", service.buscarporId(id));
+	model.addAttribute("laboratorio", lservice.ListarLabTConv(tcid));
 	return "/exame/editar";
 	}
 	
@@ -160,7 +161,7 @@ public class ExameController {
 	model.addAttribute("success", "Exame excluído com sucesso");
 	service.excluir(id);
 		
-	return "redirect:/pacientes/listar";
+	return "redirect:/exame/listar";
 	}
 		
 	/*@ModelAttribute("tipoconvenio")
@@ -207,15 +208,13 @@ public class ExameController {
 	@ResponseBody
 	public List<LabelValue> listarfuncionario(@RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
-		
-			List<Funcionario> allFuncionarios = fservice.ListarFuncionarioNome(term);
-			for (Funcionario funcionario : allFuncionarios) {
-				LabelValue lv = new LabelValue();
-				lv.setLabel(funcionario.getNome());
-				lv.setValue(funcionario.getId());
-				suggeestions.add(lv);
-			}
-		
+		List<Funcionario> allFuncionarios = fservice.ListarFuncionarioNome(term);
+		for (Funcionario funcionario : allFuncionarios) {
+			LabelValue lv = new LabelValue();
+			lv.setLabel(funcionario.getNome());
+			lv.setValue(funcionario.getId());
+			suggeestions.add(lv);
+		}
 		return suggeestions;	
 	}
 	

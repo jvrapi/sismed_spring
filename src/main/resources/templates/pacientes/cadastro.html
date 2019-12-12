@@ -158,29 +158,29 @@
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="nome">Nome</label> 
-								<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}"
+								<input type="text" class="form-control tamanho-fonte" id="nome" maxlength="50" th:field="*{nome}"
 								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" required autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="cpf">CPF</label> 
-								<input type="text" class="form-control tamanho-fonte" id="cpf" autofocus="autofocus" th:field="*{cpf}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="cpf" maxlength="14" th:field="*{cpf}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="rg">RG</label> 
-								<input type="text" class="form-control tamanho-fonte" id="rg" autofocus="autofocus" th:field="*{rg}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="rg" maxlength="13" th:field="*{rg}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="orgao_emissor">Orgao emissor</label> 
-								<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" autofocus="autofocus" th:field="*{orgao_emissor}"
+								<input type="text" class="form-control tamanho-fonte" id="orgao_emissor" maxlength="20" th:field="*{orgao_emissor}"
 								onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="data_emissao">Data de emissão</label> 
-								<input type="date" class="form-control tamanho-fonte" id="data_emissao" autofocus="autofocus" th:field="*{data_emissao}" autocomplete="off"/>
+								<input type="date" class="form-control tamanho-fonte" id="data_emissao" th:field="*{data_emissao}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="data_nascimento">Data de nascimento</label> 
-								<input type="date" class="form-control tamanho-fonte" id="data_nascimento" autofocus="autofocus" th:field="*{data_nascimento}" autocomplete="off"/>
+								<input type="date" class="form-control tamanho-fonte" id="data_nascimento" th:field="*{data_nascimento}" autocomplete="off"/>
 							</div>
 						</div>
 	
@@ -188,9 +188,9 @@
 							<div class="form-group col-md-2">
 								<label for="sexo">Sexo</label> 
 								<select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}">
-									<option value="FEMININO">FEMININO</option>
-									<option value="MASCULINO">MASCULINO</option>
-									<option value="NÃO DECLARADO">NÃO DECLARADO</option>
+									<option value="F">FEMININO</option>
+									<option value="M">MASCULINO</option>
+									<option value="ND">NÃO DECLARADO</option>
 								</select>
 							</div>
 							<div class="form-group col-md-2">
@@ -204,51 +204,54 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="naturalidade">Naturalidade</label> 
-								<input type="text" class="form-control tamanho-fonte" id="naturalidade" autofocus="autofocus" th:field="*{naturalidade}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="naturalidade" maxlength="20" th:field="*{naturalidade}" onkeyup="maiuscula(this)" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="nacionalidade">Nacionalidade</label> 
-								<input type="text" class="form-control tamanho-fonte" id="nacionalidade" autofocus="autofocus" th:field="*{nacionalidade}" autocomplete="off"/>
+								<select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" >
+									<option value="B">BRASILEIRA</option>
+									<option value="E">ESTRANGEIRA</option>
+								</select>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="telefone_fixo">Telefone fixo</label> 
-								<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" maxlength="14" th:field="*{telefone_fixo}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-1">
 								<label for="telefone_trabalho">Telefone trab</label> 
-								<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" autofocus="autofocus" th:field="*{telefone_trabalho}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" maxlength="14" th:field="*{telefone_trabalho}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="celular">Celular</label> 
-								<input type="text" class="form-control tamanho-fonte" id="celular" autofocus="autofocus" th:field="*{celular}" required autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="celular" maxlength="16" th:field="*{celular}" required autocomplete="off"/>
 							</div>
 						</div>
 	
 						<div class="form-row">
 							<div class="form-group col-md-4">
 								<label for="email">Email</label> 
-								<input type="text" class="form-control tamanho-fonte" id="email" maxlength="30" autofocus="autofocus" th:field="*{email}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="email" maxlength="50" th:field="*{email}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-3">
 								<label for="escolaridade"> Escolaridade</label> 
 								<select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}">
-									<option value="d">DOUTORADO</option>
-									<option value="m">MESTRADO</option>
-									<option value="esc">ENSINO SUPERIOR COMPLETO</option>
-									<option value="esi">ENSINO SUPERIOR INCOMPLETO</option>
-									<option value="emc">ENSINO MÉDIO COMPLETO</option>
-									<option value="emi">ENSINO MÉDIO INCOMPLETO</option>
-									<option value="efc">ENSINO FUNDAMENTAL COMPLETO</option>
-									<option value="efi">ENSINO FUNDAMENTAL INCOMPLETO</option>
+									<option value="ESC">ENSINO SUPERIOR COMPLETO</option>
+									<option value="ESI">ENSINO SUPERIOR INCOMPLETO</option>
+									<option value="EMC">ENSINO MÉDIO COMPLETO</option>
+									<option value="EMI">ENSINO MÉDIO INCOMPLETO</option>
+									<option value="EFC">ENSINO FUNDAMENTAL COMPLETO</option>
+									<option value="EFI">ENSINO FUNDAMENTAL INCOMPLETO</option>
+									<option value="M">MESTRADO</option>
+									<option value="D">DOUTORADO</option>
 								</select>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="profissao">Profissao</label> 
-								<input type="text" class="form-control tamanho-fonte" id="profissao" autofocus="autofocus" th:field="*{profissao}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="profissao" maxlength="20" th:field="*{profissao}" onkeyup="maiuscula(this)" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-3">
 								<label for="recomandacao">Recomendação</label> 
-								<input type="text" class="form-control tamanho-fonte" id="recomendacao" autofocus="autofocus" th:field="*{recomendacao}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="recomendacao" maxlength="30" th:field="*{recomendacao}" onkeyup="maiuscula(this)" autocomplete="off"/>
 							</div>
 						</div>
 	
@@ -271,7 +274,7 @@
 							</div>
 							<div class="form-group col-md-2">
 								<label for="carteira_convenio">Carteira do convenio</label> 
-								<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" autofocus="autofocus" th:field="*{carteira_convenio}" autocomplete="off"/>
+								<input type="text" class="form-control tamanho-fonte" id="carteira_convenio" maxlength="20" th:field="*{carteira_convenio}" autocomplete="off"/>
 							</div>
 							<div class="form-group col-md-2">
 								<label for="validade">Validade</label> 
@@ -280,9 +283,9 @@
 							<div class="form-group col-md-2">
 								<label for="situacao">Situação</label> 
 								<select type="text" class="form-control tamanho-fonte" id="situacao" autofocus="autofocus" th:field="*{situacao}" autocomplete="off">
-									<option value="ATIVO">ATIVO</option>
-									<option value="INVATIVO">INVATIVO</option>
-									<option value="FALECIDO">FALECIDO</option>
+									<option value="A">ATIVO</option>
+									<option value="I">INVATIVO</option>
+									<option value="F">FALECIDO</option>
 								</select>
 							</div>
 						</div>
@@ -305,18 +308,18 @@
 							</div>
 							<div class="form-group col-md-4">
 								<label for="complemento">Complemento</label> 
-								<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" autocomplete="off">
+								<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" onkeyup="maiuscula(this)" autocomplete="off">
 							</div>
 						</div>
 	
 						<div class="form-row">
 							<div class="form-group col-md-5">
 								<label for="bairro">Bairro</label> 
-								<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" autocomplete="off">
+								<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" autocomplete="off">
 							</div>
 							<div class="form-group col-md-5 ">
 								<label for="cidade">Cidade</label> 
-								<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}"autocomplete="off">
+								<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" autocomplete="off">
 							</div>
 							<div class="form-group col-md-2 ">
 								<label for="uf">Estado</label> 

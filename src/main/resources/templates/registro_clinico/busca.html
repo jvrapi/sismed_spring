@@ -118,7 +118,7 @@
 									<td><a th:text="${r.rclinico.paciente_id.id}"></a></td>
 									<td><a th:href="@{/RegistroClinico/cadastrarpac/{id} (id=${r.rclinico.paciente_id.id}) }" th:text="${r.rclinico.paciente_id.nome}"></a></td>
 									<td><a class="descricao" th:text="${r.rclinico.descricao}"></a></td>
-									<td><a th:text="${r.rclinico.data}"></a></td>
+									<td><a th:text="${#temporals.format(r.rclinico.data, 'dd/MM/yyyy')}"></a></td>
 									<td><a th:text="${r.rclinico.hora}"></a></td>
 									<td><a th:text="${r.qntId}"></a></td>
 								</tr>
