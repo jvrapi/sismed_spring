@@ -31,6 +31,6 @@ public interface TConvenioRepository extends JpaRepository<TConvenio, Long>{
 	@Query(value ="SELECT * FROM sismed_tipo_convenio WHERE id not in (SELECT sismed_tipo_convenio_id FROM sismed_laboratorio_tconvenio where sismed_laboratorio_id = :labId) AND convenio_id = :id", nativeQuery = true)
 	List<TConvenio> ListaComboBoxLab(Long id, Long labId);
 	
-	@Query(value = "SELECT * FROM sismed_tipo_convenio WHERE id not in (SELECT sismed_tipo_convenio_id FROM sismed_funcionario_tconvenio where sismed_funcionario_id = :funcId) AND convenio_id = :id", nativeQuery = true)
+	@Query(value = "SELECT * FROM sismed_tipo_convenio WHERE id not in (SELECT tipo_convenio_id FROM sismed_funcionario_tconvenio where funcionario_id = :funcId) AND convenio_id = :id", nativeQuery = true)
 	List<TConvenio> ListaComboBoxFunc(Long id, Long funcId);
 }

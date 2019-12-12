@@ -58,7 +58,7 @@ public class FuncionarioController {
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page){
-		PageRequest pagerequest = PageRequest.of(page-1,12,Sort.by("id").ascending());
+		PageRequest pagerequest = PageRequest.of(page-1,2,Sort.by("id").ascending());
 		Page<Funcionario> funcionario = service.buscarTodos(pagerequest);
 		model.addAttribute("funcionario", funcionario);
 		int lastPage = funcionario.getTotalPages();

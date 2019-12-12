@@ -6,6 +6,7 @@
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
     <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     
     <script>
 		$(document).ready(function() {
@@ -114,12 +115,13 @@
 			
        			<div id="div_botao">
 						<h3 style="display: inline;">Edição | <strong>Funcionário</strong></h3>
-						
+												
 						<a class="btn btn-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 						
 						<button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
 						
 						<button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
+					
 					</div >
 					
 				<div class="card" style="margin-top: 25px; padding: 0px;">
@@ -219,25 +221,23 @@
 						</div>
 					
 							<div class="form-group col-md-2">
-							<label for="data_inicio">Data de Início</label>
+							<label for="data_inicio">Data de Contratação</label>
 							<input type="date" class="form-control tamanho-fonte" id="data_inicio"  th:field="*{data_inicio}" disabled/>
 						</div>
 						
 							<div class="form-group col-md-2">
-							<label for="celular">Data de Término</label>
+							<label for="celular">Data de Dispensa</label>
 							<input type="date" class="form-control tamanho-fonte" id="data_termino"  th:field="*{data_termino}" disabled/>
 						</div>
 						
-						<div class="form-group col-md-2">
-					<button type="button" class="btn-outline-primary float-right mr-2 modalSenha" data-toggle="modal" data-target="#modalSenha"><i class="far fa-arrow-alt-circle-up">Clique aqui para alterar a senha</i></button>
-					</div>
 					</div>
 					
 					<br>
 					
 					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Informações do Médico</h5>
+					
 					<div class="form-row">
-						<div class="form-group col-md-6 ">
+						<div class="form-group col-md-4 ">
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" 
@@ -248,12 +248,16 @@
 						<label for="crm"> CRM</label> <input type="number"
 							class="form-control" id="crm" placeholder="CRM"
 							 th:field="*{crm}" disabled > 
+							 
+							 </div>		
+					
+						<div class="form-group col-md-2 ">
+					<a class="btn-primary mr-2 btn modalSenha btn-group btn_cadastrar btn"  style="margin-top:32px; color: white;" role="button" data-toggle="modal" data-target="#modalCadastroConv" 
+						th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" element title="Clique aqui para cadastrar um convênio"><span>Novo Convênio &nbsp;<span class="fas fa-plus"></span></a>
 					</div>
-					<button type="button" data-toggle="modal" data-target="#modalCadastroConv" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}"></button>
 					</div>
 					
 					
-
 					<br>
 
 					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
@@ -320,10 +324,9 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
-					  
+					  <input type="hidden" id="perfil_id" th:field="*{login}">
 					<input type="hidden" id="perfil_id" th:field="*{login.perfis.id}">
 					
-					<input type="text" id="login" th:field="*{login}">
 				</div>
 				</div>
 				
