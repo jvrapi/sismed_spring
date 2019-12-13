@@ -176,7 +176,6 @@ public class LaboratorioController {
 	
 	@PostMapping("/salvarTConv/{labId}")
 	public String salvarTConv(LabTConv labtconv, @PathVariable("labId") Long labId) {
-		System.out.println(labtconv);
 		ltcService.salvar(labtconv);
 		return "redirect:/laboratorio/editar/" + labId;
 	}

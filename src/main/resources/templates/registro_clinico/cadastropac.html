@@ -2,113 +2,16 @@
 <html layout:decorate="~{layout}">
 	<head>
 		<meta charset="UTF-8" />
-		<!-- <script>
-			function busca() {
-				if($("#txtBusca").val() != ""){
-					var url2 = "http://localhost:8080/RegistroClinico/listar/" + $("#dropdownMenu2").val() + "/" + $("#txtBusca").val();
-					document.location.href = url2;
-				}
-			}
-		</script> -->
-		<script>
-			$(document).ready(function() {
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/RegistroClinico/listar/2",
-						minLength: 3,
-						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			});
-			function muda() {
-				$("#dropdownMenu2").text("Prontuário");
-				$("#dropdownMenu2").val("1");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/RegistroClinico/listar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-			function muda2() {
-				$("#dropdownMenu2").text("Nome");
-				$("#dropdownMenu2").val("2");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/RegistroClinico/listar/2",
-						minLength: 3,
-						select: function (event, ui) {
-							url = "http://localhost:8080/RegistroClinico/cadastrarpac/" + ui.item.value;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-		</script>
-		<script>
-			$(document).ready(function() {
-				var now = new Date();
-				var dia = now.getDate(); if(dia < 10) dia = "0" + dia;
-				var mes = now.getMonth() +1; if(mes < 10) mes = "0" + mes;			
-				var ano = now.getFullYear();
-				$("#data").val(ano + "-" + mes + "-" + dia);
-			});
-		</script>
-		<script>
-			$(document).ready(time);
-			function time(){
-				today=new Date();
-				hora = today.getHours() - 1;
-				if(hora < 10) hora = "0"+hora;
-				minuto = today.getMinutes();
-				if(minuto < 10) minuto = "0"+minuto;
-				document.getElementById('hora').value=hora+":"+minuto;
-				setTimeout('time()',1000);
-			}
-		</script>
-		<script>
-		$(document).ready(function() {
-			$(".descricao").each(function() {
-				var html = $(this).text();
-				if(html.length > 20)
-					$(this).text(html.substring(0, 20) + '....');
-			});
-		});
-		</script>
-		<script>
-			$(document).ready(function() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_paciente").val();
-				$("#resultsBlock").load(url);
-			});
-		</script>
-		<script>
-			function mudaPágina(element) {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_paciente").val() + "?page=" + element.text;
-				$("#resultsBlock").load(url);
-			}
-			function primeiraPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_paciente").val() + "?page=1";
-				$("#resultsBlock").load(url);
-			}
-			function ultimaPagina() {
-				var url = "http://localhost:8080/RegistroClinico/find/" + $("#id_paciente").val() + "?page=" + $("#ultimaPagina").val();
-				$("#resultsBlock").load(url);
-			}
-		</script>
+		<script type="text/javascript" src="/js/rclinico/busca.js"></script>
+		<script type="text/javascript" src="/js/rclinico/data.js"></script>
+		<script type="text/javascript" src="/js/rclinico/hora.js"></script>
+		<script type="text/javascript" src="/js/rclinico/limitaDesc.js"></script>
+		<script type="text/javascript" src="/js/rclinico/paginacao.js"></script>
 	</head>
 	  
 	<body>
 		<div layout:fragment="corpo">
+		
 			<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
 				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
 					<div class="dropdown">
@@ -181,7 +84,7 @@
 								</div>
 								<div class="form-group col-md-1">
 									<label for="hora">Hora</label> 
-									<input type="time" class="form-control tamanho-fonte" id="hora" th:name="hora" 
+									<input type="text" class="form-control tamanho-fonte" id="hora" th:name="hora" 
 									style="cursor: default;box-shadow: 0 0 0 0; border: 1px solid lightgray;" readonly> 
 								</div>
 								
@@ -190,7 +93,9 @@
 							<div class="form-row">
 								<div class="form-group col-md-7">
 									<label for="descricao">Descrição</label> 
-									<textarea class="form-control" id="descricao" rows="7"  autofocus="autofocus" maxlength="1000" th:field="*{descricao}" required style="resize: none;"></textarea>
+									<textarea class="form-control" id="descricao" rows="7" autofocus="autofocus" maxlength="1000" th:field="*{descricao}" 
+									onkeyup="maiuscula(this)" required style="resize: none;">
+									</textarea>
 								</div>
 							</div>
 						</div>
@@ -199,7 +104,6 @@
 				</form> 
 				<h5 style="display: inline;">Atendimentos anteriores</h5>
 				<div class="card" style="margin-top: 10px;" id="resultsBlock">
-					
 				</div>
 			</div>
 			<div th:replace="fragmentos/modal"></div>
