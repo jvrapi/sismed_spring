@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     
+    <script type="text/javascript" src="/js/funcionario/valida.js"></script>
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
     <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
@@ -133,7 +134,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-4">
 							<label for="nome">Nome</label>
-							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" 
+							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" maxlength="40"
 							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
 						</div>
 						<div class="form-group col-md-1">
@@ -231,6 +232,7 @@
 						</div>
 						
 					</div>
+				
 					
 					<br>
 					
@@ -241,7 +243,7 @@
 						<label for="especialidade"> Especialidade</label> <input
 							type="text" class="form-control" id="especialidade"
 							placeholder="especialidade" 
-							th:field="*{especialidade}" style="text-transform: uppercase;" disabled onkeyup="verifica();"> 
+							th:field="*{especialidade}" style="text-transform: uppercase;" disabled> 
 					</div>
 
 							<div class="form-group col-md-2 ">
@@ -257,9 +259,6 @@
 					</div>
 					</div>
 					
-					
-					<br>
-
 					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
 					<div class="form-row">
 						<div class="form-group col-md-2 ">
@@ -324,7 +323,7 @@
 						</div>
 					</div>
 					<input type="hidden" id="id" th:field="*{id}"/>
-					  <input type="hidden" id="perfil_id" th:field="*{login}">
+					  <input type="hidden" id="login" th:field="*{login}">
 					<input type="hidden" id="perfil_id" th:field="*{login.perfis.id}">
 					
 				</div>
