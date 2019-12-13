@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,15 +102,18 @@ public class FuncionarioController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar( Funcionario funcionario, RedirectAttributes attr) {
+	public String salvar( Funcionario funcionario, RedirectAttributes attr, @RequestParam("password")String senha) {
 		try {
 		service.salvar(funcionario);
 		Login login = new Login();
 		String cpf = funcionario.getCpf();
 		login.setFuncionario_id(funcionario);
 		login.setCpf(cpf);
+		login.setSenha(new BCryptPasswordEncoder().encode(senha));
+		
 		Integer crm = funcionario.getCrm();
 		Perfil perfil = new Perfil();
+		
 		if(crm == null) {
 			
 			perfil.setId(2L);

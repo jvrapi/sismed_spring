@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		$("#tipo").change(function() {
 			var id =  $(this).val();
-			if(id == 2 ){
+			if(id == 2){
 			
 				$("#especialidade").prop("disabled", true);
 				$("#especialidade").val("");
@@ -10,8 +10,10 @@ $(document).ready(function() {
 				
 			}else{
 				
+				$("#especialidade").prop("required", true);
 				$("#especialidade").prop("disabled", false);
 				$("#especialidade").val("");
+				$("#crm").prop("required", true);
 				$("#crm").prop("disabled", false);
 				$("#crm").val("");
 			}
