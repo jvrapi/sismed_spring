@@ -134,8 +134,9 @@ public class AgendaController {
 			List<Paciente> allPacientes = pacienteService.ListarPacNome(term);
 			if(allPacientes.isEmpty()) {
 				LabelValue lv = new LabelValue();
-				lv.setLabel("Paciente não encontrado");
-				lv.setValue(0L);
+				lv.setLabel("Paciente não encontrado, Realizar Pre-Cadastro");
+				lv.setValue2("0");
+				suggeestions.add(lv);
 			}
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
@@ -146,6 +147,12 @@ public class AgendaController {
 		}
 		else if(id == 2) {
 			List<Paciente> allPacientes = pacienteService.ListarPacId(term);
+			if(allPacientes.isEmpty()) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel("Paciente não encontrado, Realizar Pre-Cadastro");
+				lv.setValue2("0");
+				suggeestions.add(lv);
+			}
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -155,6 +162,12 @@ public class AgendaController {
 		}
 		else if(id == 3) {
 			List<Paciente> allPacientes = pacienteService.PesquisarCPF(term);
+			if(allPacientes.isEmpty()) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel("Paciente não encontrado, Realizar Pre-Cadastro");
+				lv.setValue2("0");
+				suggeestions.add(lv);
+			}
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -164,6 +177,12 @@ public class AgendaController {
 		}
 		else if(id == 4) {
 			List<Paciente> allPacientes = pacienteService.PesquisarTelefone(term);
+			if(allPacientes.isEmpty()) {
+				LabelValue lv = new LabelValue();
+				lv.setLabel("Paciente não encontrado, Realizar Pre-Cadastro");
+				lv.setValue2("0");
+				suggeestions.add(lv);
+			}
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
@@ -206,7 +225,7 @@ public class AgendaController {
 	
 	@GetMapping("/procedimento/{id}")
 	public @ResponseBody List<Procedimento> listProcedimentos(@PathVariable("id") Long id, Agenda agenda) {
-		System.out.println(id);
+		
 		return procedimentoService.ListarProcedimento(id) ;
 	}
 	
@@ -228,7 +247,7 @@ public class AgendaController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("agendamento", serivce.buscarPorId(id));
-		
+		model.addAttribute("funcionario", fservice.ListarMedicos());
 		return "/agenda/editar";
 	}
 	
@@ -240,11 +259,29 @@ public class AgendaController {
 	}
 	
 	@GetMapping("/preCadastro")
-	public String preCadastro(ModelMap model) {
+	public String preCadastro(Agenda agenda, Paciente paciente, ModelMap model) {
+		Long prontuario = pacienteService.Ultimoid();
 		
-		model.addAttribute("paciente", pacienteService.Ultimoid());
+		model.addAttribute("funcionario", fservice.ListarMedicos());
+		model.addAttribute("prontuario", prontuario);
 		
 		return "/agenda/preCadastro";
+	}
+	
+	@PostMapping("/salvarPreCadastro")
+	public String salvarPreCadastro(Agenda agenda, Paciente paciente, RedirectAttributes attr) {
+		agenda.setPrimeira_vez(1L);
+		agenda.setPagou(1L);
+		agenda.setCompareceu(1L);
+		agenda.setPaciente_id(paciente);
+		paciente.setTipo_convenio(agenda.getTipo_convenio());
+		paciente.setSituacao("A");
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String dataAgendada = agenda.getData().format(formatador);
+		pacienteService.salvar(paciente);
+		serivce.salvar(agenda);
+		attr.addFlashAttribute("success","Paciente Agendado para o dia " + dataAgendada + " As " + agenda.getHora());
+		return "redirect:/agenda/agendamentos";
 	}
 	
 }

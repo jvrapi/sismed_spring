@@ -27,20 +27,19 @@ public class Convenio extends AbstractEntity{
 	private String nome;
 	
 	
-	@NotNull
-	@PastOrPresent(message = "{PastOrPresent.convenio.data_adesao}")
+	
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_adesao",nullable = false)
 	private LocalDate data_adesao ;
 	
-	@NotBlank
+	
 	@Column(nullable = false)
 	private String cnpj;
 	
 	@Column(nullable = false)
 	private String registro_ans;
 
-	@Valid
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "dados_bancarios")
 	private DadosBancarios dadosb;

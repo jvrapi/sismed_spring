@@ -4,9 +4,16 @@ $(document).ready(function() {
 				source: "http://localhost:8080/agenda/listar/1",
 				minLength: 2,
 				select: function (event, ui) {
+					if(ui.item.value2 == '0'){
+						
+						url = "http://localhost:8080/agenda/preCadastro" ;
+						document.location.href = url;
+						return false;
+					}
 					url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
 					document.location.href = url;
 					return false;
+					
 				}
 			});
 		});
@@ -20,9 +27,11 @@ function muda() {
 				$( function() {
 					$("#txtBusca").autocomplete({
 						source: "http://localhost:8080/agenda/listar/1",
-						minLength: 1,
+						minLength: 2,
 						select: function (event, ui) {
+							
 							if(ui.item.value == 0){
+								
 								url = "http://localhost:8080/agenda/preCadastro" ;
 								document.location.href = url;
 								return false;

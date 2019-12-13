@@ -267,7 +267,9 @@ public class Paciente extends AbstractEntity{
 	}
 	
 public int calcularIdade(LocalDate nascimento) {
-		
+		if(getData_nascimento() == null) {
+			return 0;
+		}
 		LocalDate dataAtual = LocalDate.now();
 		
 		

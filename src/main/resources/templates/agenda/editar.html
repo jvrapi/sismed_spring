@@ -120,18 +120,20 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="crm">Medico</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="nascimento" th:value="*{funcionario.nome}" disabled/>
-                                    <input type="hidden" th:field="*{funcionario}">
+                                    <select id="funcionario_id" class="form-control tamanho-fonte"  th:field="*{funcionario}" required>
+                                        <option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
+                                    </select>
+                                    
                                 </div>
 
                                 <div class="form-group col-md-1">
                                     <label for="nome">CRM</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="crm" th:value="*{funcionario.crm}" disabled/>
+                                    <input type="text" class="form-control tamanho-fonte" id="crm"  disabled/>
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for="especialidade">Espcialidade</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="especialidade" th:value="*{funcionario.especialidade}" disabled/>
+                                    <input type="text" class="form-control tamanho-fonte" id="especialidade"  disabled/>
                                 </div>
 
                             </div>
@@ -142,8 +144,10 @@
 
                                 <div class="form-group col-md-2">
                                     <label for="convenio_id">Convenio</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="especialidade" th:value="*{tipo_convenio.convenio.nome}" disabled/>
-
+                                    <select id="convenio_id" class="form-control tamanho-fonte" required >
+                                        <option value="" selected hidden>Selecione</option>
+                                       
+                                    </select>
                                 </div>
 
                                 <div class="form-group col-md-2">

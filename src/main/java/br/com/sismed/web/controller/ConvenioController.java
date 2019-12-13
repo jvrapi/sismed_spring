@@ -120,10 +120,7 @@ public class ConvenioController {
 		
 		
 		@PostMapping("/salvar")
-		public String salvar(@Valid Convenio convenio, BindingResult result, RedirectAttributes attr) {
-			if(result.hasErrors()) {
-				return "/convenio/cadastro";
-			}
+		public String salvar( Convenio convenio,  RedirectAttributes attr) {
 			
 			service.salvar(convenio);
 			attr.addFlashAttribute("success","Convenio cadastrado com sucesso");

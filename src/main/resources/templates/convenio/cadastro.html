@@ -68,7 +68,7 @@
 
             <div class="container-fluid" style="width: 98%">
 
-                <form th:action="${convenio.id == null} ? @{/convenios/salvar} : @{/convenios/editar}" th:object="${convenio}" method="POST">
+                <form th:action="@{/convenios/salvar}" th:object="${convenio}" method="POST">
                     <div>
                         
                         <h3 style="display: inline;"> Cadastro | <strong>Convênio</strong></h3>
