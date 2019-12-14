@@ -11,11 +11,11 @@ import javax.persistence.Table;
 public class FuncTConv extends AbstractEntity{
 	
 	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
+	@JoinColumn(name = "sismed_funcionario_id")
 	private Funcionario funcionario;
 	
 	@ManyToOne
-	@JoinColumn(name = "tipo_convenio_id")
+	@JoinColumn(name = "sismed_tipo_convenio_id")
 	private TConvenio tconvenio;
 	
 	public Funcionario getFuncionario() {

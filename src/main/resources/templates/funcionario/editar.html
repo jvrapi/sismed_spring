@@ -20,9 +20,10 @@
                         $("#alltipo_convenio_id").prop("disabled", false);
                         var html = '';
                         for (var i = 0; i < data.length; i++) {
-                            html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
+                            html += '<input type="checkbox" value=' + data[i].id + ' name="tconvenio">';
+                            html += '<label>' + data[i].nome + '</label>';
                         }
-                        $("#alltipo_convenio_id").html(html);
+                        $("#teste").html(html);
                     },
                 });
             });
@@ -353,8 +354,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <div id="teste">
-                                        <label for="alltipo_convenio_id">Tipos de convenio</label>
-                                        <select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio} disabled required></select>
+                                       
                                     </div>
                                 </div>
                             </div>
