@@ -56,33 +56,41 @@ public class FuncionarioService {
 	}
 	
 	
+	@Transactional(readOnly = true)
 	public List<Funcionario> ListarFuncionarioNome(String dado) {
 		return fRepository.ListarFuncionarioNome(dado);
 	}
 	
+	@Transactional(readOnly = true)
 	public Funcionario ListarFuncionarioId(String dado) {
 		return fRepository.ListarFuncionarioId(dado);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Funcionario> ListarFuncionarioCPF(String dado) {
 		return fRepository.ListarFuncionarioCPF(dado);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public List<Funcionario> ListarFuncionarioCRM(String dado) {
 		return fRepository.ListarFuncionarioCRM(dado);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public List<Funcionario> ListarFuncionarioEspecialidade(String dado) {
 		return fRepository.ListarFuncionarioEspecialidade(dado);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Funcionario>ListarFuncionarioCelular(String dado){
 		return fRepository.ListarFuncionarioCelular(dado);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Funcionario>ListarMedicos(){
 		return fRepository.ListarMedicos();
 	}
+	
 	
 
 	

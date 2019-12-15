@@ -71,13 +71,16 @@ public class AgendaController {
 		Login l = lservice.BuscarPorCPF(user.getUsername());
 		Long perfil = l.getPerfis().getId();
 		Long medico_id = l.getFuncionario_id().getId();
-		
-		if( perfil == 1 || perfil == 2  ) {
+		System.out.println(perfil);
+		//verifica se um medico esta logado e então exibe a agenda do medico 
+		if( perfil != 2 ) {
 			
-			//Medico que esta logado
+			
 			List<Agenda> Agendamentos = service.ListarAgendamentosMedico(medico_id);
 			
 			List<Agenda> lista = new ArrayList<Agenda>();
+			
+			//cria uma lista dos agendamentos do dia
 			for(Agenda agenda: Agendamentos) {
 			
 				Agenda a = new Agenda();
@@ -98,9 +101,13 @@ public class AgendaController {
 				lista.add(a);
 			}
 			model.addAttribute("agendamentos", lista);
+			model.addAttribute("usuario", perfil);
+			model.addAttribute("funcionario", l.getFuncionario_id().getNome());
+		
 			return lista;
 		}
 		 
+		//Se não for um medico, cria um lista com todos os agendamentos;
 		List<Agenda> Agendamentos = service.ListarAgendamentos();
 		List<Agenda> lista = new ArrayList<Agenda>();
 		for(Agenda agenda: Agendamentos) {
@@ -236,7 +243,7 @@ public class AgendaController {
 	
 	@GetMapping("/valor/{id}")
 	public @ResponseBody Procedimento Procedimento(@PathVariable("id") Long id, Agenda agenda) {
-		System.out.println(id);
+		
 		return procedimentoService.BuscarPorId(id);
 	}
 	
@@ -253,9 +260,11 @@ public class AgendaController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		Agenda agendamento  = service.buscarPorId(id);
+		Long funcionario_id = agendamento.getFuncionario().getId();
+		Long convenio_id = agendamento.getTipo_convenio().getConvenio().getId();
 		model.addAttribute("agendamento", agendamento);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
-		model.addAttribute("convenio", convenioService.funcionarioConvenios(agendamento.getFuncionario().getId()));
+		model.addAttribute("convenio", convenioService.funcionarioConveniosEditar(funcionario_id, convenio_id));
 		return "/agenda/editar";
 	}
 	
@@ -290,6 +299,12 @@ public class AgendaController {
 		service.salvar(agenda);
 		attr.addFlashAttribute("success","Paciente Agendado para o dia " + dataAgendada + " As " + agenda.getHora());
 		return "redirect:/agenda/agendamentos";
+	}
+	
+	@GetMapping("/finalizar")
+	public String finalizarAtendimento(RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Atendimento finalizado com sucesso!");
+		return "redirect:/agenda/agendamentos"; 
 	}
 	
 }

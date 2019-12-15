@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    
-    <script type="text/javascript" src="/js/agenda/tipoConvenio.js"></script>
+   
     <script type="text/javascript" src="/js/agenda/procedimentos.js"></script>
     <script type="text/javascript" src="/js/agenda/valorProcedimento.js"></script>
     <script type="text/javascript" src="/js/agenda/medicos.js"></script>
     <script type="text/javascript" src="/js/agenda/busca.js"></script>
     <script type="text/javascript" src="/js/agenda/verificarDataHora.js"></script>
+    <script type="text/javascript" src="/js/agenda/tipoConvenio.js"> </script>
+     <script type="text/javascript" src="/js/agenda/CrmEspecialidade.js"></script>
 </head>
 
 <body>
@@ -130,12 +131,12 @@
 
                                 <div class="form-group col-md-1">
                                     <label for="nome">CRM</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="crm"  disabled/>
+                                    <input type="text" class="form-control tamanho-fonte" id="crm"  th:value="*{funcionario.crm}"disabled/>
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for="especialidade">Espcialidade</label>
-                                    <input type="text" class="form-control tamanho-fonte" id="especialidade"  disabled/>
+                                    <input type="text" class="form-control tamanho-fonte" id="especialidade" th:value="*{funcionario.especialidade}" disabled/>
                                 </div>
 
                             </div>
@@ -147,7 +148,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="convenio_id">Convenio</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required >
-                                     <option th:each="c : ${convenio} "th:value="${c.id}" th:text="${c.nome}"selected >Selecione</option>
+                                     <option th:each="c : ${convenio} "th:value="${c.id}" th:text="${c.nome}" selected >Selecione</option>
                                        
                                     </select>
                                 </div>
@@ -155,17 +156,18 @@
                                 <div class="form-group col-md-2">
 
                                     <label for="tipo_convenio">Tipo de convenio</label>
-                                    <select id="convenio_id" class="form-control tamanho-fonte" required th:field="*{tipo_convenio}">
-                                    
+                                    <select id="tipo_convenio_id" class="form-control tamanho-fonte" required th:field="*{tipo_convenio}" disabled>
+                                 	 <option th:value="*{tipo_convenio.id}" th:text="*{tipo_convenio.nome}"selected >Selecione</option>
                                        
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-2">
                                     <label for="procedimento_id">Procedimento</label>
-                                    <input type="text" id="procedimento_id" class="form-control my-select tamanho-fonte" th:value="*{procedimento.descricao}" disabled required>
-                                    
-                                    <input type="hidden" th:field="*{procedimento}">
+                                    <select id="procedimento_id" class="form-control tamanho-fonte" required th:field="*{procedimento}" disabled>
+                                 	 <option th:value="*{procedimento.id}" th:text="*{procedimento.descricao}"selected >Selecione</option>
+                                    </select>
+                                    <input type="hidden" id="procedimentoHidden" th:field="*{procedimento}">
                                 </div>
 
                                 <div class="form-group col-md-2">

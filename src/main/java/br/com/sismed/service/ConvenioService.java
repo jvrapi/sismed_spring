@@ -88,6 +88,10 @@ public class ConvenioService{
 		return cRepository.BuscarConvLab(id);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Convenio> funcionarioConveniosEditar(Long funcionario_id, Long convenio_id) {
+		return cRepository.funcionarioConveniosEditar(funcionario_id, convenio_id);
+	}
 	
 
 }

@@ -3,6 +3,7 @@ package br.com.sismed.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.sismed.domain.Convenio;
@@ -33,4 +34,13 @@ public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 			"WHERE f.id = :id " + 
 			"GROUP BY c.id", nativeQuery = true)
 	List<Convenio>funcionarioConvenios(Long id);
+	
+	
+	@Query(value = "SELECT DISTINCT c.id, c.nome,c.data_adesao, c.cnpj, c.registro_ans, c.dados_bancarios " + 
+			"FROM sismed_convenio c INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id " + 
+			"INNER JOIN sismed_funcionario_tconvenio ft ON ft.tipo_convenio_id = tc.id " + 
+			"INNER JOIN sismed_funcionario f ON ft.funcionario_id = f.id " + 
+			"WHERE f.id = :medico " + 
+			"ORDER BY FIELD (c.id , :convenio)", nativeQuery = true)
+	List<Convenio>funcionarioConveniosEditar(@Param("medico")Long funcionario_id, @Param("convenio")Long convenio_id);
 }
