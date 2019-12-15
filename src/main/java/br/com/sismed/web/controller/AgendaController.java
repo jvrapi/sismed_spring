@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Funcionario;
@@ -36,12 +38,13 @@ import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.ProcedimentoService;
 import br.com.sismed.service.TConvenioService;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Controller
 @RequestMapping("/agenda")
 public class AgendaController {
 
 	@Autowired
-	private AgendaService serivce;
+	private AgendaService service;
 	
 	@Autowired
 	private PacienteService pacienteService;
@@ -72,7 +75,7 @@ public class AgendaController {
 		if( perfil == 1 || perfil == 2  ) {
 			
 			//Medico que esta logado
-			List<Agenda> Agendamentos = serivce.ListarAgendamentosMedico(medico_id);
+			List<Agenda> Agendamentos = service.ListarAgendamentosMedico(medico_id);
 			
 			List<Agenda> lista = new ArrayList<Agenda>();
 			for(Agenda agenda: Agendamentos) {
@@ -98,7 +101,7 @@ public class AgendaController {
 			return lista;
 		}
 		 
-		List<Agenda> Agendamentos = serivce.ListarAgendamentos();
+		List<Agenda> Agendamentos = service.ListarAgendamentos();
 		List<Agenda> lista = new ArrayList<Agenda>();
 		for(Agenda agenda: Agendamentos) {
 		
@@ -198,6 +201,7 @@ public class AgendaController {
 	public String agendar(@PathVariable("id") Long id, ModelMap model, Agenda agendar) {
 		model.addAttribute("paciente", pacienteService.buscarporId(id));
 		model.addAttribute("funcionario", fservice.ListarMedicos());
+		
 		return "/agenda/agendarPacienteCadastrado";
 	}
 	
@@ -208,7 +212,7 @@ public class AgendaController {
 		agenda.setCompareceu(1L);
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dataAgendada = agenda.getData().format(formatador);
-		serivce.salvar(agenda);
+		service.salvar(agenda);
 		attr.addFlashAttribute("success","Paciente Agendado para o dia " + dataAgendada + " As " + agenda.getHora());
 		return "redirect:/agenda/agendamentos";
 	}
@@ -229,8 +233,10 @@ public class AgendaController {
 		return procedimentoService.ListarProcedimento(id) ;
 	}
 	
+	
 	@GetMapping("/valor/{id}")
 	public @ResponseBody Procedimento Procedimento(@PathVariable("id") Long id, Agenda agenda) {
+		System.out.println(id);
 		return procedimentoService.BuscarPorId(id);
 	}
 	
@@ -246,14 +252,16 @@ public class AgendaController {
 	
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("agendamento", serivce.buscarPorId(id));
+		Agenda agendamento  = service.buscarPorId(id);
+		model.addAttribute("agendamento", agendamento);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
+		model.addAttribute("convenio", convenioService.funcionarioConvenios(agendamento.getFuncionario().getId()));
 		return "/agenda/editar";
 	}
 	
 	@PostMapping("/editar")
 	public String editar(Agenda agenda, RedirectAttributes attr) {
-		serivce.salvar(agenda);
+		service.salvar(agenda);
 		attr.addFlashAttribute("success","Informações alteradas com sucesso!");
 		return "redirect:/agenda/agendamentos";
 	}
@@ -279,7 +287,7 @@ public class AgendaController {
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dataAgendada = agenda.getData().format(formatador);
 		pacienteService.salvar(paciente);
-		serivce.salvar(agenda);
+		service.salvar(agenda);
 		attr.addFlashAttribute("success","Paciente Agendado para o dia " + dataAgendada + " As " + agenda.getHora());
 		return "redirect:/agenda/agendamentos";
 	}

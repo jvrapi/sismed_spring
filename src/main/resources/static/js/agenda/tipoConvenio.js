@@ -10,8 +10,10 @@ $(document).ready(function() {
 						var html = '<option value="" hidden>Selecione</option>';
 						for (var i = 0; i < data.length; i++) {
 							html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
+							
 						}
 						$("#tipo_convenio_id").html(html);
+						
 					},
 				});
 			});
