@@ -5,21 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import br.com.sismed.domain.Funcionario;
-import br.com.sismed.domain.Perfil;
-import br.com.sismed.repository.FuncionarioRepository;
-import ch.qos.logback.core.net.SyslogOutputStream;
 
+import br.com.sismed.repository.FuncionarioRepository;
 
 @Service
 public class FuncionarioService {
