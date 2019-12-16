@@ -9,6 +9,26 @@
     <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+	<script>
+        $(document).ready(function() {
+            $("#convenio_id").change(function() {
+                var url = "http://localhost:8080/funcionario/convenio/" + $(this).val() + "/" + $("#id").val();
+                $.ajax({
+                    url: url,
+                    method: "get",
+                    success: function(data) {
+                        var html = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<input type="checkbox" value=' + data[i].id + ' name="tconvenio">';
+                            html += '<label>' + data[i].nome + '</label>';
+                        }
+                        $("#teste2").html(html);
+                    },
+                });
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             $("#allconvenio_id").change(function() {
@@ -17,7 +37,6 @@
                     url: url,
                     method: "get",
                     success: function(data) {
-                        $("#alltipo_convenio_id").prop("disabled", false);
                         var html = '';
                         for (var i = 0; i < data.length; i++) {
                             html += '<input type="checkbox" value=' + data[i].id + ' name="tconvenio">';
@@ -245,12 +264,18 @@
 
                                 </div>
 
-                                <div class="form-group col-md-2 ">
-                                    <a class="btn-primary mr-2 btn modalSenha btn-group btn_cadastrar btn" style="margin-top:32px; color: white;" role="button" data-toggle="modal" data-target="#modalCadastroConv" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" element title="Clique aqui para cadastrar um convênio"><span>Novo Convênio &nbsp;<span class="fas fa-plus"></span></a>
+                                
+                                	<div class="dropdown">
+									  <button style="margin-top:32px;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Convênios</button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCadastroConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para cadastrar um convênio"><span>Novo Convênio &nbsp;</a>
+									    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalExcluirConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para excluir um convênio"><span>Excluir Convênio &nbsp;</a>
+									  </div>
+									</div>
                                 </div>
                             </div>
 
-                        </div>
+                        
 
                         <h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
                         <div class="form-row">
@@ -325,7 +350,7 @@
             </form>
         </div>
 
-        <div class="modal fade" id="modalCadastroConv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalCadastroConvFunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -335,7 +360,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/funcionario/salvarTConv/{FuncId} (FuncId=${funcionario.id}) }" th:object=${FuncTConv} method="POST">
+                        <form th:action="@{/funcionario/salvarTConv/{FuncId} (FuncId=${funcionario.id}) }" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="nome">Nome do Funcionário</label>
@@ -359,11 +384,56 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" id="recipient-id2" th:field=*{funcionario}>
+                            <input type="hidden" id="recipient-id2" th:field=*{funcionario.id}>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalExcluirConvFunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Exclusão de Convênio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/funcionario/exlcuirTConv/{FuncId} (FuncId=${funcionario.id}) }" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="nome">Nome do Funcionário</label>
+                                    <input type="text" class="form-control" name="nome" id="recipient-name3" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="allconvenio_id">Convênios</label>
+                                    <select id="convenio_id" class="form-control tamanho-fonte" required>
+                                        <option value="" selected hidden>Selecione</option>
+                                        <option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div id="teste2">
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="recipient-id3" th:field=*{funcionario.id}>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-danger">Excluir</button>
                             </div>
                         </form>
                     </div>

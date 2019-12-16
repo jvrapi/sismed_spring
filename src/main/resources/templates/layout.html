@@ -105,13 +105,25 @@
 	</script>
 	<script>
 		$(document).ready(function(){
-		  $("#modalCadastroConv").on('show.bs.modal', function(event){
+		  $("#modalCadastroConvFunc").on('show.bs.modal', function(event){
 		    var button = $(event.relatedTarget);
 		    var recipientid = button.data('id');
 			var recipientnome = button.data('nome');
 			var modal = $(this);
 			modal.find('#recipient-name2').val(recipientnome);
 			modal.find('#recipient-id2').val(recipientid);
+		  });
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+		  $("#modalExcluirConvFunc").on('show.bs.modal', function(event){
+		    var button = $(event.relatedTarget);
+		    var recipientid = button.data('id');
+			var recipientnome = button.data('nome');
+			var modal = $(this);
+			modal.find('#recipient-name3').val(recipientnome);
+			modal.find('#recipient-id3').val(recipientid);
 		  });
 		});
 	</script>
