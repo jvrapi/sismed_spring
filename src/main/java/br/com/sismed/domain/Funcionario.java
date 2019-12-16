@@ -84,9 +84,6 @@ public class Funcionario extends AbstractEntity {
 	@DateTimeFormat(iso = ISO.DATE)
 	private LocalDate data_termino;
 
-	@OneToOne(mappedBy = "funcionario_id")
-	private Login login;
-	
 	@OneToMany(mappedBy = "funcionario")
     Set<FuncTConv> func;
 
@@ -201,14 +198,6 @@ public class Funcionario extends AbstractEntity {
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public Login getLogin() {
-		return login;
-	}
-
-	public void setLogin(Login login) {
-		this.login = login;
 	}
 
 	public LocalDate getData_inicio() {
