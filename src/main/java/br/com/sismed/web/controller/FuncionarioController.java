@@ -245,15 +245,36 @@ public class FuncionarioController {
 		return "redirect:/funcionario/editar/" + funcionario_id;
 	}
 	
+	@GetMapping("/convenio/{id}/{funcId}")
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id")Long id, @PathVariable("funcId") Long funcId) {
+		return tcService.BuscarTConvenioFunc(id, funcId);
+	}
+
 	@GetMapping("/allconvenios/{id}/{funcId}")
 	public @ResponseBody List<TConvenio> listAllTipoConvenio(@PathVariable("id") Long id, @PathVariable("funcId") Long funcId) {
 		return tcService.ListaComboBoxFunc(id, funcId);
 	}
 	
 	@PostMapping("/salvarTConv/{funcId}")
-	public String salvarTConv(FuncTConv functconv, @PathVariable("funcId") Long funcId) {
-		System.out.println(functconv);
-		ftcService.salvar(functconv);
+	public String salvarTConv(Funcionario func, @PathVariable("funcId") Long funcId, @RequestParam("tconvenio") List<TConvenio> tconvenio) {
+		List<FuncTConv> functconv = new ArrayList<FuncTConv>();
+		for(TConvenio tconvenios : tconvenio) {
+			FuncTConv ftc = new FuncTConv();
+			ftc.setFuncionario(func);
+			ftc.setTconvenio(tconvenios);
+			functconv.add(ftc);
+		}
+		ftcService.salvarList(functconv);
+		return "redirect:/funcionario/editar/" + funcId;
+	}
+	
+	@PostMapping("exlcuirTConv/{funcId}")
+	public String excluirTConvenio(Funcionario func, @PathVariable("funcId") Long funcId, @RequestParam("tconvenio") List<TConvenio> tconvenio) {
+		List<FuncTConv> functconv = new ArrayList<FuncTConv>();
+		for(TConvenio tconvenios : tconvenio) {
+			Long id = tconvenios.getId();
+			ftcService.deleteTConvFunc(id, funcId);
+		}
 		return "redirect:/funcionario/editar/" + funcId;
 	}
 	
