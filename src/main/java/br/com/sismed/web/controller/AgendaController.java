@@ -4,8 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -28,6 +33,7 @@ import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.Procedimento;
+import br.com.sismed.domain.RegistroClinico;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.AgendaService;
 
@@ -38,7 +44,7 @@ import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.ProcedimentoService;
 import br.com.sismed.service.TConvenioService;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 @Controller
 @RequestMapping("/agenda")
 public class AgendaController {
@@ -100,9 +106,10 @@ public class AgendaController {
 				
 				lista.add(a);
 			}
-			model.addAttribute("agendamentos", lista);
 			model.addAttribute("usuario", perfil);
 			model.addAttribute("funcionario", l.getFuncionario_id().getNome());
+			model.addAttribute("agendamentos", lista);
+			
 		
 			return lista;
 		}
@@ -130,7 +137,8 @@ public class AgendaController {
 			lista.add(a);
 			
 		}
-		
+		model.addAttribute("usuario", perfil);
+		model.addAttribute("funcionario", l.getFuncionario_id().getNome());
 		model.addAttribute("agendamentos", lista);
 		return lista;
 		
@@ -247,6 +255,7 @@ public class AgendaController {
 		return procedimentoService.BuscarPorId(id);
 	}
 	
+	
 	@GetMapping("funcionarioConvenio/{id}")
 	public @ResponseBody List<Convenio> listarConvenios(@PathVariable("id") Long id, Agenda agenda){
 		return convenioService.funcionarioConvenios(id);
@@ -303,8 +312,59 @@ public class AgendaController {
 	
 	@GetMapping("/finalizar")
 	public String finalizarAtendimento(RedirectAttributes attr) {
+		List<Agenda> encerrar = service.encerrarAtendimento();
+		for(Agenda a : encerrar) {
+			if(a.getPrimeira_vez() == 1 && a.getCompareceu() == 0) {
+				//paciente pre cadastrado, porem não compareceu;
+				Paciente p = new Paciente();
+				p.setId(a.getPaciente_id().getId());
+				p.setNome(a.getPaciente_id().getNome());
+				p.setSituacao("NC");
+				p.setCelular(a.getPaciente_id().getCelular());
+				p.setTipo_convenio(a.getPaciente_id().getTipo_convenio());
+				pacienteService.salvar(p);
+			}
+		}
 		attr.addFlashAttribute("success","Atendimento finalizado com sucesso!");
 		return "redirect:/agenda/agendamentos"; 
+	}
+	
+	@GetMapping("/agendamentosAnteriores/{id}")
+	public String find(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
+		System.out.println("AQUI");
+		PageRequest pagerequest = PageRequest.of(page-1, 3);
+		Page<Agenda> agendamentos = service.agendamentosAnteriores(id, pagerequest);
+		model.addAttribute("agenda", agendamentos);
+		int totalPages = agendamentos.getTotalPages();
+		if (totalPages == 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(totalPages == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if (page == 2 && totalPages == 3) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 1).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == 1 || page == 2) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(1, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page > 2 && page < totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page - 2, page + 2).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages - 1) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(page-2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		else if(page == totalPages) {
+			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
+			model.addAttribute("pageNumbers", pageNumbers);
+		}
+		return "fragmentos/agendamentosAnteriores :: resultsList";
 	}
 	
 }
