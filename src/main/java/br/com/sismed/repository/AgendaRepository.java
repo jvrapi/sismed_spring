@@ -2,6 +2,8 @@ package br.com.sismed.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 
@@ -15,4 +17,10 @@ public interface  AgendaRepository extends JpaRepository<Agenda, Long>{
 	
 	@Query(value = "SELECT * FROM sismed_agenda  WHERE data = (CURDATE()) AND funcionario_id = :medico_id ORDER BY hora ASC", nativeQuery=true)
 	List<Agenda> ListarAgendamentosMedico(Long medico_id);
+
+	@Query(value = "SELECT * FROM sismed_agenda  WHERE data = CURDATE()   ", nativeQuery=true)
+	List<Agenda> encerrarAtendimento();
+
+	@Query(value = "SELECT * FROM sismed_agenda  WHERE paciente_id = :id ORDER BY data DESC, hora  ", nativeQuery=true)
+	Page<Agenda> agendamentosAnteriores(Long id, Pageable pageable);
 }

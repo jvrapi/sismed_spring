@@ -4,6 +4,9 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +23,7 @@ public class AgendaService {
 	
 	public void salvar(Agenda agenda) {
 		dao.save(agenda);
-		
+
 	}
 
 	
@@ -52,6 +55,20 @@ public class AgendaService {
 	public List<Agenda> ListarAgendamentosMedico(Long medico_id) {
 		return dao.ListarAgendamentosMedico(medico_id);
 	}
+
+
+	public List<Agenda> encerrarAtendimento() {
+		
+		return dao.encerrarAtendimento();
+	}
+
+
+	public Page<Agenda> agendamentosAnteriores(Long id, Pageable pageable) {
+		return dao.agendamentosAnteriores(id, pageable);
+	}
+
+
+
 
 
 
