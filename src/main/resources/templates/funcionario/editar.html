@@ -7,47 +7,9 @@
     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/funcionario/editar.js"></script>
     <script type="text/javascript" src="/js/login/mudarSenha.js"></script>
+    <script type="text/javascript" src="/js/funcionario/modalCadastrarConvenios.js"></script>
+    <script type="text/javascript" src="/js/funcionario/modalExcluirConvenio.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-	<script>
-        $(document).ready(function() {
-            $("#convenio_id").change(function() {
-                var url = "http://localhost:8080/funcionario/convenio/" + $(this).val() + "/" + $("#id").val();
-                $.ajax({
-                    url: url,
-                    method: "get",
-                    success: function(data) {
-                        var html = '';
-                        for (var i = 0; i < data.length; i++) {
-                            html += '<input type="checkbox" value=' + data[i].id + ' name="tconvenio">';
-                            html += '<label>' + data[i].nome + '</label>';
-                        }
-                        $("#teste2").html(html);
-                    },
-                });
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $("#allconvenio_id").change(function() {
-                var url = "http://localhost:8080/funcionario/allconvenios/" + $(this).val() + "/" + $("#id").val();
-                $.ajax({
-                    url: url,
-                    method: "get",
-                    success: function(data) {
-                        var html = '';
-                        for (var i = 0; i < data.length; i++) {
-                            html += '<input type="checkbox" value=' + data[i].id + ' name="tconvenio">';
-                            html += '<label>' + data[i].nome + '</label>';
-                        }
-                        $("#teste").html(html);
-                    },
-                });
-            });
-        });
-    </script>
 
 </head>
 
@@ -85,10 +47,10 @@
                     </div>
                 </div>
 
-				<!--verificar botoes e autorizacoes:>  sec:authorize="hasAnyAuthority('MEDICO', 'ADMIN')" -->
+                <!--verificar botoes e autorizacoes:>  sec:authorize="hasAnyAuthority('MEDICO', 'ADMIN')" -->
                 <div id="divBusca">
                     <input type="text" id="txtBusca" placeholder="Buscar..." />
-                    <button id="btn_search" class="btn" ><i class="fas fa-search" onclick="busca()" ></i></button>
+                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end login">
 
@@ -134,11 +96,11 @@
                 <div id="div_botao">
                     <h3 style="display: inline;">Edição | <strong>Funcionário</strong></h3>
 
-                    <a class="btn btn-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <a class="btn btn-outline-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 
-                    <button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
+                    <button th:id="${funcionario.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
 
-                    <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
+                    <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
 
                 </div>
 
@@ -265,16 +227,16 @@
 
                                 </div>
 
-                                	<div class="btn-group dropright form-group col-md-1">
-									  <button style="margin-top:32px; background: #EAE8E8;" class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Convênios</strong></button>
-									  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCadastroConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para cadastrar um convênio"><span><u>Novo Convênio</u> &nbsp;</a>
-									    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalExcluirConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para excluir um convênio"><span><u>Excluir Convênio</u> &nbsp;</a>
-									  </div>
-									</div>
-									
+                                <div class="btn-group dropright form-group col-md-1">
+                                    <button style="margin-top:32px; background: #EAE8E8;" class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Convênios</strong></button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCadastroConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para cadastrar um convênio"><span><u>Novo Convênio</u> &nbsp;</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalExcluirConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para excluir um convênio"><span><u>Excluir Convênio</u> &nbsp;</a>
+                                    </div>
                                 </div>
+
                             </div>
+                        </div>
 
                         <h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
                         <div class="form-row">
@@ -340,7 +302,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="id" th:field="*{id}" />
-                   
+
                     </div>
                 </div>
 
@@ -375,9 +337,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <div id="teste">
-                                       
-                                    </div>
+                                    <ul id="teste" class="custom-control custom-checkbox">
+
+                                    </ul>
                                 </div>
                             </div>
 
@@ -402,7 +364,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/funcionario/exlcuirTConv/{FuncId} (FuncId=${funcionario.id}) }" method="POST">
+                        <form th:action="@{/funcionario/exlcuirTConv/{FuncId} (FuncId=${funcionario.id}) }" method="POST" id="form_excluir">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="nome">Nome do Funcionário</label>
@@ -414,23 +376,21 @@
                                     <label for="allconvenio_id">Convênios</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required>
                                         <option value="" selected hidden>Selecione</option>
-                                        <option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                        <option th:each="c : ${convenios}" th:value="${c.id}" th:text="${c.nome}"></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <div id="teste2">
-                                       
-                                    </div>
+                                    <ul id="teste2" class="custom-control custom-checkbox">
+
+                                    </ul>
                                 </div>
                             </div>
-
                             <input type="hidden" id="recipient-id3" th:field=*{funcionario.id}>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                <button type="submit" id="btn_excluir" class="btn btn-danger">Excluir</button>
                             </div>
                         </form>
                     </div>

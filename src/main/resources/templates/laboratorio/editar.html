@@ -1,340 +1,279 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
-    
-     <script type="text/javascript" src="/js/funcionario/modal.js"></script>
+
+    <script type="text/javascript" src="/js/funcionario/modal.js"></script>
     <script type="text/javascript" src="/js/laboratorio/editar.js"></script>
-    
-    <script>
-		$(document).ready(function() {
-			$("#convenio_id").change(function() {
-				var url = "http://localhost:8080/laboratorio/convenio/" + $(this).val() + "/" + $("#id").val();
-				$.ajax({
-					url : url,
-					method : "get",
-					success : function(data) {
-						var html = '';
-						for (var i = 0; i < data.length; i++) {
-							html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
-						}
-						$("#tipo_convenio_id").html(html);
-					},
-				});
-			});
-		});
-	</script>
-	<script>
-		$(document).ready(function() {
-			$("#allconvenio_id").change(function() {
-				var url = "http://localhost:8080/laboratorio/allconvenios/" + $(this).val() + "/" + $("#id").val();
-				$.ajax({
-					url : url,
-					method : "get",
-					success : function(data) {
-						$("#alltipo_convenio_id").prop("disabled", false);
-						var html = '';
-						for (var i = 0; i < data.length; i++) {
-							html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
-						}
-						$("#alltipo_convenio_id").html(html);
-					},
-				});
-			});
-		});
-	</script>
-	
-	<script>
-		$(document).ready(function() {
-			$("#excluir").click(function() {
-				url = "http://localhost:8080/laboratorio/excluirTConv/" + $('#tipo_convenio_id option:selected').val() + "/" + $("#id").val();
-				$.ajax({
-					url : url,
-					method: "get",
-					success: function(data){
-						$('#tipo_convenio_id option:selected').remove();
-						alert("Excluido com sucesso");
-						if($('#tipo_convenio_id option:selected').val() == null){
-							$('#convenio_id option:selected').remove();
-						}
-					}
-				});
-				
-			});
-		});
-	</script>
-    
-  </head>
+    <script type="text/javascript" src="/js/laboratorio/ConvenioLab.js"></script>
 
-  <body>
-  
-  	<section layout:fragment="corpo">
-  	
-  		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
-			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-				<div class="dropdown">
-					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-					<div class="dropdown-content">
-						<a href="#">Agendamento</a>
-						<a href="/pacientes/cadastrar">Paciente</a>
-						<a href="#">Funcionário</a>
-						<a href="/convenios/cadastrar">Convênio</a>
-						<a href="#">Exame</a>
-						<a href="#">Laboratório</a>
-					</div>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
-					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<div class="dropdown-menu">
-						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
-						<button class="dropdown-item" type="button" value="3" onclick="muda3()">Telefone</button>
-						<button class="dropdown-item" type="button" value="4" onclick="muda4()">Bairro</button>
-						
-					</div>
-				</div>
-				<div id="divBusca">
-					<input type="text" id="txtBusca" placeholder="Buscar..." />
-					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-				</div>
-				
-						 <div class="collapse navbar-collapse justify-content-end login">
+</head>
 
-                            <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
-                                </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
+<body>
+
+    <section layout:fragment="corpo">
+
+        <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <div class="dropdown">
+                    <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                    <div class="dropdown-content">
+                        <a href="#">Agendamento</a>
+                        <a href="/pacientes/cadastrar">Paciente</a>
+                        <a href="#">Funcionário</a>
+                        <a href="/convenios/cadastrar">Convênio</a>
+                        <a href="#">Exame</a>
+                        <a href="#">Laboratório</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+                        <button class="dropdown-item" type="button" value="3" onclick="muda3()">Telefone</button>
+                        <button class="dropdown-item" type="button" value="4" onclick="muda4()">Bairro</button>
+
+                    </div>
+                </div>
+                <div id="divBusca">
+                    <input type="text" id="txtBusca" placeholder="Buscar..." />
+                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end login">
+
+                    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                        <div class="form-check mb-2 mr-sm-2">
+                            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                        </div>
+                    </form>
+
+                    <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                        <div class="btn-group mb-2 mr-sm-2">
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                            </button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu">
+                                <button type="submit" class="dropdown-item">Sair</button>
                             </div>
                         </div>
-			
-		</nav>
-	
-			<div class="container" style="margin-left: 35%;">
-				<div th:replace="fragmentos/alert"></div>
-				<div th:replace="fragmentos/modal"></div>
-				
-			</div>
-  
-    <div class="container-fluid" style="width: 98%">
-    
-    <form id="form" th:action="@{/laboratorio/editar}" 
-			th:object="${laboratorio}" method="POST">
+                    </form>
+                </div>
+            </div>
 
-       		<div id="div_botao">
-            		<h3 style="display: inline;"> Edição | <strong>Laboratório</strong></h3>
-					
-					<a class="btn btn-outline-secondary float-right ml-2"  href="/laboratorio/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
-					
-					<button th:id="${laboratorio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-					
-					<button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>				
-				</div >
-				
-				 <div class="card" style="margin-top: 25px; padding: 0px;">
-	            <div class="card-body">
-	            	
-	            	<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;" >Informações Gerais</h5>
-					<div class="form-row">
-						<div class="form-group col-md-1">
-							<label for="cnpj">CNPJ</label>
-							<input type="text" class="form-control tamanho-fonte" id="cnpj" autofocus="autofocus" th:field="*{cnpj}" disabled/>
-						</div>
-						<div class="form-group col-md-3">
-							<label for="nome">Nome</label>
-							<input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" 
-							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
-						</div>
-						<div class="form-group col-md-3">
-							<label for="responsavel">Responsável</label>
-							<input type="text" class="form-control tamanho-fonte" id="responsavel" autofocus="autofocus" th:field="*{responsavel}" 
-							onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
-						</div>
-						<div class="form-group col-md-1">
-							<label for="telefone_fixo">Telefone fixo</label>
-							<input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
-						</div>
-				
-						<div class="form-group col-md-4">
-							<label for="email">Email</label>
-							<input type="text" class="form-control tamanho-fonte" id="email" autofocus="autofocus" th:field="*{email}" disabled/>
-						</div>
-					
-					</div>
-					
-					<br>
+        </nav>
 
-					<h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
-					<div class="form-row">
-						<div class="form-group col-md-2 ">
-							<label for="cep">CEP</label> 
-							<input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required  disabled>
-						</div>
-						<div class="form-group col-md-5">
-							<label for="logradouro">Logradouro</label> 
-							<input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" required  disabled>
-						</div>
-						<div class="form-group col-md-1">
-							<label for="numero">Número</label>
-							 <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}"  disabled>
-						</div>
-						<div class="form-group col-md-4">
-							<label for="complemento">Complemento</label> 
-							<input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}"  disabled>
-						</div>	
-					</div>
-					
-					<div class="form-row">
-						<div class="form-group col-md-5 ">
-							<label for="bairro">Bairro</label> 
-							<input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required  disabled>
-						</div>					
-						<div class="form-group col-md-5 ">
-							<label for="cidade">Cidade</label> 
-							<input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}"required  disabled>
-						</div>
-						<div class="form-group col-md-2 ">
-							<label for="uf">Estado</label> 
-							<select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}" disabled>
-								<option value="" selected hidden>Selecione</option>
-								<option value="AC">Acre</option>
-								<option value="AL">Alagoas</option>
-								<option value="AP">Amapá</option>
-								<option value="AM">Amazonas</option>
-								<option value="BA">Bahia</option>
-								<option value="CE">Ceará</option>
-								<option value="DF">Distrito Federal</option>
-								<option value="ES">Espírito Santo</option>
-								<option value="GO">Goiás</option>
-								<option value="MA">Maranhão</option>
-								<option value="MT">Mato Grosso</option>
-								<option value="MS">Mato Grosso do Sul</option>
-								<option value="MG">Minas Gerais</option>
-								<option value="PA">Pará</option>
-								<option value="PB">Paraíba</option>
-								<option value="PR">Paraná</option>
-								<option value="PE">Pernambuco</option>
-								<option value="PI">Piauí</option>
-								<option value="RJ">Rio de Janeiro</option>
-								<option value="RN">Rio Grande do Norte</option>
-								<option value="RS">Rio Grande do Sul</option>
-								<option value="RO">Rondônia</option>
-								<option value="RR">Roraima</option>
-								<option value="SC">Santa Catarina</option>
-								<option value="SP">São Paulo</option>
-								<option value="SE">Sergipe</option>
-								<option value="TO">Tocantins</option>
-							</select>
-						</div>
-					</div>
-					
-					<input type="hidden" id="id" th:field="*{id}"/>
-				
-				</div>
-			</div>
-				
-		</form>
-		<div class="card" style="margin-top: 25px; padding: 0px;">
-			<div class="card-body">
-				<h5 style="margin-bottom: 15px; padding-bottom: 10px; display: inline;" >Convênios aceitos pelo Laboratório</h5>
-				
-				<hr>
-				<div class="form-row">
-					<div class="form-group col-md-2">
-						<label for="convenio_id">Convênios</label> 
-						<select id="convenio_id" class="form-control tamanho-fonte" required>
-							<option value="" selected hidden>Selecione</option>
-							<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
-						</select>
-					</div>
-					<div class="form-group col-md-2">
-						<div id="teste">
-							<label for="tipo_convenio_id">Tipos de Convênio</label> 
-							<select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required></select>
-						</div>
-					</div>
-					
-					<div class="form-group col-md-2">
-					
-				<a class="btn" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}" title="Clique aqui para cadastrar um novo convênio" style="background: #EAE8E8;margin-top: 30px; ">Cadastrar &nbsp;<i class="fa fa-plus"></i></a>
-					<a class="btn btn-outline-danger" href="#" id="excluir" title="Clique aqui para excluir um convênio" style="margin-top: 30px;">Excluir</a>
-						
-				</div>
-				
-				<div class="form-group col-md-2">
-				
-				
-				
-				</div>
-				
-				</div>
-				
-				
-			</div>
-		</div>
-	</div>
-	
-	<div class="modal fade" id="modalCadastroLab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Cadastro de Convênio</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form th:action="@{/laboratorio/salvarTConv/{labId} (labId=${laboratorio.id}) }" th:object=${labtconv} method="POST">
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="nome">Nome do Laboratório</label>
-								<input type="text" class="form-control" name="nome" id="recipient-name" disabled>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<label for="allconvenio_id">Convênios</label> 
-								<select id="allconvenio_id" class="form-control tamanho-fonte" required>
-									<option value="" selected hidden>Selecione</option>
-									<option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
-								</select>
-							</div>
-						</div>
-						<div class="form-row">
-							<div class="form-group col-md-12">
-								<div id="teste">
-									<label for="alltipo_convenio_id">Tipos de convenio</label> 
-									<select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio_id} disabled required></select>
-								</div>
-							</div>
-						</div>
-						<input type="hidden" id="recipient-id" th:field=*{laboratorio_id}>
-						<div class="modal-footer">
-		                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-		                    <button type="submit" class="btn btn-primary">Salvar</button>
-		                </div>
-	                </form>
-				</div>	
- 			</div>
-		</div>
-	</div>
-	<div th:replace="fragmentos/modal :: modal"></div>
+        <div class="container" style="margin-left: 35%;">
+            <div th:replace="fragmentos/alert"></div>
+            <div th:replace="fragmentos/modal"></div>
 
-</section>
-  </body>
+        </div>
+
+        <div class="container-fluid" style="width: 98%">
+
+            <form id="form" th:action="@{/laboratorio/editar}" th:object="${laboratorio}" method="POST">
+
+                <div id="div_botao">
+                    <h3 style="display: inline;"> Edição | <strong>Laboratório</strong></h3>
+
+                    <a class="btn btn-outline-secondary float-right ml-2" href="/laboratorio/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+
+                    <button th:id="${laboratorio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+
+                    <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+                </div>
+
+                <div class="card" style="margin-top: 25px; padding: 0px;">
+                    <div class="card-body">
+
+                        <h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Informações Gerais</h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-1">
+                                <label for="cnpj">CNPJ</label>
+                                <input type="text" class="form-control tamanho-fonte" id="cnpj" autofocus="autofocus" th:field="*{cnpj}" disabled/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="nome">Nome</label>
+                                <input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="responsavel">Responsável</label>
+                                <input type="text" class="form-control tamanho-fonte" id="responsavel" autofocus="autofocus" th:field="*{responsavel}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled/>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="telefone_fixo">Telefone fixo</label>
+                                <input type="text" class="form-control tamanho-fonte" id="telefone_fixo" autofocus="autofocus" th:field="*{telefone_fixo}" disabled/>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control tamanho-fonte" id="email" autofocus="autofocus" th:field="*{email}" disabled/>
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <h5 style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;">Endereço</h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-2 ">
+                                <label for="cep">CEP</label>
+                                <input id="cep" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cep}" required disabled>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="logradouro">Logradouro</label>
+                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" required disabled>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="numero">Número</label>
+                                <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" disabled>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="complemento">Complemento</label>
+                                <input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-5 ">
+                                <label for="bairro">Bairro</label>
+                                <input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required disabled>
+                            </div>
+                            <div class="form-group col-md-5 ">
+                                <label for="cidade">Cidade</label>
+                                <input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" required disabled>
+                            </div>
+                            <div class="form-group col-md-2 ">
+                                <label for="uf">Estado</label>
+                                <select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}" disabled>
+                                    <option value="" selected hidden>Selecione</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="id" th:field="*{id}" />
+
+                    </div>
+                </div>
+
+            </form>
+            <div class="card" style="margin-top: 25px; padding: 0px;">
+                <div class="card-body">
+                    <h5 style="margin-bottom: 15px; padding-bottom: 10px; display: inline;">Convênios aceitos pelo Laboratório</h5>
+
+                    <hr>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="convenio_id">Convênios</label>
+                            <select id="convenio_id" class="form-control tamanho-fonte" required>
+                                <option value="" selected hidden>Selecione</option>
+                                <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <div id="teste">
+                                <label for="tipo_convenio_id">Tipos de Convênio</label>
+                                <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required></select>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+
+                            <a class="btn" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}" title="Clique aqui para cadastrar um novo convênio" style="background: #EAE8E8;margin-top: 30px; ">Cadastrar &nbsp;<i class="fa fa-plus"></i></a>
+                            <a class="btn btn-outline-danger" href="#" id="excluir" title="Clique aqui para excluir um convênio" style="margin-top: 30px;">Excluir</a>
+
+                        </div>
+
+                        <div class="form-group col-md-2">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modalCadastroLab" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Convênio</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/laboratorio/salvarTConv/{labId} (labId=${laboratorio.id}) }" th:object=${labtconv} method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="nome">Nome do Laboratório</label>
+                                    <input type="text" class="form-control" name="nome" id="recipient-name" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="allconvenio_id">Convênios</label>
+                                    <select id="allconvenio_id" class="form-control tamanho-fonte" required>
+                                        <option value="" selected hidden>Selecione</option>
+                                        <option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div id="teste">
+                                        <label for="alltipo_convenio_id">Tipos de convenio</label>
+                                        <select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio_id} disabled required></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="recipient-id" th:field=*{laboratorio_id}>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:replace="fragmentos/modal :: modal"></div>
+
+    </section>
+</body>
+
 </html>

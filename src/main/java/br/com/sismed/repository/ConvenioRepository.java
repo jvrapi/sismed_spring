@@ -27,6 +27,10 @@ public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 			+ "JOIN sismed_laboratorio_tconvenio lt ON lt.sismed_tipo_convenio_id = tc.id WHERE lt.sismed_laboratorio_id = :id", nativeQuery = true)
 	List<Convenio> BuscarConvLab(Long id);
 	
+	@Query(value = "SELECT DISTINCT c.* FROM sismed_convenio c JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id "
+			+ "JOIN sismed_funcionario_tconvenio ft ON ft.tipo_convenio_id = tc.id WHERE ft.funcionario_id = :id", nativeQuery = true)
+	List<Convenio> BuscarConvFunc(Long id);
+	
 	@Query(value = "SELECT c.id, c.nome,c.data_adesao, c.cnpj, c.registro_ans, c.dados_bancarios " + 
 			"FROM sismed_convenio c INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id " + 
 			"INNER JOIN sismed_funcionario_tconvenio ft ON ft.tipo_convenio_id = tc.id " + 
