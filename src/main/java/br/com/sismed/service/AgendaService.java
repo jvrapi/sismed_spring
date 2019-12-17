@@ -14,57 +14,62 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.sismed.domain.Agenda;
 import br.com.sismed.repository.AgendaRepository;
 
-@Service @Transactional(readOnly = false)
+@Service 
 public class AgendaService {
 
 	@Autowired
-	private AgendaRepository dao;
+	private AgendaRepository repository;
 	
-	
+	@Transactional(readOnly = false)
 	public void salvar(Agenda agenda) {
-		dao.save(agenda);
+		repository.save(agenda);
 
 	}
 
-	
+	@Transactional(readOnly = false)
 	public void excluir(Long id) {
-		dao.deleteById(id);
+		repository.deleteById(id);
 		
 	}
 
 
-	
+	@Transactional(readOnly = true)
 	public List<Agenda> BuscarTodos() {
 		
-		return dao.findAll();
+		return repository.findAll();
 	}
 
 	
 
-	
+	@Transactional(readOnly = true)
 	public List<Agenda> ListarAgendamentos() {
-		return dao.Agendamentos();
+		return repository.Agendamentos();
 	}
 
-	
+	@Transactional(readOnly = true)
 	public Agenda buscarPorId(Long id) {
-		return dao.getOne(id);
+		return repository.getOne(id);
 	}
 
-
+	@Transactional(readOnly = true)
 	public List<Agenda> ListarAgendamentosMedico(Long medico_id) {
-		return dao.ListarAgendamentosMedico(medico_id);
+		return repository.ListarAgendamentosMedico(medico_id);
 	}
 
-
+	@Transactional(readOnly = true)
 	public List<Agenda> encerrarAtendimento() {
 		
-		return dao.encerrarAtendimento();
+		return repository.encerrarAtendimento();
 	}
 
-
+	@Transactional(readOnly = true)
 	public Page<Agenda> agendamentosAnteriores(Long id, Pageable pageable) {
-		return dao.agendamentosAnteriores(id, pageable);
+		return repository.agendamentosAnteriores(id, pageable);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Agenda> buscarAgendamentos(String data, Long medico) {
+		return repository.buscarAgendamentos(data, medico);
 	}
 
 

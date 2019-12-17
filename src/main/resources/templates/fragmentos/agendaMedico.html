@@ -1,0 +1,77 @@
+<!DOCTYPE html >
+<html >
+<head>
+<meta charset="UTF-8" />
+	
+</head>
+<body>
+	<div  th:fragment="resultsList">
+		<div class="card-body">
+                    <table class="table table-borderless detalhes">
+                        <thead>
+                            <tr class="text-center tabela_lista">
+                                <th>Prontuario</th>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Celular</th>
+                                <th>Hora</th>
+                                <th>Convenio</th>
+                                <th>Primeira Vez</th>
+                                <th>Compareceu</th>
+                                <th>Pagou</th>
+                                <th>Idade</th>
+                                <th>Obs</th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="a : ${agendamentos}">
+                            <tr class="conteudo text-center" style="font-size: 1em;">
+                                <td>
+                                    <a th:href="@{/pacientes/editar/{id}/{cid} (id=${a.paciente_id.id} , cid=${a.paciente_id.tipo_convenio.convenio.id}) }" title="Clique aqui para abrir o cadastro completo do paciente" th:text="${a.paciente_id.id}"> </a>
+                                </td>
+                                <td>
+                                    <a title="Clique aqui para acessar os registros clinicos do paciente" th:href="@{/RegistroClinico/cadastrar/{id} (id = ${a.id})}" th:text="${a.paciente_id.nome}"> </a>
+                                </td>
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.paciente_id.telefone_fixo}"></a>
+                                </td>
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.paciente_id.celular}"></a>
+                                </td>
+
+                                <td>
+                                    <a th:href="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
+                                </td>
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.paciente_id.tipo_convenio.convenio.nome}"></a>
+                                </td>
+
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.primeira_vez == 1} ? 'S' : 'N' "> </a>
+                                </td>
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.compareceu == 1} ? 'S' : 'N' "> </a>
+                                </td>
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.pagou == 1} ? 'S' : 'N' "> </a>
+                                </td>
+                                <td th:if="${a.paciente_id.data_nascimento == null}">
+                                    <a title="Mostrar informações" class="classid"> <strong> PENDENTE </strong></a>
+                                </td>
+                                <td th:if="${a.paciente_id.data_nascimento != null}">
+                                    <a th:text="${a.paciente_id.calcularIdade(a.paciente_id.data_nascimento)} + ' ANOS'  "></a>
+                                </td>
+
+                                <td>
+                                    <a title="Mostrar informações" th:text="${a.observacao}"></a>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+		
+	</div>
+</body>
+</html>
