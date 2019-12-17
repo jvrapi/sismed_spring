@@ -251,26 +251,40 @@
 		</form>
 		<div class="card" style="margin-top: 25px; padding: 0px;">
 			<div class="card-body">
-				<h5 style="margin-bottom: 15px; padding-bottom: 10px; display: inline;" >Convênios aceitos pelo laboratório</h5>
-				<a class="btn btn-primary float-right" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}">Cadastrar</a>
+				<h5 style="margin-bottom: 15px; padding-bottom: 10px; display: inline;" >Convênios aceitos pelo Laboratório</h5>
+				
 				<hr>
 				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label for="convenio_id">Convenios</label> 
+					<div class="form-group col-md-2">
+						<label for="convenio_id">Convênios</label> 
 						<select id="convenio_id" class="form-control tamanho-fonte" required>
 							<option value="" selected hidden>Selecione</option>
 							<option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
 						</select>
 					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-2">
 						<div id="teste">
-							<label for="tipo_convenio_id">Tipos de convenio</label> 
+							<label for="tipo_convenio_id">Tipos de Convênio</label> 
 							<select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required></select>
 						</div>
 					</div>
+					
+					<div class="form-group col-md-2">
+					
+				<a class="btn" href="#" data-toggle="modal" data-target="#modalCadastroLab" th:attr="data-nome=${laboratorio.nome}, data-id=${laboratorio.id}" title="Clique aqui para cadastrar um novo convênio" style="background: #EAE8E8;margin-top: 30px; ">Cadastrar &nbsp;<i class="fa fa-plus"></i></a>
+					<a class="btn btn-outline-danger" href="#" id="excluir" style="margin-top: 30px;">Excluir</a>
+						
 				</div>
 				
-				<a class="btn btn-danger" href="#" id="excluir">Excluir</a>
+				<div class="form-group col-md-2">
+				
+				
+				
+				</div>
+				
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
@@ -288,13 +302,13 @@
 					<form th:action="@{/laboratorio/salvarTConv/{labId} (labId=${laboratorio.id}) }" th:object=${labtconv} method="POST">
 						<div class="form-row">
 							<div class="form-group col-md-12">
-								<label for="nome">Nome do laboratório</label>
+								<label for="nome">Nome do Laboratório</label>
 								<input type="text" class="form-control" name="nome" id="recipient-name" disabled>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-12">
-								<label for="allconvenio_id">Convenios</label> 
+								<label for="allconvenio_id">Convênios</label> 
 								<select id="allconvenio_id" class="form-control tamanho-fonte" required>
 									<option value="" selected hidden>Selecione</option>
 									<option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
