@@ -134,11 +134,11 @@
                 <div id="div_botao">
                     <h3 style="display: inline;">Edição | <strong>Funcionário</strong></h3>
 
-                    <a class="btn btn-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <a class="btn btn-outline-secondary float-right ml-2" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 
-                    <button th:id="${funcionario.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
+                    <button th:id="${funcionario.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
 
-                    <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
+                    <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
 
                 </div>
 

@@ -51,10 +51,10 @@
 
                         <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
                             <div class="btn-group mb-2 mr-sm-2">
-                                <button type="button" class="btn btn-light">
+                                <button type="button" class="btn btn-outline-light">
                                     <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
                                 </button>
-                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-outline-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </button>
                                 <div class="dropdown-menu">
                                     <button type="submit" class="dropdown-item">Sair</button>
@@ -77,9 +77,9 @@
 
                     <div id="div_botao">
                         <h3 style="display:inline;">  Edição | <strong>Convenio</strong></h3>
-                        <a class="btn btn-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                        <a class="btn btn-outline-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
                         <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
-                        <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
+                        <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
 
                     </div>
                   
