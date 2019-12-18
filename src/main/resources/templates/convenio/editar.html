@@ -78,7 +78,7 @@
                     <div id="div_botao">
                         <h3 style="display:inline;">  Edição | <strong>Convenio</strong></h3>
                         <a class="btn btn-outline-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
-                        <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
+                        <button th:id="${convenio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
                         <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
 
                     </div>

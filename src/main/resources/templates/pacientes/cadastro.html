@@ -7,7 +7,7 @@
     <script type="text/javascript" src="/js/pacientes/busca.js"></script>
 </head>
 
-<<<<<<< HEAD
+
                             <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
                                 <div class="form-check mb-2 mr-sm-2">
                                     <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
@@ -24,7 +24,7 @@
                                     <div class="dropdown-menu">
                                         <button type="submit" class="dropdown-item">Sair</button>
                                     </div>
-=======
+
 <body>
 
     <section layout:fragment="corpo">
@@ -84,8 +84,8 @@
         <div class="container-fluid" style="width: 98%">
             <form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="POST">
                 <h3 style="display: inline;"> Cadastro | <strong>Paciente</strong></h3>
-                <a class="btn btn-secondary float-right" href="/pacientes/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
-                <button type="submit" class="btn btn-primary float-right mr-2">Salvar</button>
+                <a class="btn btn-outline-secondary float-right" href="/pacientes/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
+                <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                 <div class="card" style="margin-top: 25px; padding: 0px;">
                     <div class="card-body">
 
@@ -203,7 +203,7 @@
                                 <div id="teste">
                                     <label for="tipo_convenio_id">Tipo de convenio</label>
                                     <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled required></select>
->>>>>>> 0894b4f295a0fe75708aad22a0e906b542197ea2
+
                                 </div>
                             </div>
                             <div class="form-group col-md-2">
@@ -223,7 +223,7 @@
                                 </select>
                             </div>
                         </div>
-<<<<<<< HEAD
+
 				</div>
 			</nav>
 		
