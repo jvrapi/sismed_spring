@@ -40,11 +40,8 @@ public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 	List<Convenio>funcionarioConvenios(Long id);
 	
 	
-	@Query(value = "SELECT DISTINCT c.id, c.nome,c.data_adesao, c.cnpj, c.registro_ans, c.dados_bancarios " + 
-			"FROM sismed_convenio c INNER JOIN sismed_tipo_convenio tc ON c.id = tc.convenio_id " + 
-			"INNER JOIN sismed_funcionario_tconvenio ft ON ft.tipo_convenio_id = tc.id " + 
-			"INNER JOIN sismed_funcionario f ON ft.funcionario_id = f.id " + 
-			"WHERE f.id = :medico " + 
-			"ORDER BY FIELD (c.id , :convenio)", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT c.* FROM sismed_tipo_convenio tc JOIN sismed_convenio c ON tc.convenio_id = c.id "
+			+ " JOIN sismed_funcionario_tconvenio ftc ON tc.id = ftc.tipo_convenio_id WHERE ftc.funcionario_id = :medico " + 
+			" ORDER BY FIELD (c.id , :convenio) DESC", nativeQuery = true)
 	List<Convenio>funcionarioConveniosEditar(@Param("medico")Long funcionario_id, @Param("convenio")Long convenio_id);
 }

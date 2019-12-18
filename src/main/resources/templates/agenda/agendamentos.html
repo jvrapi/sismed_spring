@@ -86,6 +86,8 @@
            <!-- Caso seja um medico logado -->
             <div class="container text-center" th:if="${usuario != 2}">
                 <h3>  Dr(a): <strong th:text="${funcionario}"> NOME DO MEDICO</strong></h3>
+                
+                <!-- id do medico logado para realização das consultas no banco -->
                 <input type="hidden" id="funcionario_id" th:value="${medico_id}">
             </div>
 
