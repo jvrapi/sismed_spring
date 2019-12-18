@@ -93,5 +93,9 @@ public class ConvenioService{
 		return cRepository.funcionarioConveniosEditar(funcionario_id, convenio_id);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Convenio> BuscarConvFunc(Long id) {
+		return cRepository.BuscarConvFunc(id);
+	}
 
 }

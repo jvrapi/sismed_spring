@@ -23,4 +23,8 @@ public interface  AgendaRepository extends JpaRepository<Agenda, Long>{
 
 	@Query(value = "SELECT * FROM sismed_agenda  WHERE paciente_id = :id ORDER BY data DESC, hora  ", nativeQuery=true)
 	Page<Agenda> agendamentosAnteriores(Long id, Pageable pageable);
+
+
+	@Query(value = "SELECT * FROM sismed_agenda  WHERE data = :data AND funcionario_id = :medico ORDER BY hora ASC ", nativeQuery=true)
+	List<Agenda> buscarAgendamentos(String data, Long medico);
 }

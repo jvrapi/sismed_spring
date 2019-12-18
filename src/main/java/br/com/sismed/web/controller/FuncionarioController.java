@@ -135,6 +135,7 @@ public class FuncionarioController {
 	@GetMapping("/editar/{id}") 
 	public String preEditar(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("FuncTConv") FuncTConv functconv) {
 		model.addAttribute("funcionario", service.buscarporId(id));
+		model.addAttribute("convenios", cService.BuscarConvFunc(id));
 		model.addAttribute("allconvenios", cService.findAll());
 		return "/funcionario/editar";
 	}
@@ -270,7 +271,6 @@ public class FuncionarioController {
 	
 	@PostMapping("exlcuirTConv/{funcId}")
 	public String excluirTConvenio(Funcionario func, @PathVariable("funcId") Long funcId, @RequestParam("tconvenio") List<TConvenio> tconvenio) {
-		List<FuncTConv> functconv = new ArrayList<FuncTConv>();
 		for(TConvenio tconvenios : tconvenio) {
 			Long id = tconvenios.getId();
 			ftcService.deleteTConvFunc(id, funcId);
