@@ -1,158 +1,164 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8" />
-<script type="text/javascript" src="/js/funcionario/busca.js"></script>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="/js/funcionario/busca.js"></script>
 
 </head>
 
 <body>
 
-	<section layout:fragment="corpo" >  
-	
-		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
-			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-				<div class="dropdown">
-					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-					<div class="dropdown-content">
-						<a href="#">Agendamento</a>
-						<a href="/pacientes/cadastrar">Paciente</a>
-						<a href="#">Funcionário</a>
-						<a href="/convenios/cadastrar">Convênio</a>
-						<a href="/exame/cadastrar">Exame</a>
-						<a href="/laboratorio/cadastrar">Laboratório</a>
-					</div>
-				</div>
-				
-				
-				<div class="btn-group">
-					<button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
-					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="sr-only">Toggle Dropdown</span>
-					</button>
-					<div class="dropdown-menu">
-					
-						<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
-						<button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
-						<button class="dropdown-item" type="button" value="5" onclick="muda5()">CRM</button>
-						<button class="dropdown-item" type="button" value="4" onclick="muda4()">Celular</button>
-						<button class="dropdown-item" type="button" value="1" onclick="muda()">Matrícula</button>
-						<button class="dropdown-item" type="button" value="6" onclick="muda6()">Especialidade</button>
-					</div>
-				</div>
-				
-				<div id="divBusca">
-					<input type="text" id="txtBusca" placeholder="Buscar..." />
-					<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-				</div>
-				<div class="collapse navbar-collapse justify-content-end login">
-					
-				</div>
-				<div class="collapse navbar-collapse justify-content-end login">
+    <section layout:fragment="corpo">
 
-                            <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
-                                </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
+        <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <div class="dropdown">
+                    <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
+                    <div class="dropdown-content">
+                        <a href="#">Agendamento</a>
+                        <a href="/pacientes/cadastrar">Paciente</a>
+                        <a href="#">Funcionário</a>
+                        <a href="/convenios/cadastrar">Convênio</a>
+                        <a href="/exame/cadastrar">Exame</a>
+                        <a href="/laboratorio/cadastrar">Laboratório</a>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+
+                        <button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
+                        <button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
+                        <button class="dropdown-item" type="button" value="5" onclick="muda5()">CRM</button>
+                        <button class="dropdown-item" type="button" value="4" onclick="muda4()">Celular</button>
+                        <button class="dropdown-item" type="button" value="1" onclick="muda()">Matrícula</button>
+                        <button class="dropdown-item" type="button" value="6" onclick="muda6()">Especialidade</button>
+                    </div>
+                </div>
+
+                <div id="divBusca">
+                    <input type="text" id="txtBusca" placeholder="Buscar..." />
+                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end login">
+
+                </div>
+                <div class="collapse navbar-collapse justify-content-end login">
+
+                    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                        <div class="form-check mb-2 mr-sm-2">
+                            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
                         </div>
-			</div>
-		</nav>
-	
-		<div class="container" style="margin-left: 35%;">
-			<div th:replace="fragmentos/alert"></div>
-		</div>
-	
-          <div class="container-fluid" style="width: 98%">
-           
-            <h3 style="display: inline;">Lista | <strong>Funcionários(as)</strong></h3>
-           	 
-           	 <a class="btn float-right btn_cadastrar"  href="/funcionario/cadastrar"role="button" sec:authorize="hasAuthority('ADMIN')">
-              <i class="fas fa-plus"></i> Novo Funcionário(a)</a>     
-           	         
-	          <div class="card" style="margin-top: 25px; padding: 0px;">
-	            <div class="card-body">
-	              <table class="table table-borderless">
-							<thead>
-								<tr style="color: #5d6266; font-size: 1em;">
+                    </form>
 
-									<th scope="col">Matrícula</th>
-									<th scope="col">Nome</th>
-									<th scope="col">CPF</th>
-									<th scope="col">CRM</th>
-									<th scope="col">Especialidade</th>
-									<th scope="col">Telefone</th>
-									<th scope="col">Celular</th>
-									<th scope="col">Email</th>
-									
-								</tr>
-							</thead>
-							<tbody th:each="f : ${funcionario.content}">
-								<tr class="conteudo" style="font-size: 1em;">
-								
-									<td style="width: 110px;"><a th:text="${f.id}"></a>
-									</td>
-									
-								<td style="width: 350px;"><a th:href="@{/funcionario/editar/{id} (id=${f.id}) }" title="Clique aqui para alterar"  th:text="${f.nome}"> </a> </td>
-								
-									<td ><a th:text="${f.cpf}"></a></td>
-									
-									<td><a th:text="${f.crm}"></a></td>
-									
-									<td><a th:text="${f.especialidade}" /></a></td>
-									
-									<td><a th:text="${f.telefone_fixo}" /></a></td>
-									
-									<td><a th:text="${f.celular}" /></a></td>
-									
-									<td><a th:text="${f.email}" /></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					
-			<div th:if="${funcionario.totalPages > 0}">
-				<nav aria-label="Page navigation example">
-				  <ul class="pagination justify-content-center">
-				  	<li class="page-item" th:if="${funcionario.hasPrevious()}">
-				  		<a class="page-link" th:href="@{/funcionario/listar(page=1)}">
-				  			<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
-				  		</a>
-				  	</li>
-				    <li class="page-item"  th:each="f : ${pageNumbers}" th:classappend="${f==funcionario.pageable.pageNumber + 1} ? active">
-				    	<a class="page-link" th:text=${f} th:href="@{/funcionario/listar(page=${f})}"></a>
-					</li>
-					<li class="page-item" th:if="${funcionario.hasNext()}">
-						<a class="page-link" th:href="@{/funcionario/listar(page=${funcionario.totalPages})}">
-							<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
-						</a>
-					</li>
-				  </ul>
-				</nav>
-        	 </div>
-					
-				</div>
-			</div>
-			
-			<footer th:replace="fragmentos/footer :: rodape">
-        <div>footer</div>
-        </footer>
-		</section>
-		
+                    <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                        <div class="btn-group mb-2 mr-sm-2">
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                            </button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu">
+                                <button type="submit" class="dropdown-item">Sair</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container" style="margin-left: 35%;">
+            <div th:replace="fragmentos/alert"></div>
+        </div>
+
+        <div class="container-fluid" style="width: 98%">
+
+            <h3 style="display: inline;">Lista | <strong>Funcionários</strong></h3>
+
+            <a class="btn float-right btn_cadastrar" href="/funcionario/cadastrar" role="button" sec:authorize="hasAuthority('ADMIN')">
+                <i class="fas fa-plus"></i> Novo Funcionário</a>
+
+            <div class="card" style="margin-top: 25px; padding: 0px;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr style="color: #5d6266; font-size: 1em;">
+
+                                <th scope="col">Matrícula</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">CPF</th>
+                                <th scope="col">CRM</th>
+                                <th scope="col">Especialidade</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Celular</th>
+                                <th scope="col">Email</th>
+
+                            </tr>
+                        </thead>
+                        <tbody th:each="f : ${funcionario.content}">
+                            <tr class="conteudo" style="font-size: 1em;">
+
+                                <td style="width: 110px;">
+                                    <a th:text="${f.id}"></a>
+                                </td>
+
+                                <td style="width: 350px;">
+                                    <a th:href="@{/funcionario/editar/{id} (id=${f.id}) }" title="Clique aqui para alterar" th:text="${f.nome}"> </a>
+                                </td>
+
+                                <td>
+                                    <a th:text="${f.cpf}"></a>
+                                </td>
+
+                                <td>
+                                    <a th:text="${f.crm}"></a>
+                                </td>
+
+                                <td><a th:text="${f.especialidade}" /></a>
+                                </td>
+
+                                <td><a th:text="${f.telefone_fixo}" /></a>
+                                </td>
+
+                                <td><a th:text="${f.celular}" /></a>
+                                </td>
+
+                                <td><a th:text="${f.email}" /></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div th:if="${funcionario.totalPages > 0}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" th:if="${funcionario.hasPrevious()}">
+                                <a class="page-link" th:href="@{/funcionario/listar(page=1)}">
+                                    <span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item" th:each="f : ${pageNumbers}" th:classappend="${f==funcionario.pageable.pageNumber + 1} ? active">
+                                <a class="page-link" th:text=${f} th:href="@{/funcionario/listar(page=${f})}"></a>
+                            </li>
+                            <li class="page-item" th:if="${funcionario.hasNext()}">
+                                <a class="page-link" th:href="@{/funcionario/listar(page=${funcionario.totalPages})}">
+                                    <span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 </body>
+
 </html>
-
-

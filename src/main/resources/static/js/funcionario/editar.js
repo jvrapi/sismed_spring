@@ -24,6 +24,7 @@ function voltar(botao) {
 	$("#div_botao").append("<button class='btn btn-outline-primary mr-2 float-right' id='btn_editar' type='button' onclick='executar(this)'>Editar</button>");
 	$("input").prop("disabled", true);
 	$("select").prop("disabled", true);
+	$("input:checkbox").prop("disabled", false);
 	$("#convenio_id").prop("disabled", false);
 	$("#allconvenio_id").prop("disabled", false);
 	$('#form').find(':input').each(function(i, elem) {

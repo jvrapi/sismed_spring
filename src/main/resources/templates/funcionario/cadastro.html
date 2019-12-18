@@ -10,7 +10,7 @@
 
 <body>
 
-    <div layout:fragment="corpo">
+    <section layout:fragment="corpo">
 
         <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
@@ -77,23 +77,14 @@
         </div>
 
         <div class="container-fluid" style="width: 98%">
-
             <form th:action=" @{/funcionario/salvar} " th:object="${funcionario}" method="POST">
-                <h3 style="display: inline;">
-
-					Cadastro | <strong>Funcionário(a)</strong></h3>
-
-                <input type="submit" class="btn btn-outline-primary form-control col-md-1 float-right ml-2" value="Salvar">
-
+                <h3 style="display: inline;">Cadastro | <strong>Funcionário</strong></h3>
                 <a class="btn btn-outline-secondary float-right" href="/funcionario/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
-
+                <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                 <div class="card" style="margin-top: 25px; padding: 0px;">
                     <div class="card-body">
 
                         <h5 style=" margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; ">Dados Pessoais</h5>
-
-                        <br>
-
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="nome">Nome</label>
@@ -127,7 +118,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label for="sexo">Sexo</label>
-                                <select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}">
+                                <select id="sexo" class="form-control tamanho-fonte" th:field="*{sexo}">
                                     <option value="FEMININO">FEMININO</option>
                                     <option value="MASCULINO">MASCULINO</option>
                                     <option value="NÃO DECLARADO">NÃO DECLARADO</option>
@@ -196,12 +187,12 @@
                                 <label for="data_termino">Data de Dispensa</label>
                                 <input type="date" class="form-control tamanho-fonte" id="data_termino" th:field="*{data_termino}" />
                             </div>
-                            
-                              <div class="form-group col-md-2">
+
+                            <div class="form-group col-md-2">
                                 <label for="password">Senha</label>
-                                <input type="password" class="form-control tamanho-fonte" id="password" name="password"/>
+                                <input type="password" class="form-control tamanho-fonte" id="password" name="password" />
                             </div>
-                            
+
                         </div>
 
                         <div class="form-row align-items-center">
@@ -295,18 +286,15 @@
                                     <option value="SE">Sergipe</option>
                                     <option value="TO">Tocantins</option>
                                 </select>
-
-                                <input type="hidden" id="id" th:field="*{id}" />
-                                <input type="hidden" id="login" th:field="*{login}" />
-
                             </div>
                         </div>
+                        <input type="hidden" id="id" th:field="*{id}" />
                     </div>
-                </div>
 
+                </div>
             </form>
         </div>
-    </div>
+    </section>
 
 </body>
 

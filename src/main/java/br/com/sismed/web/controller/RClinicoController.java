@@ -124,7 +124,8 @@ public class RClinicoController {
 		@RequestParam(value = "page", required=false, defaultValue="1") int page, 
 		@PathVariable("id") Long id,
 		@AuthenticationPrincipal User user) {
-		System.out.println(user.getUsername());
+		Login l = lService.BuscarPorCPF(user.getUsername());
+		model.addAttribute("funcionario", l);
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
 		return "/registro_clinico/cadastro";
 	}
