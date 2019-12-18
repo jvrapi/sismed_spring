@@ -97,7 +97,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="nome">Nome</label>
-                                <input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" />
+                                <input type="text" class="form-control tamanho-fonte" id="nome" maxlength="40" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this)" />
                             </div>
                             <div class="invalid-feedback">
                                 <span th:errors="*{nome}"></span>
