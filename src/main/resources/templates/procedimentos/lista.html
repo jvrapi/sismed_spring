@@ -12,17 +12,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+                    
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Descrição</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -65,14 +55,15 @@
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
             <div class="container" style="width: 98%">
-                <div th:each="c : ${convenio}" class="detalhes">
+                
                     <h3 style="display: inline; margin-left: 10px;">
 
-						<strong th:text = "${c.nome + ' | ' }">  Convenio </strong> Procedimentos
+						<strong th:text = "${convenio.nome + ' | ' }">  Convenio </strong> Procedimentos
 					</h3>
-                    <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }">
+                    <a class="btn btn-outline-secondary float-right" th:href="@{/convenios/editar/{convenios.id} (id=${convenio.id}) }">
                         <i class="fas fa-chevron-left"></i> Voltar</a>
-                </div>
+                        <input type="hidden" id="convenio_id" th:value="${convenio.id}">
+                
                 <div class="card ajustarCard">
                     <div class="card-body">
                         <div style="margin-left: 40%;" th:each="p : ${procedimento}">

@@ -154,9 +154,21 @@ public class AgendaController {
 
 	@GetMapping("/agendar/{id}")
 	public String agendar(@PathVariable("id") Long id, ModelMap model, Agenda agendar) {
-		model.addAttribute("paciente", pacienteService.buscarporId(id));
+		Paciente p = pacienteService.buscarporId(id);
+		Agenda situacao = service.ultimoAgendamento(id);
+		Long compareceu = situacao.getCompareceu();
+		Long primeiraVez = situacao.getPrimeira_vez();
+		
+		if(primeiraVez == 1 && compareceu == 0) {
+			model.addAttribute("alerta", "erro");
+			model.addAttribute("titulo", "Paciente não compareceu ao ultimo atendimento");
+			model.addAttribute("texto", "Paciente Pré-Cadastrado não compareceu!");
+			model.addAttribute("subtexto", "Paciente se encontra em uma situação irregular");
+			
+		}
+		model.addAttribute("paciente", p);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
-
+		
 		return "/agenda/agendarPacienteCadastrado";
 	}
 

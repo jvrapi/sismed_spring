@@ -65,8 +65,8 @@
                                     <a th:text="${a.paciente_id.calcularIdade(a.paciente_id.data_nascimento)} + ' ANOS'  "></a>
                                 </td>
 
-                                <td>
-                                    <a title="Mostrar informações" th:text="${a.observacao}"></a>
+                                <td th:if="${a.observacao != null}">
+                                    <a href="#"  title="Cliquei aqui para mostrar as informações sobre esse agendamento" data-toggle="modal" data-target="#modalObservacao" th:attr="data-observacao=${a.observacao}"> Observações</a>
                                 </td>
 
                             </tr>

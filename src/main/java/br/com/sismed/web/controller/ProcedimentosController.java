@@ -52,18 +52,16 @@ public class ProcedimentosController {
 	
 	@GetMapping("/buscar/{id}")
 	@ResponseBody
-	public List<LabelValue> buscar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+	public List<LabelValue> buscar(@PathVariable("id") Long id, @RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
-		if(id == 1) {
-			List<Procedimento> allProcedimentos = service.ListarPorDescricao(term);
+		
+			List<Procedimento> allProcedimentos = service.ListarPorDescricao(term, id);
 			for (Procedimento procedimento : allProcedimentos) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(procedimento.getDescricao());
 				lv.setValue(procedimento.getId());
 				suggeestions.add(lv);
 			}
-		}
-		
 		
 		return suggeestions;	
 	}

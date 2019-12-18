@@ -40,7 +40,7 @@ public class TConvenioController {
 	private TConvenioService tservice;
 
 	
-	
+	//paginação
 	@GetMapping("/listar/{id}") // segunda parte do href
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
 		PageRequest pagerequest = PageRequest.of(page-1, 5, Sort.by("nome").ascending());
@@ -81,20 +81,20 @@ public class TConvenioController {
 	
 	@GetMapping("/buscar/{id}")
 	@ResponseBody
-	public List<LabelValue> buscar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+	public List<LabelValue> buscar(@PathVariable("id") Long id, @RequestParam (value="term", required=false, defaultValue="") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
-		if(id == 1) {
-			List<TConvenio> allTipos = tservice.ListarPorNome(term);
+		
+			List<TConvenio> allTipos = tservice.ListarPorNome(term, id);
 			for (TConvenio tconvenio : allTipos) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(tconvenio.getNome());
 				lv.setValue(tconvenio.getId());
 				suggeestions.add(lv);
 			}
-		}
+			return suggeestions;	
 		
 		
-		return suggeestions;	
+		
 	}
 	
 

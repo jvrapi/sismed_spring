@@ -13,6 +13,7 @@
     <script type="text/javascript" src="/js/agenda/CrmEspecialidade.js"></script>
     <script type="text/javascript" src="/js/agenda/Editar.js"></script>
     <script type="text/javascript" src="/js/agenda/Excluir.js"></script>
+    
 </head>
 
 <body>
@@ -20,17 +21,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+                   
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,7 +61,7 @@
                 </div>
             </nav>
 
-            <div class="container ajustarTexto">
+            <div class="container ajustarTexto" id="alerta">
                 <div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
@@ -78,11 +69,11 @@
                 <form th:action="@{/agenda/editar}" th:object="${agendamento}" method="POST">
                     <div id="div_botao">
                         <h3 style="display: inline; margin-left: 10px;"><strong >Edição de Agendamento</strong></h3>
-                        <a class="btn btn-secondary float-right ml-2" href="/agenda/agendamentos" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
-                       <span th:if="${agendamento.compararDatas(agendamento.data)} == false">  
-                        <button th:id="${agendamento.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                        <a class="btn btn-outline-secondary float-right ml-2" href="/agenda/agendamentos" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                        <span th:if="${agendamento.compararDatas(agendamento.data)} == false">  
+                        <button th:id="${agendamento.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
                       </span>
-                        <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+                        <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
                     </div>
                     <div class="card ajustarCard">
                         <div class="card-body">
@@ -155,7 +146,7 @@
                                 <div class="form-group col-md-2">
                                     <label for="convenio_id">Convenio</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required disabled>
-                                        <option th:each="c : ${convenio} " th:value="${c.id}" th:text="${c.nome}" >Selecione</option>
+                                        <option th:each="c : ${convenio} " th:value="${c.id}" th:text="${c.nome}">Selecione</option>
 
                                     </select>
                                 </div>
@@ -164,10 +155,10 @@
 
                                     <label for="tipo_convenio">Tipo de convenio</label>
                                     <select id="tipo_convenio_id" class="form-control tamanho-fonte" required th:field="*{tipo_convenio}" disabled>
-                                         <option th:each="tc : ${tipoConvenio} " th:value="${tc.id}" th:text="${tc.nome}" selected>Selecione</option>
+                                        <option th:each="tc : ${tipoConvenio} " th:value="${tc.id}" th:text="${tc.nome}" selected>Selecione</option>
 
                                     </select>
-                                    
+
                                 </div>
 
                                 <div class="form-group col-md-2">
@@ -175,7 +166,7 @@
                                     <select id="procedimento_id" class="form-control tamanho-fonte" required th:field="*{procedimento}" disabled>
                                         <option th:value="*{procedimento.id}" th:text="*{procedimento.descricao}" selected>Selecione</option>
                                     </select>
-                                   
+
                                 </div>
 
                                 <div class="form-group col-md-2">
@@ -207,14 +198,23 @@
                                         <option value="0">NÃO</option>
                                         <option value="1">SIM</option>
                                     </select>
-                                    
+
                                 </div>
 
                                 <input type="hidden" th:field="*{primeira_vez}">
                                 <input type="hidden" th:field="*{id}">
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label for="descricao">Observação</label>
+                                    <textarea class="form-control" id="observacao" rows="7" autofocus="autofocus" maxlength="1000" th:field="*{observacao}" onkeyup="maiuscula(this)" required style="resize: none;" disabled>
+                                    </textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

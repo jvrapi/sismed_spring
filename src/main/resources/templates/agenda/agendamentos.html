@@ -6,7 +6,9 @@
     <script type="text/javascript" src="/js/agenda/busca.js"></script>
     <script type="text/javascript" src="/js/agenda/finalizar.js"></script>
     <script type="text/javascript" src="/js/agenda/mostraAgenda.js"></script>
-     <script type="text/javascript" src="/js/agenda/buscarAgendamento.js"></script>
+    <script type="text/javascript" src="/js/agenda/buscarAgendamento.js"></script>
+    
+     <script type="text/javascript" src="/js/agenda/observacao.js"></script>
 </head>
 
 <body>
@@ -16,17 +18,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+                    
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,61 +58,47 @@
 
                 </div>
             </nav>
-            
-            <div class="container ajustarTexto">
-            <div th:replace="fragmentos/alert" class="container"></div>
-            <div th:replace="fragmentos/modal" class="container"></div>
-        </div>
 
-            
-                <!-- Caso seja um funcionario logado -->
-                <div class="form-group col-md-2" style="margin:auto;" th:if="${usuario == 2}">
-                    <strong> <label for="convenio_id" style="font-size:20px;"> Medicos </label> </strong> 
-                    <select id="funcionario_id" class="form-control tamanho-fonte" >
-                        <option value="" selected hidden>Selecione</option>
-                        <option th:each="f : ${medicos}" th:value="${f.id}" th:text="${f.nome}">Selecione</option>
-                    </select>
-                </div>
-            
-
-           <!-- Caso seja um medico logado -->
-            <div class="container text-center" th:if="${usuario != 2}">
-                <h3>  Dr(a): <strong th:text="${funcionario}"> NOME DO MEDICO</strong></h3>
+            <div class="container ajustarTexto" id="alerta">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
                 
-                <!-- id do medico logado para realização das consultas no banco -->
-                <input type="hidden" id="funcionario_id" th:value="${medico_id}">
             </div>
 
-        <div class="container-fluid" style="width: 98%">
-			
-			<button class="btn float-right btn_cadastrar" data-toggle="modal" data-target="#finalizar"> Encerrar Atendimentos</button>
- 		
-           
+            <div class="container-fluid" style="width: 98%">
+
                 <h3 style="display: inline; margin-left: 10px; ">Agenda | </h3>
-               
-                <input type="date" class="form-control col-md-2 tamanho-fonte" style="display: inline; margin-left: 10px;" id="data"  disabled/>
-       			<button id="btn_search" class="btn" ><i class="fas fa-search" onclick="busca()"></i></button>
-            
-             
-                
-            
-            
-            
-            <input type="hidden" id="usuario" th:object="${usuario}" th:value="${usuario}">
-            
-            
-            
-     
-               
-               	 	<div class="card" style="margin-top: 10px;" id="resultsBlock">
-					
-					</div>
-                	
-                	
-                
-            
+
+                <input type="date" class="form-control col-md-2 tamanho-fonte" style="display: inline; margin-left: 10px;" id="data" disabled/>
+                <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+
+                <!-- Caso seja um medico logado -->
+                <h3 style="display: inline; margin-left: 17%;" th:if="${usuario != 2}">  Dr(a): <strong th:text="${funcionario}"> NOME DO MEDICO</strong></h3>
+
+                <h3 style="display: inline; margin-left: 17%; " th:if="${usuario == 2}">Medicos 
+                <select id="funcionario_id" style="display: inline; margin-left: 10px;" class="form-control col-md-2 tamanho-fonte " >
+                    <option value="" selected hidden>Selecione</option>
+                    <option th:each="f : ${medicos}" th:value="${f.id}" th:text="${f.nome}">Selecione</option>
+                </select>
+
+                  </h3>
+
+                <!-- id do medico logado para realização das consultas no banco -->
+                <input type="hidden" id="funcionario_id" th:value="${medico_id}">
+
+                <button class="btn btn-outline-primary float-right " style="display: inline; " data-toggle="modal" data-target="#finalizar"> Encerrar Atendimentos</button>
+
+                <input type="hidden" id="usuario" th:object="${usuario}" th:value="${usuario}">
+
+                <div class="card" style="margin-top: 10px;" id="resultsBlock">
+
+                </div>
+
+            </div>
+             <div th:replace="fragmentos/modalObservacao" class="container"></div>
         </div>
-        </div>
+       
+        
     </section>
 </body>
 

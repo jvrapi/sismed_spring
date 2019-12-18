@@ -54,9 +54,9 @@ public class ProcedimentoService {
 
 
 	@Transactional(readOnly = true)
-	public List<Procedimento> ListarPorDescricao(String dado) {
+	public List<Procedimento> ListarPorDescricao(String dado, Long convenio) {
 		
-		return pRepository.ListarPorDescricao(dado);
+		return pRepository.ListarPorDescricao(dado, convenio);
 	}
 
 }

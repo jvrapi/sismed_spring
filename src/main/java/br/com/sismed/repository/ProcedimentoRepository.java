@@ -13,6 +13,6 @@ public interface ProcedimentoRepository extends JpaRepository<Procedimento, Long
 			+ ":id ORDER BY p.descricao ", nativeQuery=true)
 	List<Procedimento> ListarProcedimento(Long id);
 	
-	@Query(value = "SELECT * FROM sismed_procedimento p WHERE p.descricao LIKE %:dado%", nativeQuery=true)
-	List<Procedimento> ListarPorDescricao(String dado);
+	@Query(value = "SELECT * FROM sismed_procedimento p WHERE p.descricao LIKE %:dado% AND convenio_id = :convenio", nativeQuery=true)
+	List<Procedimento> ListarPorDescricao(String dado, Long convenio);
 }

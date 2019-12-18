@@ -30,7 +30,9 @@
 						<td><a th:text="${#temporals.format(a.hora, 'HH:mm')}"></a></td>
 						<td><a th:text="${a.primeira_vez == 1} ? 'SIM' : 'NÃO' "></a></td>
 						<td><a th:text="${a.compareceu == 1} ? 'SIM' : 'NÃO' "></a></td>
-						<td><a th:text="${a.observacao}"></a></td>
+						<td th:if="${a.observacao != null}">
+                         <a href="#"  title="Cliquei aqui para mostrar as informações sobre esse agendamento" data-toggle="modal" data-target="#modalObservacao" th:attr="data-observacao=${a.observacao}"> Observações</a>
+                                </td>
 					</tr>
 				</tbody>
 			</table>
@@ -56,7 +58,9 @@
 				</ul>
 			</nav>
 		</div> 
-		
+		<div th:replace="fragmentos/modalObservacao" ></div>
+		<script type="text/javascript" src="/js/agenda/observacao.js"></script>
 	</div>
+	
 </body>
 </html>

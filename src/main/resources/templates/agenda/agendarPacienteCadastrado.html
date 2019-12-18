@@ -3,15 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-   
+
     <script type="text/javascript" src="/js/agenda/tipoConvenio.js"></script>
     <script type="text/javascript" src="/js/agenda/procedimentos.js"></script>
     <script type="text/javascript" src="/js/agenda/valorProcedimento.js"></script>
     <script type="text/javascript" src="/js/agenda/medicos.js"></script>
     <script type="text/javascript" src="/js/agenda/busca.js"></script>
     <script type="text/javascript" src="/js/agenda/verificarDataHora.js"></script>
-  	<script type="text/javascript" src="/js/agenda/CrmEspecialidade.js"></script>
-  	<script type="text/javascript" src="/js/agenda/agendamentosAnteriores.js"></script>
+    <script type="text/javascript" src="/js/agenda/CrmEspecialidade.js"></script>
+    <script type="text/javascript" src="/js/agenda/agendamentosAnteriores.js"></script>
+     
+    
 </head>
 
 <body>
@@ -19,19 +21,8 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                        
-                    </div>
-                    
+                   
+
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,38 +40,48 @@
                         <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
                     </div>
                     <div class="collapse navbar-collapse justify-content-end login">
-						  <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
                                 </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
-                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </nav>
 
+            <div class="container" id="alerta">
+                <div th:if="${alerta != null}" th:class="${alerta == 'erro'} ? 'alert alert-warning' : 'alert alert-success'" role="alert">
+                    <h4 th:text="${titulo}" class="alert-heading">Credenciais...</h4>
+                    <p th:text="${texto}">Login ou senha incorretos...</p>
+                    <hr>
+                    <p class="mb-0"><small th:text="${subtexto}">Acesso permitido...</small></p>
+                </div>
+            </div>
             <div class="container ajustarTexto">
                 <div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
+
             </div>
+
             <div class="container-fluid" style="width: 98%">
-            <form th:action="@{/agenda/salvar1}" th:object="${agenda}"  method="POST">
-                <h3 style="display: inline; margin-left: 10px;"><strong >Novo Agendamento</strong></h3>
-                <a style="text-decoration: none;" class="btn btn-secondary float-right " href="/agenda/agendamentos"> <i class="fas fa-chevron-left"></i> Voltar</a>
-                <input type="submit" class="btn btn-primary form-control col-md-1 float-right mr-2" value="Salvar">
-                
+                <form th:action="@{/agenda/salvar1}" th:object="${agenda}" method="POST">
+                    <h3 style="display: inline; margin-left: 10px;"><strong >Novo Agendamento</strong></h3>
+                    <a style="text-decoration: none;" class="btn btn-outline-secondary float-right " href="/agenda/agendamentos"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                    <input type="submit" class="btn btn-outline-primary form-control col-md-1 float-right mr-2" value="Salvar">
+
                     <div class="card ajustarCard mb-3">
                         <div class="card-body">
                             <h5 class="sub_titulo">Paciente</h5>
@@ -126,12 +127,12 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="crm">Medico</label>
-                                   	 <select id="funcionario_id" class="form-control tamanho-fonte" required th:field="*{funcionario}">
+                                    <select id="funcionario_id" class="form-control tamanho-fonte" required th:field="*{funcionario}">
                                         <option value="" selected hidden>Selecione</option>
                                         <option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group col-md-1">
                                     <label for="nome">CRM</label>
                                     <input type="text" class="form-control tamanho-fonte" id="crm" disabled/>
@@ -151,7 +152,7 @@
                                     <label for="convenio_id">Convenio</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required disabled>
                                         <option value="" selected hidden>Selecione</option>
-                                       
+
                                     </select>
                                 </div>
 
@@ -170,7 +171,7 @@
                                     <label for="valor">Valor</label>
                                     <input type="text" id="valor" class="form-control tamanho-fonte" disabled>
                                 </div>
-                            
+
                                 <div class="form-group col-md-2">
                                     <label for="Data">Data</label>
                                     <input type="date" class="form-control tamanho-fonte" id="data" th:field="*{data}" />
@@ -180,20 +181,19 @@
                                     <input type="time" class="form-control tamanho-fonte" id="Hora" th:field="*{hora}" />
                                 </div>
 
-                              
-
                             </div>
                         </div>
                     </div>
                 </form>
-               
-				<h5 style="display: inline;">Agendamentos anteriores</h5>
-				<div class="card" style="margin-top: 10px;" id="resultsBlock">
-				
-				</div>
+
+                <h5 style="display: inline;">Agendamentos anteriores</h5>
+                <div class="card" style="margin-top: 10px;" id="resultsBlock">
+
+                </div>
             </div>
-       
+ 
         </div>
+       
     </section>
 
 </body>

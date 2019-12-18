@@ -64,8 +64,8 @@ public class TConvenioService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<TConvenio> ListarPorNome(String dado) {
-		return tcRepository.ListarPorNome(dado);
+	public List<TConvenio> ListarPorNome(String dado, Long convenio) {
+		return tcRepository.ListarPorNome(dado, convenio);
 	}
 	
 	@Transactional(readOnly = true)

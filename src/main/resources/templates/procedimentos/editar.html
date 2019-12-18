@@ -13,26 +13,10 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Descrição</button>
-                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Descrição</button>
 
-                        </div>
                     </div>
                     <div id="divBusca">
                         <input type="text" id="txtBusca" placeholder="Buscar..." />
@@ -72,9 +56,9 @@
 
                     <div id="div_botao">
                         <h4 class="titulo detalhes"><strong th:text="${procedimento.convenio.nome} + ' | ' "> </strong> Edição de Tipo</h4>
-                        <a class="btn btn-secondary float-right ml-2" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> <i class="fas fa-chevron-left"> </i> Voltar</a>
-                        <button th:id="${procedimento.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                        <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
+                        <a class="btn btn-outline-secondary float-right ml-2" th:href="@{/procedimentos/listar/{id} (id=${procedimento.convenio.id}) }"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                        <button th:id="${procedimento.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                        <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
                     </div>
 
                     <div class="card ajustarCard">
@@ -96,7 +80,7 @@
                             <input type="hidden" class="convenioid" th:id="${procedimento.convenio.id}" />
                             <input type="hidden" id="id" th:field="*{id}" />
 
-                            <input type="hidden" th:field="*{convenio.id}" />
+                            <input type="hidden" id="convenio_id" th:field="*{convenio.id}" />
 
                         </div>
 

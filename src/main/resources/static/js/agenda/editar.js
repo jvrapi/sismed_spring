@@ -10,6 +10,7 @@ function executar(botao) {
 	$("#data").prop("disabled", false);
 	$("#hora").prop("disabled", false);
 	$("#compareceu").prop("disabled", false);
+	$("#observacao").prop("disabled", false);
 	$("#pagou").prop("disabled", false);
 	$('#form').find(':input').each(function(i, elem) {
 	      $(this).data("previous-value", $(this).val());
