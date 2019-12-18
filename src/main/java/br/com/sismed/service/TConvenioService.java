@@ -68,20 +68,29 @@ public class TConvenioService {
 		return tcRepository.ListarPorNome(dado);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<TConvenio> BuscarTConvenioLab(Long id, Long labId) {
 		return tcRepository.BuscarTConvenioLab(id, labId);
 	}
 	
+	
+	@Transactional(readOnly = true)
 	public List<TConvenio> ListaComboBoxLab(Long id, Long labId) {
 		return tcRepository.ListaComboBoxLab(id, labId);
 	}
 	
+	
+	@Transactional(readOnly = true)
 	public List<TConvenio> ListaComboBoxFunc(Long id, Long funcId) {
 		return tcRepository.ListaComboBoxFunc(id, funcId);
 	}
 	
+	
+	@Transactional(readOnly = true)
 	public List<TConvenio> BuscarTConvenioFunc(Long id, Long funcId) {
 		return tcRepository.BuscarTConvenioFunc(id, funcId);
 	}
+	
+	
 
 }

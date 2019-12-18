@@ -1,6 +1,9 @@
 $(document).ready(function() {
 			$("#convenio_id").change(function() {
-				var url = "http://localhost:8080/agenda/convenio/" + $(this).val();
+				var convenio = $(this).val();
+				var medico = $("#funcionario_id").val();
+				
+				var url = "http://localhost:8080/agenda/convenio/" + convenio + "/" + medico;
 				
 				$.ajax({
 					url : url,

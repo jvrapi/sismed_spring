@@ -33,7 +33,7 @@ function validaData(form) {
 	var arrayDataColeta = $("#data_coletas").val().split('-');
 	var dataColeta = new Date();
 	dataColeta.setDate(arrayDataColeta[2]); dataColeta.setMonth(arrayDataColeta[1] - 1); dataColeta.setFullYear(arrayDataColeta[0]);
-	
+	alert(dataColeta.getTime());
 	var arrayDataEnvio = $("#data_envio").val().split('-');
 	var dataEnvio = new Date();
 	dataEnvio.setDate(arrayDataEnvio[2]); dataEnvio.setMonth(arrayDataEnvio[1] - 1); dataEnvio.setFullYear(arrayDataEnvio[0]);

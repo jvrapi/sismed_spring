@@ -177,9 +177,9 @@ public class AgendaController {
 		return convenioService.findAll();
 	}
 
-	@GetMapping("/convenio/{id}")
-	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("id") Long id, Agenda agenda) {
-		return tconvenioService.ListaComboBox(id);
+	@GetMapping("/convenio/{convenio}/{medico}")
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("convenio") Long convenio,@PathVariable("medico") Long medico, Agenda agenda) {
+		return tconvenioService.BuscarTConvenioFunc(convenio, medico);
 	}
 
 	@GetMapping("/procedimento/{id}")
@@ -212,6 +212,7 @@ public class AgendaController {
 		model.addAttribute("agendamento", agendamento);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
 		model.addAttribute("convenio", convenioService.funcionarioConveniosEditar(funcionario_id, convenio_id));
+		model.addAttribute("tipoConvenio", tconvenioService.BuscarTConvenioFunc(convenio_id, funcionario_id));
 		return "/agenda/editar";
 	}
 
@@ -306,7 +307,7 @@ public class AgendaController {
 	public String agendaFuncionario(@PathVariable("id") Long id, Agenda agenda, ModelMap model) {
 		
 		List<Agenda> agendamentos = service.ListarAgendamentosMedico(id);
-		List<Funcionario> medicos = fservice.ListarMedicos();
+
 		model.addAttribute("agendamentos", agendamentos);
 		for (Agenda a : agendamentos) {
 			model.addAttribute("data", a.getData());	
@@ -335,10 +336,19 @@ public class AgendaController {
 	
 	@GetMapping("buscarAgendamento/{data}/{medico}")
 	public String buscarAgendamento(@PathVariable("data") String data, @PathVariable("medico") Long medico, ModelMap model, Agenda agenda) {
-		agenda.compararDatas(data);
+		
 		List<Agenda> agendamentos = service.buscarAgendamentos(data, medico);
 		model.addAttribute("agendamentos", agendamentos);
+		
 		return "fragmentos/agendaFuncionario :: resultsList";
+	}
+	
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+		service.excluir(id);
+		attr.addFlashAttribute("success", "Agendamento excluido com sucesso");
+		
+		return "redirect:/agenda/agendamentos";
 	}
 
 }

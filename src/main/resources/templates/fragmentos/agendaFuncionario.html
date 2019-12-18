@@ -38,11 +38,11 @@
                                     <a title="Mostrar informações" th:text="${a.paciente_id.celular}"></a>
                                 </td>
 
-                                <td th:if="${ a.compararDatar( (${#temporals.format(a.data, 'yyyy-MM-dd')}) ) } ">
+                                <td th:if="${a.compararDatas(a.data)}">
                                     <a  title="Horario" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 
-                                <td>
+                                <td th:if="${a.compararDatas(a.data) == false}">
                                     <a th:href="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 <td>

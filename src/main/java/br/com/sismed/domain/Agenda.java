@@ -155,11 +155,11 @@ public  class Agenda extends AbstractEntity {
 	}
 	
 	
-	public Boolean compararDatas(String agendamento) {
-		LocalDate dataAgendamento = LocalDate.parse(agendamento);
+	public Boolean compararDatas(LocalDate agendamento) {
+		
 		LocalDate dataAtual = LocalDate.now();
 	
-		return dataAgendamento.isBefore(dataAtual);
+		return agendamento.isBefore(dataAtual);
 		
 		
 		
