@@ -155,7 +155,7 @@ public class LaboratorioController {
 	public String excluir(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("success", "Laboratório excluído com sucesso");
 		service.excluir(id);
-		return "redirect:/funcionario/listar";
+		return "redirect:/laboratorio/listar";
 	}
 	
 	@GetMapping("/convenio/{id}/{labId}")

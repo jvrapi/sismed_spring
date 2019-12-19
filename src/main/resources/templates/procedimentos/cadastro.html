@@ -63,7 +63,7 @@
                     <div th:each="c : ${convenio}">
                         <h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">   </strong> Cadastro Procedimento</h3>
                         <a class="btn btn-outline-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
-                        <input type="submit" class="btn btn-outline-primary form-control float-right col-md-1 mr-2" value="Salvar">
+                        <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                         <br>
                     </div>
                     <div class="card" style="margin-top: 25px; padding: 0px;">

@@ -13,17 +13,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                <div class="dropdown">
-                    <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                    <div class="dropdown-content">
-                        <a href="#">Agendamento</a>
-                        <a href="/pacientes/cadastrar">Paciente</a>
-                        <a href="#">Funcionário</a>
-                        <a href="/convenios/cadastrar">Convênio</a>
-                        <a href="/exame/cadastrar">Exame</a>
-                        <a href="/laboratorio/cadastrar">Laboratório</a>
-                    </div>
-                </div>
+                
 
                 <div class="btn-group">
                     <button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
@@ -80,7 +70,7 @@
 
             <h3 style="display: inline;">Lista | <strong>Funcionários</strong></h3>
 
-            <a class="btn float-right btn_cadastrar" href="/funcionario/cadastrar" role="button" sec:authorize="hasAuthority('ADMIN')">
+            <a class="btn btn-outline-primary float-right" href="/funcionario/cadastrar" role="button" sec:authorize="hasAuthority('ADMIN')">
                 <i class="fas fa-plus"></i> Novo Funcionário</a>
 
             <div class="card" style="margin-top: 25px; padding: 0px;">

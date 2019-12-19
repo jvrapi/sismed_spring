@@ -19,18 +19,6 @@
 
         <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
             <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                <div class="dropdown">
-                    <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                    <div class="dropdown-content">
-                        <a href="#">Agendamento</a>
-                        <a href="/pacientes/cadastrar">Paciente</a>
-                        <a href="#">Funcionário</a>
-                        <a href="/convenios/cadastrar">Convênio</a>
-                        <a href="/exame/cadastrar">Exame</a>
-                        <a href="/laboratorio/cadastrar">Laboratório</a>
-                    </div>
-                </div>
-
                 <div class="btn-group">
                     <button type="button" class="btn" id="dropdownMenu2" value="2">Nome</button>
                     <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -346,8 +334,8 @@
                             <input type="hidden" id="recipient-id2" th:field=*{funcionario.id}>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-outline-primary">Salvar</button>
                             </div>
                         </form>
                     </div>
@@ -389,8 +377,8 @@
                             </div>
                             <input type="hidden" id="recipient-id3" th:field=*{funcionario.id}>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" id="btn_excluir" class="btn btn-danger">Excluir</button>
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" id="btn_excluir" class="btn btn-outline-danger">Excluir</button>
                             </div>
                         </form>
                     </div>

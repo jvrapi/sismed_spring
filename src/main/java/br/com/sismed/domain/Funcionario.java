@@ -7,15 +7,20 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.criteria.Fetch;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @SuppressWarnings("serial")
@@ -47,7 +52,6 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="especialidade", nullable=true)
 	private String especialidade;
 	
-	
 	@Column(name="telefone_fixo", nullable=false)
 	private String telefone_fixo;
 	
@@ -69,9 +73,9 @@ public class Funcionario extends AbstractEntity {
 	
 	@Column(name="escolaridade", nullable=false)
 	private String escolaridade;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "endereco_id")
+  
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "endereco_id", nullable = false)
 	private Endereco endereco;
 
 	@Column(name="naturalidade", nullable=false)

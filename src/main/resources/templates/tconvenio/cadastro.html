@@ -60,8 +60,8 @@
                     <div th:replace="fragmentos/validacao :: validacao"></div>
                     <div th:each="c : ${convenio}">
                         <h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">  </strong>  Cadastro Tipo Convênio </h3>
-                        <input type="submit" class="btn btn-outline-primary form-control col-md-1 float-right ml-2" value="Salvar">
                         <a class="btn btn-outline-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                        <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                         <br>
                     </div>
                     <div class="card" style="margin-top: 25px; padding: 0px;">
