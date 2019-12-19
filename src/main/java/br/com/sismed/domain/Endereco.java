@@ -23,8 +23,6 @@ public class Endereco extends AbstractEntity{
 	@Column(nullable = false)
 	private String cidade;
 	
-	@NotBlank
-	@Size(min = 3, max = 255, message = "{Size.endereco.cep}")
 	@Column(nullable = false, length = 9)
 	private String cep;
 	

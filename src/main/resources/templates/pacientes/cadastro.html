@@ -85,14 +85,14 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="data_nascimento">Data de nascimento</label>
-                                <input type="date" class="form-control tamanho-fonte" id="data_nascimento" th:field="*{data_nascimento}" autocomplete="off" />
+                                <input type="date" class="form-control tamanho-fonte" id="data_nascimento" th:field="*{data_nascimento}" autocomplete="off" required/>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-2">
                                 <label for="sexo">Sexo</label>
-                                <select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}">
+                                <select id="estado_civil" class="form-control tamanho-fonte" th:field="*{sexo}" required>
                                     <option value="F">FEMININO</option>
                                     <option value="M">MASCULINO</option>
                                     <option value="ND">NÃO DECLARADO</option>
@@ -100,11 +100,11 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="estado_civil">Estado civil</label>
-                                <select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}">
-                                    <option value="SOLTEIRO(A)">SOLTEIRO(A)</option>
-                                    <option value="CASADO(A)">CASADO(A)</option>
-                                    <option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
-                                    <option value="VIÚVO(A)">VIÚVO(A)</option>
+                                <select id="estado_civil" class="form-control tamanho-fonte" th:field="*{estado_civil}" required>
+                                    <option value="S">SOLTEIRO(A)</option>
+                                    <option value="C">CASADO(A)</option>
+                                    <option value="D">DIVORCIADO(A)</option>
+                                    <option value="V">VIÚVO(A)</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="nacionalidade">Nacionalidade</label>
-                                <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}">
+                                <select id="nacionalidade" class="form-control" th:field="*{nacionalidade}" required>
                                     <option value="B">BRASILEIRA</option>
                                     <option value="E">ESTRANGEIRA</option>
                                 </select>
@@ -128,18 +128,18 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="celular">Celular</label>
-                                <input type="text" class="form-control tamanho-fonte" id="celular" maxlength="16" th:field="*{celular}" required autocomplete="off" />
+                                <input type="text" class="form-control tamanho-fonte" id="celular" maxlength="16" th:field="*{celular}" autocomplete="off" />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control tamanho-fonte" id="email" maxlength="50" th:field="*{email}" autocomplete="off" />
+                                <input type="text" class="form-control tamanho-fonte" id="email" maxlength="50" th:field="*{email}" autocomplete="off" onkeyup="maiuscula(this)" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="escolaridade"> Escolaridade</label>
-                                <select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}">
+                                <select id="escolaridade" class="form-control tamanho-fonte" th:field="*{escolaridade}" required>
                                     <option value="ESC">ENSINO SUPERIOR COMPLETO</option>
                                     <option value="ESI">ENSINO SUPERIOR INCOMPLETO</option>
                                     <option value="EMC">ENSINO MÉDIO COMPLETO</option>
@@ -187,7 +187,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="situacao">Situação</label>
-                                <select type="text" class="form-control tamanho-fonte" id="situacao" th:field="*{situacao}" autocomplete="off">
+                                <select type="text" class="form-control tamanho-fonte" id="situacao" th:field="*{situacao}" autocomplete="off" required>
                                     <option value="A">ATIVO</option>
                                     <option value="I">INVATIVO</option>
                                     <option value="F">FALECIDO</option>
@@ -205,11 +205,11 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="logradouro">Logradouro</label>
-                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" autocomplete="off">
+                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="numero">Número</label>
-                                <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" autocomplete="off">
+                                <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="complemento">Complemento</label>
@@ -220,15 +220,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="bairro">Bairro</label>
-                                <input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" autocomplete="off">
+                                <input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-5 ">
                                 <label for="cidade">Cidade</label>
-                                <input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" autocomplete="off">
+                                <input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-2 ">
                                 <label for="uf">Estado</label>
-                                <select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}">
+                                <select id="uf" class="form-control tamanho-fonte" th:field="*{endereco.estado}" required>
                                     <option value="" selected hidden>Selecione</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>

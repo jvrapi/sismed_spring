@@ -14,7 +14,7 @@ $(document).ready(function() {
 	
 function muda3() {
 	$('#txtBusca').unmask();
-	$("#dropdownMenu2").text("Nome");
+	$("#dropdownMenu2").text("Exame");
 	$("#dropdownMenu2").val("3");
 	$( function() {
 		$("#txtBusca").autocomplete({
@@ -110,7 +110,7 @@ $(function() {
 $(function() {
     $("#funcionario").autocomplete({
         source: "http://localhost:8080/exame/buscarfuncionario",
-        minLength: 1,
+        minLength: 2,
         select: function(event, ui) {
             $("#funcionario").val(ui.item.label);
             $("#funcionario_id").val(ui.item.value);

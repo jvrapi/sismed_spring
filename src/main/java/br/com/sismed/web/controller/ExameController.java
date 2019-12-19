@@ -120,7 +120,7 @@ public class ExameController {
 			List<Exame> allExame = service.ListarExamePaciente(term);
 			for (Exame exame : allExame) {
 				LabelValue lv = new LabelValue();
-				lv.setLabel(exame.getNome());
+				lv.setLabel(exame.getPaciente_id().getNome());
 				lv.setValue(exame.getId());
 				suggeestions.add(lv);
 			}
