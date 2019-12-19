@@ -1,6 +1,6 @@
 package br.com.sismed.web.controller;
 
-import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.Convenio;
+import br.com.sismed.domain.Custos;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Login;
@@ -38,6 +39,7 @@ import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.AgendaService;
 
 import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.CustosService;
 import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
@@ -68,6 +70,9 @@ public class AgendaController {
 
 	@Autowired
 	private LoginService lservice;
+	
+	@Autowired
+	private CustosService cservice;
 
 	@GetMapping("/agendamentos")
 	public String lista(ModelMap model, @AuthenticationPrincipal User user) {
@@ -274,6 +279,21 @@ public class AgendaController {
 				p.setCelular(a.getPaciente_id().getCelular());
 				p.setTipo_convenio(a.getPaciente_id().getTipo_convenio());
 				pacienteService.salvar(p);
+				}
+			if(a.getPagou() == 1) {
+				System.out.println("aqui");
+				//preenchendo a tabela de custos
+				Custos c = new Custos();
+				c.setAgendamento(a);
+				c.setConvenio(a.getTipo_convenio().getConvenio());
+				c.setCrm(a.getFuncionario());
+				c.setData(a.getData());
+				c.setHora(a.getHora());
+				c.setProcedimento(a.getProcedimento());
+				c.setProntuario(a.getPaciente_id());
+				c.setValor(a.getProcedimento().getValor());
+				cservice.salvar(c);
+				
 			}
 		}
 		attr.addFlashAttribute("success", "Atendimento finalizado com sucesso!");
@@ -285,7 +305,9 @@ public class AgendaController {
 			@PathVariable("id") Long id) {
 		
 		PageRequest pagerequest = PageRequest.of(page - 1, 3);
+		
 		Page<Agenda> agendamentos = service.agendamentosAnteriores(id, pagerequest);
+		
 		model.addAttribute("agenda", agendamentos);
 		int totalPages = agendamentos.getTotalPages();
 		if (totalPages == 1) {

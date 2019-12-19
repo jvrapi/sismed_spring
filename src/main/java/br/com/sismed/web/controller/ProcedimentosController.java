@@ -46,7 +46,7 @@ public class ProcedimentosController {
 	public String listar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("procedimento", service.ListarProcedimento(id));
 		model.addAttribute("convenio", ConvenioService.buscarPorId(id));
-		System.out.println(id);
+		
 		return "/procedimentos/lista";
 	}
 	

@@ -1,6 +1,7 @@
 package br.com.sismed.domain;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,9 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_log")
@@ -20,9 +24,9 @@ public class Log extends AbstractEntity{
 	@Column(name="data", nullable=false)
 	private LocalDate data;
 	
-	@DateTimeFormat(iso = ISO.TIME)
+	
 	@Column(name="hora", nullable=false)
-	private LocalDate hora;
+	private LocalTime hora;
 
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
@@ -36,11 +40,11 @@ public class Log extends AbstractEntity{
 		this.data = data;
 	}
 
-	public LocalDate getHora() {
+	public LocalTime getHora() {
 		return hora;
 	}
 
-	public void setHora(LocalDate hora) {
+	public void setHora(LocalTime hora) {
 		this.hora = hora;
 	}
 

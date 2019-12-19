@@ -35,5 +35,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long>{
 			" WHERE table_name = 'sismed_paciente' AND table_schema = 'tresta' ", nativeQuery = true)
 	Long Ultimoid();
 	
+	
+	
 	 
 }

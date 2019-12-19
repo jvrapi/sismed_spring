@@ -1,5 +1,6 @@
 package br.com.sismed.domain;
 
+
 public class LabelValue {
 	private Long convenio;
 	private Long tipo;

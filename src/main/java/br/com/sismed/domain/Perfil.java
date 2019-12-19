@@ -2,6 +2,9 @@ package br.com.sismed.domain;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_perfil")

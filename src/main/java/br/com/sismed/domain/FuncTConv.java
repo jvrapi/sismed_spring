@@ -5,6 +5,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "sismed_funcionario_tconvenio")

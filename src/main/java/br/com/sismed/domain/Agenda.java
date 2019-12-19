@@ -11,7 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @SuppressWarnings("serial")
 @Entity
 @Table(name="sismed_agenda")
@@ -54,8 +54,7 @@ public  class Agenda extends AbstractEntity {
 	private LocalTime hora;
 
 	
-	@OneToMany(mappedBy = "agenda") // nome do atributo na classe Custos
-	private List<Custos> custos;
+	
 
 	
 	public Paciente getPaciente_id() {
@@ -138,13 +137,7 @@ public  class Agenda extends AbstractEntity {
 		this.primeira_vez = primeira_vez;
 	}
 
-	public List<Custos> getCustos() {
-		return custos;
-	}
-
-	public void setCustos(List<Custos> custos) {
-		this.custos = custos;
-	}
+	
 
 	public TConvenio getTipo_convenio() {
 		return tipo_convenio;

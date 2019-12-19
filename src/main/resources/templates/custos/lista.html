@@ -3,30 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="/js/procedimento/busca.js"></script>
+    <script type="text/javascript" src="/js/relatorio/busca.js"></script>
 </head>
 
 <body>
-    <section layout:fragment="corpo">
 
+    <section layout:fragment="corpo">
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light">
+
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    
+
                     <div class="btn-group">
-                        <button type="button" class="btn" id="dropdownMenu2" value="1">Descrição</button>
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Paciente</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Descrição</button>
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Paciente</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">Convenio</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda4()">Funcionario</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">Periodo</button>
 
                         </div>
                     </div>
-                    <div id="divBusca">
-                        <input type="text" id="txtBusca" placeholder="Buscar..." />
-                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-                    </div>
+                    <form th:action="@{/relatorio/gerar}" method="post">
+                        <div class="form-row">
+                            <div id="divBusca">
+
+                                <input type="text" id="txtBusca" placeholder="Buscar..." />
+                                <button type="submit" id="btn_search" class="btn"><i class="fas fa-search" ></i></button>
+
+                            </div>
+
+                            <div class="form-group col-md-4 ">
+                                <input type="date" class="form-control " id="dataInicio" name="dataInicio"/>
+                            </div>
+
+                            <div class="form-group col-md-4 ">
+                                <input type="date" class="form-control " id="dataFim" name="dataFim"/>
+                            </div>
+                        </div>
+                        <input type="hidden" id="paciente" name="paciente">
+                        <input type="hidden" id="convenio" name="convenio">
+                        <input type="hidden" id="funcionario" name="funcionario">
+                        
+                    </form>
                     <div class="collapse navbar-collapse justify-content-end login">
                         <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
                             <div class="form-check mb-2 mr-sm-2">
@@ -50,42 +72,26 @@
 
                 </div>
             </nav>
+
             <div class="container ajustarTexto">
                 <div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
-            <div class="container" style="width: 98%">
-                
-                    <h3 style="display: inline; margin-left: 10px;">
 
-						<strong th:text = "${convenio.nome + ' | ' }">  Convenio </strong> Procedimentos
-					</h3>
-                    <a class="btn btn-outline-secondary float-right" th:href="@{/convenios/editar/{id} (id=${convenio.id}) }">
-                        <i class="fas fa-chevron-left"></i> Voltar</a>
-                        <input type="hidden" id="convenio_id" th:value="${convenio.id}">
-                
+            <div class="container-fluid" style="width: 98%">
+                <h3 style="display: inline; margin-left: 10px;">Lista | <strong>Custos</strong></h3>
+
+                <a class="btn btn-outline-primary float-right" href="/convenios/cadastrar" role="button" style="margin-right: 10px;" sec:authorize="hasAuthority('ADMIN')"><i class="fas fa-plus" ></i> Novo Convenio</a>
+
                 <div class="card ajustarCard">
                     <div class="card-body">
-                        <div style="margin-left: 40%;" th:each="p : ${procedimento}">
-                            <div class="container detalhes ">
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4" style="">
-                                        <a th:href="@{/procedimentos/editar/{id} (id=${p.id}) }" title="Mostrar informações" th:text="${p.descricao}"> </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <br>
-                        <br>
-
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
+
 </body>
 
 </html>
