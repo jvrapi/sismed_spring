@@ -26,18 +26,8 @@ public class CustosService {
 		repository.save(c);
 	}
 
-	public List<Custos> buscarPorPaciente(Long paciente) {
-		return repository.buscarPorPaciente(paciente);
-		
-	}
-	
 	public BigDecimal buscarReceitaPorPaciente(Long paciente) {
 		return repository.buscarReceitaPorPaciente(paciente);
-		
-	}
-
-	public List<Custos> buscarPorConvenio(Long convenio) {
-		return repository.buscarPorConvenio(convenio);
 		
 	}
 
@@ -46,19 +36,70 @@ public class CustosService {
 		
 	}
 	
-	public List<Custos> buscarPorFuncionario(Long funcionario){
-		return repository.buscarPorFuncionario(funcionario);
-	}
-	
 	public BigDecimal buscarReceitaPorFuncionario(Long funcionario) {
 		return repository.buscarReceitaPorFuncionario(funcionario);
 	}
 
+	public BigDecimal buscarReceitaPorDatas(String dataInicio, String dataFim) {
+		return repository.buscarReceitaPorDatas(dataInicio, dataFim);
+	}
+
+	public BigDecimal ReceitaPacientePeriodo(Long paciente, String dataInicio, String dataFim) {
+		return repository.ReceitaPacientePeriodo(paciente,dataInicio,dataFim);
+	}
+	
+	
+
+	public List<Custos> buscarTodosConvenios() {
+		return repository.buscarTodosConvenios();
+	}
+	
+	public List<BigDecimal> receitaTodosConvenios(){
+		return repository.receitaTodosConvenios();
+		
+	}
+
+	
+	
+	
+	public List<Custos> PacientePeriodo(Long paciente, String dataInicio, String dataFim) {
+		return repository.PacientePeriodo(paciente, dataInicio, dataFim);
+	}
+	
 	public List<Custos> buscarPorDatas(String dataInicio, String dataFim) {
 		return repository.buscarPorDatas(dataInicio, dataFim);
 	}
 	
-	
-	
+	public List<Custos> buscarPorFuncionario(Long funcionario){
+		return repository.buscarPorFuncionario(funcionario);
+	}
 
+	public List<Custos> buscarPorConvenio(Long convenio) {
+		return repository.buscarPorConvenio(convenio);
+		
+	}
+	
+	public List<Custos> buscarPorPaciente(Long paciente) {
+		return repository.buscarPorPaciente(paciente);
+		
+	}
+	
+	public List<Custos> ConvenioPeriodo(Long convenio, String dataInicio, String dataFim) {
+		return repository.ConvenioPeriodo(convenio, dataInicio, dataFim);
+		
+	}
+
+	public BigDecimal ReceitaConvenioPeriodo(Long paciente, String dataInicio, String dataFim) {
+		return repository.receitaConvenioPeriodo(paciente, dataInicio, dataFim);
+	}
+
+	public List<Custos> TodosConvenioPeriodo(String dataInicio, String dataFim) {
+		return repository.TodosConvenioPeriodo(dataInicio, dataFim);
+	}
+
+	public List<BigDecimal> ReceitaTodosConvenioPeriodo(String dataInicio, String dataFim) {
+		return repository.ReceitaTodosConvenioPeriodo(dataInicio, dataFim);
+	}
+
+	
 }

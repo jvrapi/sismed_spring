@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -86,9 +87,6 @@ public class RelatorioController {
 				//so por paciente
 				model.addAttribute("resultado", service.buscarPorPaciente(paciente));
 				model.addAttribute("receita", service.buscarPorPaciente(paciente));
-				
-				
-				
 			}
 			
 			else if(paciente == null && dataInicio == "" && funcionario == null) {
@@ -96,30 +94,46 @@ public class RelatorioController {
 				model.addAttribute("resultado", service.buscarPorConvenio(convenio));
 				model.addAttribute("receita",  service.BuscarReceitaPorConvenio(convenio));
 				
-				
+				if(convenio == 0) {
+					model.addAttribute("allConvenio", service.buscarTodosConvenios());
+					model.addAttribute("allReceita", service.receitaTodosConvenios());
+					
+				}
 			}
 			
 			else if(paciente == null && convenio == null && dataInicio == "") {
 				//so por funcionario
 				model.addAttribute("resultado", service.buscarPorFuncionario(funcionario));
 				model.addAttribute("receita", service.buscarReceitaPorFuncionario(funcionario));
-				
-				
 			}
 			
 			else if(paciente == null && convenio == null && funcionario == null) {
 				//entre um periodo
 				model.addAttribute("resultado", service.buscarPorDatas(dataInicio, dataFim));
+				model.addAttribute("receita", service.buscarReceitaPorDatas(dataInicio, dataFim));
 				
+			}
+			else if(funcionario == null && convenio == null) {
+				//Paciente e Periodo
+				model.addAttribute("resultado", service.PacientePeriodo(paciente, dataInicio, dataFim));
+				model.addAttribute("receita", service.ReceitaPacientePeriodo(paciente, dataInicio, dataFim));
+			}
+			else if(funcionario == null && paciente == null) {
+				//convenio periodo
+				model.addAttribute("resultado", service.ConvenioPeriodo(convenio, dataInicio, dataFim));
+				model.addAttribute("receita", service.ReceitaConvenioPeriodo(convenio, dataInicio, dataFim));
 				
-				/* TESTE */
-				for(Custos c : service.buscarPorDatas(dataInicio, dataFim)) {
-					System.out.println(c.getData());
+				if(convenio == 0) {
+					model.addAttribute("resultado", service.TodosConvenioPeriodo(dataInicio, dataFim));
+					model.addAttribute("receita", service.ReceitaTodosConvenioPeriodo( dataInicio, dataFim));
 				}
-				System.out.println(service.buscarReceitaPorFuncionario(funcionario));
-				
 			}
 			
 		return "redirect:/relatorio/listar";
+	}
+	
+	@ModelAttribute("convenios")
+	public List<Convenio> allConvenios(){
+		return cservice.findAll();
 	}
 }

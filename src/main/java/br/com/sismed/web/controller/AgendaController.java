@@ -286,11 +286,11 @@ public class AgendaController {
 				Custos c = new Custos();
 				c.setAgendamento(a);
 				c.setConvenio(a.getTipo_convenio().getConvenio());
-				c.setCrm(a.getFuncionario());
+				c.setFuncionario(a.getFuncionario());
 				c.setData(a.getData());
 				c.setHora(a.getHora());
 				c.setProcedimento(a.getProcedimento());
-				c.setProntuario(a.getPaciente_id());
+				c.setPaciente(a.getPaciente_id());
 				c.setValor(a.getProcedimento().getValor());
 				cservice.salvar(c);
 				

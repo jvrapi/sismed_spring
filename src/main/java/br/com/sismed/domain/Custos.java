@@ -18,7 +18,7 @@ public class Custos extends AbstractEntity{
 	
 	@OneToOne
 	@JoinColumn(name="paciente")
-	private Paciente prontuario;
+	private Paciente paciente;
 	
 	@OneToOne
 	@JoinColumn(name="convenio")
@@ -38,8 +38,7 @@ public class Custos extends AbstractEntity{
 	@Column(nullable = false)
 	private LocalTime hora;
 	
-	
-	
+
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2")
 	private BigDecimal valor;
 
@@ -51,12 +50,14 @@ public class Custos extends AbstractEntity{
 		this.agendamento = agendamento;
 	}
 
-	public Paciente getProntuario() {
-		return prontuario;
+	
+
+	public Paciente getPaciente() {
+		return paciente;
 	}
 
-	public void setProntuario(Paciente prontuario) {
-		this.prontuario = prontuario;
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
 	}
 
 	public Convenio getConvenio() {
@@ -107,6 +108,9 @@ public class Custos extends AbstractEntity{
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	
+	
 	
 	
 }
