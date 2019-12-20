@@ -4,8 +4,7 @@ $(document).ready(function() {
 			source: "http://localhost:8080/exame/buscar/2",
 			minLength: 1,
 			select: function (event, ui) {
-				url = "http://localhost:8080/exame/editar/" + ui.item.value;
-				document.location.href = url;
+				$("#id_paciente").val(ui.item.value)
 				return false;
 			}
 		});
@@ -21,8 +20,7 @@ function muda3() {
 			source: "http://localhost:8080/exame/buscar/3",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/exame/editar/" + ui.item.value;
-				document.location.href = url;
+				$("#nome_exame").val(ui.item.label)
 				return false;
 			}
 		});
@@ -38,8 +36,7 @@ function muda2() {
 			source: "http://localhost:8080/exame/buscar/2",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/exame/editar/" + ui.item.value;
-				document.location.href = url;
+				
 				return false;
 			}
 		});
@@ -55,8 +52,7 @@ function muda4() {
 			source: "http://localhost:8080/exame/buscar/4",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/exame/editar/" + ui.item.value;
-				document.location.href = url;
+				
 				return false;
 			}
 		});

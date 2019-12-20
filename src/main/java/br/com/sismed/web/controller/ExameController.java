@@ -30,6 +30,7 @@ import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.LaboratorioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 @RequestMapping("/exame")
@@ -117,11 +118,11 @@ public class ExameController {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
 		
 		if(id == 2) {
-			List<Exame> allExame = service.ListarExamePaciente(term);
-			for (Exame exame : allExame) {
+			List<Paciente> allPacientes = pservice.ListarPacNome(term);
+			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
-				lv.setLabel(exame.getPaciente_id().getNome());
-				lv.setValue(exame.getId());
+				lv.setLabel(paciente.getNome());
+				lv.setValue(paciente.getId());
 				suggeestions.add(lv);
 			}
 		}
@@ -131,7 +132,6 @@ public class ExameController {
 			for (Exame exame : allExame) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(exame.getNome());
-				lv.setValue(exame.getId());
 				suggeestions.add(lv);
 			}
 		}
@@ -233,5 +233,35 @@ public class ExameController {
 			return listLabFlag;
 		}
 	}
+	
+	@PostMapping("/buscarlista") 
+	public String buscarlista(ModelMap model, @RequestParam("id_paciente") Long id, @RequestParam("nome_exame") String exame, @RequestParam("coleta_data") String data) {
+
+		if(exame == "" && data == "") {
+			model.addAttribute("exame", service.ListaExamePacienteId(id));
+		}
+		else if(id == null && data == "") {
+			model.addAttribute("exame", service.ListarExameNome(exame));
+		}
+		else if(id == null && exame == "") {
+			model.addAttribute("exame", service.ListarExameData(data));
+		}
+		else if(data == "") {
+			model.addAttribute("exame", service.ListarExamePacienteExame(id, exame));
+		}
+		else if(exame == "") {
+			model.addAttribute("exame", service.ListarExamePacienteData(id, data));
+		}
+		else if(id == null) {
+			model.addAttribute("exame", service.ListarExameExameData(exame, data));
+		}
+		else if(id != null && exame != "" && data != "") {
+			model.addAttribute("exame", service.ListarExameTudo(id, exame, data));
+		}
+		return "/exame/buscar_lista";
+	}
+	
+	
+	
 }
 

@@ -40,10 +40,6 @@ public class ExameService {
 		return eRepository.findAll(pageable);
 	}
 
-	public Exame ListarExameId(String dado) {
-		return eRepository.ListarExameId(dado);
-	}
-
 	public List<Exame> ListarExamePaciente(String dado) {
 		return eRepository.ListarExamePaciente(dado);
 	}
@@ -57,4 +53,32 @@ public class ExameService {
 	public List<Exame> ListarExameDataColeta(String dado) {
 		return eRepository.ListarExameDataColeta(dado);
 	}
-}
+	
+	public List<Exame> ListaExamePacienteId(Long id) {
+		return eRepository.BuscarExamePacienteId(id);
+	}
+	
+	public List<Exame> BuscarExamePorNome(String exame) {
+		return eRepository.BuscarExamePorNome(exame);
+	}
+	
+	public List<Exame> ListarExameData(String data) {
+		return eRepository.ListarExameData(data);
+	}
+	
+	public List<Exame> ListarExamePacienteExame(Long id, String exame) {
+		return eRepository.ListarExamePacienteExame(id, exame);
+	}
+	
+	public List<Exame> ListarExamePacienteData(Long id, String data) {
+		return eRepository.ListarExamePacienteData(id, data);
+	}
+	
+	public List<Exame> ListarExameExameData(String exame, String data) {
+		return eRepository.ListarExameExameData(exame, data);
+	}
+	
+	public List<Exame> ListarExameTudo(Long id, String exame, String data) {
+		return eRepository.ListarExameTudo(id, exame, data);
+	}
+}  

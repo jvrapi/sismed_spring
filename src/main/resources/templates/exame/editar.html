@@ -28,10 +28,15 @@
                         <button class="dropdown-item" type="button" value="4" onclick="muda4()">Data de Coleta</button>
                     </div>
                 </div>
-                <div id="divBusca">
-                    <input type="text" id="txtBusca" placeholder="Buscar..." />
-                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-                </div>
+                <form th:action="@{/exame/buscarlista}" method="post">
+	                <div id="divBusca">
+	                    <input type="text" id="txtBusca" placeholder="Buscar..." />
+	                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+	                    <input type="hidden" id="id_paciente" name="id_paciente">
+		                <input type="hidden" id="nome_exame" name="nome_exame">
+		                 <input type="date" class="form-control" id="coleta_data" name="coleta_data">
+	                </div>
+                </form>
 
                 <div class="collapse navbar-collapse justify-content-end login">
 
@@ -133,7 +138,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="nome">Exame</label>
-                                <input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" disabled/>
+                                <input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" onkeyup="maiuscula(this)" th:field="*{nome}" disabled/>
                             </div>
 
                             <div class="form-group col-md-3">
