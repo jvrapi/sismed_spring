@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		$( function() {
 			$("#txtBusca").autocomplete({
-				source: "http://localhost:8080/relatorio/buscar/1",
+				source: "http://localhost:8080/sismed/relatorio/buscar/1",
 				minLength: 1,
 				select: function (event, ui) {
 					$("#paciente").val(ui.item.value);
@@ -17,7 +17,7 @@ function muda() {
 				$("#dropdownMenu2").val("1");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/relatorio/buscar/1",
+						source: "http://localhost:8080/sismed/relatorio/buscar/1",
 						minLength: 1,
 						select: function (event, ui) {
 							$("#paciente").val(ui.item.value);
@@ -34,7 +34,7 @@ function muda() {
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/relatorio/buscar/2",
+						source: "http://localhost:8080/sismed/relatorio/buscar/2",
 						minLength: 2,
 						select: function (event, ui) {
 							$("#convenio").val(ui.item.value);
@@ -51,7 +51,7 @@ function muda() {
 				$("#dropdownMenu2").val("3");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/relatorio/buscar/3",
+						source: "http://localhost:8080/sismed/relatorio/buscar/3",
 						minLength: 2,
 						select: function (event, ui) {
 							
@@ -67,7 +67,7 @@ function muda4() {
 				$("#dropdownMenu2").val("4");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/relatorio/buscar/3",
+						source: "http://localhost:8080/sismed/relatorio/buscar/3",
 						minLength: 2,
 						select: function (event, ui) {
 							$("#funcionario").val(ui.item.value);

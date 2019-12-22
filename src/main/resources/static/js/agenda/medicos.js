@@ -3,7 +3,7 @@
 $(document).ready(function() {
 			$("#funcionario_id").change(function() {
 				//Pega o valor do id do funcinario selecionado e passa para o mapeamento no controller de agenda
-				var url = "http://localhost:8080/agenda/funcionarioConvenio/" + $(this).val();
+				var url = "http://localhost:8080/sismed/agenda/funcionarioConvenio/" + $(this).val();
 				
 				$.ajax({
 					url : url,

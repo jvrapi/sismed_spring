@@ -1,6 +1,6 @@
 $(document).ready(function() {
 			$("#convenio_id").change(function() {
-				var url = "http://localhost:8080/agenda/procedimento/" + $(this).val();
+				var url = "http://localhost:8080/sismed/agenda/procedimento/" + $(this).val();
 				
 				$.ajax({	
 					url : url,

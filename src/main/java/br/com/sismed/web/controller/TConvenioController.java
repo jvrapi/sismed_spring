@@ -101,7 +101,7 @@ public class TConvenioController {
 	
 	@GetMapping("/cadastrar/{id2}") // segunda parte do href
 	public String cadastrar(@PathVariable("id2") Long id, ModelMap model, @ModelAttribute("tconvenio") TConvenio tconvenio) {
-		model.addAttribute("convenio", service.ListaComboBox(id));
+		model.addAttribute("convenio", service.buscarPorId(id));
 		return "/tconvenio/cadastro"; // retorna o caminho do arquivo
 
 	}

@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="/js/agenda/busca.js"></script>
-    <script type="text/javascript" src="/js/agenda/finalizar.js"></script>
-    <script type="text/javascript" src="/js/agenda/mostraAgenda.js"></script>
-    <script type="text/javascript" src="/js/agenda/buscarAgendamento.js"></script>
-    
-     <script type="text/javascript" src="/js/agenda/observacao.js"></script>
+    <script type="text/javascript" src="/sismed/js/agenda/busca.js"></script>
+    <script type="text/javascript" src="/sismed/js/agenda/finalizar.js"></script>
+    <script type="text/javascript" src="/sismed/js/agenda/mostraAgenda.js"></script>
+    <script type="text/javascript" src="/sismed/js/agenda/buscarAgendamento.js"></script>
+    <script type="text/javascript" src="/sismed/js/agenda/observacao.js"></script>
 </head>
 
 <body>
@@ -18,7 +17,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    
+
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +61,7 @@
             <div class="container ajustarTexto" id="alerta">
                 <div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
-                
+
             </div>
 
             <div class="container-fluid" style="width: 98%">
@@ -95,10 +94,9 @@
                 </div>
 
             </div>
-             <div th:replace="fragmentos/modalObservacao" class="container"></div>
+            <div th:replace="fragmentos/modalObservacao" class="container"></div>
         </div>
-       
-        
+
     </section>
 </body>
 

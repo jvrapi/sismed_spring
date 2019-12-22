@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$("#btn_excluir").prop("disabled", true);
     $("#convenio_id").change(function() {
     	$("#btn_excluir").prop("disabled", true);
-        var url = "http://localhost:8080/funcionario/convenio/" + $(this).val() + "/" + $("#id").val();
+        var url = "http://localhost:8080/sismed/funcionario/convenio/" + $(this).val() + "/" + $("#id").val();
         $.ajax({
             url: url,
             method: "get",

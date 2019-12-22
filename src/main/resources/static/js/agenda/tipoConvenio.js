@@ -3,7 +3,7 @@ $(document).ready(function() {
 				var convenio = $(this).val();
 				var medico = $("#funcionario_id").val();
 				
-				var url = "http://localhost:8080/agenda/convenio/" + convenio + "/" + medico;
+				var url = "http://localhost:8080/sismed/agenda/convenio/" + convenio + "/" + medico;
 				
 				$.ajax({
 					url : url,

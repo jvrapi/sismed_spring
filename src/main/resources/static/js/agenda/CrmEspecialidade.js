@@ -1,6 +1,6 @@
 $(document).ready(function() {
 			$("#funcionario_id").change(function() {
-				var url = "http://localhost:8080/agenda/funcionario/" + $(this).val();
+				var url = "http://localhost:8080/sismed/agenda/funcionario/" + $(this).val();
 				
 				$.ajax({
 					url : url,

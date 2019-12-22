@@ -1,10 +1,10 @@
 $(document).ready(function() {
 		$( function() {
 			$("#txtBusca").autocomplete({
-				source: "http://localhost:8080/convenios/buscar/1",
+				source: "http://localhost:8080/sismed/convenios/buscar/1",
 				minLength: 1,
 				select: function (event, ui) {
-					url = "http://localhost:8080/convenios/editar/" + ui.item.value;
+					url = "http://localhost:8080/sismed/convenios/editar/" + ui.item.value;
 					document.location.href = url;
 					return false;
 				}
@@ -19,10 +19,10 @@ function muda() {
 				$("#dropdownMenu2").val("1");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/convenios/buscar/1",
+						source: "http://localhost:8080/sismed/convenios/buscar/1",
 						minLength: 1,
 						select: function (event, ui) {
-							url = "http://localhost:8080/convenios/editar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/convenios/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -36,10 +36,10 @@ function muda() {
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/convenios/buscar/2",
+						source: "http://localhost:8080/sismed/convenios/buscar/2",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/convenios/editar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/convenios/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -54,10 +54,10 @@ function muda() {
 				$("#dropdownMenu2").val("3");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/convenios/buscar/3",
+						source: "http://localhost:8080/sismed/convenios/buscar/3",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/convenios/editar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/convenios/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}

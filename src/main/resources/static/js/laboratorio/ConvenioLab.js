@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#convenio_id").change(function() {
-        var url = "http://localhost:8080/laboratorio/convenio/" + $(this).val() + "/" + $("#id").val();
+        var url = "http://localhost:8080/sismed/laboratorio/convenio/" + $(this).val() + "/" + $("#id").val();
         $.ajax({
             url: url,
             method: "get",
@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     $("#allconvenio_id").change(function() {
-        var url = "http://localhost:8080/laboratorio/allconvenios/" + $(this).val() + "/" + $("#id").val();
+        var url = "http://localhost:8080/sismed/laboratorio/allconvenios/" + $(this).val() + "/" + $("#id").val();
         $.ajax({
             url: url,
             method: "get",
@@ -31,7 +31,7 @@ $(document).ready(function() {
     });
 
     $("#excluir").click(function() {
-        url = "http://localhost:8080/laboratorio/excluirTConv/" + $('#tipo_convenio_id option:selected').val() + "/" + $("#id").val();
+        url = "http://localhost:8080/sismed/laboratorio/excluirTConv/" + $('#tipo_convenio_id option:selected').val() + "/" + $("#id").val();
         $.ajax({
             url: url,
             method: "get",

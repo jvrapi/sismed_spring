@@ -1,7 +1,7 @@
 $(document).ready(function() {
 		$('#procedimento_id').change(function() {
 			
-			var url = "http://localhost:8080/agenda/valor/" + $(this).val();
+			var url = "http://localhost:8080/sismed/agenda/valor/" + $(this).val();
 			
 			$.ajax({
 				

@@ -1,16 +1,16 @@
 $(document).ready(function() {
 		$( function() {
 			$("#txtBusca").autocomplete({
-				source: "http://localhost:8080/agenda/listar/1",
+				source: "http://localhost:8080/sismed/agenda/listar/1",
 				minLength: 2,
 				select: function (event, ui) {
 					if(ui.item.value2 == '0'){
 						
-						url = "http://localhost:8080/agenda/preCadastro" ;
+						url = "http://localhost:8080/sismed/agenda/preCadastro" ;
 						document.location.href = url;
 						return false;
 					}
-					url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
+					url = "http://localhost:8080/sismed/agenda/agendar/" + ui.item.value;
 					document.location.href = url;
 					return false;
 					
@@ -26,17 +26,17 @@ function muda() {
 				$("#dropdownMenu2").val("1");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/agenda/listar/1",
+						source: "http://localhost:8080/sismed/agenda/listar/1",
 						minLength: 2,
 						select: function (event, ui) {
 							
 							if(ui.item.value == 0){
 								
-								url = "http://localhost:8080/agenda/preCadastro" ;
+								url = "http://localhost:8080/sismed/agenda/preCadastro" ;
 								document.location.href = url;
 								return false;
 							}
-							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -50,10 +50,10 @@ function muda() {
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/agenda/listar/2",
+						source: "http://localhost:8080/sismed/agenda/listar/2",
 						minLength: 1,
 						select: function (event, ui) {
-							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -68,10 +68,10 @@ function muda() {
 				$("#dropdownMenu2").val("3");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/agenda/listar/3",
+						source: "http://localhost:8080/sismed/agenda/listar/3",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -86,10 +86,10 @@ function muda() {
 				$("#dropdownMenu2").val("4");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/agenda/listar/4",
+						source: "http://localhost:8080/sismed/agenda/listar/4",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/agenda/agendar/" + ui.item.value;
+							url = "http://localhost:8080/sismed/agenda/agendar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
