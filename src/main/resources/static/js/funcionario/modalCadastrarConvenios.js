@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$("#btn_cadastrar").prop("disabled", true);
     $("#allconvenio_id").change(function() {
     	$("#btn_cadastrar").prop("disabled", true);
-        var url = "http://localhost:8080/sismed/funcionario/allconvenios/" + $(this).val() + "/" + $("#id").val();
+        var url = "http://localhost:8080/funcionario/allconvenios/" + $(this).val() + "/" + $("#id").val();
         $.ajax({
             url: url,
             method: "get",

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/exame/buscar/2",
+			source: "http://localhost:8080/exame/buscar/2",
 			minLength: 1,
 			select: function (event, ui) {
 				$("#id_paciente").val(ui.item.value)
@@ -17,7 +17,7 @@ function muda3() {
 	$("#dropdownMenu2").val("3");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/exame/buscar/3",
+			source: "http://localhost:8080/exame/buscar/3",
 			minLength: 2,
 			select: function (event, ui) {
 				$("#nome_exame").val(ui.item.label)
@@ -33,7 +33,7 @@ function muda2() {
 	$("#dropdownMenu2").val("2");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/exame/buscar/2",
+			source: "http://localhost:8080/exame/buscar/2",
 			minLength: 2,
 			select: function (event, ui) {
 				
@@ -49,7 +49,7 @@ function muda4() {
 	$("#dropdownMenu2").val("4");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/exame/buscar/4",
+			source: "http://localhost:8080/exame/buscar/4",
 			minLength: 2,
 			select: function (event, ui) {
 				
@@ -61,7 +61,7 @@ function muda4() {
 
 $(function() {
     $("#paciente").autocomplete({
-        source: "http://localhost:8080/sismed/exame/buscarpaciente",
+        source: "http://localhost:8080/exame/buscarpaciente",
         minLength: 1,
         select: function(event, ui) {
             $("#paciente").val(ui.item.label);
@@ -72,7 +72,7 @@ $(function() {
             //nome e id do tipo de convenio
             $("#tipo").val(ui.item.nome_tipo);
             $("#tipo_id").val(ui.item.tipo);
-            var url = "http://localhost:8080/sismed/exame/buscarlab/" + $("#tipo_id").val();
+            var url = "http://localhost:8080/exame/buscarlab/" + $("#tipo_id").val();
             $.ajax({
                 url: url,
                 method: "get",
@@ -105,7 +105,7 @@ $(function() {
 
 $(function() {
     $("#funcionario").autocomplete({
-        source: "http://localhost:8080/sismed/exame/buscarfuncionario",
+        source: "http://localhost:8080/exame/buscarfuncionario",
         minLength: 2,
         select: function(event, ui) {
             $("#funcionario").val(ui.item.label);

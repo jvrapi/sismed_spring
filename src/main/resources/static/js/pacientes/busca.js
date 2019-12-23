@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/pacientes/buscar/2",
+			source: "http://localhost:8080/pacientes/buscar/2",
 			minLength: 1,
 			select: function (event, ui) {
-				url = "http://localhost:8080/sismed/pacientes/editar/" + ui.item.value2;
+				url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
 				document.location.href = url;
 				return false;
 			}
@@ -16,10 +16,10 @@ function muda() {
 	$("#dropdownMenu2").text("Prontuário");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/pacientes/buscar/1",
+			source: "http://localhost:8080/pacientes/buscar/1",
 			minLength: 1,
 			select: function (event, ui) {
-				url = "http://localhost:8080/sismed/pacientes/editar/" + ui.item.value2;
+				url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
 				document.location.href = url;
 				return false;
 			}
@@ -31,10 +31,10 @@ function muda2() {
 	$("#dropdownMenu2").text("Nome");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/pacientes/buscar/2",
+			source: "http://localhost:8080/pacientes/buscar/2",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/sismed/pacientes/editar/" + ui.item.value2;
+				url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
 				document.location.href = url;
 				return false;
 			}
@@ -47,10 +47,10 @@ function muda3() {
 	$("#dropdownMenu2").text("CPF");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/pacientes/buscar/3",
+			source: "http://localhost:8080/pacientes/buscar/3",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/sismed/pacientes/editar/" + ui.item.value2;
+				url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
 				document.location.href = url;
 				return false;
 			}
@@ -63,10 +63,10 @@ function muda4() {
 	$("#dropdownMenu2").text("Celular");
 	$( function() {
 		$("#txtBusca").autocomplete({
-			source: "http://localhost:8080/sismed/pacientes/buscar/4",
+			source: "http://localhost:8080/pacientes/buscar/4",
 			minLength: 2,
 			select: function (event, ui) {
-				url = "http://localhost:8080/sismed/pacientes/editar/" + ui.item.value2;
+				url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
 				document.location.href = url;
 				return false;
 			}

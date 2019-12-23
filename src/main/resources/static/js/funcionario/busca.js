@@ -4,7 +4,7 @@ $(document).ready(function() {
 						source: "buscar/1",
 						minLength: 1,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -16,10 +16,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("1");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/1",
+						source: "http://localhost:8080/funcionario/buscar/1",
 						minLength: 1,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -32,10 +32,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/2",
+						source: "http://localhost:8080/funcionario/buscar/2",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -50,10 +50,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("3");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/3",
+						source: "http://localhost:8080/funcionario/buscar/3",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -68,10 +68,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("4");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/4",
+						source: "http://localhost:8080/funcionario/buscar/4",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -85,10 +85,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("5");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/5",
+						source: "http://localhost:8080/funcionario/buscar/5",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
@@ -101,10 +101,10 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("6");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "http://localhost:8080/sismed/funcionario/buscar/6",
+						source: "http://localhost:8080/funcionario/buscar/6",
 						minLength: 2,
 						select: function (event, ui) {
-							url = "http://localhost:8080/sismed/funcionario/editar/" + ui.item.value;
+							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
 							return false;
 						}
