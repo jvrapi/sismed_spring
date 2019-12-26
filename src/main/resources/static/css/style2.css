@@ -91,6 +91,7 @@ a[aria-expanded="true"] {
   border-radius:3px;
   width:405px;
   height: 35px;
+  
 }
 
 #txtBusca{
@@ -112,7 +113,56 @@ a[aria-expanded="true"] {
   border: 0 none;
   outline: 0;
   color: gray;
+  
 }
+
+#btn_search_custos {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+  color: gray;
+  position: absolute;
+  top: 1px;
+}
+
+#camposBusca{
+	position: absolute;
+	top: 15px;
+	background-color:#fff;
+  border-radius:3px;
+  width:405px;
+  height: 35px;
+}
+
+#convenio{
+	float:left;
+  background-color:transparent;
+  height:35px;
+  width:365px;
+}
+
+#periodo{
+	float:left;
+	
+}
+#dataFim{
+  float:left;
+  background-color:transparent;
+  height:35px;
+  width:200px;
+  display:inline;
+}
+
+#dataInicio{
+	float:left;
+  background-color:transparent;
+  height:35px;
+  width:200px;
+  display:inline;
+  margin-left: 5px;
+}
+
+
 
 /* ---------------------------------------------------
   	CADASTRO RAPIDO STYLE

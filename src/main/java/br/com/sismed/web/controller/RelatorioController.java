@@ -1,6 +1,7 @@
 package br.com.sismed.web.controller;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,42 +19,41 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.*;
 import br.com.sismed.service.*;
 
-
 @Controller
 @RequestMapping("/relatorio")
 public class RelatorioController {
 
 	@Autowired
 	private CustosService service;
-	
-	@Autowired 
+
+	@Autowired
 	private PacienteService pservice;
-	
+
 	@Autowired
 	private ConvenioService cservice;
-	
+
 	@Autowired
 	private FuncionarioService fservice;
-	
+
 	@GetMapping("/listar")
 	public String listar() {
 		return "custos/lista";
 	}
-	
+
 	@GetMapping("/buscar/{id}")
 	@ResponseBody
-	public List<LabelValue> listar(@PathVariable("id") Integer id, @RequestParam (value="term", required=false, defaultValue="") String term) {
+	public List<LabelValue> listar(@PathVariable("id") Integer id,
+			@RequestParam(value = "term", required = false, defaultValue = "") String term) {
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
-		if(id == 1) {
+		if (id == 1) {
 			List<Paciente> allPacientes = pservice.ListarPacNome(term);
 			for (Paciente paciente : allPacientes) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(paciente.getNome());
-				lv.setValue(paciente.getId() );
+				lv.setValue(paciente.getId());
 				suggeestions.add(lv);
 			}
-		}
-		else if(id == 2) {
+		} else if (id == 2) {
 			List<Convenio> allConvenios = cservice.ListarPorNome(term);
 			for (Convenio convenio : allConvenios) {
 				LabelValue lv = new LabelValue();
@@ -62,78 +62,109 @@ public class RelatorioController {
 				suggeestions.add(lv);
 			}
 		}
-		
-		else if(id == 3) {
+
+		else if (id == 3) {
 			List<Funcionario> allFunc = fservice.ListarFuncionarioNome(term);
-			for (Funcionario f: allFunc) {
+			for (Funcionario f : allFunc) {
 				LabelValue lv = new LabelValue();
 				lv.setLabel(f.getNome());
 				lv.setValue(f.getId());
 				suggeestions.add(lv);
 			}
 		}
-		
-		
+
 		return suggeestions;
-		
+
 	}
-	
+
 	@PostMapping("/gerar")
-	public String gerarRelatorio(@RequestParam("paciente") Long paciente, @RequestParam("convenio") Long convenio, @RequestParam("dataInicio") String dataInicio, 
-			@RequestParam("dataFim") String dataFim, @RequestParam("funcionario") Long funcionario ,RedirectAttributes attr, ModelMap model) {
+	public String gerarRelatorio(@RequestParam("paciente") Long paciente, @RequestParam("convenio") Long convenio,
+			@RequestParam("dataInicio") String dataInicio, @RequestParam("dataFim") String dataFim,
+			@RequestParam("funcionario") Long funcionario, RedirectAttributes attr, ModelMap model) {
 		
 		
-			if(convenio == null && dataInicio == "" && funcionario == null) {
-				//so por paciente
-				model.addAttribute("resultado", service.buscarPorPaciente(paciente));
-				model.addAttribute("receita", service.buscarPorPaciente(paciente));
+
+		if (convenio == null && dataInicio == "" && funcionario == null) {
+			// so por paciente
+			Paciente p = pservice.buscarporId(paciente);
+			model.addAttribute("resultado", service.buscarPorPaciente(paciente));
+			model.addAttribute("receita", "O paciente " + p.getNome() + " Gerou uma receita de R$ " + service.buscarReceitaPorPaciente(paciente));
+		}
+
+		else if (paciente == null && dataInicio == "" && funcionario == null) {
+			// so por convenio
+			if(convenio != 0) {
+			Convenio c = cservice.buscarPorId(convenio);
+			model.addAttribute("resultado", service.buscarPorConvenio(convenio));
+			model.addAttribute("receita", "O convênio " + c.getNome() + " Gerou uma receita de R$ " + service.BuscarReceitaPorConvenio(convenio));
 			}
-			
-			else if(paciente == null && dataInicio == "" && funcionario == null) {
-				//so por convenio
-				model.addAttribute("resultado", service.buscarPorConvenio(convenio));
-				model.addAttribute("receita",  service.BuscarReceitaPorConvenio(convenio));
+			if (convenio == 0) {
 				
-				if(convenio == 0) {
-					model.addAttribute("allConvenio", service.buscarTodosConvenios());
-					model.addAttribute("allReceita", service.receitaTodosConvenios());
-					
-				}
-			}
-			
-			else if(paciente == null && convenio == null && dataInicio == "") {
-				//so por funcionario
-				model.addAttribute("resultado", service.buscarPorFuncionario(funcionario));
-				model.addAttribute("receita", service.buscarReceitaPorFuncionario(funcionario));
-			}
-			
-			else if(paciente == null && convenio == null && funcionario == null) {
-				//entre um periodo
-				model.addAttribute("resultado", service.buscarPorDatas(dataInicio, dataFim));
-				model.addAttribute("receita", service.buscarReceitaPorDatas(dataInicio, dataFim));
+				model.addAttribute("resultado", service.buscarTodosConvenios());
+				model.addAttribute("receita", "Os convênios geraram uma receita de R$: " + service.receitaTodosConvenios().get(0));
+				
 				
 			}
-			else if(funcionario == null && convenio == null) {
-				//Paciente e Periodo
-				model.addAttribute("resultado", service.PacientePeriodo(paciente, dataInicio, dataFim));
-				model.addAttribute("receita", service.ReceitaPacientePeriodo(paciente, dataInicio, dataFim));
-			}
-			else if(funcionario == null && paciente == null) {
-				//convenio periodo
-				model.addAttribute("resultado", service.ConvenioPeriodo(convenio, dataInicio, dataFim));
-				model.addAttribute("receita", service.ReceitaConvenioPeriodo(convenio, dataInicio, dataFim));
-				
-				if(convenio == 0) {
-					model.addAttribute("resultado", service.TodosConvenioPeriodo(dataInicio, dataFim));
-					model.addAttribute("receita", service.ReceitaTodosConvenioPeriodo( dataInicio, dataFim));
-				}
-			}
+		}
+
+		else if (paciente == null && convenio == null && dataInicio == "") {
+			// so por funcionario
+			Funcionario f = fservice.buscarporId(funcionario);
+			model.addAttribute("resultado", service.buscarPorFuncionario(funcionario));
+			model.addAttribute("receita", "O funcionario " + f.getNome() + " gerou uma receita de R$: " + service.buscarReceitaPorFuncionario(funcionario));
+		}
+
+		else if (paciente == null && convenio == null && funcionario == null) {
+			// entre um periodo
+			LocalDate data1 = LocalDate.parse(dataInicio);
+			LocalDate data2 = LocalDate.parse(dataFim);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataInicioFormatada = data1.format(formatter);
+			String dataFimFormatada = data2.format(formatter);
+			model.addAttribute("resultado", service.buscarPorDatas(dataInicio, dataFim));
+			model.addAttribute("receita", "Entre o periodo de " + dataInicioFormatada + " a " + dataFimFormatada + " foi gerada uma receita de R$: " + service.buscarReceitaPorDatas(dataInicio, dataFim));
+
+		} else if (funcionario == null && convenio == null) {
+			// Paciente e Periodo
+			Paciente p = pservice.buscarporId(paciente);
+			LocalDate data1 = LocalDate.parse(dataInicio);
+			LocalDate data2 = LocalDate.parse(dataFim);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataInicioFormatada = data1.format(formatter);
+			String dataFimFormatada = data2.format(formatter);
 			
-		return "redirect:/relatorio/listar";
+			model.addAttribute("resultado", service.PacientePeriodo(paciente, dataInicio, dataFim));
+			model.addAttribute("receita", "O paciente "+ p.getNome() + " no periodo de "+ dataInicioFormatada + " a " + dataFimFormatada + " gerou uma receita de R$: " +service.ReceitaPacientePeriodo(paciente, dataInicio, dataFim));
+		} else if (funcionario == null && paciente == null) {
+			// convenio periodo
+			Convenio c = cservice.buscarPorId(convenio);
+			model.addAttribute("resultado", service.ConvenioPeriodo(convenio, dataInicio, dataFim));
+			model.addAttribute("receita", service.ReceitaConvenioPeriodo(convenio, dataInicio, dataFim));
+
+			if (convenio == 0) {
+				model.addAttribute("resultado", service.TodosConvenioPeriodo(dataInicio, dataFim));
+				model.addAttribute("receita", service.ReceitaTodosConvenioPeriodo(dataInicio, dataFim));
+			}
+		} else if (paciente == null && convenio == null) {
+			// funcionario e periodo
+			
+			LocalDate data1 = LocalDate.parse(dataInicio);
+			LocalDate data2 = LocalDate.parse(dataFim);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataInicioFormatada = data1.format(formatter);
+			String dataFimFormatada = data2.format(formatter);
+			
+			Funcionario f = fservice.buscarporId(funcionario);
+			model.addAttribute("resultado", service.FuncionarioPeriodo(funcionario, dataInicio, dataFim));
+			model.addAttribute("receita", "O funcionario "+ f.getNome() + " no periodo de "+ dataInicioFormatada + " a " + dataFimFormatada + " gerou uma receita de R$: " +service.ReceitaFuncionarioPeriodo(funcionario, dataInicio, dataFim));
+
+		}
+
+		return "custos/lista";
 	}
-	
+
 	@ModelAttribute("convenios")
-	public List<Convenio> allConvenios(){
+	public List<Convenio> allConvenios() {
 		return cservice.findAll();
 	}
 }
