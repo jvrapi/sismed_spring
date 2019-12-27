@@ -49,9 +49,17 @@ public class CustosService {
 	}
 	
 	
-
+	public BigDecimal ReceitaConvenioPeriodo(Long paciente, String dataInicio, String dataFim) {
+		return repository.receitaConvenioPeriodo(paciente, dataInicio, dataFim);
+	}
+	
+	public BigDecimal ReceitaFuncionarioPeriodo(Long funcionario, String dataInicio, String dataFim) {
+		return repository.ReceitaFuncionarioPeriodo(funcionario,dataInicio, dataFim);
+	}
+	
 	public List<Custos> buscarTodosConvenios() {
 		return repository.buscarTodosConvenios();
+		
 	}
 	
 	public List<BigDecimal> receitaTodosConvenios(){
@@ -89,9 +97,7 @@ public class CustosService {
 		
 	}
 
-	public BigDecimal ReceitaConvenioPeriodo(Long paciente, String dataInicio, String dataFim) {
-		return repository.receitaConvenioPeriodo(paciente, dataInicio, dataFim);
-	}
+	
 
 	public List<Custos> TodosConvenioPeriodo(String dataInicio, String dataFim) {
 		return repository.TodosConvenioPeriodo(dataInicio, dataFim);
@@ -100,6 +106,12 @@ public class CustosService {
 	public List<BigDecimal> ReceitaTodosConvenioPeriodo(String dataInicio, String dataFim) {
 		return repository.ReceitaTodosConvenioPeriodo(dataInicio, dataFim);
 	}
+
+	public List<Custos> FuncionarioPeriodo(Long funcionario, String dataInicio, String dataFim) {
+		return repository.FuncionarioPeriodo(funcionario,dataInicio, dataFim);
+	}
+
+	
 
 	
 }

@@ -32,13 +32,13 @@ public interface CustosRepository extends JpaRepository<Custos, Long>{
 	@Query(value="SELECT * FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND paciente = :paciente", nativeQuery=true)
 	List<Custos> PacientePeriodo(Long paciente, String dataInicio, String dataFim);
 	
-	@Query(value="SELECT * FROM sismed_custos GROUP BY convenio", nativeQuery=true)
+	@Query(value="SELECT *, sum(valor) FROM sismed_custos GROUP BY convenio", nativeQuery=true)
 	List<Custos> buscarTodosConvenios();
 	
 	@Query(value="SELECT * FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND convenio = :convenio", nativeQuery=true)
 	List<Custos> ConvenioPeriodo(Long convenio, String dataInicio, String dataFim);
 	
-	@Query(value="SELECT  sum(valor) as valor  FROM sismed_custos  WHERE prontuario = :paciente ", nativeQuery=true)
+	@Query(value="SELECT  sum(valor) as valor  FROM sismed_custos  WHERE paciente = :paciente ", nativeQuery=true)
 	BigDecimal buscarReceitaPorPaciente(Long paciente);
 	
 	
@@ -57,8 +57,11 @@ public interface CustosRepository extends JpaRepository<Custos, Long>{
 	
 	@Query(value="SELECT SUM(valor) FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND paciente = :paciente", nativeQuery=true)
 	BigDecimal ReceitaPacientePeriodo(Long paciente, String dataInicio, String dataFim);
+	
+	@Query(value="SELECT SUM(valor) FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND funcionario = :funcionario", nativeQuery=true)
+	BigDecimal ReceitaFuncionarioPeriodo(Long funcionario, String dataInicio, String dataFim);
 
-	@Query(value="SELECT SUM(valor)  FROM sismed_custos GROUP BY convenio", nativeQuery=true)
+	@Query(value="SELECT SUM(valor)  FROM sismed_custos ", nativeQuery=true)
 	List<BigDecimal> receitaTodosConvenios();
 
 	@Query(value="SELECT SUM(valor) FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND convenio = :convenio", nativeQuery=true)
@@ -69,6 +72,11 @@ public interface CustosRepository extends JpaRepository<Custos, Long>{
 
 	@Query(value="SELECT SUM(valor) FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim GROUP BY convenio", nativeQuery=true)
 	List<BigDecimal> ReceitaTodosConvenioPeriodo(String dataInicio, String dataFim);
+
+	@Query(value="SELECT * FROM sismed_custos WHERE data BETWEEN  :dataInicio AND :dataFim AND funcionario = :funcionario", nativeQuery=true)
+	List<Custos> FuncionarioPeriodo(Long funcionario, String dataInicio, String dataFim);
+
+	
 
 	
 	

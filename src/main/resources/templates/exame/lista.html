@@ -22,20 +22,10 @@
                         <button class="dropdown-item" type="button" value="4" onclick="muda4()">Data de Coleta</button>
                     </div>
                 </div>
-                <form th:action="@{/exame/buscarlista}" method="post">
-                    
-                        <div id="divBusca">
-                            <div class="form-group" >
-                                <input type="text" class="" id="txtBusca" placeholder="Buscar..." />
-                                <button type="submit" id="btn_search" class="btn"><i class="fas fa-search"></i></button>
-                            </div>
-						</div>
-						<div class="form-group">
-						    <input type="hidden" id="id_paciente" name="id_paciente">
-						    <input type="hidden" id="nome_exame" name="nome_exame">
-						    <input type="date" class="form-control" id="coleta_data" name="coleta_data">
-						</div>
-                    
+                <form th:action="@{/exame/buscarlista}" method="post" class="form-inline" id="divBusca">
+					<input type="text" class="form-control" placeholder="Buscar..." id="txtBusca">
+					<input type="date" class="form-control txtBusca" id="coleta_data" name="coleta_data" style="display: none;">
+					<button type="submit" id="btn_search" class="btn"><i class="fas fa-search"></i></button>
                 </form>
                 <div class="collapse navbar-collapse justify-content-end login">
 
@@ -90,7 +80,7 @@
                             <tr class="conteudo" style="font-size: 1em; text-align: left">
 
                                 <td style="width: 350px;">
-                                    <a th:href="@{/exame/editar/{id}/{tcid} (id=${e.id}, tcid=${e.tipo.id}) }" title="Clique aqui para alterar" th:text="${e.paciente_id.nome}"> </a>
+                                    <a th:href="@{/exame/editar/{id}/{tcid} (id=${e.id}, tcid=${e.tipo}) }" title="Clique aqui para alterar" th:text="${e.paciente_id.nome}"> </a>
                                 </td>
 
                                 <td>
