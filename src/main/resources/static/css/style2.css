@@ -108,6 +108,20 @@ a[aria-expanded="true"] {
   outline: 0;
 }
 
+.txtBusca{
+  float:left;
+  background-color:transparent;
+  padding-left:5px;
+  font-size:13px;
+  border:none;
+  height:25px;
+  width:350px;
+  margin:5px 5px;
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+}
+
 #btn_search {
   box-shadow: 0 0 0 0;
   border: 0 none;
