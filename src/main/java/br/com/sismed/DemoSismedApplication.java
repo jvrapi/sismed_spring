@@ -2,6 +2,7 @@ package br.com.sismed;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +34,7 @@ public class DemoSismedApplication  extends SpringBootServletInitializer impleme
 			return builder.sources(DemoSismedApplication.class);
 		}
 	
+	
 	 @Autowired
 		JavaMailSender mail;
 	 
@@ -48,5 +50,4 @@ public class DemoSismedApplication  extends SpringBootServletInitializer impleme
 			simple.setSubject("testando envio de email");
 			mail.send(simple);
 		}
-
 }

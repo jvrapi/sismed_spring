@@ -42,7 +42,7 @@
                                     <a  title="Horario" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 
-                                <td th:if="${a.compararDatas(a.data) == false}">
+                                <td th:if="${!a.compararDatas(a.data)}">
                                     <a th:href="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 <td>

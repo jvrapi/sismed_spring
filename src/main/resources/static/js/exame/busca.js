@@ -12,9 +12,6 @@ $(document).ready(function() {
 });
 	
 function muda3() {
-	$("#divBusca").css("width", "405px");
-	$("#txtBusca").css("display", "");
-	$("#coleta_data").css("display", "none");
 	$('#txtBusca').unmask();
 	$("#dropdownMenu2").text("Exame");
 	$("#dropdownMenu2").val("3");
@@ -31,9 +28,6 @@ function muda3() {
 }
 
 function muda2() {
-	$("#divBusca").css("width", "405px");
-	$("#txtBusca").css("display", "");
-	$("#coleta_data").css("display", "none");
 	$('#txtBusca').unmask();
 	$("#dropdownMenu2").text("Paciente");
 	$("#dropdownMenu2").val("2");
@@ -50,15 +44,10 @@ function muda2() {
 }
 
 function muda4() {
-	$("#divBusca").css("width", "220px");
-	$("#txtBusca").css("display", "none");
-	$("#coleta_data").css("display", "");
 	$('#txtBusca').unmask();
 	$("#dropdownMenu2").text("Data de Coleta");
 	$("#dropdownMenu2").val("4");
-	
 	$( function() {
-		
 		$("#txtBusca").autocomplete({
 			source: "http://localhost:8080/exame/buscar/4",
 			minLength: 2,

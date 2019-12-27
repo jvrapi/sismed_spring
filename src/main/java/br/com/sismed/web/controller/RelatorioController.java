@@ -99,10 +99,8 @@ public class RelatorioController {
 			model.addAttribute("receita", "O convênio " + c.getNome() + " Gerou uma receita de R$ " + service.BuscarReceitaPorConvenio(convenio));
 			}
 			if (convenio == 0) {
-				
 				model.addAttribute("resultado", service.buscarTodosConvenios());
-				model.addAttribute("receita", "Os convênios geraram uma receita de R$: " + service.receitaTodosConvenios().get(0));
-				
+				model.addAttribute("receita", "Os convênios geraram uma receita de R$: " + service.receitaTodosConvenios());
 				
 			}
 		}
@@ -137,13 +135,24 @@ public class RelatorioController {
 			model.addAttribute("receita", "O paciente "+ p.getNome() + " no periodo de "+ dataInicioFormatada + " a " + dataFimFormatada + " gerou uma receita de R$: " +service.ReceitaPacientePeriodo(paciente, dataInicio, dataFim));
 		} else if (funcionario == null && paciente == null) {
 			// convenio periodo
+			LocalDate data1 = LocalDate.parse(dataInicio);
+			LocalDate data2 = LocalDate.parse(dataFim);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String dataInicioFormatada = data1.format(formatter);
+			String dataFimFormatada = data2.format(formatter);
+			
+			if(convenio != 0){
 			Convenio c = cservice.buscarPorId(convenio);
 			model.addAttribute("resultado", service.ConvenioPeriodo(convenio, dataInicio, dataFim));
-			model.addAttribute("receita", service.ReceitaConvenioPeriodo(convenio, dataInicio, dataFim));
-
+			model.addAttribute("receita", "O convenio "+ c.getNome() + 
+					" no periodo de " + dataInicioFormatada + " a " + dataFimFormatada  + " gerou uma receita de R$: " + 
+					service.ReceitaConvenioPeriodo(convenio, dataInicio, dataFim));
+			}
+			
 			if (convenio == 0) {
 				model.addAttribute("resultado", service.TodosConvenioPeriodo(dataInicio, dataFim));
-				model.addAttribute("receita", service.ReceitaTodosConvenioPeriodo(dataInicio, dataFim));
+				model.addAttribute("receita", "Entre o periodo de " + dataInicioFormatada + " a " + dataFimFormatada + " os convenios geraram uma receita de R$: " 
+				+  service.ReceitaTodosConvenioPeriodo(dataInicio, dataFim));
 			}
 		} else if (paciente == null && convenio == null) {
 			// funcionario e periodo
@@ -156,7 +165,7 @@ public class RelatorioController {
 			
 			Funcionario f = fservice.buscarporId(funcionario);
 			model.addAttribute("resultado", service.FuncionarioPeriodo(funcionario, dataInicio, dataFim));
-			model.addAttribute("receita", "O funcionario "+ f.getNome() + " no periodo de "+ dataInicioFormatada + " a " + dataFimFormatada + " gerou uma receita de R$: " +service.ReceitaFuncionarioPeriodo(funcionario, dataInicio, dataFim));
+			model.addAttribute("receita", "O medico "+ f.getNome() + " no periodo de "+ dataInicioFormatada + " a " + dataFimFormatada + " gerou uma receita de R$: " +service.ReceitaFuncionarioPeriodo(funcionario, dataInicio, dataFim));
 
 		}
 
