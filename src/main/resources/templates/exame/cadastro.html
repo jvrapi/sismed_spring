@@ -31,7 +31,7 @@
 	                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
 	                    <input type="hidden" id="id_paciente" name="id_paciente">
 		                <input type="hidden" id="nome_exame" name="nome_exame">
-		                 <input type="date" class="form-control" id="coleta_data" name="coleta_data">
+		                 
 	                </div>
                 </form>
 
@@ -80,7 +80,7 @@
 
                             <div class="form-group col-md-3 ">
                                 <label for="paciente">Paciente</label>
-                                <input type="text" id="paciente" class="form-control tamanho-fonte" placeholder="nome" required autofocus="autofocus">
+                                <input type="text" id="paciente" class="form-control tamanho-fonte" placeholder="nome" required autofocus="autofocus" onkeyup="maiuscula(this)">
                                 <input type="hidden" th:field="*{paciente_id}" id="paciente_id" onkeyup="maiuscula(this)" required>
                             </div>
 
@@ -151,7 +151,8 @@
 
                             <div class="form-group col-md-3">
                                 <label for="laboratorio">Laboratório</label>
-                                <select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}" disabled required>
+                                <select id="laboratorio" class="form-control tamanho-fonte" 
+                                th:field="*{laboratorio_id}" disabled required>
                                 </select>
 
                             </div>

@@ -190,13 +190,18 @@
                             <label for="convenio_id">Convênios</label>
                             <select id="convenio_id" class="form-control tamanho-fonte" required>
                                 <option value="" selected hidden>Selecione</option>
+                                 <option value="PARTICULAR">PARTICULAR</option>
                                 <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
                             </select>
                         </div>
                         <div class="form-group col-md-2">
                             <div id="teste">
                                 <label for="tipo_convenio_id">Tipos de Convênio</label>
-                                <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required></select>
+                                
+                                <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" required>
+                                  <option value="" selected hidden>Selecione</option>
+                                 <option value="PARTICULAR">PARTICULAR</option>
+                                </select>
                             </div>
                         </div>
 
@@ -239,6 +244,7 @@
                                     <label for="allconvenio_id">Convênios</label>
                                     <select id="allconvenio_id" class="form-control tamanho-fonte" required>
                                         <option value="" selected hidden>Selecione</option>
+                                        
                                         <option th:each="c : ${allconvenios}" th:value="${c.id}" th:text="${c.nome}"></option>
                                     </select>
                                 </div>
@@ -247,6 +253,7 @@
                                 <div class="form-group col-md-12">
                                     <div id="teste">
                                         <label for="alltipo_convenio_id">Tipos de convenio</label>
+                                      
                                         <select id="alltipo_convenio_id" class="form-control my-select tamanho-fonte" th:field=*{tconvenio_id} disabled required></select>
                                     </div>
                                 </div>

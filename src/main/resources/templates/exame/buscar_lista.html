@@ -24,11 +24,13 @@
                 </div>
                 <form th:action="@{/exame/buscarlista}" method="post">
 	                <div id="divBusca">
+	                  
 	                    <input type="text" id="txtBusca" placeholder="Buscar..." />
 	                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-	                    <input type="hidden" id="id_paciente" name="id_paciente">
+	                    <input type="hidden" id="id_paciente" name="id_paciente"/>
 		                <input type="hidden" id="nome_exame" name="nome_exame">
-		                 <input type="date" class="form-control" id="coleta_data" name="coleta_data">
+		        		<input type="date" class="form-control" id="coleta_data" name="coleta_data"/>
+	                 
 	                </div>
                 </form>
                 <div class="collapse navbar-collapse justify-content-end login">
@@ -100,7 +102,7 @@
                         </tbody>
 					</table>
 				</div>
-				
+				</div>
 			</div>
 	</section>
 </body>

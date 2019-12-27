@@ -116,7 +116,7 @@ public class ExameController {
 	@ResponseBody
 	public List<LabelValue> buscar (@PathVariable("id")Integer id, @RequestParam (value="term", required=false, defaultValue="") String term){
 		List<LabelValue> suggeestions = new ArrayList<LabelValue>();
-		
+	
 		if(id == 2) {
 			List<Paciente> allPacientes = pservice.ListarPacNome(term);
 			for (Paciente paciente : allPacientes) {

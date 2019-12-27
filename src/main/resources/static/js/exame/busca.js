@@ -47,7 +47,9 @@ function muda4() {
 	$('#txtBusca').unmask();
 	$("#dropdownMenu2").text("Data de Coleta");
 	$("#dropdownMenu2").val("4");
+	
 	$( function() {
+		
 		$("#txtBusca").autocomplete({
 			source: "http://localhost:8080/exame/buscar/4",
 			minLength: 2,
