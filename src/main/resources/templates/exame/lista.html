@@ -26,6 +26,8 @@
 					<input type="text" class="form-control" placeholder="Buscar..." id="txtBusca">
 					<input type="date" class="form-control txtBusca" id="coleta_data" name="coleta_data" style="display: none;">
 					<button type="submit" id="btn_search" class="btn"><i class="fas fa-search"></i></button>
+					<input type="hidden" id="id_paciente" name="id_paciente">
+					<input type="hidden" id="nome_exame" name="nome_exame">
                 </form>
                 <div class="collapse navbar-collapse justify-content-end login">
 
@@ -80,7 +82,7 @@
                             <tr class="conteudo" style="font-size: 1em; text-align: left">
 
                                 <td style="width: 350px;">
-                                    <a th:href="@{/exame/editar/{id}/{tcid} (id=${e.id}, tcid=${e.tipo}) }" title="Clique aqui para alterar" th:text="${e.paciente_id.nome}"> </a>
+                                    <a th:href="@{/exame/editar/{id}/{tcid} (id=${e.id}, tcid=${e.tipo.id}) }" title="Clique aqui para alterar" th:text="${e.paciente_id.nome}"> </a>
                                 </td>
 
                                 <td>
