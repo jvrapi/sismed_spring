@@ -27,10 +27,13 @@ public class Log extends AbstractEntity{
 	
 	@Column(name="hora", nullable=false)
 	private LocalTime hora;
-
+	
+	private String descricao;
+	
 	@ManyToOne
-	@JoinColumn(name = "funcionario_id")
-	private Funcionario funcionario_id;
+	@JoinColumn(name = "funcionario_id") // nome da chave estrangeira no banco de dados
+	private Funcionario funcionario;
+
 
 	public LocalDate getData() {
 		return data;
@@ -48,11 +51,24 @@ public class Log extends AbstractEntity{
 		this.hora = hora;
 	}
 
-	public Funcionario getFuncionario_id() {
-		return funcionario_id;
+	
+
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setFuncionario_id(Funcionario funcionario_id) {
-		this.funcionario_id = funcionario_id;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	
+	
+	
 }
