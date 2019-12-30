@@ -1,0 +1,50 @@
+2019-12-30 08:33:41.663  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : Starting DemoSismedApplication on CHI00533564 with PID 2576 (C:\Users\joao13.estagio\Documents\SISMED\target\classes started by joao13.estagio in C:\Users\joao13.estagio\Documents\SISMED)
+2019-12-30 08:33:41.664  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : No active profile set, falling back to default profiles: default
+2019-12-30 08:33:42.155  INFO 2576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-30 08:33:42.337  INFO 2576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 182ms. Found 14 repository interfaces.
+2019-12-30 08:33:42.473  INFO 2576 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$911c1f7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-30 08:33:42.751  INFO 2576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-30 08:33:42.753  INFO 2576 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-30 08:33:42.753  INFO 2576 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2019-12-30 08:33:42.829  INFO 2576 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-12-30 08:33:42.829  INFO 2576 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1162 ms
+2019-12-30 08:33:42.998  INFO 2576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2019-12-30 08:33:43.097  INFO 2576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2019-12-30 08:33:43.119  INFO 2576 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-12-30 08:33:43.478  INFO 2576 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-12-30 08:33:43.764  INFO 2576 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-12-30 08:33:43.907  INFO 2576 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-12-30 08:33:44.400  INFO 2576 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b12a6b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1093006, org.springframework.security.web.header.HeaderWriterFilter@2244c, org.springframework.security.web.csrf.CsrfFilter@1a013ee, org.springframework.security.web.authentication.logout.LogoutFilter@15659ca, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59a993, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f7a15c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@eacaaa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@71e7c9, org.springframework.security.web.session.SessionManagementFilter@c376d3, org.springframework.security.web.access.ExceptionTranslationFilter@13a7388, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1c82355]
+2019-12-30 08:33:44.572  INFO 2576 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-30 08:33:45.454  INFO 2576 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-30 08:33:45.485  INFO 2576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-30 08:33:45.486  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : Started DemoSismedApplication in 3.878 seconds (JVM running for 5291.376)
+2019-12-30 08:34:52.466  INFO 2576 --- [Thread-77] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-12-30 08:34:52.469  INFO 2576 --- [Thread-77] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-12-30 08:34:52.470  INFO 2576 --- [Thread-77] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2019-12-30 08:34:52.483  INFO 2576 --- [Thread-77] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+2019-12-30 08:34:53.012  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : Starting DemoSismedApplication on CHI00533564 with PID 2576 (C:\Users\joao13.estagio\Documents\SISMED\target\classes started by joao13.estagio in C:\Users\joao13.estagio\Documents\SISMED)
+2019-12-30 08:34:53.012  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : No active profile set, falling back to default profiles: default
+2019-12-30 08:34:53.591  INFO 2576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-12-30 08:34:53.718  INFO 2576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 127ms. Found 14 repository interfaces.
+2019-12-30 08:34:53.901  INFO 2576 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$911c1f7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-30 08:34:54.095  INFO 2576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-30 08:34:54.097  INFO 2576 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-30 08:34:54.097  INFO 2576 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2019-12-30 08:34:54.152  INFO 2576 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-12-30 08:34:54.153  INFO 2576 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1139 ms
+2019-12-30 08:34:54.256  INFO 2576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2019-12-30 08:34:54.312  INFO 2576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2019-12-30 08:34:54.338  INFO 2576 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-12-30 08:34:54.890  INFO 2576 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-12-30 08:34:55.222  INFO 2576 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-12-30 08:34:55.384  INFO 2576 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-12-30 08:34:55.823  INFO 2576 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c7da45, org.springframework.security.web.context.SecurityContextPersistenceFilter@191b1b9, org.springframework.security.web.header.HeaderWriterFilter@15210a2, org.springframework.security.web.csrf.CsrfFilter@a0d485, org.springframework.security.web.authentication.logout.LogoutFilter@8ae04b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1299b80, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@a3388d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a5e17b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b304dc, org.springframework.security.web.session.SessionManagementFilter@1bb4bb7, org.springframework.security.web.access.ExceptionTranslationFilter@1a65b75, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@38870e]
+2019-12-30 08:34:55.899  INFO 2576 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-30 08:34:57.027  INFO 2576 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-30 08:34:57.064  INFO 2576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-30 08:34:57.065  INFO 2576 --- [restartedMain] br.com.sismed.DemoSismedApplication      : Started DemoSismedApplication in 4.093 seconds (JVM running for 5362.955)

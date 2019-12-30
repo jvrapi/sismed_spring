@@ -30,7 +30,7 @@ import br.com.sismed.service.FuncionarioService;
 import br.com.sismed.service.LaboratorioService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
-import ch.qos.logback.core.net.SyslogOutputStream;
+
 
 @Controller
 @RequestMapping("/exame")
