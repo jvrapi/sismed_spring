@@ -9,6 +9,16 @@
     <script type="text/javascript" src="/js/rclinico/limitaDesc.js"></script>
     <script type="text/javascript" src="/js/rclinico/paginacao.js"></script>
     <script type="text/javascript" src="/js/rclinico/detalhesRegistro.js"></script>
+    <script type="text/javascript" src="/js/rclinico/comparaData.js"></script>
+    <script type="text/javascript" src="/js/rclinico/modal.js"></script>
+    
+    <script>
+	    $(document).ready(function() {
+	    	$( "#123" ).click(function() {
+	    	  $("#myModal").modal('show');
+	    	});
+	    });
+	</script>
 </head>
 
 <body>
@@ -103,10 +113,11 @@
             <div class="card" style="margin-top: 10px;" id="resultsBlock">
             </div>
         </div>
-        <div th:replace="fragmentos/modal"></div>
         <div th:replace="fragmentos/modalDetalhesRegistro"></div>
+        <div th:replace="fragmentos/modal"></div>     
     </div>
-
+	
+	
 	<script type="text/javascript" src="/js/rclinico/destalhesRegistro.js"></script>
 </body>
 

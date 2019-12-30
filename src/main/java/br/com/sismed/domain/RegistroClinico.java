@@ -92,8 +92,13 @@ public class RegistroClinico extends AbstractEntity{
 		this.paciente_id = paciente_id;
 	}
 
-	public Boolean compararDatas(LocalDate rclinicoData) {
+	public int compararDatas(LocalDate rclinicoData) {
 		LocalDate dataAtual = LocalDate.now();
-		return rclinicoData.isBefore(dataAtual);
+		if(rclinicoData.isBefore(dataAtual)) {
+			return 0;
+		}
+		else {
+			return 1;
+		}
 	}
 }

@@ -148,6 +148,12 @@ public class RClinicoController {
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;
 	}
 	
+	@GetMapping("/excluir/{id}/{pid}")
+	public String excluir(@PathVariable("id") Long id, @PathVariable("pid") Long pid) {
+		service.excluir(id);
+		return "redirect:/RegistroClinico/cadastrarpac/" + pid;
+	}
+	
 	@GetMapping("buscarregistros/{id}")
 	public @ResponseBody Page<RegistroClinico> listRegistros(@RequestParam(value = "page", required=false, defaultValue="1") int page, @PathVariable("id") Long id) {
 		PageRequest pagerequest = PageRequest.of(page-1, 3);
