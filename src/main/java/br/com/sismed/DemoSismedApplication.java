@@ -43,11 +43,11 @@ public class DemoSismedApplication  extends SpringBootServletInitializer impleme
 		
 		@Override
 		public void run(String... args) throws Exception {
-			/*SimpleMailMessage simple = new SimpleMailMessage();
+			SimpleMailMessage simple = new SimpleMailMessage();
 			simple.setFrom(from);
 			simple.setTo("joaooviitorr@hotmail.com");
 			simple.setText("testando o @value");
 			simple.setSubject("testando envio de email");
-			mail.send(simple);*/
+			mail.send(simple);
 		}
 }
