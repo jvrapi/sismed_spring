@@ -31,6 +31,9 @@ public class Log extends AbstractEntity{
 	@ManyToOne
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
+	
+	@Column( nullable=false)
+	private String descricao;
 
 	public LocalDate getData() {
 		return data;
@@ -55,4 +58,14 @@ public class Log extends AbstractEntity{
 	public void setFuncionario_id(Funcionario funcionario_id) {
 		this.funcionario_id = funcionario_id;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
 }

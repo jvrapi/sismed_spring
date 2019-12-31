@@ -74,7 +74,7 @@ public class Funcionario extends AbstractEntity {
 	@Column(name="escolaridade", nullable=false)
 	private String escolaridade;
   
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id", nullable = false)
 	private Endereco endereco;
 

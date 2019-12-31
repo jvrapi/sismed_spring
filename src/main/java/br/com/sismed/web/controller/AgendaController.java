@@ -1,6 +1,8 @@
 package br.com.sismed.web.controller;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Custos;
 import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Log;
 import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.Procedimento;
@@ -41,6 +44,7 @@ import br.com.sismed.service.AgendaService;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.CustosService;
 import br.com.sismed.service.FuncionarioService;
+import br.com.sismed.service.LogService;
 import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.ProcedimentoService;
@@ -73,6 +77,9 @@ public class AgendaController {
 	
 	@Autowired
 	private CustosService cservice;
+	
+	@Autowired
+	private LogService logservice;
 
 	@GetMapping("/agendamentos")
 	public String lista(ModelMap model, @AuthenticationPrincipal User user) {
@@ -234,7 +241,19 @@ public class AgendaController {
 	}
 
 	@PostMapping("/editar")
-	public String editar(Agenda agenda, RedirectAttributes attr) {
+	public String editar(Agenda agenda, RedirectAttributes attr, @AuthenticationPrincipal User user) {
+		Agenda a = service.buscarPorId(agenda.getId());
+		if(!agenda.getData().isEqual(a.getData())) {
+			Log l = new Log();
+			Login login = lservice.BuscarPorCPF(user.getUsername());
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("ALTERAÇÃO NA DATA DE AGENDAMENTO. DO DIA " + a.getData().format(formatador) + " PARA O DIA " + agenda.getData().format(formatador));
+			logservice.salvar(l);
+		}
+		
 		service.salvar(agenda);
 		attr.addFlashAttribute("success", "Informações alteradas com sucesso!");
 		return "redirect:/agenda/agendamentos";
@@ -378,10 +397,19 @@ public class AgendaController {
 	}
 	
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-		service.excluir(id);
-		attr.addFlashAttribute("success", "Agendamento excluido com sucesso");
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 		
+		Agenda agenda = service.buscarPorId(id);
+		attr.addFlashAttribute("success", "Agendamento excluido com sucesso");
+		Log l = new Log();
+		Login login = lservice.BuscarPorCPF(user.getUsername());
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		l.setData(LocalDate.now());
+		l.setFuncionario_id(login.getFuncionario_id());
+		l.setHora(LocalTime.now());
+		l.setDescricao("EXCLUSÃO DE AGENDAMENTO DO PACIENTE " + agenda.getPaciente_id().getNome() + " DO DIA " + agenda.getData().format(formatador) + " PARA O MEDICO " + agenda.getFuncionario().getNome());
+		logservice.salvar(l);
+		service.excluir(id);
 		return "redirect:/agenda/agendamentos";
 	}
 

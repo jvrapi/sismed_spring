@@ -37,14 +37,17 @@
                                 <td>
                                     <a title="Mostrar informações" th:text="${a.paciente_id.celular}"></a>
                                 </td>
-
+								
+								<td th:if="${!a.compararDatas(a.data) }">
+                                    <a th:href="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
+                                </td>
+                                
                                 <td th:if="${a.compararDatas(a.data)}">
                                     <a  title="Horario" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
                                 </td>
                                 
-                                <td th:if="${!a.compararDatas(a.data)}">
-                                    <a th:href="@{/agenda/editar/{id} (id = ${a.id}) }" title="Clique aqui para editar o agendamento" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
-                                </td>
+         						
+                                
                                 <td>
                                     <a title="Mostrar informações" th:text="${a.paciente_id.tipo_convenio.convenio.nome}"></a>
                                 </td>

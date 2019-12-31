@@ -1,5 +1,8 @@
 package br.com.sismed.web.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,11 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Log;
 import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.RcId;
 import br.com.sismed.domain.RegistroClinico;
 import br.com.sismed.service.AgendaService;
+import br.com.sismed.service.LogService;
 import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.RegistroClinicoService;
@@ -46,6 +51,9 @@ public class RClinicoController {
 	
 	@Autowired
 	private LoginService lService;
+	
+	@Autowired
+	private LogService logservice;
 	
 	@GetMapping("/buscar")
 	public String buscar(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
@@ -146,6 +154,20 @@ public class RClinicoController {
 		Long id = registroclinico.getPaciente_id().getId();
 		service.salvar(registroclinico);
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;
+	}
+	
+	@GetMapping("/excluir/{id}/{pid}")
+	public String excluir(@PathVariable("id") Long id, @PathVariable("pid") Long pid, @AuthenticationPrincipal User user) {
+		Login login = lService.BuscarPorCPF(user.getUsername());
+		RegistroClinico rc = service.buscarporId(id);
+		Log l = new Log();
+		l.setData(LocalDate.now());
+		l.setFuncionario_id(login.getFuncionario_id());
+		l.setHora(LocalTime.now());
+		l.setDescricao("EXCLUSÃO DO REGISTRO CLINICO " + rc.getId() + " DO PACIENTE " + rc.getPaciente_id().getNome());
+		logservice.salvar(l);
+		service.excluir(id);
+		return "redirect:/RegistroClinico/cadastrarpac/" + pid;
 	}
 	
 	@GetMapping("buscarregistros/{id}")

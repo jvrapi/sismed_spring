@@ -1,5 +1,8 @@
 package br.com.sismed.web.controller;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +27,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Log;
+import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.LogService;
+import br.com.sismed.service.LoginService;
 import br.com.sismed.service.PacienteService;
 import br.com.sismed.service.TConvenioService;
 
@@ -40,6 +49,12 @@ public class PacientesController {
 	
 	@Autowired
 	private TConvenioService tipoConvenioService;
+	
+	@Autowired
+	private LogService logservice;
+	
+	@Autowired
+	private LoginService lservice;
 
 	@GetMapping("/listar")
 	public String listar(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
@@ -112,7 +127,15 @@ public class PacientesController {
 	}
 	
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr, @AuthenticationPrincipal User user) {
+		Paciente p = service.buscarporId(id);
+		Login login = lservice.BuscarPorCPF(user.getUsername());
+		Log l = new Log();
+		l.setData(LocalDate.now());
+		l.setFuncionario_id(login.getFuncionario_id());
+		l.setHora(LocalTime.now());
+		l.setDescricao("EXCLUSÃO DO PACIENTE " +p.getNome() );
+		logservice.salvar(l);
 		service.excluir(id);
 		attr.addFlashAttribute("success","Paciente excluido com sucesso");
 		return "redirect:/pacientes/listar";
