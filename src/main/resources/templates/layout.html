@@ -27,7 +27,7 @@
 
     <div class="wrapper">
 
-        <nav th:replace="fragmentos/sidebar :: sidebar">
+        <nav th:replace="fragmentos/sidebar :: sidebar" sec:authorize="isAuthenticated()">
             <span>Menu</span>
         </nav>
         <div id="content">

@@ -26,12 +26,19 @@ public class Login extends AbstractEntity{
 	@JoinColumn(name = "funcionario_id")
 	private Funcionario funcionario_id;
 	
+	@Column(name = "codigo_verificador", length = 6)
+	private String codigoVerificador;
+	
 	public Login() {
 		super();
 	}
 
 	public Login(Long id) {
 		super.setId(id);
+	}
+	
+	public Login(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getSenha() {
@@ -66,5 +73,14 @@ public class Login extends AbstractEntity{
 		this.funcionario_id = funcionario_id;
 	}
 
+	public String getCodigoVerificador() {
+		return codigoVerificador;
+	}
+
+	public void setCodigoVerificador(String codigoVerificador) {
+		this.codigoVerificador = codigoVerificador;
+	}
+
+	
 
 }

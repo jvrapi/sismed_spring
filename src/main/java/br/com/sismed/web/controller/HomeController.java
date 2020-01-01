@@ -1,8 +1,11 @@
 package br.com.sismed.web.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.sismed.domain.Funcionario;
 import br.com.sismed.domain.Login;
+import br.com.sismed.domain.Perfil;
 import br.com.sismed.service.LoginService;
 
 @Controller
@@ -109,6 +114,51 @@ public class HomeController {
 			model.addAttribute("titulo", "Sua senha foi cadastrada com sucesso");
 			model.addAttribute("texto", "Você agora possui acesso ao nosso sistema");
 			model.addAttribute("subtexto", "Utilize o seu CPF e a sua nova senha para realizar o login");
+			return "login";
+		}
+		
+		//abre a pagina para inserir email e cpf
+		@GetMapping("/redefinir/senha")
+		public String pedidoRedefirSenha() {
+			return "/usuario/pedido-recuperar-senha";
+		}
+		
+		//recupera os dados para a verificação
+		@GetMapping("/recuperar/senha")
+		public String redefinirSenha(String email, String cpf, ModelMap model) throws MessagingException {
+			//chamando o metodo no controller 
+			service.pedidoRedefinirSenha(cpf, email);
+			Login l = service.buscarPorCpfEAtivo(cpf) .orElseThrow(() -> new UsernameNotFoundException("CPF " + cpf + " não possui mais acesso ao nosso sistema."));;
+			Long funcionario = l.getFuncionario_id().getId();
+			Long perfil = l.getPerfis().getId();
+			
+			model.addAttribute("success", "Em instantes, você receberá um email para redefinir a sua senha" );
+			
+			model.addAttribute("login", new Login(cpf));
+			model.addAttribute("funcionario", funcionario);
+			model.addAttribute("perfil", perfil);
+			
+			return "/usuario/recuperar-senha";
+		}
+		
+		//salva a senha
+		@PostMapping("/nova/senha")
+		public String novaSenha(Login login, ModelMap model) {
+			Login l = service.BuscarPorCPF(login.getCpf());
+			
+			if(!login.getCodigoVerificador().equals(l.getCodigoVerificador())) {
+				model.addAttribute("fail", "codigo verificador não confere" );
+				return "/usuario/recuperar-senha";
+			}
+			
+		
+			l.setCodigoVerificador(null);
+			service.alterarSenha(login, login.getSenha());
+			
+			
+			model.addAttribute("alerta", "sucesso" );
+			model.addAttribute("titulo", "Senha redefinida" );
+			model.addAttribute("texto", "Você já pode realizar o login" );
 			return "login";
 		}
 }
