@@ -20812,3 +20812,39 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'login0_.codigo_veri
 2020-01-02 08:20:49.976  INFO 8272 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-01-02 08:20:49.976  INFO 8272 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
 2020-01-02 08:20:49.982  INFO 8272 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 6 ms
+2020-01-02 10:22:15.339  INFO 8272 --- [RMI TCP Connection(132)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2020-01-02 10:22:15.561  INFO 8272 --- [RMI TCP Connection(132)-127.0.0.1] o.s.s.c.ThreadPoolTaskExecutor           : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-01-02 10:22:15.574  INFO 8272 --- [RMI TCP Connection(132)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-01-02 10:22:15.597  INFO 8272 --- [RMI TCP Connection(132)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2020-01-02 10:22:15.605  INFO 8272 --- [RMI TCP Connection(132)-127.0.0.1] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2020-01-02 10:23:46.060  INFO 244 --- [restartedMain] b.c.s.DemoSismedApplication              : Starting DemoSismedApplication on CHI00559822 with PID 244 (started by nadia.estagio in D:\PROJETO SISMED\repositorio_sismed\sismed)
+2020-01-02 10:23:46.070  INFO 244 --- [restartedMain] b.c.s.DemoSismedApplication              : No active profile set, falling back to default profiles: default
+2020-01-02 10:23:46.204  INFO 244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-01-02 10:23:46.205  INFO 244 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-01-02 10:23:46.982  INFO 244 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-01-02 10:23:47.252  INFO 244 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 263ms. Found 15 repository interfaces.
+2020-01-02 10:23:47.561  INFO 244 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$dfba9b3e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-01-02 10:23:47.814  INFO 244 --- [restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port(s): 8080 (http)
+2020-01-02 10:23:47.848  INFO 244 --- [restartedMain] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2020-01-02 10:23:47.848  INFO 244 --- [restartedMain] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.26]
+2020-01-02 10:23:47.960  INFO 244 --- [restartedMain] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2020-01-02 10:23:47.961  INFO 244 --- [restartedMain] o.s.w.c.ContextLoader                    : Root WebApplicationContext: initialization completed in 1756 ms
+2020-01-02 10:23:48.082  INFO 244 --- [restartedMain] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2020-01-02 10:23:48.455  INFO 244 --- [restartedMain] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2020-01-02 10:23:48.597  INFO 244 --- [restartedMain] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-01-02 10:23:48.647  INFO 244 --- [restartedMain] o.h.Version                              : HHH000412: Hibernate Core {5.3.12.Final}
+2020-01-02 10:23:48.648  INFO 244 --- [restartedMain] o.h.c.Environment                        : HHH000206: hibernate.properties not found
+2020-01-02 10:23:48.810  INFO 244 --- [restartedMain] o.h.a.c.Version                          : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-01-02 10:23:50.998  INFO 244 --- [restartedMain] o.h.d.Dialect                            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-01-02 10:23:51.649  INFO 244 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-01-02 10:23:51.942  INFO 244 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-01-02 10:23:52.524  INFO 244 --- [restartedMain] o.s.s.w.DefaultSecurityFilterChain       : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@15b410c, org.springframework.security.web.context.SecurityContextPersistenceFilter@11d9349, org.springframework.security.web.header.HeaderWriterFilter@1eba024, org.springframework.security.web.csrf.CsrfFilter@813d5e, org.springframework.security.web.authentication.logout.LogoutFilter@1c6c106, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1494a22, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16f99cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@165e4e9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d002e, org.springframework.security.web.session.SessionManagementFilter@1ee8ee9, org.springframework.security.web.access.ExceptionTranslationFilter@128e0c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@e1ffda]
+2020-01-02 10:23:52.645  INFO 244 --- [restartedMain] o.s.s.c.ThreadPoolTaskExecutor           : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-02 10:23:56.851  INFO 244 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-01-02 10:23:56.992  INFO 244 --- [restartedMain] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port(s): 8080 (http) with context path ''
+2020-01-02 10:23:56.995  INFO 244 --- [restartedMain] b.c.s.DemoSismedApplication              : Started DemoSismedApplication in 11.283 seconds (JVM running for 12.019)
+2020-01-02 10:24:00.889  INFO 244 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-02 10:24:00.889  INFO 244 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2020-01-02 10:24:00.896  INFO 244 --- [http-nio-8080-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 6 ms

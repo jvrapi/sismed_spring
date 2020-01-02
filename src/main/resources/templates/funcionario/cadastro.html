@@ -126,7 +126,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="naturalidade">Naturalidade</label>
-                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" onkeyup="maiuscula(this)" th:field="*{naturalidade}" />
+                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" placeholder="Naturalidade" maxlength="50" onkeyup="maiuscula(this)" th:field="*{naturalidade}" />
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="nacionalidade"> Nacionalidade</label>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="logradouro">Logradouro</label>
-                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)">
+                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" >
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="numero">Número</label>

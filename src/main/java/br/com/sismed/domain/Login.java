@@ -1,7 +1,5 @@
 package br.com.sismed.domain;
 
-import java.util.ArrayList;
-
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

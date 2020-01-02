@@ -146,7 +146,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="naturalidade">Naturalidade</label>
-                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" th:field="*{naturalidade}" disabled/>
+                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" th:field="*{naturalidade}" maxlength="40" disabled/>
                             </div>
 
                             <div class="form-group col-md-2">
@@ -170,7 +170,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control tamanho-fonte" id="email" onkeyup="maiuscula(this)" th:field="*{email}" disabled/>
+                                <input type="email" class="form-control tamanho-fonte" id="email" onkeyup="maiuscula(this)" th:field="*{email}" disabled/>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="escolaridade">Escolaridade</label>
