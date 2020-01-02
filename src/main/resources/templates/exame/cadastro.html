@@ -6,54 +6,6 @@
 		  <script type="text/javascript" src="/js/exame/comparahora.js"></script>
 		  <script type="text/javascript" src="/js/exame/busca.js"></script>
 		
-		<script>
-			//buscar paciente 
-			$( function() {
-				$("#paciente").autocomplete({
-					source: "buscarpaciente",
-					minLength: 1,
-					select: function (event, ui) {
-						$("#paciente").val(ui.item.label);
-						$("#paciente_id").val(ui.item.value);
-						//nome do convenio
-						$("#convenio").val(ui.item.nome_convenio);
-						
-						//nome e id do tipo de convenio
-						$("#tipo").val(ui.item.nome_tipo);
-						$("#tipo_id").val(ui.item.tipo);
-						var url = "http://localhost:8080/exame/buscarlab/" + $("#tipo_id").val();
-						$.ajax({
-							url : url,
-							method : "get",
-							success : function(data) {
-								var html = '';
-								$("#laboratorio").prop("disabled", false);
-								var html = '<option value="" hidden>Selecione</option>';
-								for (var i = 0; i < data.length; i++) {
-									html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
-								}
-								$("#laboratorio").html(html);
-							},
-						});
-						return false;
-					}
-				});
-			});
-		</script>
-		<script>
-			//buscar funcionario
-			$( function() {
-				$("#funcionario").autocomplete({
-					source: "buscarfuncionario",
-					minLength: 1,
-					select: function (event, ui) {
-						$("#funcionario").val(ui.item.label);
-						$("#funcionario_id").val(ui.item.value);
-						return false;
-					}
-				});
-			});
-		</script>
 	</head>
 	
 	<body>
