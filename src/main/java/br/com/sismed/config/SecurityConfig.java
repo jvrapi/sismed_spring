@@ -26,10 +26,8 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 		// acessos públicos liberados
-		.antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**","/primeiroAcesso","/verificarCPF", "/login/**" ).permitAll()
-		
-		//acessos para usuario
-		.antMatchers("/recuperar/senha","/cadastrarSenha", "/redefinir/senha","/nova/senha","/usuario/**").permitAll()
+		.antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**","/primeiroAcesso","/verificarCPF", "/login/**","/recuperar/senha","/cadastrarSenha", "/redefinir/senha","/nova/senha","/usuario/**" ).permitAll()
+	
 		
 		
 		
