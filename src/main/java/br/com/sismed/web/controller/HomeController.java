@@ -127,7 +127,7 @@ public class HomeController {
 		@GetMapping("/recuperar/senha")
 		public String redefinirSenha(String email, String cpf, ModelMap model) throws MessagingException {
 			//chamando o metodo no controller 
-			//service.pedidoRedefinirSenha(cpf, email);
+			service.pedidoRedefinirSenha(cpf, email);
 			Login l = service.buscarPorCpfEAtivo(cpf) .orElseThrow(() -> new UsernameNotFoundException("CPF " + cpf + " não possui mais acesso ao nosso sistema."));;
 			Long funcionario = l.getFuncionario_id().getId();
 			Long perfil = l.getPerfis().getId();
