@@ -1,6 +1,9 @@
 $(document).ready(function() {
 			$("#convenio_id").change(function() {
-				var url = "http://localhost:8080/agenda/convenio/" + $(this).val();
+				var convenio = $(this).val();
+				var medico = $("#funcionario_id").val();
+				
+				var url = "http://localhost:8080/agenda/convenio/" + convenio + "/" + medico;
 				
 				$.ajax({
 					url : url,
@@ -10,9 +13,12 @@ $(document).ready(function() {
 						var html = '<option value="" hidden>Selecione</option>';
 						for (var i = 0; i < data.length; i++) {
 							html += '<option value=' + data[i].id + '>' + data[i].nome + '</option>';
+							
 						}
 						$("#tipo_convenio_id").html(html);
+						
 					},
 				});
 			});
 		});
+

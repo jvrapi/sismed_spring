@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/relatorio/busca.js"></script>
+</head>
+
+<body>
+
+    <section layout:fragment="corpo">
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Paciente</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Paciente</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">Convenio</button>
+                            <button class="dropdown-item" type="button" value="2" onclick="muda4()">Funcionario</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">Periodo</button>
+
+                        </div>
+                    </div>
+                    <form th:action="@{/relatorio/gerar}" method="post">
+                        <div id="camposBusca">
+
+                            <input type="text" id="txtBusca" placeholder="Buscar..." />
+
+                            <div class="form-row " id="periodo">
+                                <div class="form-group col-md-6 ">
+                                    <input type="date" class="form-control " id="dataInicio" name="dataInicio" hidden/>
+                                </div>
+
+                                <div class="form-group col-md-6 ">
+                                    <input type="date" class="form-control " id="dataFim" name="dataFim" hidden/>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-15 ">
+                                <select class="form-control " id="convenio" name="convenio" hidden>
+                                    <option value=""> Selecione</option>
+                                    <option value="0"> Todos os Convenios</option>
+                                    <option th:each="c:${convenios}" th:value="${c.id}" th:text="${c.nome}">
+                                </select>
+
+                            </div>
+
+                            <button type="submit" id="btn_search_custos" class="btn"><i class="fas fa-search"></i></button>
+
+                        </div>
+                        <input type="hidden" id="paciente" name="paciente">
+                        <input type="hidden" id="convenio" name="convenio">
+                        <input type="hidden" id="funcionario" name="funcionario">
+
+                    </form>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </nav>
+
+            <div class="container ajustarTexto">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+            </div>
+
+            <div class="container-fluid" style="width: 98%">
+                <h3 style="display: inline; margin-left: 10px;" th:if="${receita != null}">Lista | <strong>Custos</strong></h3>
+
+                <div class="card ajustarCard" th:if="${receita != null}">
+                    <div class="card-body" >
+
+                        <p th:text="${receita}">
+
+                    </div>
+                </div>
+
+                <div class="card ajustarCard" th:if="${resultado != null}">
+                    <div class="card-body">
+                        <table class="table table-borderless text-center">
+                            <thead>
+                                <tr style="color: #5d6266; font-size: 1em;">
+
+                                    <th>Paciente</th>
+                                    <th>Convênio</th>
+                                    <th>Médico</th>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody th:each="r : ${resultado}">
+                                <tr class="conteudo " style="font-size: 1em;">
+
+                                    <td>
+                                        <a th:text="${r.paciente.nome}"></a>
+                                    </td>
+                                    <td>
+                                        <a th:text="${r.convenio.nome}"></a>
+                                    </td>
+                                    <td>
+                                        <a th:text="${r.funcionario.nome}"></a>
+                                    </td>
+                                    <td>
+                                        <a th:text="${#temporals.format(r.data, 'dd/MM/yyyy')}"></a>
+                                    </td>
+                                    <td>
+                                        <a th:text="${r.valor}"></a>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+</html>

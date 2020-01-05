@@ -14,8 +14,8 @@ function ApenasLetras(e, t) {
             ){
             return true;
     } else {
-        alert("Esse campo não permite esse caractere");
-        return false;
+       
+        return ;
     }
 } catch (err) {
     alert(err.Description);

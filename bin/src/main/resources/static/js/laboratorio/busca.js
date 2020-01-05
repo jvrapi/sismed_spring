@@ -1,7 +1,7 @@
 $(document).ready(function() {
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "buscar/2",
+						source: "http://localhost:8080/laboratorio/buscar/2",
 						minLength: 1,
 						select: function (event, ui) {
 							url = "http://localhost:8080/laboratorio/editar/" + ui.item.value;
@@ -18,7 +18,7 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("2");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "buscar/2",
+						source: "http://localhost:8080/laboratorio/buscar/2",
 						minLength: 2,
 						select: function (event, ui) {
 							url = "http://localhost:8080/laboratorio/editar/" + ui.item.value;
@@ -36,8 +36,8 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("3");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "buscar/3",
-						minLength: 1,
+						source: "http://localhost:8080/laboratorio/buscar/3",
+						minLength: 2,
 						select: function (event, ui) {
 							url = "http://localhost:8080/laboratorio/editar/" + ui.item.value;
 							document.location.href = url;
@@ -53,7 +53,7 @@ $(document).ready(function() {
 				$("#dropdownMenu2").val("4");
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "buscar/4",
+						source: "http://localhost:8080/laboratorio/buscar/4",
 						minLength: 2,
 						select: function (event, ui) {
 							url = "http://localhost:8080/laboratorio/editar/" + ui.item.value;

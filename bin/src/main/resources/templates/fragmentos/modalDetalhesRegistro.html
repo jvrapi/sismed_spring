@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"/>
+
+</head>
+<body>
+<div class="modal fade" id="modalDetalhesRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Informações do atendimento</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="nome">Nome do paciente</label>
+							<input type="text" class="form-control" name="nome" id="recipient-name" disabled>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="data">Data</label>
+							<input type="date" class="form-control" th:name="data" id="recipient-data" readonly></input>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="hora">Hora</label>
+							<input class="form-control" th:name="hora" id="recipient-hora" readonly ></input>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="descricao">Descrição</label>
+							<textarea class="form-control" th:name="descricao" rows="7" id="recipient-descricao" style="resize: none;"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer" id="recipient-bool">
+					<button type="button" class="btn btn-danger" id="123">Excluir</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+				<input type="hidden" th:name="id" id="recipient-id">
+				<input type="hidden" th:name="paciente_id" id="recipient-pacienteid">
+				<input type="hidden" th:name="funcionario_id" id="recipient-funcionarioid">
+				<input type="hidden" th:name="agendamento_id" id="recipient-agendamento">
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

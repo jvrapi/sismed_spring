@@ -15,17 +15,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+                    
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +35,7 @@
                     <div class="collapse navbar-collapse justify-content-end login">
                         <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
                             <div class="form-check mb-2 mr-sm-2">
-                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                                <a class="btn btn-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
                             </div>
                         </form>
 
@@ -76,13 +66,13 @@
                 <form id="form" th:action="@{/convenios/editar}" th:object="${convenio}" method="POST">
 
                     <div id="div_botao">
-                        <h3 class="titulo">  Edição | <strong>Convenio</strong></h3>
-                        <a class="btn btn-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
-                        <button th:id="${convenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                        <button class="btn btn-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)">Editar</button>
+                        <h3 style="display:inline;">  Edição | <strong>Convenio</strong></h3>
+                        <a class="btn btn-outline-secondary float-right ml-2" href="/convenios/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                        <button th:id="${convenio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal" sec:authorize="hasAuthority('ADMIN')">Excluir</button>
+                        <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" type="button" onclick="executar(this)" sec:authorize="hasAuthority('ADMIN')">Editar</button>
 
                     </div>
-                    <br>
+                  
                     <div class="card ajustarCard">
                         <div class="card-body">
                             <div class="form-row" style="margin: auto;">
@@ -137,20 +127,20 @@
                                 </div>
 
                                 <div class="btnConvenio">
-
-                                    <a class="btn btn_cadastrar  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio">
+							
+                                    <a class="btn btn-outline-primary  " th:href="@{/tconvenios/cadastrar/{id2} (id2=${id})} " role="button" title="Cadastrar novo tipo de convenio" sec:authorize="hasAuthority('ADMIN')">
                                         <span class="fas fa-plus" aria-hidden="true"> </span>
                                         <span>  Tipo </span>
                                     </a>
 
-                                    <a class="btn btn_cadastrar " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento">
+                                    <a class="btn btn-outline-primary " th:href="@{/procedimentos/cadastrar/{id2} (id2=${id}) } " role="button" title="Cadastrar novo procedimento" sec:authorize="hasAuthority('ADMIN')">
                                         <span class="fas fa-plus" aria-hidden="true"> </span>
                                         <span> Procedimento</span>
                                     </a>
 
-                                    <a class="btn btn-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
+                                    <a class="btn btn-outline-info  " th:href="@{/tconvenios/listar/{id} (id=*{id}) }" title="Listar Tipos de Convenio">Tipos Convenio</a>
 
-                                    <a class="btn btn-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
+                                    <a class="btn btn-outline-info  " th:href="@{/procedimentos/listar/{id} (id=${id}) }" title="Listar Procedimentos">Procedimentos</a>
 
                                 </div>
 

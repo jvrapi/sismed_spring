@@ -13,17 +13,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,10 +63,10 @@
 
 								<strong th:text="${tconvenio.convenio.nome} + ' | ' "> </strong> Edição de Tipo 
 							</h4>
-                        <a class="btn btn-secondary float-right ml-2" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }">
+                        <a class="btn btn-outline-secondary float-right ml-2" th:href="@{/tconvenios/listar/{id} (id=${tconvenio.convenio.id}) }">
                             <i class="fas fa-chevron-left"> </i> Voltar</a>
-                        <button th:id="${tconvenio.id}" type="button" class="btn btn-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
-                        <button class="btn btn-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
+                        <button th:id="${tconvenio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
+                        <button class="btn btn-outline-primary float-right mr-2" id="btn_editar" style="margin-left: 10px;" type="button" onclick="executar(this)">Editar</button>
                     </div>
                     <div class="card ajustarCard">
                         <div class="card-body">
@@ -92,7 +82,7 @@
                             <div class="form-group col-md-4 ajustarTexto">
 
                                 <input type="hidden" class="convenioid" th:id="${tconvenio.convenio.id}" />
-                                <input type="hidden" th:field="*{convenio.id}" />
+                                <input type="hidden" id="convenio_id" th:field="*{convenio.id}" />
                                 <input type="hidden" id="id" th:field="*{id}" />
                                 <div class="invalid-feedback"></div>
 

@@ -6,66 +6,6 @@
 		  <script type="text/javascript" src="/js/exame/comparahora.js"></script>
 		  <script type="text/javascript" src="/js/exame/busca.js"></script>
 		
-		<script>
-			//buscar paciente 
-			$( function() {
-				$("#paciente").autocomplete({
-					source: "buscarpaciente",
-					minLength: 1,
-					select: function (event, ui) {
-						$("#paciente").val(ui.item.label);
-						$("#paciente_id").val(ui.item.value);
-						//nome do convenio
-						$("#convenio").val(ui.item.nome_convenio);
-						
-						//nome e id do tipo de convenio
-						$("#tipo").val(ui.item.nome_tipo);
-						$("#tipo_id").val(ui.item.tipo);
-						var url = "http://localhost:8080/exame/buscarlab/" + $("#tipo_id").val();
-						$.ajax({
-							url : url,
-							method : "get",
-							success : function(data) {
-								if(data.flag == 0) {
-									$("#convenio").val("Particular");
-									$("#tipo").val("Particular");
-									var html = '';
-									$("#laboratorio").prop("disabled", false);
-									var html = '<option value="" hidden>Selecione</option>';
-									for (var i = 0; i < data.listLab.length; i++) {
-										html += '<option value=' + data.listLab[i].id + '>' + data.listLab[i].nome + '</option>';
-									}
-								}
-								else {
-									var html = '';
-									$("#laboratorio").prop("disabled", false);
-									var html = '<option value="" hidden>Selecione</option>';
-									for (var i = 0; i < data.listLab.length; i++) {
-										html += '<option value=' + data.listLab[i].id + '>' + data.listLab[i].nome + '</option>';
-									}
-								}
-								$("#laboratorio").html(html);
-							}
-						});
-						return false;
-					}
-				});
-			});
-		</script>
-		<script>
-			//buscar funcionario
-			$( function() {
-				$("#funcionario").autocomplete({
-					source: "buscarfuncionario",
-					minLength: 1,
-					select: function (event, ui) {
-						$("#funcionario").val(ui.item.label);
-						$("#funcionario_id").val(ui.item.value);
-						return false;
-					}
-				});
-			});
-		</script>
 	</head>
 	
 	<body>
@@ -131,13 +71,13 @@
 	
 				<div class="container-fluid" style="width: 98%">
 				
-				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST" onsubmit="validaData(this); return false;">
+				<form class="needs-validation" th:action=" @{/exame/salvar}" th:object="${exame}" method="POST" onsubmit="validaData(this); return false;">
 					
 					<h3 style="display: inline;">Cadastro | <strong>Exame</strong></h3>
 					
-					<a class="btn btn-secondary float-right" href="/exame/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
+					<input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
 					
-					<button type="submit" class="btn btn-primary float-right mr-2">Salvar</button>
+					<a class="btn btn-secondary float-right" href="/exame/listar" role="button"> <i class="fas fa-chevron-left"></i> Voltar</a>
 					
 					<div class="card" style="margin-top: 25px; padding: 0px;">
 						<div class="card-body">
@@ -222,7 +162,7 @@
 									
 											<div class="form-group col-md-3">
 										<label for="laboratorio">Laboratório</label> 
-										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}" disabled required>
+										<select id="laboratorio" class="form-control tamanho-fonte" th:field="*{laboratorio_id}" >
 										</select>
 
 									</div>
@@ -236,6 +176,7 @@
 							
 					
 					</form>
+					
 					<div th:each="p: ${teste}">
 								<h5 th:text="${teste.nome}"></h5>
 							</div>

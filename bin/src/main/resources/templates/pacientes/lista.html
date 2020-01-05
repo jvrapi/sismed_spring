@@ -1,187 +1,125 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-	
-	<head>
-  		<meta charset="UTF-8" />
-  		<script>
-			$(document).ready(function() {
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/2",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			});
-			function muda() {
-				$('#txtBusca').unmask();
-				$("#dropdownMenu2").text("Prontuário");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/1",
-						minLength: 1,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-			function muda2() {
-				$('#txtBusca').unmask();
-				$("#dropdownMenu2").text("Nome");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/2",
-						minLength: 2,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-			function muda3() {
-				$('#txtBusca').unmask();
-				$('#txtBusca').mask('000.000.000-00');
-				$("#dropdownMenu2").text("CPF");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/3",
-						minLength: 2,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-			function muda4() {
-				$('#txtBusca').unmask();
-				$('#txtBusca').mask('(00) 9 0000-0000');
-				$("#dropdownMenu2").text("Celular");
-				$( function() {
-					$("#txtBusca").autocomplete({
-						source: "buscar/4",
-						minLength: 2,
-						select: function (event, ui) {
-							url = "http://localhost:8080/pacientes/editar/" + ui.item.value2;
-							document.location.href = url;
-							return false;
-						}
-					});
-				});
-			}
-		</script>
-    </head>
 
-	<body>
-		<section layout:fragment="corpo">
-		
-			<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
-				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-					<div class="dropdown">
-						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a>
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="#">Funcionário</a>
-							<a href="/convenios/cadastrar">Convênio</a>
-							<a href="#">Exame</a>
-							<a href="#">Laboratório</a>
-						</div>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
-						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda2()">Nome</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda()">Prontuário</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda3()">CPF</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda4()">Celular</button>
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end login">
-						<ul class="navbar-nav">
-							<li class="nav-item">
-								<a class="mr-4">Bem vindo</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="decoration"><i class="fas fa-sign-out-alt"></i> Sair</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-	          
-			<div class="container-fluid" style="width: 98%">
-				<h3 style="display: inline;">Lista | <strong>Pacientes</strong></h3>
-				<a class="btn float-right btn_cadastrar"  href="/pacientes/cadastrar"role="button"><i class="fas fa-plus"></i> Novo Paciente</a>
-			
-				<div class="card" style="margin-top: 25px;">
-					<div class="card-body">
-						<table class="table table-borderless">
-							<thead>
-								<tr style="color: #5d6266; font-size: 1em;">
-									<th>Prontuário</th>
-									<th>Nome</th>
-									<th>RG</th>
-									<th>CPF</th>
-									<th>Convênio</th>
-									<th>Tipo Convênio</th>
-									<th>Telefone Fixo</th>
-									<th>Celular</th>
-								</tr>
-							</thead>
-							<tbody th:each="p : ${paciente.content}">
-								<tr class="conteudo" style="font-size: 1em;">
-									<td style="width: 110px;"> <a th:text="${p.id}"></a></td>
-									<td style="width: 350px;"> <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" th:text="${p.nome}"></a></td>
-									<td> <a th:text="${p.rg}"></a></td>
-									<td> <a th:text="${p.cpf}"></a></td>
-									<td> <a th:text="${p.tipo_convenio.convenio.nome}"/></a></td>
-									<td> <a th:text="${p.tipo_convenio.nome}"/></a></td>
-									<td> <a th:text="${p.telefone_fixo}"/></a></td>
-									<td> <a th:text="${p.celular}"/></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div th:if="${paciente.totalPages > 0}">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination justify-content-center">
-								<li class="page-item" th:if="${paciente.hasPrevious()}">
-									<a class="page-link" th:href="@{/pacientes/listar(page=1)}">
-										<span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
-									</a>
-								</li>
-								<li class="page-item"  th:each="p : ${pageNumbers}" th:classappend="${p==paciente.pageable.pageNumber + 1} ? active">
-									<a class="page-link" th:text=${p} th:href="@{/pacientes/listar(page=${p})}"></a>
-								</li>
-								<li class="page-item" th:if="${paciente.hasNext()}">
-									<a class="page-link" th:href="@{/pacientes/listar(page=${paciente.totalPages})}">
-										<span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
-									</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</section>
-	
-	</body>
+<head>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="/js/pacientes/busca.js"></script>
+</head>
+
+<body>
+    <section layout:fragment="corpo">
+
+        <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            
+                <div class="btn-group">
+                    <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" type="button" value="1" onclick="muda2()">Nome</button>
+                        <button class="dropdown-item" type="button" value="2" onclick="muda()">Prontuário</button>
+                        <button class="dropdown-item" type="button" value="2" onclick="muda3()">CPF</button>
+                        <button class="dropdown-item" type="button" value="2" onclick="muda4()">Celular</button>
+                    </div>
+                </div>
+                <div id="divBusca">
+                    <input type="text" id="txtBusca" placeholder="Buscar..." />
+                    <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end login">
+
+                    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                        <div class="form-check mb-2 mr-sm-2">
+                            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                        </div>
+                    </form>
+
+                    <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                        <div class="btn-group mb-2 mr-sm-2">
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-user"></i> <span sec:authentication="name">Bob</span>
+                            </button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu">
+                                <button type="submit" class="dropdown-item">Sair</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid" style="width: 98%">
+            <h3 style="display: inline;">Lista | <strong>Pacientes</strong></h3>
+            <a class="btn btn-outline-primary float-right" href="/pacientes/cadastrar" role="button"><i class="fas fa-plus"></i> Novo Paciente</a>
+
+            <div class="card" style="margin-top: 25px;">
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr style="color: #5d6266; font-size: 1em;">
+                                <th>Prontuário</th>
+                                <th>Nome</th>
+                                <th>RG</th>
+                                <th>CPF</th>
+                                <th>Convênio</th>
+                                <th>Tipo Convênio</th>
+                                <th>Telefone Fixo</th>
+                                <th>Celular</th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="p : ${paciente.content}">
+                            <tr class="conteudo" style="font-size: 1em;">
+                                <td style="width: 110px;">
+                                    <a th:text="${p.id}"></a>
+                                </td>
+                                <td style="width: 350px;">
+                                    <a th:href="@{/pacientes/editar/{id}/{cid} (id=${p.id}, cid=${p.tipo_convenio.convenio.id}) }" th:text="${p.nome}"></a>
+                                </td>
+                                <td>
+                                    <a th:text="${p.rg}"></a>
+                                </td>
+                                <td>
+                                    <a th:text="${p.cpf}"></a>
+                                </td>
+                                <td> <a th:text="${p.tipo_convenio.convenio.nome}" /></a>
+                                </td>
+                                <td> <a th:text="${p.tipo_convenio.nome}" /></a>
+                                </td>
+                                <td> <a th:text="${p.telefone_fixo}" /></a>
+                                </td>
+                                <td> <a th:text="${p.celular}" /></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${paciente.totalPages > 0}">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" th:if="${paciente.hasPrevious()}">
+                                <a class="page-link" th:href="@{/pacientes/listar(page=1)}">
+                                    <span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item" th:each="p : ${pageNumbers}" th:classappend="${p==paciente.pageable.pageNumber + 1} ? active">
+                                <a class="page-link" th:text=${p} th:href="@{/pacientes/listar(page=${p})}"></a>
+                            </li>
+                            <li class="page-item" th:if="${paciente.hasNext()}">
+                                <a class="page-link" th:href="@{/pacientes/listar(page=${paciente.totalPages})}">
+                                    <span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
 </html>

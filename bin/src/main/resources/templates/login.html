@@ -2,14 +2,27 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Clínica Spring Security ::: Login</title>
+<title>SISMED ::: Login</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="clínica médica com agendamento de consultas online" />
 <link rel="icon" th:href="@{/image/favicon.ico}" />
-<!-- Icons fontawesome -->
-<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous" rel="stylesheet" />
+ 
+    <link href="/js/jquery-ui/jquery-ui.css">
+   	<link rel="stylesheet" href="/js/fontawesome/css/all.css">
+    <link rel="stylesheet" href="/js/bootstrap/css/bootstrap.min.css">
+   
+    <link rel="icon" th:href="@{/image/favicon.ico}" />
+	<link href="/css/style2.css" rel="stylesheet" />
+    
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/fontawesome/js/fontawesome.js"></script>
+    <script src="/js/fontawesome/js/solid.js"></script>
+    <script src="/js/jquery-ui/jquery-ui.js"></script>
+    <script src="/js/jquery.mask.min.js"></script>
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -51,14 +64,14 @@
 
 		<div class="form-label-group">
 			<input type="text" id="inputCPF" class="form-control"
-				placeholder="Email address" name="username" required autofocus>
+				placeholder="CPF" name="username" required autofocus>
 			<label for="inputEmail">CPF</label>
 			<div class="invalid-feedback">Use seu CPF cadastrado como login.</div>
 		</div>
 
 		<div class="form-label-group">
 			<input type="password" id="inputPassword" class="form-control"
-				placeholder="Password" name="password" required> 
+				placeholder="Senha" name="password" required maxlength="15"> 
 			<label for="inputPassword">Senha</label>
 			<div class="invalid-feedback">Digite sua senha.</div>	
 		</div>
@@ -71,16 +84,15 @@
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
 		<hr>
 		<nav class="nav nav-pills flex-column flex-sm-row">
-			<a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/primeiroAcesso}"><i class="far fa-arrow-alt-circle-right"></i>&nbsp; Primeiro acesso</a>
-			<a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/p/redefinir/senha}"><i class="fas fa-key"></i>&nbsp;Recuperar senha</a>
-			<a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/}"><i class="fas fa-home"></i>&nbsp;Home</a>
+			<!-- <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/primeiroAcesso}"><i class="far fa-arrow-alt-circle-right"></i>&nbsp; Primeiro acesso</a> -->
+			<a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/redefinir/senha}"><i class="fas fa-key"></i>&nbsp;Recuperar senha</a>
+			
 		</nav>
 		<p class="mt-5 mb-3 text-muted text-center">Clínica Spring
 			Security&copy; 2019</p>
 	</form>
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+	
 	<script type="text/javascript">
 	$(document).ready(function(){
             $('#inputCPF').mask('000.000.000-00');

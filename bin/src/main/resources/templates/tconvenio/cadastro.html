@@ -11,17 +11,7 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                    <div class="dropdown">
-                        <a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-                        <div class="dropdown-content">
-                            <a href="#">Agendamento</a>
-                            <a href="/pacientes/cadastrar">Paciente</a>
-                            <a href="#">Funcionário</a>
-                            <a href="/convenios/cadastrar">Convênio</a>
-                            <a href="#">Exame</a>
-                            <a href="#">Laboratório</a>
-                        </div>
-                    </div>
+
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
                         <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,14 +56,15 @@
 
             <div class="container">
 
-                <form th:action="@{/tconvenios/salvar}" th:object="${tconvenio}" method="POST">
-                    <div th:replace="fragmentos/validacao :: validacao"></div>
-                    <div th:each="c : ${convenio}">
-                        <h3 style="display: inline; margin-left: 10px;"> <strong th:text="${c.nome + ' | ' }">  </strong>  Cadastro Tipo Convênio </h3>
-                        <input type="submit" class="btn btn-primary form-control col-md-1 float-right ml-2" value="Salvar">
-                        <a class="btn btn-secondary float-right" th:href="@{/convenios/editar/{id} (id=${c.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                <form th:action="@{/tconvenios/salvar}"  th:object="${tconvenio}" method="POST">
+                    
+                    
+                        <h3 style="display: inline; margin-left: 10px;"> <strong th:text="${convenio.nome + ' | ' }">  </strong>  Cadastro Tipo Convênio </h3>
+                        <a class="btn btn-outline-secondary float-right" th:href="@{/convenios/editar/{id} (id=${convenio.id}) }"> <i class="fas fa-chevron-left"></i> Voltar</a>
+                        <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                         <br>
-                    </div>
+                    
+                    
                     <div class="card" style="margin-top: 25px; padding: 0px;">
                         <div class="card-body">
                             <div class="form-row ">
@@ -88,11 +79,6 @@
                                     <select id="convenio_id" class="form-control" th:field="*{convenio}" hidden>
                                         <option th:each="c : ${convenio}" th:value="${c.id}" th:text="${c.nome}"></option>
                                     </select>
-
-                                    <br>
-                                    <br>
-
-                                    <input type="hidden" id="id" th:field="*{id}" />
 
                                 </div>
                             </div>

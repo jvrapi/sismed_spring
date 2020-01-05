@@ -1,150 +1,103 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
+
 <head>
-<meta charset="UTF-8">
-	<script type="text/javascript" src="/js/agenda/busca.js"></script>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/js/agenda/busca.js"></script>
+    <script type="text/javascript" src="/js/agenda/finalizar.js"></script>
+    <script type="text/javascript" src="/js/agenda/mostraAgenda.js"></script>
+    <script type="text/javascript" src="/js/agenda/buscarAgendamento.js"></script>
+    <script type="text/javascript" src="/js/agenda/observacao.js"></script>
 </head>
-<body >
-	
-	<section layout:fragment="corpo">
-	
-	<div id="content">
-		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
-				<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-					<div class="dropdown">
-						<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-						<div class="dropdown-content">
-							<a href="#">Agendamento</a>
-							<a href="/pacientes/cadastrar">Paciente</a>
-							<a href="#">Funcionário</a>
-							<a href="/convenios/cadastrar">Convênio</a>
-							<a href="#">Exame</a>
-							<a href="#">Laboratório</a>
-						</div>
-					</div>
-					<div class="btn-group">
-						<button type="button" class="btn" id="dropdownMenu2" value="1">Prontuário</button>
-						<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<div class="dropdown-menu">
-							<button class="dropdown-item" type="button" value="1" onclick="muda()">Prontuário</button>
-							<button class="dropdown-item" type="button" value="2" onclick="muda2()">Nome</button>
-							<button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
-							<button class="dropdown-item" type="button" value="4" onclick="muda4()">Telefone</button>
-						</div>
-					</div>
-					<div id="divBusca">
-						<input type="text" id="txtBusca" placeholder="Buscar..." />
-						<button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
-					</div>
-					<div class="collapse navbar-collapse justify-content-end login">
-						  <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                                <div class="form-check mb-2 mr-sm-2">
-                                    <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+
+<body>
+
+    <section layout:fragment="corpo">
+
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+
+                    <div class="btn-group">
+                        <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <button class="dropdown-item" type="button" value="2" onclick="muda()">Nome</button>
+                            <button class="dropdown-item" type="button" value="1" onclick="muda2()">Prontuário</button>
+                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">CPF</button>
+                            <button class="dropdown-item" type="button" value="4" onclick="muda4()">Telefone</button>
+                        </div>
+                    </div>
+                    <div id="divBusca">
+                        <input type="text" id="txtBusca" placeholder="Buscar..." />
+                        <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end login">
+                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
+                            <div class="form-check mb-2 mr-sm-2">
+                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                            </div>
+                        </form>
+
+                        <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                            <div class="btn-group mb-2 mr-sm-2">
+                                <button type="button" class="btn btn-light">
+                                    <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                                </button>
+                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button type="submit" class="dropdown-item">Sair</button>
                                 </div>
-                            </form>
-                            
-                            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
-                                <div class="btn-group mb-2 mr-sm-2">
-                                    <button type="button" class="btn btn-light">
-                                        <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
-                                    </button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button type="submit" class="dropdown-item">Sair</button>
-                                    </div>
-                                </div>
-                            </form>
-					</div>
-				
-
-				
-				</div>
-			</nav>
-			
-	<div class="container text-center">
-		<h1>Dr(a): NOME DO MEDICO</h1>
-		<br><br>
-	
-		
-	</div>
-
-        <div class="container ajustarTexto">
-            <div th:replace="fragmentos/alert" class="container"></div>
-            <div th:replace="fragmentos/modal" class="container"></div>
-        </div>
-        <div class="container-fluid" style="width: 98%">
-            <h3 style="display: inline; margin-left: 10px;">Agenda | <strong th:text="${#dates.format(#dates.createNow(),'dd/MM/YYYY')}">31/12/2015 15:00</strong></h3>
-           
-            <div class="card ajustarCard">
-                <div class="card-body">
-                    <table class="table table-borderless detalhes">
-                        <thead>
-                            <tr class="text-center tabela_lista" >
-                                <th>Prontuario</th>
-								<th>Nome</th>
-								<th>Telefone</th>
-								<th>Celular</th>
-								<th>Hora</th>
-								<th>Convenio</th>
-								<th>Primeira Vez</th>
-								<th>Compareceu</th>
-								<th>Pagou</th>
-								<th>Idade</th>
-								<th>Obs</th>
-                            </tr>
-                        </thead>
-                        <tbody th:each="a : ${agendamentos}">
-                            <tr class="conteudo text-center" style="font-size: 1em;">
-                                <td>
-                                    <a th:href="@{/pacientes/editar/{id}/{cid} (id=${a.paciente_id.id} , cid=${a.paciente_id.tipo_convenio.convenio.id}) }" 
-                                    title="Clique aqui para abrir o cadastro completo do paciente" th:text="${a.paciente_id.id}"> </a>
-                                </td>
-                                <td>
-                                    <a title="Clique aqui para acessar os registros clinicos do paciente" th:href="@{/RegistroClinico/cadastrar/{id} (id = ${a.id})}" th:text="${a.paciente_id.nome}"> </a>
-                                </td>
-                                <td>
-                                	<a title="Mostrar informações" th:text="${a.paciente_id.telefone_fixo}"></a>
-                                </td>
-                                <td>
-                                    <a title="Mostrar informações" th:text="${a.paciente_id.celular}"></a>
-                                </td>
-                                
-                                <td>
-                                    <a title="Mostrar informações" th:text="${#temporals.format(a.hora, 'HH:mm')}"></a>
-                                </td>
-                                <td>
-                                    <a title="Mostrar informações" th:text="${a.paciente_id.tipo_convenio.convenio.nome}"></a>
-                                </td>
-                                
-                                <td>
-                                    <a title="Mostrar informações" th:text="${a.primeira_vez == 1} ? 'S' : 'N' "> </a>
-                                </td>
-                                 <td>
-                                    <a title="Mostrar informações" th:text="${a.compareceu == 1} ? 'S' : 'N' "> </a>
-                                </td>
-                                 <td>
-                                    <a title="Mostrar informações" th:text="${a.pagou == 1} ? 'S' : 'N' "> </a>
-                                </td>
-                                <td>
-                                    <a title="Mostrar informações"  class="classid" th:text="${a.paciente_id.calcularIdade(a.paciente_id.data_nascimento)} + ' ANOS '"> IDADE</a>
-                                </td>
-                                
-                                <td>
-                                    <a title="Mostrar informações" th:text="${a.observacao}"></a>
-                                </td>
-                                
-                            </tr>
-
-                        </tbody>
-                    </table>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
+            </nav>
+
+            <div class="container ajustarTexto" id="alerta">
+                <div th:replace="fragmentos/alert" class="container"></div>
+                <div th:replace="fragmentos/modal" class="container"></div>
+
             </div>
+
+            <div class="container-fluid" style="width: 98%">
+
+                <h3 style="display: inline; margin-left: 10px; ">Agenda | </h3>
+
+                <input type="date" class="form-control col-md-2 tamanho-fonte" style="display: inline; margin-left: 10px;" id="data" disabled/>
+                <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
+
+                <!-- Caso seja um medico logado -->
+                <h3 style="display: inline; margin-left: 17%;" th:if="${usuario != 2}">  Dr(a): <strong th:text="${funcionario}"> NOME DO MEDICO</strong></h3>
+
+                <h3 style="display: inline; margin-left: 17%; " th:if="${usuario == 2}">Medicos 
+                <select id="funcionario_id" style="display: inline; margin-left: 10px;" class="form-control col-md-2 tamanho-fonte " >
+                    <option value="" selected hidden>Selecione</option>
+                    <option th:each="f : ${medicos}" th:value="${f.id}" th:text="${f.nome}">Selecione</option>
+                </select>
+
+                  </h3>
+
+                <!-- id do medico logado para realização das consultas no banco -->
+                <input type="hidden" id="funcionario_id" th:value="${medico_id}">
+
+                <button class="btn btn-outline-primary float-right " style="display: inline; " data-toggle="modal" data-target="#finalizar"> Encerrar Atendimentos</button>
+
+                <input type="hidden" id="usuario" th:object="${usuario}" th:value="${usuario}">
+
+                <div class="card" style="margin-top: 10px;" id="resultsBlock">
+
+                </div>
+
+            </div>
+            <div th:replace="fragmentos/modalObservacao" class="container"></div>
         </div>
-       </div>
+
     </section>
 </body>
+
 </html>
