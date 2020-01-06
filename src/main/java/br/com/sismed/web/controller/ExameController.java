@@ -169,7 +169,7 @@ public class ExameController {
 		l.setData(LocalDate.now());
 		l.setFuncionario_id(login.getFuncionario_id());
 		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO NA DATA DE COLETA DO EXAME " + e.getNome() + " DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
+		l.setDescricao("ALTERÇÃO NA DATA DE COLETA: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
 				+ e.getData_coleta().format(formatter) + " PARA A DATA " + exame.getData_coleta().format(formatter));
 		logservice.salvar(l);
 	}
@@ -179,7 +179,7 @@ public class ExameController {
 		l.setData(LocalDate.now());
 		l.setFuncionario_id(login.getFuncionario_id());
 		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO NA DATA DE ENVIO DO EXAME " + e.getNome() + " DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
+		l.setDescricao("ALTERÇÃO NA DATA DE ENVIO: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
 				+ e.getData_envio().format(formatter) + " PARA A DATA " + exame.getData_envio().format(formatter));
 		logservice.salvar(l);
 	}
@@ -189,7 +189,7 @@ public class ExameController {
 		l.setData(LocalDate.now());
 		l.setFuncionario_id(login.getFuncionario_id());
 		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO NA DATA DE RETORNO DO EXAME " + e.getNome() + " DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
+		l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
 				+ e.getData_retorno().format(formatter) + " PARA A DATA " + exame.getData_retorno().format(formatter));
 		logservice.salvar(l);
 	}
@@ -206,7 +206,7 @@ public class ExameController {
 		l.setData(LocalDate.now());
 		l.setFuncionario_id(login.getFuncionario_id());
 		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DO EXAME " + e.getNome() + " DO PACIENTE " + e.getPaciente_id().getNome());
+		l.setDescricao("EXCLUSÃO DE EXAME: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome());
 		logservice.salvar(l);
 		model.addAttribute("success", "Exame excluído com sucesso");
 		service.excluir(id);

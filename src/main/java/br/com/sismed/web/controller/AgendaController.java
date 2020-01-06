@@ -250,7 +250,7 @@ public class AgendaController {
 			l.setData(LocalDate.now());
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
-			l.setDescricao("ALTERAÇÃO NA DATA DE AGENDAMENTO. DO DIA " + a.getData().format(formatador) + " PARA O DIA " + agenda.getData().format(formatador));
+			l.setDescricao("ALTERAÇÃO NA DATA DE AGENDAMENTO: NOME DO PACIENTE: " + a.getPaciente_id().getNome()+ ". DO DIA " + a.getData().format(formatador) + " PARA O DIA " + agenda.getData().format(formatador));
 			logservice.salvar(l);
 		}
 		
@@ -407,7 +407,8 @@ public class AgendaController {
 		l.setData(LocalDate.now());
 		l.setFuncionario_id(login.getFuncionario_id());
 		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DE AGENDAMENTO DO PACIENTE " + agenda.getPaciente_id().getNome() + " DO DIA " + agenda.getData().format(formatador) + " PARA O MEDICO " + agenda.getFuncionario().getNome());
+		l.setDescricao("EXCLUSÃO DE AGENDAMENTO: NOME DO PACIENTE: " + agenda.getPaciente_id().getNome() + ". DIA DO AGENDAMENTO: " 
+		+ agenda.getData().format(formatador) + ". NOME DO MEDICO " + agenda.getFuncionario().getNome());
 		logservice.salvar(l);
 		service.excluir(id);
 		return "redirect:/agenda/agendamentos";

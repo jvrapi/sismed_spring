@@ -1,6 +1,6 @@
  $(document).ready(function(){
         	
-            $("#valor").mask('#.##0,00', {reverse: true});
+            $("#valor").mask('#.##0.00', {reverse: true});
             $('#cnpj').mask('00.000.000/0000-00');
             $('#cpf').mask('000.000.000-00');
             $('#rg').mask('00.000.000-0');
