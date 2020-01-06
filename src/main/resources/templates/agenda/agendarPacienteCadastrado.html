@@ -88,7 +88,7 @@
                             <div th:each="p: ${paciente}">
                                 <div class="form-row">
                                     <div class="form-group col-md-1">
-                                        <label for="prontuario">Prontuario</label>
+                                        <label for="prontuario">Prontuário</label>
                                         <input type="text" class="form-control tamanho-fonte" id="prontuario" th:name="paciente_id" th:value="${p.id}" readonly/>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -97,12 +97,12 @@
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label for="convenio">Convenio</label>
+                                        <label for="convenio">Convênio</label>
                                         <input type="text" class="form-control tamanho-fonte" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/>
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label for="tipo_convenio">Tipo Convenio</label>
+                                        <label for="tipo_convenio">Tipo Convênio</label>
                                         <input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/>
                                     </div>
 
@@ -117,16 +117,16 @@
                                     </div>
 
                                     <div class="form-group col-md-1">
-                                        <label for="nascimento">Nascimento</label>
+                                        <label for="nascimento">Data de Nascimento</label>
                                         <input type="text" class="form-control tamanho-fonte" id="nascimento" th:value="${#temporals.format(p.data_nascimento, 'dd / MM / yyyy')}" disabled/>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <h5 class="sub_titulo">Medico(a)</h5>
+                            <h5 class="sub_titulo">Médico(a)</h5>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <label for="crm">Medico</label>
+                                    <label for="crm">Médico</label>
                                     <select id="funcionario_id" class="form-control tamanho-fonte" required th:field="*{funcionario}">
                                         <option value="" selected hidden>Selecione</option>
                                         <option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
@@ -149,7 +149,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md-2">
-                                    <label for="convenio_id">Convenio</label>
+                                    <label for="convenio_id">Convênio</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required disabled>
                                         <option value="" selected hidden>Selecione</option>
 
@@ -158,7 +158,7 @@
 
                                 <div class="form-group col-md-2">
 
-                                    <label for="tipo_convenio_id">Tipo de convenio</label>
+                                    <label for="tipo_convenio_id">Tipo de Convênio</label>
                                     <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled required></select>
                                 </div>
 
@@ -186,7 +186,7 @@
                     </div>
                 </form>
 
-                <h5 style="display: inline;">Agendamentos anteriores</h5>
+                <h5 style="display: inline;">Agendamentos Anteriores</h5>
                 <div class="card" style="margin-top: 10px;" id="resultsBlock">
 
                 </div>
