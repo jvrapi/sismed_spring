@@ -1,6 +1,5 @@
-
-window.setTimeout(function () {
-    $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
-        $(this).remove();
-    });
-}, 5000);
+$().ready(function() {
+	setTimeout(function () {
+		$('#foo').hide(); // "foo" é o id do elemento que seja manipular.
+	}, 1000); // O valor é representado em milisegundos.
+});

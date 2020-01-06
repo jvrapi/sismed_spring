@@ -6,7 +6,7 @@
 
 	<div id="alerta" th:fragment="alerta-sucesso">
 		<div th:if="${success != null}" >
-			<div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="100" data-dismiss="100">
+			<div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="1000" data-dismiss="alert" aria-label="Close">
 			  <i class="oi oi-check"></i>
 			  <span>
 			  	<strong th:text="${success}"></strong>
