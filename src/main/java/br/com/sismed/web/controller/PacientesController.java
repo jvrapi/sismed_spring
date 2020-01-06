@@ -1,5 +1,6 @@
 package br.com.sismed.web.controller;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -130,15 +132,23 @@ public class PacientesController {
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 		Paciente p = service.buscarporId(id);
 		Login login = lservice.BuscarPorCPF(user.getUsername());
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DO PACIENTE " +p.getNome() );
-		logservice.salvar(l);
-		service.excluir(id);
-		attr.addFlashAttribute("success","Paciente excluido com sucesso");
-		return "redirect:/pacientes/listar";
+		String retorno = "";
+		try {
+			service.excluir(id);
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("EXCLUSÃO DO PACIENTE " +p.getNome() );
+			logservice.salvar(l);
+			attr.addFlashAttribute("success","Paciente excluido com sucesso");
+			retorno = "redirect:/pacientes/listar";
+		}
+		catch (DataIntegrityViolationException error){
+			attr.addFlashAttribute("fail","Não foi possível excluir. Paciente possui agendamento(s) cadastrado(s)");
+			retorno = "redirect:/pacientes/listar";
+		}
+		return retorno;
 	}
 	
 	@GetMapping("/convenio/{id}")
@@ -195,5 +205,3 @@ public class PacientesController {
 	}
 	
 }
-
-
