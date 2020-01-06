@@ -71,7 +71,7 @@
 	
 				<div class="container-fluid" style="width: 98%">
 				
-				<form class="needs-validation" th:action=" @{/exame/salvar}" th:object="${exame}" method="POST" onsubmit="validaData(this); return false;">
+				<form th:action=" @{/exame/salvar}" th:object="${exame}" method="POST">
 					
 					<h3 style="display: inline;">Cadastro | <strong>Exame</strong></h3>
 					
@@ -181,7 +181,10 @@
 								<h5 th:text="${teste.nome}"></h5>
 							</div>
 				</div>
+				
 			</div>
+			
+			
 					
 	</body>
 </html>
