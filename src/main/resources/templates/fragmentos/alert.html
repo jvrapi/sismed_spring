@@ -6,7 +6,7 @@
 
 	<div id="alerta" th:fragment="alerta-sucesso">
 		<div th:if="${success != null}" >
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<div class="alert alert-success alert-dismissible fade show" role="alert" data-auto-dismiss="100" data-dismiss="100">
 			  <i class="oi oi-check"></i>
 			  <span>
 			  	<strong th:text="${success}"></strong>
@@ -18,7 +18,7 @@
 		</div>
 		
 		<div th:if="${fail != null}" >
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert" data-auto-dismiss="100">
 			  <i class="oi oi-check"></i>
 			  <span>
 			  	<strong th:text="${falha}"></strong>
