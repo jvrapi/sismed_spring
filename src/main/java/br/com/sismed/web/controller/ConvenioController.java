@@ -2,6 +2,8 @@ package br.com.sismed.web.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -19,10 +23,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.LabelValue;
+import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 
 import br.com.sismed.service.ConvenioService;
+import br.com.sismed.service.LoginService;
 import br.com.sismed.service.TConvenioService;
 
 
@@ -37,6 +43,9 @@ public class ConvenioController {
 	
 	@Autowired
 	private TConvenioService tservice;
+	
+	@Autowired
+	private LoginService lservice;
 	
 	
 		@GetMapping("/listar") // segunda parte do href
@@ -160,5 +169,25 @@ public class ConvenioController {
 		@ModelAttribute("TiposConvenios")
 		public List<TConvenio> listTConvenio() {
 			return tservice.findAll();
+		}
+		
+		@ModelAttribute("usuarioLogado")
+		public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+			Login l = lservice.BuscarPorCPF(user.getUsername());
+			String pattern = "\\S+";
+			Pattern r = Pattern.compile(pattern);
+			Matcher m = r.matcher(l.getFuncionario_id().getNome());
+			String retorno = "";
+			if (m.find()) {
+		         retorno = m.group(0);
+				
+				model.addAttribute("usuario",  m.group(0));
+		         
+		      } else {
+		         // mensagem de erro
+		    	  retorno = l.getFuncionario_id().getNome();
+		      }
+			
+			return retorno;
 		}
 }

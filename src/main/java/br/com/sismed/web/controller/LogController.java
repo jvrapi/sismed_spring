@@ -1,22 +1,28 @@
 package br.com.sismed.web.controller;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Log;
+import br.com.sismed.domain.Login;
 import br.com.sismed.service.LogService;
+import br.com.sismed.service.LoginService;
 
 @Controller
 @RequestMapping("/registro")
@@ -24,6 +30,9 @@ public class LogController {
 	
 	@Autowired
 	private LogService service;
+	
+	@Autowired
+	private LoginService lservice;
 	
 	@GetMapping("/sistema")
 	public String listarLogs(ModelMap model, @RequestParam(value = "page", required=false, defaultValue="1") int page) {
@@ -60,6 +69,26 @@ public class LogController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		return "/log/lista";
+	}
+	
+	@ModelAttribute("usuarioLogado")
+	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		String pattern = "\\S+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(l.getFuncionario_id().getNome());
+		String retorno = "";
+		if (m.find()) {
+	         retorno = m.group(0);
+			
+			model.addAttribute("usuario",  m.group(0));
+	         
+	      } else {
+	         // mensagem de erro
+	    	  retorno = l.getFuncionario_id().getNome();
+	      }
+		
+		return retorno;
 	}
 
 }

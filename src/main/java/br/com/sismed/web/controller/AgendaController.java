@@ -432,7 +432,7 @@ public class AgendaController {
 	         // mensagem de erro
 	    	  retorno = l.getFuncionario_id().getNome();
 	      }
-		System.out.println(retorno);
+		
 		return retorno;
 	}
 

@@ -5,9 +5,9 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 
-import br.com.sismed.domain.Login;
+
 import br.com.sismed.domain.Perfil;
-import br.com.sismed.service.LoginService;
+
 import br.com.sismed.service.PerfilService;
 
 @Component

@@ -6,11 +6,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +38,9 @@ public class RelatorioController {
 
 	@Autowired
 	private FuncionarioService fservice;
+	
+	@Autowired
+	private LoginService lservice;
 
 	@GetMapping("/listar")
 	public String listar() {
@@ -175,5 +182,25 @@ public class RelatorioController {
 	@ModelAttribute("convenios")
 	public List<Convenio> allConvenios() {
 		return cservice.findAll();
+	}
+	
+	@ModelAttribute("usuarioLogado")
+	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		String pattern = "\\S+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(l.getFuncionario_id().getNome());
+		String retorno = "";
+		if (m.find()) {
+	         retorno = m.group(0);
+			
+			model.addAttribute("usuario",  m.group(0));
+	         
+	      } else {
+	         // mensagem de erro
+	    	  retorno = l.getFuncionario_id().getNome();
+	      }
+		
+		return retorno;
 	}
 }
