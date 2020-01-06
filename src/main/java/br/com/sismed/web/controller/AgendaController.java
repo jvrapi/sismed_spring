@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -412,6 +414,26 @@ public class AgendaController {
 		logservice.salvar(l);
 		service.excluir(id);
 		return "redirect:/agenda/agendamentos";
+	}
+	
+	@ModelAttribute("usuarioLogado")
+	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		String pattern = "\\S+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(l.getFuncionario_id().getNome());
+		String retorno = "";
+		if (m.find()) {
+	         retorno = m.group(0);
+			
+			model.addAttribute("usuario",  m.group(0));
+	         
+	      } else {
+	         // mensagem de erro
+	    	  retorno = l.getFuncionario_id().getNome();
+	      }
+		System.out.println(retorno);
+		return retorno;
 	}
 
 }

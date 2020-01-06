@@ -1,14 +1,20 @@
 package br.com.sismed.web.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,7 +32,22 @@ public class HomeController {
 	
 	// abrir pagina home
 		@GetMapping({"/", "/home"})
-		public String home() {
+		public String home(@AuthenticationPrincipal User user, ModelMap model) {
+			Login l = service.BuscarPorCPF(user.getUsername());
+			/* \\S faz o match com caracteres que não sejam espaços e o + serve para ir pegando os caracteres até que a condição não seja mais satisfeita. 
+			 \\p{L}+ ou \\p{IsLatin}+ também funcionam */
+			String pattern = "\\S+";
+			Pattern r = Pattern.compile(pattern);
+			Matcher m = r.matcher(l.getFuncionario_id().getNome());
+			
+			if (m.find()) {
+		         // escreva o grupo encontrado
+				model.addAttribute("usuario",  m.group(0));
+		         
+		      } else {
+		         // mensagem de erro
+		    	  model.addAttribute("usuario",  l.getFuncionario_id().getNome());
+		      }
 			return "home";
 		}		
 
@@ -161,4 +182,20 @@ public class HomeController {
 			model.addAttribute("texto", "Você já pode realizar o login" );
 			return "login";
 		}
+		
+		/*@ModelAttribute("usuario")
+		public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+			Login l = service.BuscarPorCPF(user.getUsername());
+			String pattern = "\\S+";
+			Pattern r = Pattern.compile(pattern);
+			Matcher m = r.matcher(l.getFuncionario_id().getNome());
+			if (m.find()) {
+		         // escreva o grupo encontrado
+		         System.out.println("Olá, " + m.group(0) );
+		      } else {
+		         // mensagem de erro
+		         System.out.println("Você não tem mais de um nome?");
+		      }
+			return l.getFuncionario_id().getNome();
+		}*/
 }

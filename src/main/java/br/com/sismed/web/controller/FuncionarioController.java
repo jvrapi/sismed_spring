@@ -236,7 +236,7 @@ public class FuncionarioController {
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
 			
-			l.setDescricao("EDIÇÃO DA DATA DE CONTRATAÇÃO DO FUNCIONARIO " + f.getNome() + " DE "
+			l.setDescricao("EDIÇÃO DE DATA DE CONTRATAÇÃO: NOME DO FUNCIONARIO: " + f.getNome() + ". DE "
 					+ f.getData_inicio().format(formatter) + " PARA " + funcionario.getData_inicio().format(formatter));
 			logservice.salvar(l);
 		}
@@ -250,7 +250,7 @@ public class FuncionarioController {
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
 			
-			l.setDescricao("EDIÇÃO DA DATA DE TERMINO DO FUNCIONARIO " + f.getNome() + " DE "
+			l.setDescricao("EDIÇÃO DE DATA DE TERMINO: NOME DO FUNCIONARIO: " + f.getNome() + ". DE "
 					+ f.getData_termino().format(formatter) + " PARA " + funcionario.getData_termino().format(formatter));
 			logservice.salvar(l);
 		}
