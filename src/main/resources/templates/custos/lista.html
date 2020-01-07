@@ -20,10 +20,10 @@
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <button class="dropdown-item" type="button" value="1" onclick="muda()">Paciente</button>
-                            <button class="dropdown-item" type="button" value="2" onclick="muda2()">Convenio</button>
-                            <button class="dropdown-item" type="button" value="2" onclick="muda4()">Funcionario</button>
-                            <button class="dropdown-item" type="button" value="3" onclick="muda3()">Periodo</button>
+                            <button class="dropdown-item" type="button"  onclick="muda()">Paciente</button>
+                            <button class="dropdown-item" type="button"  onclick="muda2()">Convenio</button>
+                            <button class="dropdown-item" type="button" onclick="muda4()">Funcionario</button>
+                            <button class="dropdown-item" type="button"  onclick="muda3()">Periodo</button>
 
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-15 ">
-                                <select class="form-control " id="convenio" name="convenio" hidden>
+                                <select class="form-control convenio_custos" id="selectConvenio" name="convenio" hidden>
                                     <option value=""> Selecione</option>
                                     <option value="0"> Todos os Convenios</option>
                                     <option th:each="c:${convenios}" th:value="${c.id}" th:text="${c.nome}">
@@ -53,12 +53,18 @@
                             <button type="submit" id="btn_search_custos" class="btn"><i class="fas fa-search"></i></button>
 
                         </div>
+                        
                         <input type="hidden" id="paciente" name="paciente">
                         <input type="hidden" id="convenio" name="convenio">
                         <input type="hidden" id="funcionario" name="funcionario">
-
+                        <input type="hidden" id="dataInicioValor" name="dataInicioValor">
+						<input type="hidden" id="dataFimValor" name="dataFimValor">
+						
                     </form>
+                    
+                    
                     <div class="collapse navbar-collapse justify-content-end login">
+                  
                         <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
 
                         <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
@@ -76,14 +82,24 @@
                     </div>
 
                 </div>
+                
             </nav>
-
+	<label class="checkbox-inline mr-3 ml-4"><input type="checkbox" id="pacienteCheck" disabled>Paciente</label>
+	<label class="checkbox-inline mr-3"><input type="checkbox" id="funcionarioCheck" disabled>Funcionario</label>
+	<label class="checkbox-inline mr-3"><input type="checkbox" id="convenioCheck" disabled>Convenio</label>
+	<label class="checkbox-inline mr-3"><input type="checkbox" id="periodoCheck" disabled>Periodo</label>
+	
+	
             <div class="container ajustarTexto">
                 <div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
             </div>
 
             <div class="container-fluid" style="width: 98%">
+           
+	
+
+
                 <h3 style="display: inline; margin-left: 10px;" th:if="${receita != null}">Lista | <strong>Custos</strong></h3>
 
                 <div class="card ajustarCard" th:if="${receita != null}">
