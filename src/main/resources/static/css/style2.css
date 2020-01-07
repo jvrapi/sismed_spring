@@ -346,5 +346,6 @@ a{
 .alert {
 	
 	 width:40%;
-	 display:inline-block;  
+	 display:inline;  
+}
 }

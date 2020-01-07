@@ -1,5 +1,8 @@
-$().ready(function() {
-	setTimeout(function () {
-		$('#foo').hide(); // "foo" é o id do elemento que seja manipular.
-	}, 1000); // O valor é representado em milisegundos.
-});
+function selector() {
+  $(".alert").stop().fadeTo(1, 1).removeClass('hidden');
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(".alert").addClass('hidden');
+    });
+  }, 1000); 
+}
