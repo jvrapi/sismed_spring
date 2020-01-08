@@ -1,9 +1,7 @@
 package br.com.sismed.web.controller;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -97,13 +95,6 @@ public class PacientesController {
 		}
 		return "/pacientes/lista";
 	}
-	
-	/*@GetMapping("/listar")
-	public @ResponseBody Page<Paciente> listar(ModelMap model) {
-		PageRequest pagerequest = PageRequest.of(0, 2);
-		Page<Paciente> paciente = pRepository.findAll(pagerequest);
-		return paciente;
-	}*/
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Paciente paciente) {
@@ -125,9 +116,12 @@ public class PacientesController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Paciente paciente) {
+	public String editar(Paciente paciente, RedirectAttributes attr) {
+		long id = paciente.getId();
+		long cid = paciente.getTipo_convenio().getConvenio().getId();
 		service.salvar(paciente);
-		return "redirect:/pacientes/listar";
+		attr.addFlashAttribute("success","Paciente editado com sucesso");
+		return "redirect:/pacientes/editar/" + id + "/" + cid;
 	}
 	
 	@GetMapping("/excluir/{id}")

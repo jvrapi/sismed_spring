@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 <body>
 
-	<div id="alerta" th:fragment="alerta-sucesso">
-		<div th:if="${success != null}" >
-			<div class="alert alert-success alert-dismissible fade show"  role="alert" data-auto-dismiss="2000">
+	<div id="alerta" th:fragment="alerta-sucesso" style="text-align: center;">
+		<div th:if="${success != null}">
+			<div class="alert alert-success alert-dismissible" id="success-alert" role="alert" style="display: inline-block;">
 			  <i class="oi oi-check"></i>
 			  <span>
 			  	<strong th:text="${success}"></strong>
@@ -20,7 +20,7 @@
 		</div>
 		
 		<div th:if="${fail != null}" >
-			<div class="alert alert-danger alert-dismissible fade show"  role="alert" data-auto-dismiss="2000">
+			<div class="alert alert-danger alert-dismissible" role="alert"  id="fail-alert" style="display: inline-block;">
 			  <i class="oi oi-check"></i>
 			  <span>
 			  	<strong th:text="${fail}"></strong>

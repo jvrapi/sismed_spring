@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/js/pacientes/editar.js"></script>
     <script type="text/javascript" src="/js/pacientes/modal.js"></script>
     <script type="text/javascript" src="/js/pacientes/busca.js"></script>
+    <script type="text/javascript" src="/js/alerta.js"></script>
 </head>
 
 <body>
@@ -51,6 +52,9 @@
         </nav>
 
         <div class="container-fluid" style="width: 98%">
+        	
+        	<div th:replace="fragmentos/alert"></div>
+        	
             <form th:action="@{/pacientes/editar}" th:object="${paciente}" method="POST" id="form">
                 <!-- <a href="/pacientes/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a> -->
                 <div id="div_botao">
@@ -66,7 +70,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="nome">Nome</label>
-                                <input type="text" class="form-control tamanho-fonte" id="nome" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="nome" maxlength="50" autofocus="autofocus" th:field="*{nome}" onkeyup="maiuscula(this)" onkeypress="return ApenasLetras(event,this);" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="cpf">CPF</label>
@@ -110,7 +114,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="naturalidade">Naturalidade</label>
-                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" th:field="*{naturalidade}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="naturalidade" maxlength="20" th:field="*{naturalidade}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="nacionalidade">Nacionalidade</label>
@@ -121,22 +125,22 @@
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="telefone_fixo">Telefone fixo</label>
-                                <input type="text" class="form-control tamanho-fonte" id="telefone_fixo" th:field="*{telefone_fixo}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="telefone_fixo" maxlength="14" th:field="*{telefone_fixo}" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="telefone_trabalho">Telefone trab</label>
-                                <input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" th:field="*{telefone_trabalho}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="telefone_trabalho" maxlength="14" th:field="*{telefone_trabalho}" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="celular">Celular</label>
-                                <input type="text" class="form-control tamanho-fonte" id="celular" th:field="*{celular}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="celular" maxlength="16" th:field="*{celular}" disabled autocomplete="off">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control tamanho-fonte" id="email" th:field="*{email}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="email" maxlength="50" th:field="*{email}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="escolaridade">Escolaridade</label>
@@ -153,11 +157,11 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="profissao">Profissao</label>
-                                <input type="text" class="form-control tamanho-fonte" id="profissao" th:field="*{profissao}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="profissao" maxlength="20" th:field="*{profissao}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="recomandacao">Recomendação</label>
-                                <input type="text" class="form-control tamanho-fonte" id="recomendacao" th:field="*{recomendacao}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="recomendacao" maxlength="30" th:field="*{recomendacao}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                         </div>
 
@@ -182,7 +186,7 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="carteira_convenio">Carteira do convenio</label>
-                                <input type="text" class="form-control tamanho-fonte" id="carteira_convenio" th:field="*{carteira_convenio}" disabled autocomplete="off">
+                                <input type="text" class="form-control tamanho-fonte" id="carteira_convenio" maxlength="20" th:field="*{carteira_convenio}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="validade">Validade</label>
@@ -208,26 +212,26 @@
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="logradouro">Logradouro</label>
-                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" required disabled autocomplete="off">
+                                <input id="logradouro" class="form-control tamanho-fonte" type="text" maxlength="70" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" required disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="numero">Número</label>
-                                <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" disabled autocomplete="off">
+                                <input id="numero" type="text" class="form-control tamanho-fonte" maxlength="6" th:field="*{endereco.numero}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="complemento">Complemento</label>
-                                <input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" disabled autocomplete="off">
+                                <input id="complemento" class="form-control tamanho-fonte" type="text" maxlength="40" th:field="*{endereco.complemento}" onkeyup="maiuscula(this)" disabled autocomplete="off">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-5 ">
                                 <label for="bairro">Bairro</label>
-                                <input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" required disabled autocomplete="off">
+                                <input id="bairro" type="text" class="form-control tamanho-fonte" maxlength="30" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" required disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-5 ">
                                 <label for="cidade">Cidade</label>
-                                <input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" required disabled autocomplete="off">
+                                <input id="cidade" type="text" class="form-control tamanho-fonte" maxlength="30" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" required disabled autocomplete="off">
                             </div>
                             <div class="form-group col-md-2 ">
                                 <label for="uf">Estado</label>
