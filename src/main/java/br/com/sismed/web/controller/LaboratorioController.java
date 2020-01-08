@@ -157,12 +157,12 @@ public class LaboratorioController {
 	public String editar(Laboratorio laboratorio, RedirectAttributes attr) {
 		attr.addFlashAttribute("success","Laboratório alterado com sucesso");
 		service.salvar(laboratorio);
-		return "redirect:/laboratorio/listar";
+		return "redirect:/laboratorio/editar/" + laboratorio.getId();
 	}
 	
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model) {
-		model.addAttribute("success", "Laboratório excluído com sucesso");
+	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr) {
+		attr.addFlashAttribute("success","Laboratório excluido com sucesso");
 		service.excluir(id);
 		return "redirect:/laboratorio/listar";
 	}

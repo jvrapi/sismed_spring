@@ -120,7 +120,7 @@ public class PacientesController {
 		long id = paciente.getId();
 		long cid = paciente.getTipo_convenio().getConvenio().getId();
 		service.salvar(paciente);
-		attr.addFlashAttribute("success","Paciente editado com sucesso");
+		attr.addFlashAttribute("success","Paciente alterado com sucesso");
 		return "redirect:/pacientes/editar/" + id + "/" + cid;
 	}
 	

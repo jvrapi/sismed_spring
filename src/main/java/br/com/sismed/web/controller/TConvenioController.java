@@ -141,7 +141,7 @@ public class TConvenioController {
 	public String editar(TConvenio tconvenio, RedirectAttributes attr) {
 		Long id = tconvenio.getId();
 		tservice.salvar(tconvenio);
-		attr.addFlashAttribute("success", "Tipo de Convenio editado com sucesso");
+		attr.addFlashAttribute("success", "Tipo de Convenio alterado com sucesso");
 		return "redirect:/tconvenios/editar/" + id;
 	}
 

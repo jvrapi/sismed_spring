@@ -95,7 +95,7 @@ public class ProcedimentosController {
 	public String editar(Procedimento procedimentos, RedirectAttributes attr) {
 		Long id = procedimentos.getId();
 		service.salvar(procedimentos);
-		attr.addFlashAttribute("success","Procedimento editado com sucesso");
+		attr.addFlashAttribute("success","Procedimento alterado com sucesso");
 		return "redirect:/procedimentos/editar/" + id;
 	}
 	

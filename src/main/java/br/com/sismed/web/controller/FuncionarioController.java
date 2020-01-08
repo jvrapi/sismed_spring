@@ -259,7 +259,7 @@ public class FuncionarioController {
 			
 		attr.addFlashAttribute("success", "Funcionario(a) alterado(a) com sucesso");
 		service.salvar(funcionario);
-		return "redirect:/funcionario/listar";
+		return "redirect:/funcionario/editar/" + funcionario.getId();
 	}
 
 	@GetMapping("/excluir/{id}")

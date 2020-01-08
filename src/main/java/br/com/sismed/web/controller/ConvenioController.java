@@ -153,7 +153,7 @@ public class ConvenioController {
 			}
 			
 			service.salvar(convenio);
-			attr.addFlashAttribute("success","Convenio editado com sucesso");
+			attr.addFlashAttribute("success","Convenio alterado com sucesso");
 			return "redirect:/convenios/editar/" + id;
 		}
 		

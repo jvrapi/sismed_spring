@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/js/exame/editar.js"></script>
     <script type="text/javascript" src="/js/exame/busca.js"></script>
     <script type="text/javascript" src="/js/exame/comparahora.js"></script>
+    <script type="text/javascript" src="/js/alerta.js"></script>
 
 </head>
 
@@ -56,19 +57,11 @@
 			</div>
 		</nav>
 	
-			<div class="container" style="margin-left: 35%;">
-				<div th:replace="fragmentos/alert"></div>
-				<div th:replace="fragmentos/modal"></div>
-				
-			</div>
-  
-    
-
-        <div class="container" style="margin-left: 35%;">
-            <div th:replace="fragmentos/alert"></div>
-            <div th:replace="fragmentos/modal"></div>
-
-        </div>
+		<div class="container">
+			<div th:replace="fragmentos/alert"></div>
+			<div th:replace="fragmentos/modal"></div>
+			
+		</div>
 
         <div class="container-fluid" style="width: 98%">
 

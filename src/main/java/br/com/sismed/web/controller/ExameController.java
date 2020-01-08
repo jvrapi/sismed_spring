@@ -162,45 +162,45 @@ public class ExameController {
 
 	@PostMapping("/editar")
 	public String editar(Exame exame, RedirectAttributes attr, @AuthenticationPrincipal User user ) {
-	attr.addFlashAttribute("success","Exame alterado com sucesso");
-	Exame e = service.buscarporId(exame.getId());
-	Login login = loginservice.BuscarPorCPF(user.getUsername());
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	if(!exame.getData_coleta().isEqual(e.getData_coleta())) {
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO NA DATA DE COLETA: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
-				+ e.getData_coleta().format(formatter) + " PARA A DATA " + exame.getData_coleta().format(formatter));
-		logservice.salvar(l);
-	}
-	
-	if(!exame.getData_envio().isEqual(e.getData_envio())) {
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO NA DATA DE ENVIO: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
-				+ e.getData_envio().format(formatter) + " PARA A DATA " + exame.getData_envio().format(formatter));
-		logservice.salvar(l);
-	}
-	
-	if(e.getData_retorno() != null && !exame.getData_retorno().equals(e.getData_retorno())) {
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
-				+ e.getData_retorno().format(formatter) + " PARA A DATA " + exame.getData_retorno().format(formatter));
-		logservice.salvar(l);
-	}
-	service.salvar(exame);
-	return "redirect:/exame/listar";
+		attr.addFlashAttribute("success","Exame alterado com sucesso");
+		Exame e = service.buscarporId(exame.getId());
+		Login login = loginservice.BuscarPorCPF(user.getUsername());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		if(!exame.getData_coleta().isEqual(e.getData_coleta())) {
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("ALTERÇÃO NA DATA DE COLETA: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
+					+ e.getData_coleta().format(formatter) + " PARA A DATA " + exame.getData_coleta().format(formatter));
+			logservice.salvar(l);
+		}
+		
+		if(!exame.getData_envio().isEqual(e.getData_envio())) {
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("ALTERÇÃO NA DATA DE ENVIO: NOME DO EXAME " + e.getNome() + ". NOME DO PACIENTE " + e.getPaciente_id().getNome() + ". DA DATA " 
+					+ e.getData_envio().format(formatter) + " PARA A DATA " + exame.getData_envio().format(formatter));
+			logservice.salvar(l);
+		}
+		
+		if(e.getData_retorno() != null && !exame.getData_retorno().equals(e.getData_retorno())) {
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
+					+ e.getData_retorno().format(formatter) + " PARA A DATA " + exame.getData_retorno().format(formatter));
+			logservice.salvar(l);
+		}
+		service.salvar(exame);
+		return "redirect:/exame/editar/" + exame.getId() + "/" + exame.getPaciente_id().getTipo_convenio().getId();
 	}
 
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model, @AuthenticationPrincipal User user) {
+	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 
 		Exame e = service.buscarporId(id);
 		Login login = loginservice.BuscarPorCPF(user.getUsername());
@@ -212,7 +212,7 @@ public class ExameController {
 		logservice.salvar(l);
 		model.addAttribute("success", "Exame excluído com sucesso");
 		service.excluir(id);
-
+		attr.addFlashAttribute("success","Exame excluido com sucesso");
 		return "redirect:/exame/listar";
 	}
 
