@@ -151,7 +151,8 @@ public  class Agenda extends AbstractEntity {
 	public Boolean compararDatas(LocalDate agendamento) {
 		
 		LocalDate dataAtual = LocalDate.now();
-	
+		
+		
 		return agendamento.isBefore(dataAtual);
 		
 		
