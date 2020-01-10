@@ -25,11 +25,11 @@ public  class Agenda extends AbstractEntity {
 	@JoinColumn(name = "procedimento_id") // nome da chave estrangeira no banco de dados
 	private Procedimento procedimento;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "funcionario_id") // nome da chave estrangeira no banco de dados
 	private Funcionario funcionario;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tipo_convenio_id") // nome da chave estrangeira no banco de dados
 	private TConvenio tipo_convenio;
 	
