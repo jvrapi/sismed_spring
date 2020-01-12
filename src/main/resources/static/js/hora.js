@@ -1,36 +1,19 @@
-var Elem = document.getElementById("Clock");
-function Horario(){ 
-    var Hoje = new Date(); 
-    var Horas = Hoje.getHours(); 
-    if(Horas < 10){ 
-        Horas = "0"+Horas; 
-    } 
-    var Minutos = Hoje.getMinutes(); 
-    if(Minutos < 10){ 
-        Minutos = "0"+Minutos; 
-    } 
-    var Segundos = Hoje.getSeconds(); 
-    if(Segundos < 10){ 
-        Segundos = "0"+Segundos; 
-    } 
-    Elem.innerHTML = Horas+":"+Minutos+":"+Segundos; 
-} 
-window.setInterval("Horario()",1000);
-var Elem = document.getElementById("Clock");
-function Horario(){ 
-    var Hoje = new Date(); 
-    var Horas = Hoje.getHours(); 
-    if(Horas < 10){ 
-        Horas = "0"+Horas; 
-    } 
-    var Minutos = Hoje.getMinutes(); 
-    if(Minutos < 10){ 
-        Minutos = "0"+Minutos; 
-    } 
-    var Segundos = Hoje.getSeconds(); 
-    if(Segundos < 10){ 
-        Segundos = "0"+Segundos; 
-    } 
-    Elem.innerHTML = Horas+":"+Minutos+":"+Segundos; 
-} 
-window.setInterval("Horario()",60000);
+function relogio(){
+			var data = new Date();
+			var horas = data.getHours();
+			var minutos = data.getMinutes();
+			var segundos = data.getSeconds();
+			
+			/* coloca o 0 na frente do numero caso ele seja menor que 10*/
+			if(horas < 10){
+				horas = "0" + horas;
+			}
+			if(minutos < 10){
+				minutos = "0" + minutos;
+			}
+			if(segundos < 10){
+				segundos = "0" + segundos;
+			}
+			document.getElementById("relogio").innerHTML=horas+":"+minutos+":"+segundos;
+		}
+		window.setInterval("relogio()",1000)

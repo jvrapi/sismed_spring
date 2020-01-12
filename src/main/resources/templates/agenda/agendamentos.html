@@ -9,6 +9,7 @@
     <script type="text/javascript" src="/js/agenda/buscarAgendamento.js"></script>
     <script type="text/javascript" src="/js/agenda/observacao.js"></script>
     <script type="text/javascript" src="/js/alerta.js"></script>
+    
 </head>
 
 <body>
@@ -35,8 +36,12 @@
                         <input type="text" id="txtBusca" placeholder="Buscar..." />
                         <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
                     </div>
+                    
                     <div class="collapse navbar-collapse justify-content-end login">
-                        <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
+                      
+                      <div class="mr-3"style="color: white; size: 50%;" id="data"><script type="text/javascript" src="/js/data.js"></script></div>
+                      <div class="mr-3"style="color: white; size: 50%;" id="relogio"></div>
+                      <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
 
                         <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
                             <div class="btn-group mb-2 mr-sm-2">
@@ -60,7 +65,7 @@
          
 
             <div class="container-fluid" style="width: 98%">
-<div th:replace="fragmentos/alert" class="container"></div>
+				<div th:replace="fragmentos/alert" class="container"></div>
                 <div th:replace="fragmentos/modal" class="container"></div>
 
                 <h3 style="display: inline; margin-left: 10px; ">Agenda | </h3>
@@ -82,7 +87,7 @@
                 <!-- id do medico logado para realização das consultas no banco -->
                 <input type="hidden" id="funcionario_id" th:value="${medico_id}">
 
-                <button class="btn btn-outline-primary float-right " style="display: inline; " data-toggle="modal" data-target="#finalizar"> Encerrar Atendimentos</button>
+                <button class="btn btn-outline-primary float-right "  data-toggle="modal" data-target="#finalizar"> Encerrar Atendimentos</button>
 
                 <input type="hidden" id="usuario" th:object="${usuario}" th:value="${usuario}">
 

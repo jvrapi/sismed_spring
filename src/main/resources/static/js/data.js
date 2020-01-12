@@ -16,5 +16,5 @@ if(mName==11){Month = "Novembro";}
 if(mName==12){Month = "Dezembro";}
 if(yearNr < 2000) {Year = 1900 + yearNr;}
 else {Year = yearNr;}
-var todaysDate =(dayNr + " " + Month + " " + Year);
+var todaysDate =(dayNr + " de " + Month + " de " + Year);
 document.write('  '+todaysDate);
