@@ -71,7 +71,7 @@
         
             <form th:action="@{/RegistroClinico/salvar}" th:object="${registroclinico}" method="POST">
                 <h3 style="display: inline;">Cadastro | <strong>Registro Clínico</strong></h3>
-                <a class="btn btn-outline-secondary float-right" href="/RegistroClinico/buscar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
+                <a class="btn btn-outline-secondary float-right" th:href="@{/RegistroClinico/buscar}" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
                 <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                 <div class="card" style="margin-top: 25px; margin-bottom:15px;">
                     <div class="card-body">

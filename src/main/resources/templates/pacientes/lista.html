@@ -58,7 +58,7 @@
         	<div th:replace="fragmentos/alert"></div>
         
             <h3 style="display: inline;">Lista | <strong>Pacientes</strong></h3>
-            <a class="btn btn-outline-primary float-right" href="/pacientes/cadastrar" role="button"><i class="fas fa-plus"></i> Novo Paciente</a>
+            <a class="btn btn-outline-primary float-right" th:href="@{/pacientes/cadastrar}" role="button"><i class="fas fa-plus"></i> Novo Paciente</a>
 
             <div class="card" style="margin-top: 25px;">
                 <div class="card-body">

@@ -15,16 +15,16 @@
      
      
     <link rel="icon" th:href="@{/image/favicon.ico}" />
-	<link type="text/css" href="/css/style2.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style2.css}"  />
     
-    <script type="text/javascript"src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/popper.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/fontawesome/js/fontawesome.js"></script>
-    <script type="text/javascript" src="/js/fontawesome/js/solid.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="/js/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="/js/hora.js"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fontawesome/js/fontawesome.js}"></script>
+    <script type="text/javascript" th:src="@{/js/fontawesome/js/solid.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-ui/jquery-ui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.mask.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/hora.js}"></script>
 	
 
 </head>
@@ -47,10 +47,10 @@
     </footer> -->
 
     
-    <script src="/js/maiuscula.js"></script>
-    <script src="/js/buscadorEndereco.js"></script>
-    <script src="/js/apenasLetras.js"></script>
-    <script src="/js/mascaras.js"></script>
+    <script th:src="@{/js/maiuscula.js}"></script>
+    <script th:src="@{/js/buscadorEndereco.js}"></script>
+    <script th:src="@{/js/apenasLetras.js}"></script>
+    <script th:src="@{/js/mascaras.js}"></script>
     
 	<script>
 		$(document).ready(function(){

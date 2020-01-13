@@ -56,7 +56,7 @@
         <div class="container-fluid" style="width: 98%">
             <form th:action="@{/pacientes/salvar}" th:object="${paciente}" method="POST">
                 <h3 style="display: inline;"> Cadastro | <strong>Paciente</strong></h3>
-                <a class="btn btn-outline-secondary float-right" href="/pacientes/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
+                <a class="btn btn-outline-secondary float-right" th:href="@{/pacientes/listar}" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
                 <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
                 <div class="card" style="margin-top: 25px; padding: 0px;">
                     <div class="card-body">

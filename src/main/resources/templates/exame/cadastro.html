@@ -13,17 +13,7 @@
 	<div layout:fragment="corpo"  >
 		<nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
 			<div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-				<div class="dropdown">
-					<a class="dropbtn" data-toggle="dropdown" href="#"><i class="fa fa-plus fa-fw"></i>Novo</a>
-					<div class="dropdown-content">
-						<a href="#">Agendamento</a>
-						<a href="/pacientes/cadastrar">Paciente</a>
-						<a href="#">Funcionário</a>
-						<a href="/convenios/cadastrar">Convênio</a>
-						<a href="#">Exame</a>
-						<a href="#">Laboratório</a>
-					</div>
-				</div>
+				
 					<div class="btn-group">
 					<button type="button" class="btn" id="dropdownMenu2" value="2">Paciente</button>
 					<button type="button" class="btn dropdown-toggle dropdown-toggle-split" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,7 +65,7 @@
 					
 					<h3 style="display: inline;">Cadastro | <strong>Exame</strong></h3>
 					
-					<a class="btn btn-outline-secondary float-right" href="/exame/listar" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
+					<a class="btn btn-outline-secondary float-right" th:href="@{/exame/listar}" role="button"><i class="fas fa-chevron-left"></i> Voltar</a>
                 <button type="submit" class="btn btn-outline-primary float-right mr-2">Salvar</button>
 					
 					<div class="card" style="margin-top: 25px; padding: 0px;">

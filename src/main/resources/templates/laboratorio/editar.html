@@ -72,7 +72,7 @@
                 <div id="div_botao">
                     <h3 style="display: inline;"> Edição | <strong>Laboratório</strong></h3>
 
-                    <a class="btn btn-outline-secondary float-right ml-2" href="/laboratorio/listar"> <i class="fas fa-chevron-left"> </i> Voltar</a>
+                    <a class="btn btn-outline-secondary float-right ml-2" th:href="@{/laboratorio/listar}"> <i class="fas fa-chevron-left"> </i> Voltar</a>
 
                     <button th:id="${laboratorio.id}" type="button" class="btn btn-outline-danger classid float-right" data-toggle="modal" data-target="#myModal">Excluir</button>
 
