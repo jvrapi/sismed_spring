@@ -52,7 +52,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
@@ -75,13 +75,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -91,13 +91,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cloud-connectors</artifactId>
+		</dependency>
 		<!-- Fim das dependicias do spring -->
-		
+
 		<!-- WebJar -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -140,9 +145,9 @@
 			<artifactId>jquery-mask-plugin</artifactId>
 			<version>1.13.4</version>
 		</dependency>
-	<!-- Fim dos webjar's -->
-	
-	<!-- THYMELEAF -->
+		<!-- Fim dos webjar's -->
+
+		<!-- THYMELEAF -->
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
@@ -156,17 +161,17 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-java8time</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
-<!-- FIM DAS DEPENDENCIAS DO THYMELEAF -->
-		
+		<!-- FIM DAS DEPENDENCIAS DO THYMELEAF -->
 
-		
 
-		
+
+
+
 
 	</dependencies>
 
