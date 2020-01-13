@@ -26,11 +26,11 @@
                     <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
                 </div>
                 <div class="collapse navbar-collapse justify-content-end login">
-				    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-				        <div class="form-check mb-2 mr-sm-2">
-				            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
-				        </div>
-				    </form>
+                <div class="mr-3" style="color: white; size: 50%;" id="data">
+                            <script type="text/javascript" src="/js/data.js"></script>
+                        </div>
+                        <div class="mr-3" style="color: white; size: 50%;" id="relogio"></div>
+				    <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
 				
 				    <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
 				        <div class="btn-group mb-2 mr-sm-2">

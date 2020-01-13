@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -24,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Login;
-import br.com.sismed.domain.Paciente;
 import br.com.sismed.domain.TConvenio;
 
 import br.com.sismed.service.ConvenioService;
@@ -160,10 +160,17 @@ public class ConvenioController {
 		
 		@GetMapping("/excluir/{id}")
 		public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-			service.excluir(id);
-			attr.addFlashAttribute("success", "Convenio excluido com sucesso");
-			
-			return "redirect:/convenios/listar";
+			String retorno = "";
+			try {
+				service.excluir(id);
+				attr.addFlashAttribute("success", "Convenio excluido com sucesso");
+				retorno = "redirect:/convenios/listar";
+			}
+			catch (DataIntegrityViolationException error) {
+				attr.addFlashAttribute("fail", "Não foi possível excluir");
+				retorno = "redirect:/convenios/listar";
+			}	
+			return retorno;
 		}
 		
 		@ModelAttribute("TiposConvenios")

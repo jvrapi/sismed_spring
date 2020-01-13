@@ -1,18 +1,12 @@
 package br.com.sismed.domain;
 
-
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.Valid;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 

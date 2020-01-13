@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -202,18 +203,26 @@ public class ExameController {
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 
+		String retorno = "";
 		Exame e = service.buscarporId(id);
-		Login login = loginservice.BuscarPorCPF(user.getUsername());
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DE EXAME: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome());
-		logservice.salvar(l);
-		model.addAttribute("success", "Exame excluído com sucesso");
-		service.excluir(id);
-		attr.addFlashAttribute("success","Exame excluido com sucesso");
-		return "redirect:/exame/listar";
+		try {
+			Login login = loginservice.BuscarPorCPF(user.getUsername());
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("EXCLUSÃO DE EXAME: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome());
+			logservice.salvar(l);
+			model.addAttribute("success", "Exame excluído com sucesso");
+			service.excluir(id);
+			attr.addFlashAttribute("success","Exame excluido com sucesso");
+			retorno = "redirect:/exame/listar";
+		}
+		catch (DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail","Não foi possível excluir");
+			retorno = "redirect:/exame/listar";
+		}
+		return retorno;
 	}
 
 	/*

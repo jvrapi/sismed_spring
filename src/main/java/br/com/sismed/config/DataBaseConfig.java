@@ -25,9 +25,9 @@ public class DataBaseConfig {
 		try {
        
        System.out.println("Entrei no try");
-        bd.setUrl("jdbc:mysql://localhost:3306/tresta?useTimezone=true&serverTimezone=America/Sao_Paulo");
-        bd.setUsername("root");
-        bd.setPassword("172010");
+        bd.setUrl("jdbc:mysql://wjoodes04v:3306/tresta?useTimezone=true&serverTimezone=America/Sao_Paulo");
+        bd.setUsername("tresta");
+        bd.setPassword("Mass55");
 		}catch(CannotGetJdbcConnectionException g) {
 			 System.out.println("Entrei no catch");
 	        bd.setUrl("jdbc:mysql://localhost:3306/tresta?useTimezone=true&serverTimezone=America/Sao_Paulo");

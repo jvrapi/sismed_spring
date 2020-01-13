@@ -2,7 +2,6 @@ package br.com.sismed.web.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -11,6 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Log;
@@ -152,24 +153,41 @@ public class RClinicoController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(RegistroClinico registroclinico) {
+	public String salvar(RegistroClinico registroclinico, RedirectAttributes attr) {
 		Long id = registroclinico.getPaciente_id().getId();
 		service.salvar(registroclinico);
+		attr.addFlashAttribute("success", "Registro cadastrado com sucesso");
+		return "redirect:/RegistroClinico/cadastrarpac/" + id;
+	}
+	
+	@PostMapping("/editar")
+	public String editar(RegistroClinico registroclinico, RedirectAttributes attr) {
+		Long id = registroclinico.getPaciente_id().getId();
+		service.salvar(registroclinico);
+		attr.addFlashAttribute("success", "Registro alterado com sucesso");
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;
 	}
 	
 	@GetMapping("/excluir/{id}/{pid}")
-	public String excluir(@PathVariable("id") Long id, @PathVariable("pid") Long pid, @AuthenticationPrincipal User user) {
-		Login login = lService.BuscarPorCPF(user.getUsername());
-		RegistroClinico rc = service.buscarporId(id);
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DO REGISTRO CLINICO " + rc.getId() + " DO PACIENTE " + rc.getPaciente_id().getNome());
-		logservice.salvar(l);
-		service.excluir(id);
-		return "redirect:/RegistroClinico/cadastrarpac/" + pid;
+	public String excluir(@PathVariable("id") Long id, @PathVariable("pid") Long pid, @AuthenticationPrincipal User user, RedirectAttributes attr) {
+		String retorno = "";
+		try {
+			Login login = lService.BuscarPorCPF(user.getUsername());
+			RegistroClinico rc = service.buscarporId(id);
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("EXCLUSÃO DO REGISTRO CLINICO " + rc.getId() + " DO PACIENTE " + rc.getPaciente_id().getNome());
+			logservice.salvar(l);
+			service.excluir(id);
+			attr.addFlashAttribute("success", "Registro excluído com sucesso");
+			retorno = "redirect:/RegistroClinico/cadastrarpac/" + pid;
+		} catch (DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail", "Não foi possível excluir");
+			retorno = "redirect:/RegistroClinico/cadastrarpac/" + pid;
+		}
+		return retorno;
 	}
 	
 	@GetMapping("buscarregistros/{id}")

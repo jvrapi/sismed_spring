@@ -58,7 +58,7 @@
         <div th:replace="fragmentos/alert :: alerta-sucesso"></div>
 
         <div class="form-label-group">
-            <input type="text" id="inputCPF" class="form-control" placeholder="cpf" name="cpf" required autofocus />
+            <input type="text" id="inputCPF" class="form-control" placeholder="cpf" name="cpf" required autofocus autocomplete="off"/>
             <label for="inputEmail">CPF</label>
             <div class="invalid-feedback">
                 Informe um CPF cadastrado.
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-label-group">
-            <input type="email" id="inputEmail" class="form-control" placeholder="e-mail" name="email" required autofocus />
+            <input type="email" id="inputEmail" class="form-control" placeholder="e-mail" name="email" required autofocus autocomplete="off"/>
             <label for="inputEmail">Email</label>
             <div class="invalid-feedback">
                 Informe um email para redefinir a senha.

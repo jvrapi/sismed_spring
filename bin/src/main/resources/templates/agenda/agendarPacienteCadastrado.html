@@ -12,8 +12,7 @@
     <script type="text/javascript" src="/js/agenda/verificarDataHora.js"></script>
     <script type="text/javascript" src="/js/agenda/CrmEspecialidade.js"></script>
     <script type="text/javascript" src="/js/agenda/agendamentosAnteriores.js"></script>
-     
-    
+
 </head>
 
 <body>
@@ -21,7 +20,6 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                   
 
                     <div class="btn-group">
                         <button type="button" class="btn" id="dropdownMenu2" value="1">Nome</button>
@@ -40,11 +38,13 @@
                         <button id="btn_search" class="btn"><i class="fas fa-search" onclick="busca()"></i></button>
                     </div>
                     <div class="collapse navbar-collapse justify-content-end login">
-                        <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                            <div class="form-check mb-2 mr-sm-2">
-                                <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
-                            </div>
-                        </form>
+                        <div class="mr-3" style="color: white; size: 50%;" id="data">
+                            <script type="text/javascript" src="/js/data.js"></script>
+                        </div>
+                        <div class="mr-3" style="color: white; size: 50%;" id="relogio"></div>
+                        <div class="mr-3" style="color: white; size: 50%;"> Olá,
+                            <a th:text="${usuarioLogado}"></a>
+                        </div>
 
                         <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
                             <div class="btn-group mb-2 mr-sm-2">
@@ -88,7 +88,7 @@
                             <div th:each="p: ${paciente}">
                                 <div class="form-row">
                                     <div class="form-group col-md-1">
-                                        <label for="prontuario">Prontuario</label>
+                                        <label for="prontuario">Prontuário</label>
                                         <input type="text" class="form-control tamanho-fonte" id="prontuario" th:name="paciente_id" th:value="${p.id}" readonly/>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -97,12 +97,12 @@
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label for="convenio">Convenio</label>
+                                        <label for="convenio">Convênio</label>
                                         <input type="text" class="form-control tamanho-fonte" id="convenio" th:value="${p.tipo_convenio.convenio.nome}" disabled/>
                                     </div>
 
                                     <div class="form-group col-md-2">
-                                        <label for="tipo_convenio">Tipo Convenio</label>
+                                        <label for="tipo_convenio">Tipo Convênio</label>
                                         <input type="text" class="form-control tamanho-fonte" id="tipo_convenio" th:value="${p.tipo_convenio.nome}" disabled/>
                                     </div>
 
@@ -117,16 +117,16 @@
                                     </div>
 
                                     <div class="form-group col-md-1">
-                                        <label for="nascimento">Nascimento</label>
+                                        <label for="nascimento">Data de Nascimento</label>
                                         <input type="text" class="form-control tamanho-fonte" id="nascimento" th:value="${#temporals.format(p.data_nascimento, 'dd / MM / yyyy')}" disabled/>
                                     </div>
                                 </div>
                             </div>
                             <br>
-                            <h5 class="sub_titulo">Medico(a)</h5>
+                            <h5 class="sub_titulo">Médico(a)</h5>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
-                                    <label for="crm">Medico</label>
+                                    <label for="crm">Médico</label>
                                     <select id="funcionario_id" class="form-control tamanho-fonte" required th:field="*{funcionario}">
                                         <option value="" selected hidden>Selecione</option>
                                         <option th:each="f : ${funcionario}" th:value="${f.id}" th:text="${f.nome}"></option>
@@ -149,7 +149,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md-2">
-                                    <label for="convenio_id">Convenio</label>
+                                    <label for="convenio_id">Convênio</label>
                                     <select id="convenio_id" class="form-control tamanho-fonte" required disabled>
                                         <option value="" selected hidden>Selecione</option>
 
@@ -158,7 +158,7 @@
 
                                 <div class="form-group col-md-2">
 
-                                    <label for="tipo_convenio_id">Tipo de convenio</label>
+                                    <label for="tipo_convenio_id">Tipo de Convênio</label>
                                     <select id="tipo_convenio_id" class="form-control my-select tamanho-fonte" th:field="*{tipo_convenio}" disabled required></select>
                                 </div>
 
@@ -186,14 +186,14 @@
                     </div>
                 </form>
 
-                <h5 style="display: inline;">Agendamentos anteriores</h5>
+                <h5 style="display: inline;">Agendamentos Anteriores</h5>
                 <div class="card" style="margin-top: 10px;" id="resultsBlock">
 
                 </div>
             </div>
- 
+
         </div>
-       
+
     </section>
 
 </body>

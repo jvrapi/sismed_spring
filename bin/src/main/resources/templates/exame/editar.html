@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/js/exame/editar.js"></script>
     <script type="text/javascript" src="/js/exame/busca.js"></script>
     <script type="text/javascript" src="/js/exame/comparahora.js"></script>
+    <script type="text/javascript" src="/js/alerta.js"></script>
 
 </head>
 
@@ -37,12 +38,12 @@
                 </form>
 
                 <div class="collapse navbar-collapse justify-content-end login">
-
-                    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                        <div class="form-check mb-2 mr-sm-2">
-                            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                <div class="mr-3" style="color: white; size: 50%;" id="data">
+                            <script type="text/javascript" src="/js/data.js"></script>
                         </div>
-                    </form>
+                        <div class="mr-3" style="color: white; size: 50%;" id="relogio"></div>
+
+                   <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
 
                     <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
                         <div class="btn-group mb-2 mr-sm-2">
@@ -60,19 +61,11 @@
 			</div>
 		</nav>
 	
-			<div class="container" style="margin-left: 35%;">
-				<div th:replace="fragmentos/alert"></div>
-				<div th:replace="fragmentos/modal"></div>
-				
-			</div>
-  
-    
-
-        <div class="container" style="margin-left: 35%;">
-            <div th:replace="fragmentos/alert"></div>
-            <div th:replace="fragmentos/modal"></div>
-
-        </div>
+		<div class="container">
+			<div th:replace="fragmentos/alert"></div>
+			<div th:replace="fragmentos/modal"></div>
+			
+		</div>
 
         <div class="container-fluid" style="width: 98%">
 

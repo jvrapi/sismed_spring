@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -162,9 +163,16 @@ public class LaboratorioController {
 	
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr) {
-		attr.addFlashAttribute("success","Laboratório excluido com sucesso");
-		service.excluir(id);
-		return "redirect:/laboratorio/listar";
+		String retorno = "";
+		try {
+			attr.addFlashAttribute("success","Laboratório excluido com sucesso");
+			service.excluir(id);
+			retorno = "redirect:/laboratorio/listar";
+		} catch (DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail","Não foi possível excluir");
+			retorno = "redirect:/laboratorio/listar";
+		}
+		return retorno;
 	}
 	
 	@GetMapping("/convenio/{id}/{labId}")

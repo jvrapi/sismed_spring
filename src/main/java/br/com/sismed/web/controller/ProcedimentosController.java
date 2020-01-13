@@ -1,13 +1,12 @@
 package br.com.sismed.web.controller;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,6 @@ import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.LabelValue;
 import br.com.sismed.domain.Login;
 import br.com.sismed.domain.Procedimento;
-import br.com.sismed.domain.TConvenio;
 import br.com.sismed.service.ConvenioService;
 import br.com.sismed.service.LoginService;
 import br.com.sismed.service.ProcedimentoService;
@@ -102,9 +100,16 @@ public class ProcedimentosController {
 	
 	@GetMapping("/excluir/{id}/{id2}")
 	public String excluir(@PathVariable("id") Long id, @PathVariable("id2") Long id2,RedirectAttributes attr) {
-		service.excluir(id);
-		attr.addFlashAttribute("success", "Procedimento excluido com sucesso");
-		return "redirect:/procedimentos/listar/"+ id2;
+		String retorno = "";
+		try {
+			service.excluir(id);
+			attr.addFlashAttribute("success", "Procedimento excluido com sucesso");
+			retorno = "redirect:/procedimentos/listar/"+ id2;
+		} catch (DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail", "Não foi possível excluir");
+			retorno = "redirect:/procedimentos/listar/"+ id2;
+		}
+		return retorno;
 	}
 	
 	@ModelAttribute("convenios")

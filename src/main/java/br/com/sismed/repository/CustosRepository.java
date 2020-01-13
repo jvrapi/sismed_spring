@@ -6,10 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sismed.domain.Paciente;
-
 import br.com.sismed.domain.Custos;
-
 
 public interface CustosRepository extends JpaRepository<Custos, Long>{
 

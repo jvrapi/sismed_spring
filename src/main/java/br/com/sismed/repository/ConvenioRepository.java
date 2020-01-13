@@ -4,10 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import br.com.sismed.domain.Convenio;
-
 
 public interface ConvenioRepository extends JpaRepository<Convenio, Long>{
 

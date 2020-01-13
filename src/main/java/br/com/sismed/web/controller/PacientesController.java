@@ -141,7 +141,7 @@ public class PacientesController {
 			retorno = "redirect:/pacientes/listar";
 		}
 		catch (DataIntegrityViolationException error){
-			attr.addFlashAttribute("fail","Não foi possível excluir. Paciente possui agendamento(s) cadastrado(s)");
+			attr.addFlashAttribute("fail","Não foi possível excluir");
 			retorno = "redirect:/pacientes/listar";
 		}
 		return retorno;

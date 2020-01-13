@@ -69,7 +69,7 @@ $(document).ready(function() {
 				$( function() {
 					$("#txtBusca").autocomplete({
 						source: "http://localhost:8080/funcionario/buscar/4",
-						minLength: 2,
+						minLength: 4,
 						select: function (event, ui) {
 							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;

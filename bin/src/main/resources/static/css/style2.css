@@ -148,7 +148,7 @@ a[aria-expanded="true"] {
   height: 35px;
 }
 
-#convenio_custos{
+.convenio_custos{
 	float:left;
   background-color:transparent;
   height:35px;

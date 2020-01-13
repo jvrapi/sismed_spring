@@ -47,7 +47,7 @@
         <div th:replace="fragmentos/alert :: alerta-sucesso"></div>
 
         <div class="form-label-group">
-            <input type="text" id="inputEmail" class="form-control" placeholder="CPF" th:field="*{cpf}" required autofocus />
+            <input type="text" id="inputEmail" class="form-control" placeholder="CPF" th:field="*{cpf}" required autofocus autocomplete="off"/>
             <label for="inputEmail">CPF</label>
             <div class="invalid-feedback">
                 Use seu CPF como login.
@@ -61,7 +61,7 @@
         </div>
 
         <div class="form-label-group">
-            <input type="text" id="inputCodigoVerificador" class="form-control" placeholder="código" th:field="*{codigoVerificador}" required />
+            <input type="text" id="inputCodigoVerificador" class="form-control" placeholder="código" th:field="*{codigoVerificador}" required autocomplete="off"/>
             <label for="inputCodigoVerificador">Código Verificador</label>
             <div class="invalid-feedback">Insira o código que recebeu por e-mail.</div>
         </div>

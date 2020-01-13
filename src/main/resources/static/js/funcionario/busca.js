@@ -1,7 +1,7 @@
 $(document).ready(function() {
 				$( function() {
 					$("#txtBusca").autocomplete({
-						source: "buscar/1",
+						source: "buscar/2",
 						minLength: 1,
 						select: function (event, ui) {
 							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
@@ -12,6 +12,8 @@ $(document).ready(function() {
 				});
 			});
 			function muda() {
+				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
 				$("#dropdownMenu2").text("Matrícula");
 				$("#dropdownMenu2").val("1");
 				$( function() {
@@ -28,6 +30,7 @@ $(document).ready(function() {
 			}
 			function muda2() {
 				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
 				$("#dropdownMenu2").text("Nome");
 				$("#dropdownMenu2").val("2");
 				$( function() {
@@ -45,6 +48,7 @@ $(document).ready(function() {
 			
 			function muda3() {
 				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
 				$('#txtBusca').mask('000.000.000-00');
 				$("#dropdownMenu2").text("CPF");
 				$("#dropdownMenu2").val("3");
@@ -63,13 +67,14 @@ $(document).ready(function() {
 			
 			function muda4() {
 				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
 				$('#txtBusca').mask('(00) 9 0000-0000');
 				$("#dropdownMenu2").text("Celular");
 				$("#dropdownMenu2").val("4");
 				$( function() {
 					$("#txtBusca").autocomplete({
 						source: "http://localhost:8080/funcionario/buscar/4",
-						minLength: 4,
+						minLength: 3,
 						select: function (event, ui) {
 							url = "http://localhost:8080/funcionario/editar/" + ui.item.value;
 							document.location.href = url;
@@ -80,7 +85,9 @@ $(document).ready(function() {
 			}
 			
 			function muda5() {
-				$('#txtBusca').mask('00 000000');   
+				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
+				$('#txtBusca').mask('00 000000');
 				$("#dropdownMenu2").text("CRM");
 				$("#dropdownMenu2").val("5");
 				$( function() {
@@ -97,6 +104,8 @@ $(document).ready(function() {
 			}
 			
 			function muda6() {
+				$('#txtBusca').unmask();
+				$('#txtBusca').val("");
 				$("#dropdownMenu2").text("Especialidade");
 				$("#dropdownMenu2").val("6");
 				$( function() {

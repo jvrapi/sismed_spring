@@ -9,7 +9,7 @@
 
         <nav id="sidebar" th:fragment="sidebar">
             <div class="sidebar-header detalhes">
-                <a class="btnVoltar" href="/"> <h3>SISMED</h3> </a>
+                <a class="btnVoltar" href="/"><h3>SISMED</h3></a>
             </div>
 
             <ul class="list-unstyled components">
@@ -39,6 +39,10 @@
                 </li>
                 <li>
                     <a href="/relatorio/listar"><i class="fas fa-stream" style="margin-right: 15px;"></i>Relatório</a>
+                </li>
+                
+                <li sec:authorize="hasAuthority('ADMIN')">
+                    <a href="/registro/sistema"><i class="fas fa-scroll" style="margin-right: 15px;"></i>Reg. Eventos</a>
                 </li>
             </ul>
         </nav>

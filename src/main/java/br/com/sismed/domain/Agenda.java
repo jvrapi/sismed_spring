@@ -3,7 +3,6 @@ package br.com.sismed.domain;
 import java.time.LocalDate;
 
 import java.time.LocalTime;
-import java.util.List;
 
 import javax.persistence.*;
 

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -402,18 +403,25 @@ public class AgendaController {
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 		
 		Agenda agenda = service.buscarPorId(id);
-		attr.addFlashAttribute("success", "Agendamento excluido com sucesso");
-		Log l = new Log();
-		Login login = lservice.BuscarPorCPF(user.getUsername());
-		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DE AGENDAMENTO: NOME DO PACIENTE: " + agenda.getPaciente_id().getNome() + ". DIA DO AGENDAMENTO: " 
-		+ agenda.getData().format(formatador) + ". NOME DO MEDICO " + agenda.getFuncionario().getNome());
-		logservice.salvar(l);
-		service.excluir(id);
-		return "redirect:/agenda/agendamentos";
+		String retorno = "";
+		try {
+			attr.addFlashAttribute("success", "Agendamento excluido com sucesso");
+			Log l = new Log();
+			Login login = lservice.BuscarPorCPF(user.getUsername());
+			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("EXCLUSÃO DE AGENDAMENTO: NOME DO PACIENTE: " + agenda.getPaciente_id().getNome() + ". DIA DO AGENDAMENTO: " 
+			+ agenda.getData().format(formatador) + ". NOME DO MEDICO " + agenda.getFuncionario().getNome());
+			logservice.salvar(l);
+			service.excluir(id);
+			retorno = "redirect:/agenda/agendamentos";
+		} catch (DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail", "Não foi possível excluir");
+			retorno = "redirect:/agenda/agendamentos";
+		}
+		return retorno;
 	}
 	
 	@ModelAttribute("usuarioLogado")

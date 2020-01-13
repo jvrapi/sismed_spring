@@ -263,18 +263,25 @@ public class FuncionarioController {
 	}
 
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap model, @AuthenticationPrincipal User user) {
+	public String excluir(@PathVariable("id") Long id, ModelMap model, @AuthenticationPrincipal User user, RedirectAttributes attr) {
 		Funcionario f = service.buscarporId(id);
 		Login login = lservice.BuscarPorCPF(user.getUsername());
-		Log l = new Log();
-		l.setData(LocalDate.now());
-		l.setFuncionario_id(login.getFuncionario_id());
-		l.setHora(LocalTime.now());
-		l.setDescricao("EXCLUSÃO DO FUNCIONARIO " + f.getNome());
-		logservice.salvar(l);
-		service.excluir(id);
-		model.addAttribute("success", "Funcionario(a) excluído(a) com sucesso");
-		return "redirect:/funcionario/listar";
+		String retorno = "";
+		try {
+			Log l = new Log();
+			l.setData(LocalDate.now());
+			l.setFuncionario_id(login.getFuncionario_id());
+			l.setHora(LocalTime.now());
+			l.setDescricao("EXCLUSÃO DO FUNCIONARIO " + f.getNome());
+			logservice.salvar(l);
+			service.excluir(id);
+			attr.addFlashAttribute("success", "Funcionario(a) excluído(a) com sucesso");
+			retorno = "redirect:/funcionario/listar";
+		} catch(DataIntegrityViolationException error) {
+			attr.addFlashAttribute("fail","Não foi possível excluir");
+			retorno = "redirect:/funcionario/listar";
+		}
+		return retorno;
 	}
 
 	@PostMapping("/trocarSenha")

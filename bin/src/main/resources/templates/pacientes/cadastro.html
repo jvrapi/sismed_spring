@@ -31,11 +31,11 @@
                 </div>
                 <div class="collapse navbar-collapse justify-content-end login">
 
-                    <form class="form-inline mt-2 mt-md-0" sec:authorize="!isAuthenticated()">
-                        <div class="form-check mb-2 mr-sm-2">
-                            <a class="btn btn-outline-success my-2 my-sm-0" role="button" th:href="@{/login}">Login</a>
+                    <div class="mr-3"style="color: white; size: 50%;"> Olá, <a th:text="${usuarioLogado}"></a></div>
+                    <div class="mr-3" style="color: white; size: 50%;" id="data">
+                            <script type="text/javascript" src="/js/data.js"></script>
                         </div>
-                    </form>
+                        <div class="mr-3" style="color: white; size: 50%;" id="relogio"></div>
 
                     <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
                         <div class="btn-group mb-2 mr-sm-2">
@@ -205,26 +205,26 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="logradouro">Logradouro</label>
-                                <input id="logradouro" class="form-control tamanho-fonte" type="text" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" autocomplete="off" required>
+                                <input id="logradouro" class="form-control tamanho-fonte" type="text" maxlength="70" th:field="*{endereco.logradouro}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="numero">Número</label>
-                                <input id="numero" type="text" class="form-control tamanho-fonte" th:field="*{endereco.numero}" autocomplete="off" required>
+                                <input id="numero" type="text" class="form-control tamanho-fonte" maxlength="6" th:field="*{endereco.numero}" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="complemento">Complemento</label>
-                                <input id="complemento" class="form-control tamanho-fonte" type="text" th:field="*{endereco.complemento}" onkeyup="maiuscula(this)" autocomplete="off">
+                                <input id="complemento" class="form-control tamanho-fonte" type="text" maxlength="40" th:field="*{endereco.complemento}" onkeyup="maiuscula(this)" autocomplete="off">
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="bairro">Bairro</label>
-                                <input id="bairro" type="text" class="form-control tamanho-fonte" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" autocomplete="off" required>
+                                <input id="bairro" type="text" class="form-control tamanho-fonte" maxlength="30" th:field="*{endereco.bairro}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-5 ">
                                 <label for="cidade">Cidade</label>
-                                <input id="cidade" type="text" class="form-control tamanho-fonte" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" autocomplete="off" required>
+                                <input id="cidade" type="text" class="form-control tamanho-fonte" maxlength="30" th:field="*{endereco.cidade}" onkeyup="maiuscula(this)" autocomplete="off" required>
                             </div>
                             <div class="form-group col-md-2 ">
                                 <label for="uf">Estado</label>

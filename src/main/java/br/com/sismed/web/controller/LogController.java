@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.sismed.domain.Convenio;
 import br.com.sismed.domain.Log;
 import br.com.sismed.domain.Login;
 import br.com.sismed.service.LogService;
