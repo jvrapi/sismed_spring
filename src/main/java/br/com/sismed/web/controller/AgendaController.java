@@ -99,7 +99,7 @@ public class AgendaController {
 		model.addAttribute("funcionario", l.getFuncionario_id().getNome());
 		model.addAttribute("medicos", medicos);
 		model.addAttribute("medico_id", medico_id);
-		return "/agenda/agendamentos";
+		return "agenda/agendamentos";
 	}
 
 	@GetMapping("/listar/{id}")
@@ -184,7 +184,7 @@ public class AgendaController {
 		model.addAttribute("paciente", p);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
 		
-		return "/agenda/agendarPacienteCadastrado";
+		return "agenda/agendarPacienteCadastrado";
 	}
 
 	@PostMapping("/salvar1")
@@ -240,7 +240,7 @@ public class AgendaController {
 		model.addAttribute("funcionario", fservice.ListarMedicos());
 		model.addAttribute("convenio", convenioService.funcionarioConveniosEditar(funcionario_id, convenio_id));
 		model.addAttribute("tipoConvenio", tconvenioService.BuscarTConvenioFunc(convenio_id, funcionario_id));
-		return "/agenda/editar";
+		return "agenda/editar";
 	}
 
 	@PostMapping("/editar")
@@ -269,7 +269,7 @@ public class AgendaController {
 		model.addAttribute("funcionario", fservice.ListarMedicos());
 		model.addAttribute("prontuario", prontuario);
 
-		return "/agenda/preCadastro";
+		return "agenda/preCadastro";
 	}
 
 	@PostMapping("/salvarPreCadastro")

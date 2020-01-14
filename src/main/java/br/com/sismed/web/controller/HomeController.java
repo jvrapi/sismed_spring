@@ -77,7 +77,7 @@ public class HomeController {
 		//primeiro acesso de usuario cadastrado
 		@GetMapping("/primeiroAcesso")
 		public String primeiroAcesso() {
-			return "/login/primeiroAcesso";
+			return "login/primeiroAcesso";
 		}
 		
 		
@@ -97,7 +97,7 @@ public class HomeController {
 				retorno = "/login/primeiroAcesso";
 			}else{
 				model.addAttribute("login", l);
-				retorno = "/login/cadastrarSenha";
+				retorno = "login/cadastrarSenha";
 				
 			}
 		}catch(NullPointerException e) {
@@ -106,7 +106,7 @@ public class HomeController {
 			model.addAttribute("texto", "Não foi encontrado nenhum dado com o CPF informado");
 			model.addAttribute("subtexto", "Utilize um CPF valido ou entre em contato.");
 			
-			retorno = "/login/primeiroAcesso";
+			retorno = "login/primeiroAcesso";
 		}
 		
 		
@@ -121,7 +121,7 @@ public class HomeController {
 				model.addAttribute("titulo", "Senhas não conferem");
 				model.addAttribute("texto", "As senhas digitas não são iguais!");
 				model.addAttribute("subtexto", "Por favor, insira as senhas novamente");
-				return "/login/cadastrarSenha";
+				return "login/cadastrarSenha";
 			}
 		
 			
@@ -136,7 +136,7 @@ public class HomeController {
 		//abre a pagina para inserir email e cpf
 		@GetMapping("/redefinir/senha")
 		public String pedidoRedefirSenha() {
-			return "/usuario/pedido-recuperar-senha";
+			return "usuario/pedido-recuperar-senha";
 		}
 		
 		//recupera os dados para a verificação
@@ -154,7 +154,7 @@ public class HomeController {
 			model.addAttribute("funcionario", funcionario);
 			model.addAttribute("perfil", perfil);
 			
-			return "/usuario/recuperar-senha";
+			return "usuario/recuperar-senha";
 		}
 		
 		//salva a senha
@@ -164,7 +164,7 @@ public class HomeController {
 			
 			if(!login.getCodigoVerificador().equals(l.getCodigoVerificador())) {
 				model.addAttribute("fail", "codigo verificador não confere" );
-				return "/usuario/recuperar-senha";
+				return "usuario/recuperar-senha";
 			}
 			
 		

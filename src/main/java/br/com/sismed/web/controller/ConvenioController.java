@@ -83,7 +83,7 @@ public class ConvenioController {
 				List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
 				model.addAttribute("pageNumbers", pageNumbers);
 			}
-			return "/convenio/lista";
+			return "convenio/lista";
 		}
 		
 		@GetMapping("/buscar/{id}")
@@ -123,7 +123,7 @@ public class ConvenioController {
 		
 		@GetMapping("/cadastrar") // segunda parte do href
 		public String cadastrar (Convenio convenio) {
-			return "/convenio/cadastro"; // retorna o caminho do arquivo
+			return "convenio/cadastro"; // retorna o caminho do arquivo
 		
 		}
 		
@@ -141,7 +141,7 @@ public class ConvenioController {
 			/* @PathVariable = recupera da url o id enviado pela URL como um path
 			 	o objeto model serve para enviar para a pagina de cadastro o convenio como uma variavel*/ 
 			model.addAttribute("convenio", service.buscarPorId(id));
-			return "/convenio/editar";
+			return "convenio/editar";
 		}
 		
 		@PostMapping("/editar")

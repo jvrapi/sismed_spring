@@ -67,7 +67,7 @@ public class LogController {
 			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		return "/log/lista";
+		return "log/lista";
 	}
 	
 	@ModelAttribute("usuarioLogado")

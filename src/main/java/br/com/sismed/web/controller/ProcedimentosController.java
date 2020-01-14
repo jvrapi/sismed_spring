@@ -46,7 +46,7 @@ public class ProcedimentosController {
 	@GetMapping("/cadastrar/{id2}")
 	public String Cadastrar(@PathVariable("id2") Long id, ModelMap model, Procedimento procedimento) {
 		model.addAttribute("convenio", ConvenioService.buscarPorId(id));
-		return "/procedimentos/cadastro";
+		return "procedimentos/cadastro";
 	}
 	
 	@GetMapping("/listar/{id}")
@@ -54,7 +54,7 @@ public class ProcedimentosController {
 		model.addAttribute("procedimento", service.ListarProcedimento(id));
 		model.addAttribute("convenio", ConvenioService.buscarPorId(id));
 		
-		return "/procedimentos/lista";
+		return "procedimentos/lista";
 	}
 	
 	@GetMapping("/buscar/{id}")
@@ -86,7 +86,7 @@ public class ProcedimentosController {
 		/* @PathVariable = recupera da url o id enviado pela URL como um path
 		 	o objeto model serve para enviar para a pagina de cadastro o convenio como uma variavel*/ 
 		model.addAttribute("procedimento", service.BuscarPorId(id));
-		return "/procedimentos/editar";
+		return "procedimentos/editar";
 	}
 	
 	@PostMapping("/editar")

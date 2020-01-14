@@ -85,7 +85,7 @@ public class TConvenioController {
 			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		return "/tconvenio/lista";
+		return "tconvenio/lista";
 	}
 	
 	@GetMapping("/buscar/{id}")
@@ -111,7 +111,7 @@ public class TConvenioController {
 	@GetMapping("/cadastrar/{id2}") // segunda parte do href
 	public String cadastrar(@PathVariable("id2") Long id, ModelMap model, @ModelAttribute("tconvenio") TConvenio tconvenio) {
 		model.addAttribute("convenio", service.buscarPorId(id));
-		return "/tconvenio/cadastro"; // retorna o caminho do arquivo
+		return "tconvenio/cadastro"; // retorna o caminho do arquivo
 
 	}
 
@@ -135,7 +135,7 @@ public class TConvenioController {
 		 * variavel
 		 */
 		model.addAttribute("tconvenio", tservice.buscarPorId(id));
-		return "/tconvenio/editar";
+		return "tconvenio/editar";
 	}
 
 	@PostMapping("/editar")

@@ -93,12 +93,12 @@ public class PacientesController {
 			List<Integer> pageNumbers = IntStream.rangeClosed(totalPages - 2, totalPages).boxed().collect(Collectors.toList());
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
-		return "/pacientes/lista";
+		return "pacientes/lista";
 	}
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Paciente paciente) {
-		return "/pacientes/cadastro";
+		return "pacientes/cadastro";
 	}
 	
 	@PostMapping("/salvar")

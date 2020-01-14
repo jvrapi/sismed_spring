@@ -101,12 +101,12 @@ public class FuncionarioController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 
 	@PostMapping("/salvar")
@@ -152,7 +152,7 @@ public class FuncionarioController {
 		model.addAttribute("funcionario", service.buscarporId(id));
 		model.addAttribute("convenios", cService.BuscarConvFunc(id));
 		model.addAttribute("allconvenios", cService.findAll());
-		return "/funcionario/editar";
+		return "funcionario/editar";
 	}
 
 	@GetMapping("/buscar/{id}")

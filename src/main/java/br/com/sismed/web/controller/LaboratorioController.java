@@ -93,12 +93,12 @@ public class LaboratorioController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 		
-		return "/laboratorio/lista"; 
+		return "laboratorio/lista"; 
 	}
 	
 	@GetMapping("/cadastrar") 
 	public String cadastrar(Laboratorio laboratorio) {
-		return "/laboratorio/cadastro"; 
+		return "laboratorio/cadastro"; 
 	}
 	
 	@PostMapping("/salvar")
@@ -113,7 +113,7 @@ public class LaboratorioController {
 		model.addAttribute("laboratorio", service.buscarporId(id));
 		model.addAttribute("convenio", cService.BuscarConvLab(id));
 		model.addAttribute("allconvenios", cService.findAll());
-		return "/laboratorio/editar";
+		return "laboratorio/editar";
 	}
 	
 	@GetMapping("/buscar/{id}")

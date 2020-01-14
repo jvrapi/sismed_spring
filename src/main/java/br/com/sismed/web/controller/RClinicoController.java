@@ -102,7 +102,7 @@ public class RClinicoController {
 		}
 		model.addAttribute("pagination", listaIds);
 		model.addAttribute("registro", rcidList);
-		return "/registro_clinico/busca";
+		return "registro_clinico/busca";
 	}
 
 	@GetMapping("/listar/{id}")
@@ -138,7 +138,7 @@ public class RClinicoController {
 		Login l = lService.BuscarPorCPF(user.getUsername());
 		model.addAttribute("funcionario", l);
 		model.addAttribute("agenda", agendaService.buscarPorId(id));
-		return "/registro_clinico/cadastro";
+		return "registro_clinico/cadastro";
 	}
 	
 	@GetMapping("/cadastrarpac/{id}")
@@ -149,7 +149,7 @@ public class RClinicoController {
 		Login l = lService.BuscarPorCPF(user.getUsername());
 		model.addAttribute("funcionario", l);
 		model.addAttribute("paciente", pacienteService.buscarporId(id));
-		return "/registro_clinico/cadastropac";
+		return "registro_clinico/cadastropac";
 	}
 	
 	@PostMapping("/salvar")

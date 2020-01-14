@@ -99,14 +99,14 @@ public class ExameController {
 			model.addAttribute("pageNumbers", pageNumbers);
 		}
 
-		return "/exame/lista";
+		return "exame/lista";
 	}
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(ModelMap model, Exame exame) {
 		model.addAttribute("paciente", pservice.findAll());
 		model.addAttribute("funcionario", fservice.findAll());
-		return "/exame/cadastro";
+		return "exame/cadastro";
 	}
 
 	@PostMapping("/salvar")
@@ -120,7 +120,7 @@ public class ExameController {
 	public String preEditar(@PathVariable("id") Long id, @PathVariable("tcid") Long tcid, ModelMap model) {
 		model.addAttribute("exame", service.buscarporId(id));
 		model.addAttribute("laboratorio", lservice.ListarLabTConv(tcid));
-		return "/exame/editar";
+		return "exame/editar";
 	}
 
 	@GetMapping("/buscar/{id}")
@@ -315,7 +315,7 @@ public class ExameController {
 		} else if (id != null && exame != "" && data != "") {
 			model.addAttribute("exame", service.ListarExameTudo(id, exame, data));
 		}
-		return "/exame/buscar_lista";
+		return "exame/buscar_lista";
 	}
 
 	@ModelAttribute("usuarioLogado")
