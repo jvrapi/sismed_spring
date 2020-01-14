@@ -82,33 +82,33 @@
                                     </div>
                                     <div class="form-group col-md-5">
                                         <label for="nome">Nome</label>
-                                        <input type="text" class="form-control tamanho-fonte" id="nome" maxlength="60" th:field="*{nome}" onkeyup="maiuscula(this)" autofocus required/>
+                                        <input type="text" class="form-control tamanho-fonte" id="nome" maxlength="60" th:field="*{nome}" onkeyup="maiuscula(this)" autofocus required autocomplete="off"/>
                                     </div>
 
                                     <div class="form-group col-md-2">
                                         <label for="CPF">CPF</label>
-                                        <input type="text" class="form-control tamanho-fonte" id="cpf" />
+                                        <input type="text" class="form-control tamanho-fonte" id="cpf" autocomplete="off"/>
                                     </div>
 
                                     <div class="form-group col-md-2">
                                         <label for="RG">RG</label>
-                                        <input type="text" class="form-control tamanho-fonte" id="rg" />
+                                        <input type="text" class="form-control tamanho-fonte" id="rg" autocomplete="off"/>
                                     </div>
 
                                     <div class="form-group col-md-2">
                                         <label for="nascimento">Nascimento</label>
-                                        <input type="date" class="form-control tamanho-fonte" th:field="*{data_nascimento}" id="nascimento" required/>
+                                        <input type="date" class="form-control tamanho-fonte" th:field="*{data_nascimento}" id="nascimento" required autocomplete="off"/>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-2">
                                         <label for="convenio">Telefone</label>
-                                        <input type="text" class="form-control tamanho-fonte" id="telefone_fixo" th:field="*{telefone_fixo}" />
+                                        <input type="text" class="form-control tamanho-fonte" id="telefone_fixo" th:field="*{telefone_fixo}" autocomplete="off"/>
                                     </div>
 
                                     <div class="form-group col-md-2">
                                         <label for="tipo_convenio">Celular</label>
-                                        <input type="text" class="form-control tamanho-fonte" id="celular" th:field="*{celular}" required/>
+                                        <input type="text" class="form-control tamanho-fonte" id="celular" th:field="*{celular}" required autocomplete="off"/>
                                     </div>
 
                                 </div>

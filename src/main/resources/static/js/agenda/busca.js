@@ -31,7 +31,6 @@ function muda() {
 						select: function (event, ui) {
 							
 							if(ui.item.value == 0){
-								
 								url = "http://localhost:8080/agenda/preCadastro" ;
 								document.location.href = url;
 								return false;

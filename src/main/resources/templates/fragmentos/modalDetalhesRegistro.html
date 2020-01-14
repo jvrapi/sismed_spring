@@ -28,13 +28,13 @@
 						</div>
 						<div class="form-group col-md-6">
 							<label for="recipient-hora">Hora</label>
-							<input class="form-control" th:name="hora" id="recipient-hora" readonly ></input>
+							<input class="form-control" id="recipient-hora" readonly ></input>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-12">
 							<label for="recipient-descricao">Descrição</label>
-							<textarea class="form-control" th:name="descricao" rows="7" id="recipient-descricao" style="resize: none;"></textarea>
+							<textarea class="form-control" th:name="descricao" rows="7" id="recipient-descricao" style="resize: none;" onkeyup="maiuscula(this)"></textarea>
 						</div>
 					</div>
 				</div>

@@ -165,8 +165,8 @@ public class LaboratorioController {
 	public String excluir(@PathVariable("id") Long id, ModelMap model, RedirectAttributes attr) {
 		String retorno = "";
 		try {
-			attr.addFlashAttribute("success","Laboratório excluido com sucesso");
 			service.excluir(id);
+			attr.addFlashAttribute("success","Laboratório excluido com sucesso");
 			retorno = "redirect:/laboratorio/listar";
 		} catch (DataIntegrityViolationException error) {
 			attr.addFlashAttribute("fail","Não foi possível excluir");

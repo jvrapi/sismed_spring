@@ -163,6 +163,8 @@ public class RClinicoController {
 	@PostMapping("/editar")
 	public String editar(RegistroClinico registroclinico, RedirectAttributes attr) {
 		Long id = registroclinico.getPaciente_id().getId();
+		LocalTime agora = LocalTime.now();
+		registroclinico.setHora(agora);
 		service.salvar(registroclinico);
 		attr.addFlashAttribute("success", "Registro alterado com sucesso");
 		return "redirect:/RegistroClinico/cadastrarpac/" + id;

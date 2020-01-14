@@ -140,7 +140,7 @@
 
                             <div class="form-group col-md-3">
                                 <label for="funcionario_lab">Quem Recebeu</label>
-                                <input type="text" class="form-control tamanho-fonte" id="funcionario_lab" autofocus="autofocus" th:field="*{funcionario_lab}" disabled/>
+                                <input type="text" class="form-control tamanho-fonte" id="funcionario_lab" autofocus="autofocus" th:field="*{funcionario_lab}" onkeyup="maiuscula(this)"  disabled/>
                             </div>
 
                         </div>

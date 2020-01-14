@@ -74,7 +74,9 @@ public class AgendaService {
 
 	@Transactional(readOnly = true)
 	public Agenda ultimoAgendamento(Long id) {
+		
 		return repository.ultimoAgendamento(id);
+		
 	}
 
 

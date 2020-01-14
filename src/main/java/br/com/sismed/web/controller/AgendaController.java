@@ -1,6 +1,5 @@
 package br.com.sismed.web.controller;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -28,8 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
 
 import br.com.sismed.domain.Agenda;
 import br.com.sismed.domain.Convenio;
@@ -77,24 +74,22 @@ public class AgendaController {
 
 	@Autowired
 	private LoginService lservice;
-	
+
 	@Autowired
 	private CustosService cservice;
-	
+
 	@Autowired
 	private LogService logservice;
 
 	@GetMapping("/agendamentos")
 	public String lista(ModelMap model, @AuthenticationPrincipal User user) {
 
-		
-		
 		Login l = lservice.BuscarPorCPF(user.getUsername());
 		Long perfil = l.getPerfis().getId();
 		Long medico_id = l.getFuncionario_id().getId();
-		
+
 		List<Funcionario> medicos = fservice.ListarMedicos();
-		
+
 		model.addAttribute("usuario", perfil);
 		model.addAttribute("funcionario", l.getFuncionario_id().getNome());
 		model.addAttribute("medicos", medicos);
@@ -171,27 +166,37 @@ public class AgendaController {
 	public String agendar(@PathVariable("id") Long id, ModelMap model, Agenda agendar) {
 		Paciente p = pacienteService.buscarporId(id);
 		Agenda situacao = service.ultimoAgendamento(id);
+		try {
 		Long compareceu = situacao.getCompareceu();
 		Long primeiraVez = situacao.getPrimeira_vez();
-		
-		if(primeiraVez == 1 && compareceu == 0) {
+
+		if (primeiraVez == 1 && compareceu == 0) {
 			model.addAttribute("alerta", "erro");
 			model.addAttribute("titulo", "Paciente não compareceu ao ultimo atendimento");
 			model.addAttribute("texto", "Paciente Pré-Cadastrado não compareceu!");
 			model.addAttribute("subtexto", "Paciente se encontra em uma situação irregular");
+
+		}
+		}catch(NullPointerException n) {
 			
 		}
 		model.addAttribute("paciente", p);
 		model.addAttribute("funcionario", fservice.ListarMedicos());
-		
+
 		return "agenda/agendarPacienteCadastrado";
 	}
 
 	@PostMapping("/salvar1")
 	public String salvar(Agenda agenda, RedirectAttributes attr) {
+		if(service.ultimoAgendamento(agenda.getPaciente_id().getId()) == null) {
+			agenda.setPrimeira_vez(1L);
+			agenda.setPagou(1L);
+			agenda.setCompareceu(1L);
+		}else {
 		agenda.setPrimeira_vez(0L);
 		agenda.setPagou(1L);
 		agenda.setCompareceu(1L);
+		}
 		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		String dataAgendada = agenda.getData().format(formatador);
 		service.salvar(agenda);
@@ -205,7 +210,8 @@ public class AgendaController {
 	}
 
 	@GetMapping("/convenio/{convenio}/{medico}")
-	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("convenio") Long convenio,@PathVariable("medico") Long medico, Agenda agenda) {
+	public @ResponseBody List<TConvenio> listTipoConvenio(@PathVariable("convenio") Long convenio,
+			@PathVariable("medico") Long medico, Agenda agenda) {
 		return tconvenioService.BuscarTConvenioFunc(convenio, medico);
 	}
 
@@ -246,17 +252,19 @@ public class AgendaController {
 	@PostMapping("/editar")
 	public String editar(Agenda agenda, RedirectAttributes attr, @AuthenticationPrincipal User user) {
 		Agenda a = service.buscarPorId(agenda.getId());
-		if(!agenda.getData().isEqual(a.getData())) {
+		if (!agenda.getData().isEqual(a.getData())) {
 			Log l = new Log();
 			Login login = lservice.BuscarPorCPF(user.getUsername());
 			DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			l.setData(LocalDate.now());
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
-			l.setDescricao("ALTERAÇÃO NA DATA DE AGENDAMENTO: NOME DO PACIENTE: " + a.getPaciente_id().getNome()+ ". DO DIA " + a.getData().format(formatador) + " PARA O DIA " + agenda.getData().format(formatador));
+			l.setDescricao(
+					"ALTERAÇÃO NA DATA DE AGENDAMENTO: NOME DO PACIENTE: " + a.getPaciente_id().getNome() + ". DO DIA "
+							+ a.getData().format(formatador) + " PARA O DIA " + agenda.getData().format(formatador));
 			logservice.salvar(l);
 		}
-		
+
 		service.salvar(agenda);
 		attr.addFlashAttribute("success", "Informações alteradas com sucesso!");
 		return "redirect:/agenda/agendamentos";
@@ -301,10 +309,10 @@ public class AgendaController {
 				p.setCelular(a.getPaciente_id().getCelular());
 				p.setTipo_convenio(a.getPaciente_id().getTipo_convenio());
 				pacienteService.salvar(p);
-				}
-			if(a.getPagou() == 1) {
+			}
+			if (a.getPagou() == 1) {
 				System.out.println("aqui");
-				//preenchendo a tabela de custos
+				// preenchendo a tabela de custos
 				Custos c = new Custos();
 				c.setAgendamento(a);
 				c.setConvenio(a.getTipo_convenio().getConvenio());
@@ -315,7 +323,7 @@ public class AgendaController {
 				c.setPaciente(a.getPaciente_id());
 				c.setValor(a.getProcedimento().getValor());
 				cservice.salvar(c);
-				
+
 			}
 		}
 		attr.addFlashAttribute("success", "Atendimento finalizado com sucesso!");
@@ -325,11 +333,11 @@ public class AgendaController {
 	@GetMapping("/agendamentosAnteriores/{id}")
 	public String find(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@PathVariable("id") Long id) {
-		
+
 		PageRequest pagerequest = PageRequest.of(page - 1, 3);
-		
+
 		Page<Agenda> agendamentos = service.agendamentosAnteriores(id, pagerequest);
-		
+
 		model.addAttribute("agenda", agendamentos);
 		int totalPages = agendamentos.getTotalPages();
 		if (totalPages == 1) {
@@ -358,50 +366,50 @@ public class AgendaController {
 		}
 		return "fragmentos/agendamentosAnteriores :: resultsList";
 	}
-	
+
 	@GetMapping("/agendaFuncionario/{id}")
 	public String agendaFuncionario(@PathVariable("id") Long id, Agenda agenda, ModelMap model) {
-		
+
 		List<Agenda> agendamentos = service.ListarAgendamentosMedico(id);
 
 		model.addAttribute("agendamentos", agendamentos);
 		for (Agenda a : agendamentos) {
-			model.addAttribute("data", a.getData());	
+			model.addAttribute("data", a.getData());
 		}
 		return "fragmentos/agendaFuncionario :: resultsList";
 	}
-	
+
 	@GetMapping("/agendaMedico")
 	public String agendaMedico(Agenda agenda, ModelMap model, @AuthenticationPrincipal User user) {
-		
+
 		Login l = lservice.BuscarPorCPF(user.getUsername());
 		Long perfil = l.getPerfis().getId();
 		Long medico_id = l.getFuncionario_id().getId();
 		List<Agenda> agendamentos = service.ListarAgendamentosMedico(medico_id);
-		
+
 		for (Agenda a : agendamentos) {
-			model.addAttribute("data", a.getData());	
+			model.addAttribute("data", a.getData());
 		}
 		model.addAttribute("usuario", perfil);
 		model.addAttribute("funcionario", l.getFuncionario_id().getNome());
 		model.addAttribute("agendamentos", agendamentos);
-		
-		
+
 		return "fragmentos/agendaFuncionario :: resultsList";
 	}
-	
+
 	@GetMapping("buscarAgendamento/{data}/{medico}")
-	public String buscarAgendamento(@PathVariable("data") String data, @PathVariable("medico") Long medico, ModelMap model, Agenda agenda) {
-		
+	public String buscarAgendamento(@PathVariable("data") String data, @PathVariable("medico") Long medico,
+			ModelMap model, Agenda agenda) {
+
 		List<Agenda> agendamentos = service.buscarAgendamentos(data, medico);
 		model.addAttribute("agendamentos", agendamentos);
-		
+
 		return "fragmentos/agendaFuncionario :: resultsList";
 	}
-	
+
 	@GetMapping("/excluir/{id}")
 	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr, @AuthenticationPrincipal User user) {
-		
+
 		Agenda agenda = service.buscarPorId(id);
 		String retorno = "";
 		try {
@@ -412,8 +420,9 @@ public class AgendaController {
 			l.setData(LocalDate.now());
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
-			l.setDescricao("EXCLUSÃO DE AGENDAMENTO: NOME DO PACIENTE: " + agenda.getPaciente_id().getNome() + ". DIA DO AGENDAMENTO: " 
-			+ agenda.getData().format(formatador) + ". NOME DO MEDICO " + agenda.getFuncionario().getNome());
+			l.setDescricao("EXCLUSÃO DE AGENDAMENTO: NOME DO PACIENTE: " + agenda.getPaciente_id().getNome()
+					+ ". DIA DO AGENDAMENTO: " + agenda.getData().format(formatador) + ". NOME DO MEDICO "
+					+ agenda.getFuncionario().getNome());
 			logservice.salvar(l);
 			service.excluir(id);
 			retorno = "redirect:/agenda/agendamentos";
@@ -423,7 +432,7 @@ public class AgendaController {
 		}
 		return retorno;
 	}
-	
+
 	@ModelAttribute("usuarioLogado")
 	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
 		Login l = lservice.BuscarPorCPF(user.getUsername());
@@ -432,15 +441,15 @@ public class AgendaController {
 		Matcher m = r.matcher(l.getFuncionario_id().getNome());
 		String retorno = "";
 		if (m.find()) {
-	         retorno = m.group(0);
-			
-			model.addAttribute("usuario",  m.group(0));
-	         
-	      } else {
-	         // mensagem de erro
-	    	  retorno = l.getFuncionario_id().getNome();
-	      }
-		
+			retorno = m.group(0);
+
+			model.addAttribute("usuario", m.group(0));
+
+		} else {
+			// mensagem de erro
+			retorno = l.getFuncionario_id().getNome();
+		}
+
 		return retorno;
 	}
 
