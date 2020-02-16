@@ -40,7 +40,8 @@ public class LoginService implements UserDetailsService{
 	
 	@Override @Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Login login = BuscarPorCPF(username);
+		Optional<Login> l = buscarPorCpfEAtivo(username);
+		Login login = l.get();
 		
 		return new User(
 				login.getCpf(),

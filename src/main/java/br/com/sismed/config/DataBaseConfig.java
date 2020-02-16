@@ -10,12 +10,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-@EnableJpaRepositories
-@Configuration
+
 public class DataBaseConfig {
 	Logger logger = LoggerFactory.getLogger(DataBaseConfig.class);
 
-	@Bean
+	
 	public DataSource dataSource() {
 		DataSource dataSource = null;
 		try {

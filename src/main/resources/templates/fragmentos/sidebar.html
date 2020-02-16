@@ -44,6 +44,10 @@
                 <li sec:authorize="hasAuthority('ADMIN')">
                     <a href="/registro/sistema"><i class="fas fa-scroll" style="margin-right: 15px;"></i>Reg. Eventos</a>
                 </li>
+                
+                <li sec:authorize="hasAuthority('ADMIN')">
+                    <a href="/backup"><i class="fas fa-file-download" style="margin-right: 15px;"></i>Backup</a>
+                </li>
             </ul>
         </nav>
        

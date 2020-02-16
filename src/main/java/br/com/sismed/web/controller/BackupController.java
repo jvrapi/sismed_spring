@@ -1,0 +1,77 @@
+package br.com.sismed.web.controller;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import br.com.sismed.domain.Login;
+import br.com.sismed.service.LoginService;
+
+@Controller
+@RequestMapping("/backup")
+public class BackupController {
+
+	@Autowired
+	private LoginService lservice;
+	
+	@Autowired
+	private DataSource datasource;
+	
+	@GetMapping
+	public String selecionarTabelas(ModelMap model) throws SQLException {
+		Connection metaData = datasource.getConnection();
+		Statement s = metaData.createStatement();
+		ResultSet r = s.executeQuery("SHOW TABLES;");
+		List<String> tabelas = new ArrayList<String>();
+		while(r.next()) {
+			tabelas.add(r.getString("Tables_in_tresta"));
+		}
+		model.addAttribute("tabelas", tabelas);
+		return "backup/tabelas";
+	}
+	
+	@PostMapping("/gerar")
+	public void gerarBackup(@RequestParam("tabelas") List<String> tabelas) {
+		for(String t : tabelas) {
+			System.out.println(t);
+		}
+	}
+	
+	@ModelAttribute("usuarioLogado")
+	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
+		Login l = lservice.BuscarPorCPF(user.getUsername());
+		String pattern = "\\S+";
+		Pattern r = Pattern.compile(pattern);
+		Matcher m = r.matcher(l.getFuncionario_id().getNome());
+		String retorno = "";
+		if (m.find()) {
+			retorno = m.group(0);
+
+			model.addAttribute("usuario", m.group(0));
+
+		} else {
+			// mensagem de erro
+			retorno = l.getFuncionario_id().getNome();
+		}
+
+		return retorno;
+	}
+}
