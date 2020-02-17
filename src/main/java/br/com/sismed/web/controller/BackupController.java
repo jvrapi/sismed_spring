@@ -1,9 +1,13 @@
 package br.com.sismed.web.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,6 +16,7 @@ import java.util.regex.Pattern;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -31,30 +36,56 @@ public class BackupController {
 
 	@Autowired
 	private LoginService lservice;
-	
+
 	@Autowired
 	private DataSource datasource;
-	
+
+	@Value("${spring.datasource.username}")
+	private String host;
+
+	@Value("${spring.datasource.password}")
+	private String password;
+
+	private String dataBase = "sismed";
+
 	@GetMapping
 	public String selecionarTabelas(ModelMap model) throws SQLException {
 		Connection metaData = datasource.getConnection();
 		Statement s = metaData.createStatement();
 		ResultSet r = s.executeQuery("SHOW TABLES;");
 		List<String> tabelas = new ArrayList<String>();
-		while(r.next()) {
-			tabelas.add(r.getString("Tables_in_tresta"));
+		while (r.next()) {
+			tabelas.add(r.getString("Tables_in_sismed"));
 		}
 		model.addAttribute("tabelas", tabelas);
 		return "backup/tabelas";
 	}
-	
+
 	@PostMapping("/gerar")
-	public void gerarBackup(@RequestParam("tabelas") List<String> tabelas) {
-		for(String t : tabelas) {
-			System.out.println(t);
+	public String gerarBackup(@RequestParam("tabelas") List<String> tabelas) {
+		String tables = "";
+		
+		for (String t : tabelas) {
+			tables += t + " ";
 		}
+		String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + tables + " > " + LocalDate.now() + ".sql";
+				
+		String[] comando = {"cd d:\\xampp\\mysql\\bin", dump};
+		try {
+			ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
+			builder.redirectErrorStream(true);
+			builder.start();
+			
+			
+			
+			
+		}catch(Exception a) {
+			a.printStackTrace();
+		}
+		
+		return "redirect:/backup";
 	}
-	
+
 	@ModelAttribute("usuarioLogado")
 	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
 		Login l = lservice.BuscarPorCPF(user.getUsername());
