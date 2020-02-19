@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+
+    <meta charset="UTF-8">
+     <meta http-equiv="refresh" content="10; url=http://localhost:8080/backup" /> 
+    <script type="text/javascript" src="/js/backup/mostrarTexto.js">
+    </script>
+</head>
+
+<body>
+    <section layout:fragment="corpo">
+        <nav class="navbar navbar-expand-lg navbar-light" th:fragment="content">
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+
+                <div class="collapse navbar-collapse justify-content-end login">
+
+                    <div class="mr-3" style="color: white; size: 50%;">
+                        <script type="text/javascript" src="/js/data.js"></script>
+                    </div>
+                    <div class="mr-3" style="color: white; size: 50%;" id="relogio"></div>
+                    <div class="mr-3" style="color: white; size: 50%;"> Olá,
+                        <a th:text="${usuarioLogado}"></a>
+                    </div>
+
+                    <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+                        <div class="btn-group mb-2 mr-sm-2">
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-user"></i> <span class="" sec:authentication="name">Bob</span>
+                            </button>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu">
+                                <button type="submit" class="dropdown-item">Sair</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container-fluid" style="width: 98%">
+            <div class="card ajustarCard">
+                <section class="jumbotron text-center">
+                    <img class="d-block mx-auto mb-4" src="/image/spring-security.png" width="72" height="72">
+                    <div class="container">
+                        <h1 class="jumbotron-heading">SISMED</h1>
+                        <p class="lead text-muted">Médicos e Especialistas</p>
+                    </div>
+                </section>
+
+                <div class="album py-5 bg-light">
+                    <div class="container">
+                        <div class="text-center">
+                            <div id="gerandoBackup">
+                                <h1 class="h3 mb-3 font-weight-normal">
+			               <img class="d-block mx-auto mb-4" src="/image/loading.gif"
+					width="72" height="72">
+			                <span>Gerando arquivo de backup</span>
+			            </h1>
+                            </div>
+                            <div id="arquivoGerado" style="display:none">
+                                <h1 class="h3 mb-3 font-weight-normal">
+			            <span class="text-success">Arquivo gerado com sucesso</span>
+			             </h1>
+                                <h1 class="h6 mb-3 font-weight-normal">
+			            <span class="text-success">Você será redirecionado em instantes</span>
+			             </h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <script th:src="~{}" th:fragment="js"></script>
+                <script th:inline="javascript" th:fragment="inlinescript"></script>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
