@@ -48,6 +48,10 @@
                 <li sec:authorize="hasAuthority('ADMIN')">
                     <a href="/backup"><i class="fas fa-file-download" style="margin-right: 15px;"></i>Backup</a>
                 </li>
+                
+                <li sec:authorize="hasAuthority('ADMIN')">
+                    <a href="/restore"><i class="fas fa-file-upload" style="margin-right: 15px;"></i>Restore</a>
+                </li>
             </ul>
         </nav>
        

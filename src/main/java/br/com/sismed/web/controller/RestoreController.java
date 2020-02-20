@@ -1,8 +1,5 @@
 package br.com.sismed.web.controller;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,16 +22,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sismed.domain.Login;
 import br.com.sismed.service.LoginService;
 
 @Controller
-@RequestMapping("/backup")
-public class BackupController {
+@RequestMapping("/restore")
+public class RestoreController {
 
 	@Autowired
 	private LoginService lservice;
@@ -49,9 +44,9 @@ public class BackupController {
 	private String password;
 
 	private String dataBase = "tresta";
-
+	
 	@GetMapping
-	public String selecionarTabelas(ModelMap model) throws SQLException {
+	public String abrirPaginaRestore(ModelMap model) throws SQLException {
 		Connection metaData = datasource.getConnection();
 		Statement s = metaData.createStatement();
 		ResultSet r = s.executeQuery("SHOW TABLES;");
@@ -60,44 +55,11 @@ public class BackupController {
 			tabelas.add(r.getString("Tables_in_tresta"));
 		}
 		model.addAttribute("tabelas", tabelas);
-		return "backup/tabelas";
-	}
-
-	@PostMapping("/gerar")
-	public String gerarBackup(@RequestParam("tabelas") List<String> tabelas, @AuthenticationPrincipal User user) {
-		
-		LocalDate data = LocalDate.now();
-		Login usuario = lservice.BuscarPorCPF(user.getUsername());
-		String tables = "";
-		String arquivo = "";
-
-		for (String t : tabelas) {
-			tables += t + " ";
-			arquivo += t + "_";
-		}
-		System.out.println(tables);
-		arquivo += LocalDate.now() + ".sql";
-		
-		String caminho = "D:\\backup\\" + data + "\\";
-
-		String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + tables + " > " + caminho + arquivo;
-
-		String[] comando = { "cd D:\\backup", "md " + data ,"cd d:\\xampp\\mysql\\bin", dump };
-		
-		System.out.println(arquivo  );
-		try {
-			ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
-			builder.redirectErrorStream(true);
-			builder.start();
-			
-		} catch (Exception a) {
-			a.printStackTrace();
-		}
-
-		return "backup/carregamento";
+		return "restore/tabelas";
 	}
 	
-
+	
+	
 	@ModelAttribute("usuarioLogado")
 	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
 		Login l = lservice.BuscarPorCPF(user.getUsername());
