@@ -67,7 +67,6 @@ public class BackupController {
 	public String gerarBackup(@RequestParam("tabelas") List<String> tabelas, @AuthenticationPrincipal User user) {
 		
 		LocalDate data = LocalDate.now();
-		Login usuario = lservice.BuscarPorCPF(user.getUsername());
 		String tables = "";
 		String arquivo = "";
 
@@ -75,7 +74,7 @@ public class BackupController {
 			tables += t + " ";
 			arquivo += t + "_";
 		}
-		System.out.println(tables);
+		
 		arquivo += LocalDate.now() + ".sql";
 		
 		String caminho = "D:\\backup\\" + data + "\\";
@@ -84,7 +83,6 @@ public class BackupController {
 
 		String[] comando = { "cd D:\\backup", "md " + data ,"cd d:\\xampp\\mysql\\bin", dump };
 		
-		System.out.println(arquivo  );
 		try {
 			ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
 			builder.redirectErrorStream(true);
