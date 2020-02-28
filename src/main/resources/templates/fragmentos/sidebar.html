@@ -37,7 +37,7 @@
                 <li>
                     <a href="/exame/listar"><i class="fas fa-briefcase-medical" style="margin-right: 15px;"></i>Exames</a>
                 </li>
-                <li>
+                <li sec:authorize="hasAuthority('ADMIN')">
                     <a href="/relatorio/listar"><i class="fas fa-stream" style="margin-right: 15px;"></i>Relatório</a>
                 </li>
                 

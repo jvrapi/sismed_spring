@@ -286,7 +286,7 @@ public class FuncionarioController {
 
 	@PostMapping("/trocarSenha")
 	public String editarSenha(@RequestParam("senha1") String s1, @RequestParam("senha2") String s2,
-			@RequestParam("senha3") String s3, @RequestParam("funcionario_id") Long funcionario_id,
+			 @RequestParam("funcionario_id") Long funcionario_id,
 			@AuthenticationPrincipal User user, RedirectAttributes attr) {
 
 		if (!s1.equals(s2)) {
@@ -296,11 +296,7 @@ public class FuncionarioController {
 
 		Login l = lservice.BuscarPorCPF(user.getUsername());
 
-		if (!LoginService.isSenhaCorreta(s3, l.getSenha())) {
-			attr.addFlashAttribute("fail", "Senha atual não confere, tente novamente");
-
-			return "redirect:/funcionario/editar/" + funcionario_id;
-		}
+		
 
 		lservice.alterarSenha(l, s1);
 		attr.addFlashAttribute("success", "Senha alterado com sucesso!");

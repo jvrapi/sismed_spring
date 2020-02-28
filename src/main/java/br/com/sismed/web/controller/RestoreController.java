@@ -1,5 +1,8 @@
 package br.com.sismed.web.controller;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,7 +26,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.sismed.domain.Login;
 import br.com.sismed.service.LoginService;
@@ -56,6 +62,39 @@ public class RestoreController {
 		}
 		model.addAttribute("tabelas", tabelas);
 		return "restore/tabelas";
+	}
+	
+	@PostMapping
+	public String realizarRestore(@RequestParam("tabelas") List<String> tabelas) {
+		LocalDate data = LocalDate.now();
+		String tables = "";
+		String arquivo = "";
+		for (String t : tabelas) {
+			tables += t + " ";
+			arquivo += t + "_";
+		}
+		
+		arquivo += LocalDate.now() + ".sql";
+		String caminho = "D:\\backup\\" + data + "\\";
+		String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + tables + " < " + caminho + arquivo;
+		String[] comando = {"cd d:\\xampp\\mysql\\bin", dump};
+		System.out.println(dump);
+		try {
+
+			FileInputStream stream = new FileInputStream("D:\\backup\\2020-02-27\\sismed_agenda_2020-02-27.sql");
+	        InputStreamReader reader = new InputStreamReader(stream);
+	        BufferedReader br = new BufferedReader(reader);
+	        String linha = br.readLine();
+	        while(linha != null) {
+	            System.out.println(linha);
+	            linha = br.readLine();
+	        }
+	    
+		} catch (Exception a) {
+			a.printStackTrace();
+			
+		}
+		return "redirect:/restore";
 	}
 	
 	

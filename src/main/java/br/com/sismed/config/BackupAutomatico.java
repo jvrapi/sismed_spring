@@ -22,7 +22,7 @@ public class BackupAutomatico {
 
 		private String dataBase = "tresta";
 	
-	@Scheduled(cron = "0 21 11 * * *", zone = TIME_ZONE) // anotação que faz o agendamento da execução. O cron serve para dizer quando sera executado
+	@Scheduled(cron = "0 36 14 * * *", zone = TIME_ZONE) // anotação que faz o agendamento da execução. O cron serve para dizer quando sera executado
 	public void gerarBackup() {
 		
 		LocalDate data = LocalDate.now();

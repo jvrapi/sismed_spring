@@ -12,8 +12,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header " style="background-color: #0087cd;">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                    <h4 class="modal-title ">Trocar Senha</h4>
+                    
+                    <h4 class="modal-title text-light">Trocar Senha</h4>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                 </div>
   					<form th:action="@{/funcionario/trocarSenha}" method="POST" class="was-validated">
                 <div class="modal-body">
@@ -30,11 +33,6 @@
                             <div class="invalid-feedback">Repita sua nova senha.</div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="senha3">Senha atual</label>
-                            <input type="password" class="form-control" id="senha3" name="senha3" maxlength="20" placeholder="Insira sua senha de acesso" value="" required readonly/>
-                            <div class="invalid-feedback">Digite sua senha atual para confirmar.</div>
-                        </div>
 
                        <div th:object="${funcionario}">
                 	<input type="hidden" id="funcionario_id" name="funcionario_id" th:value="${funcionario.id}">
@@ -44,8 +42,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button  type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
+                    <button  type="submit" class="btn btn-outline-primary"  id="btnSenha" disabled>Salvar</button>
                 </div>
                 
                 
