@@ -217,12 +217,12 @@
                                 </div>
                                 
                                 <div class="btn-group dropright form-group col-md-2">
-                                <button type="button" class="btn " style="margin-top:32px; background: #EAE8E8;" data-toggle="modal" data-target="#modalSenha" ><strong>Alterar Senha</strong> </button>
+                                <button type="button" class="btn" style="margin-top:32px; background: #EAE8E8;" data-toggle="modal" data-target="#modalSenha" ><strong>Alterar Senha</strong> </button>
                                 </div>
 
                                 <div class="btn-group dropright form-group col-md-1">
                                     <button style="margin-top:32px; background: #EAE8E8;" class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Convênios</strong></button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: #EAE8E8;">
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalCadastroConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para cadastrar um convênio"><span><u>Novo Convênio</u> &nbsp;</a>
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalExcluirConvFunc" th:attr="data-nome=${funcionario.nome}, data-id=${funcionario.id}" title="Clique aqui para excluir um convênio"><span><u>Excluir Convênio</u> &nbsp;</a>
                                     </div>
@@ -303,11 +303,12 @@
         </div>
 
         <div class="modal fade" id="modalCadastroConvFunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Convênio</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <div class="modal-header" style="background-color: #0087cd;">
+                        <h5 class="modal-title text-light" id="exampleModalLabel" style="background-color: #0087cd;">Cadastro de Convênio</h5>
+                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -350,8 +351,8 @@
         <div class="modal fade" id="modalExcluirConvFunc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Exclusão de Convênio</h5>
+                    <div class="modal-header" style="background-color: #0087cd;">
+                        <h5 class="modal-title text-light" id="exampleModalLabel">Exclusão de Convênio</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
