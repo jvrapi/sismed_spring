@@ -67,12 +67,12 @@ public class BackupController {
 		LocalDate data = LocalDate.now();
 		
 		;
-		String caminho = "d:\\sismed\\backup\\" + data + "\\manual\\";
+		String caminho = "c:\\sismed\\backup\\" + data + "\\";
 
 		for (String t : tabelas) {
-			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + t + " > " + caminho + t + ".sql";
+			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " > " + caminho + t + ".sql";
 			
-			String[] comando = { "cd d:\\sismed\\backup", "md " + data ,"cd " + data,"md manual", "cd d:\\xampp\\mysql\\bin",dump };
+			String[] comando = { "cd c:\\sismed\\backup", "md " + data ,"cd C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump };
 			try {
 			
 				ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));

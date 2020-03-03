@@ -68,12 +68,11 @@ public class RestoreController {
 	@PostMapping
 	public String realizarRestore(@RequestParam("tabelas") List<String> tabelas, @RequestParam("data") String data) throws IOException {
 
-		String caminho = "d:\\sismed\\backup\\" + data + "\\manual\\";
+		String caminho = "c:\\sismed\\backup\\" + data + "\\";
 		for (String t : tabelas) {
-			System.out.println(t);
 			String arquivo = t + ".sql";
 			String dump = "mysql -u " + host + " -p" + password + " " + dataBase + " " + " < " + caminho + arquivo;
-			String[] comando = {"cd d:\\xampp\\mysql\\bin",dump};
+			String[] comando = {"cd C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump};
 			
 			try {
 				
