@@ -43,7 +43,7 @@
                 <div class="card ajustarCard">
                     <div class="card-body">
                         <form th:action="@{/restore}" method="post">
-                            <h3>Selecione as tabelas para o Restore</h3>
+                            <h3>Selecione as tabelas para a Restauração</h3>
                             <div th:each="tables : ${tabelas}" class="ml-4">
                                 <input class="form-check-input" type="checkbox" th:name="tabelas" th:value="${tables}" th:id="*{tables}">
                                 <label class="form-check-label" th:for="*{tables}" th:text="${tables}">
@@ -59,7 +59,7 @@
                                     <input type="date" class="form-control tamanho-fonte" id="data" name="data"/>
                                 </div>
                             </div>
-                            <input type="submit" style="display:inline" class="mt-3 btn btn-success in" value="Gerar Backup">
+                            <input type="submit" style="display:inline" class="mt-3 btn btn-success in" value="Restaurar">
 
                         </form>
                     </div>
