@@ -1,8 +1,6 @@
 package br.com.sismed.web.controller;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,31 +65,25 @@ public class BackupController {
 	public String gerarBackup(@RequestParam("tabelas") List<String> tabelas, @AuthenticationPrincipal User user) {
 		
 		LocalDate data = LocalDate.now();
-		String tables = "";
-		String arquivo = "";
+		
+		;
+		String caminho = "d:\\sismed\\backup\\" + data + "\\manual\\";
 
 		for (String t : tabelas) {
-			tables += t + " ";
-			arquivo += t + "_";
-		}
-		
-		arquivo += LocalDate.now() + ".sql";
-		
-		String caminho = "D:\\backup\\" + data + "\\";
-
-		String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + tables + " > " + caminho + arquivo;
-
-		String[] comando = { "cd D:\\backup", "md " + data ,"cd d:\\xampp\\mysql\\bin", dump };
-		
-		try {
-			ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
-			builder.redirectErrorStream(true);
-			builder.start();
+			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + t + " > " + caminho + t + ".sql";
 			
-		} catch (Exception a) {
-			a.printStackTrace();
+			String[] comando = { "cd d:\\sismed\\backup", "md " + data ,"cd " + data,"md manual", "cd d:\\xampp\\mysql\\bin",dump };
+			try {
+			
+				ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
+				builder.redirectErrorStream(true);
+				builder.start();
+				
+			} catch (Exception a) {
+				a.printStackTrace();
+			}
+			
 		}
-
 		return "backup/carregamento";
 	}
 	

@@ -2,6 +2,7 @@ package br.com.sismed.web.controller;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,7 +51,7 @@ public class RestoreController {
 	private String password;
 
 	private String dataBase = "tresta";
-	
+
 	@GetMapping
 	public String abrirPaginaRestore(ModelMap model) throws SQLException {
 		Connection metaData = datasource.getConnection();
@@ -63,42 +64,44 @@ public class RestoreController {
 		model.addAttribute("tabelas", tabelas);
 		return "restore/tabelas";
 	}
-	
-	@PostMapping
-	public String realizarRestore(@RequestParam("tabelas") List<String> tabelas) {
-		LocalDate data = LocalDate.now();
-		String tables = "";
-		String arquivo = "";
-		for (String t : tabelas) {
-			tables += t + " ";
-			arquivo += t + "_";
-		}
-		
-		arquivo += LocalDate.now() + ".sql";
-		String caminho = "D:\\backup\\" + data + "\\";
-		String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + tables + " < " + caminho + arquivo;
-		String[] comando = {"cd d:\\xampp\\mysql\\bin", dump};
-		System.out.println(dump);
-		try {
 
-			FileInputStream stream = new FileInputStream("D:\\backup\\2020-02-27\\sismed_agenda_2020-02-27.sql");
-	        InputStreamReader reader = new InputStreamReader(stream);
-	        BufferedReader br = new BufferedReader(reader);
-	        String linha = br.readLine();
-	        while(linha != null) {
-	            System.out.println(linha);
-	            linha = br.readLine();
-	        }
-	    
-		} catch (Exception a) {
-			a.printStackTrace();
+	@PostMapping
+	public String realizarRestore(@RequestParam("tabelas") List<String> tabelas, @RequestParam("data") String data) throws IOException {
+
+		String caminho = "d:\\sismed\\backup\\" + data + "\\manual\\";
+		for (String t : tabelas) {
+			System.out.println(t);
+			String arquivo = t + ".sql";
+			String dump = "mysql -u " + host + " -p" + password + " " + dataBase + " " + " < " + caminho + arquivo;
+			String[] comando = {"cd d:\\xampp\\mysql\\bin",dump};
 			
+			try {
+				
+				FileInputStream stream = new FileInputStream(caminho + arquivo);
+				InputStreamReader reader = new InputStreamReader(stream);
+				BufferedReader br = new BufferedReader(reader);
+				String linha = br.readLine();
+				while (linha != null) {
+					System.out.println(linha);
+					linha = br.readLine();
+				}
+				ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
+				builder.redirectErrorStream(true);
+				builder.start();
+
+			} catch (Exception a) {
+				 /*caminho = "E:\\sismed\\backup\\" + data + "\\automatico\\";
+				 dump = "mysql -u " + host + " -p" + password + " " + dataBase + " " + " < " + caminho + arquivo;
+				 ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
+					builder.redirectErrorStream(true);
+					builder.start();*/
+				a.printStackTrace();
+			}
 		}
+
 		return "redirect:/restore";
 	}
-	
-	
-	
+
 	@ModelAttribute("usuarioLogado")
 	public String usuarioLogado(@AuthenticationPrincipal User user, ModelMap model) {
 		Login l = lservice.BuscarPorCPF(user.getUsername());
@@ -120,8 +123,8 @@ public class RestoreController {
 	}
 
 	String dataHoraAtual() {
-		DateTimeFormatter dataFormatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter horaFormatter =  DateTimeFormatter.ofPattern("HH:mm:ss");
+		DateTimeFormatter dataFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter horaFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 		LocalDate data = LocalDate.now();
 		LocalTime hora = LocalTime.now();
 		String dataFormatada = dataFormatter.format(data);
