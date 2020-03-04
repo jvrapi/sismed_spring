@@ -33,7 +33,7 @@ public class BackupAutomatico {
 
 	private String dataBase = "tresta";
 
-	@Scheduled(cron = "0 11 11 * * *", zone = TIME_ZONE) // anotação que faz o agendamento da execução. O cron serve
+	@Scheduled(cron = "0 59 23 * * *", zone = TIME_ZONE) // anotação que faz o agendamento da execução. O cron serve
 															// para dizer quando sera executado
 	public void gerarBackup() throws SQLException {
 		Connection metaData = datasource.getConnection();
@@ -52,10 +52,10 @@ public class BackupAutomatico {
 
 			// caminho aonde sera salvo o arquivo mysql. Nesse momento, a pasta com a data
 			// atualnão está criada
-			String caminho = "C:\\sismed\\backup\\" + data + "\\automatico\\";
+			String caminho = "c:\\sismed\\backup\\" + data + "\\";
 
 			// String do mysql para gerar o arquivo sql
-			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + " "+ t + " > " + caminho + arquivo;
+			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + t + " " +" > " + caminho + arquivo;
 
 			/*
 			 * Comandos que serão executados a primeira string, define aonde sera salvo o
@@ -64,7 +64,7 @@ public class BackupAutomatico {
 			 * gerar o arquivo
 			 * 
 			 */
-			String[] comando = { "cd C:\\sismed\\backup", "md " + data, "cd " + data,"md automatico", dump };
+			String[] comando = { "cd c:\\sismed\\backup", "md " + data, "cd C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump };
 			try {
 				ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
 				builder.redirectErrorStream(true);

@@ -1,6 +1,7 @@
 package br.com.sismed.web.controller;
 
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -70,14 +71,16 @@ public class BackupController {
 		String caminho = "c:\\sismed\\backup\\" + data + "\\";
 
 		for (String t : tabelas) {
-			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " > " + caminho + t + ".sql";
+			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + t + " " + " > " + caminho + t + ".sql";
 			
 			String[] comando = { "cd c:\\sismed\\backup", "md " + data ,"cd C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump };
+			
 			try {
 			
 				ProcessBuilder builder = new ProcessBuilder("cmd", "/c", String.join("& ", comando));
 				builder.redirectErrorStream(true);
 				builder.start();
+				
 				
 			} catch (Exception a) {
 				a.printStackTrace();
