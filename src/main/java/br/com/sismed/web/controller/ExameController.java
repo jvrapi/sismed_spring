@@ -186,14 +186,33 @@ public class ExameController {
 					+ e.getData_envio().format(formatter) + " PARA A DATA " + exame.getData_envio().format(formatter));
 			logservice.salvar(l);
 		}
-		
-		if(e.getData_retorno() != null && !exame.getData_retorno().equals(e.getData_retorno())) {
+		if(exame.getData_retorno() != null) {
+			System.out.println("prmeiro if");
+			if(e.getData_retorno() != null && !exame.getData_retorno().equals(e.getData_retorno())) {
+				System.out.println("segundo if");
+				Log l = new Log();
+				l.setData(LocalDate.now());
+				l.setFuncionario_id(login.getFuncionario_id());
+				l.setHora(LocalTime.now());
+				l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
+						+ e.getData_retorno().format(formatter) + " PARA A DATA " + exame.getData_retorno().format(formatter));
+				logservice.salvar(l);
+			} else if(e.getData_retorno() == null) {
+				System.out.println("segundo if");
+				Log l = new Log();
+				l.setData(LocalDate.now());
+				l.setFuncionario_id(login.getFuncionario_id());
+				l.setHora(LocalTime.now());
+				l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DE DATA DE RETORNO PENDENTE PARA A DATA " + exame.getData_retorno().format(formatter));
+				logservice.salvar(l);
+			}
+		} else if(e.getData_retorno() != null){
 			Log l = new Log();
 			l.setData(LocalDate.now());
 			l.setFuncionario_id(login.getFuncionario_id());
 			l.setHora(LocalTime.now());
 			l.setDescricao("ALTERÇÃO DE DATA DE RETORNO: NOME DO EXAME: " + e.getNome() + ". NOME DO PACIENTE: " + e.getPaciente_id().getNome() + ". DA DATA " 
-					+ e.getData_retorno().format(formatter) + " PARA A DATA " + exame.getData_retorno().format(formatter));
+					+ e.getData_retorno().format(formatter) + " PARA DATA DE RETORNO PENDENTE" );
 			logservice.salvar(l);
 		}
 		service.salvar(exame);
