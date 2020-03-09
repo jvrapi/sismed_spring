@@ -7,7 +7,7 @@ function executar(botao) {
 	$("#convenio_id").prop("disabled", false);
 	$("#tipo_convenio_id").prop("disabled", false);
 	$("#procedimento_id").prop("disabled", false);
-	$("#data").prop("disabled", false);
+	$("#dataAgendamento").prop("disabled", false);
 	$("#hora").prop("disabled", false);
 	$("#compareceu").prop("disabled", false);
 	$("#observacao").prop("disabled", false);

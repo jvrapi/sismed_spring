@@ -67,13 +67,15 @@ public class BackupController {
 		
 		LocalDate data = LocalDate.now();
 		
-		;
-		String caminho = "c:\\sismed\\backup\\" + data + "\\";
-
+		
+		String caminho = "d:\\sismed\\backup\\" + data + "\\";
+		
+		apagarPasta(data);
+		
 		for (String t : tabelas) {
 			String dump = "mysqldump -u " + host + " -p" + password + " " + dataBase + " " + t + " " + " > " + caminho + t + ".sql";
 			
-			String[] comando = { "cd c:\\sismed\\backup", "md " + data ,"cd C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump };
+			String[] comando = { "cd d:\\sismed\\backup", "md " + data ,"cd d:\\Program Files\\MySQL\\MySQL Server 5.7\\bin",dump };
 			
 			try {
 			
@@ -119,5 +121,18 @@ public class BackupController {
 		String dataFormatada = dataFormatter.format(data);
 		String horaFormatada = horaFormatter.format(hora);
 		return dataFormatada + " As " + horaFormatada;
+	}
+	
+	public void apagarPasta(LocalDate data) {
+		File diretorio = new File("d:\\sismed\\backup\\" + data.minusDays(1));
+		if(diretorio.isDirectory()) {
+			File[] deletar = diretorio.listFiles();
+			for(File arquivo: deletar) {
+				arquivo.delete();
+				
+			}
+			diretorio.delete();
+			
+		}
 	}
 }
